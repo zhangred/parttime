@@ -71,6 +71,16 @@ define(["vue"], function(vue) {
 				dom.innerHTML = options.msg;
 			}
 			return dom;
+		},
+		backtime:function(date,geshi){
+		    var dd = date;
+		    geshi = geshi.replace("Y", dd.getFullYear());
+		    geshi = geshi.replace("M", dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1);
+		    geshi = geshi.replace("D", dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate());
+		    geshi = geshi.replace("h", dd.getHours() < 10 ? '0' + dd.getHours() : dd.getHours());
+		    geshi = geshi.replace("m", dd.getMinutes() < 10 ? '0' + dd.getMinutes() : dd.getMinutes());
+		    geshi = geshi.replace("s", dd.getSeconds() < 10 ? '0' + dd.getSeconds() : dd.getSeconds());
+		    return geshi;
 		}
 	};
 })

@@ -8,6 +8,94 @@ define(["vue"], function(vue) {
 		}
 	});
 
+	vue.directive('dragmove',{
+		bind:function(el){
+			
+		},
+		inserted:function(el,banding){
+			var tar = $(el);
+
+			
+
+			var outer = $('<div class="out-move-hide"></div>');
+			// var elm = $('<p class="sbar-ls-move-hide"></p>');
+			// outer.append(elm);
+			$('body').append(outer);	
+			
+
+			var x = 0,
+				left = 0,
+				lastx = 0;
+
+
+			var canmove = false,
+				win = $(window),
+				callback = banding.value.callback,
+				obj = banding.value.obj,
+				index = banding.value.index,
+				unit = 980/(obj.max - obj.min);
+
+				// var canmove = false,
+				// win = $(window),
+				// callback = banding.value.callback,
+				// type = banding.value.type,
+				// index = banding.value.index,
+				// unit = banding.value.unit,
+				// prev = ;
+
+
+			var morm_to = 0,
+				morm_from = 0,
+				minspan = 0,
+				maxspan = 0,
+				prev = '';
+				next = '';
+
+			tar.on('mouseenter',function(e){
+				var wtop = win.scrollTop(),
+					oft = tar.offset();
+				
+				// elm.css({'position':'fixed','top':oft.top - wtop,'left':oft.left,'z-index':20})
+			}).on('mousedown',function(e){
+				x = e.clientX;
+				canmove = true;
+				outer.show();
+				prev = obj.list[index];
+				next = obj.list[index+1];
+				morm_to = prev.to;
+				morm_from = next.from;
+				minspan = prev.from - prev.to + 1;
+				maxspan = next.to - next.from - 1;
+			})
+
+			outer.on('mousemove',function(e){
+				if(!canmove){ return}
+				
+				var cx = Math.floor((e.clientX - x)/unit);
+				lastx = cx;
+
+				if(cx<=minspan){
+					cx = minspan;
+				};
+				if(cx>=maxspan){
+					cx = maxspan;
+				};
+				lastx = cx;
+				prev.to = morm_to + cx;
+				next.from = morm_from + cx;
+
+			}).on('mouseup',function(){
+				morm_to = prev.to;
+				morm_from = next.from;
+
+				outer.hide();
+				
+			})
+			// console.log(9,banding)
+			// banding.value.callback('r',4,987)
+		}
+	})
+
 
 	vue.filter("hidemobile", function(value) {
 		var v = value||'',
@@ -116,28 +204,6 @@ define(["vue"], function(vue) {
 
 })
 
-// vue.component('usernav',{
-// 	template:"<div class='user-content-left'>\
-// 		<div class='user-info_left fl'>\
-// 			<img v-original original='/images/info_01.jpg'>\
-// 			<div id='reg_tab1'>\
-// 				<dl>\
-// 					<dt>我的账户</dt>\
-// 					<router-link to='' class='user-info_link user-info_active'>账户管理</router-link>\
-// 					<router-link to='' class='user-info_link'>基本信息</router-link>\
-// 					<router-link to='' class='user-info_link'>银行卡管理</router-link>\
-// 					<router-link to=''  class=' user-info_link'>我是vip</router-link>\
-// 					<router-link to='' class='user-info_link'>我的优惠</router-link>\
-// 					<router-link to='' class='user-info_link'>消息中心</router-link>\
-// 					<dt>订单管理</dt>\
-// 					<router-link to='' class='user-info_link'>订单记录</router-link>\
-// 					<router-link to=''  class='user-info_link'>自动复投<i class='info_left_jx'></i></router-link>\
-// 					<router-link to='' class=' user-info_link'>收支明细</router-link>\
-// 					<router-link to=''  class='user-info_link'>交易记录</router-link>\
-// 					<dt>其他</dt> \
-// 					<router-link to=''  class=' user-info_link'>收货地址</router-link>\
-// 				</dl>\
-// 			</div>\
-// 		</div>\
-// 	</div>"
+// vue.component('timepicker',{
+// 	template:""
 // })
