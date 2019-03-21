@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="assets/stylesheets/style.css" type="text/css" /> 
+    <script language="javascript" type="text/javascript" src="./assets/javascript/size.js"></script>
+    <script  language="javascript" type="text/javascript" src="./assets/javascript/tools.js"></script>
+    <title>demo样板</title>
+    <style>
+        .ul{ padding-top: 10px;}
+        .li{ display: block; line-height: 40px; text-align: center; font-size: 14px; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+	<div class="ul">
+        <a href="toast.html" class="li">toast提示框</a>
+
+        <a href="editlines.html" class="li">editlines-展示行</a>
+
+        <a href="pop.html" class="li">pop-弹框展示</a>
+        
+        <a href="select_picker.html" class="li">数据选择和数据拾取器</a>
+    </div>
+
+    <script>
+        
+        // var p = new Promise(function(resolve, reject){
+        //     //做一些异步操作
+        //     setTimeout(function(){
+        //         console.log('执行完成');
+        //         resolve('随便什么数据');
+        //     }, 2000);
+        // });
+
+        // function prom(cb){
+        //     var p = new Promise(function(resolve, reject){
+        //         setTimeout(function(){
+        //             // resolve({a:4,b:4})
+        //             cb(134)
+        //         },2000)
+        //         setTimeout(function(){
+        //             console.log(45454)
+        //             reject('12')
+        //         },4000)
+        //     })
+        //     return p;
+        // }
+
+        // prom(function(rs){
+        //     console.log(rs)
+        // }).then(function(a){
+        //     console.log(a);
+        // },function(reason, data){
+        //     console.log(9,reason,data)
+        // });
+
+        // window.func = {
+        //     buid:new Promise(function(resolve,reject){
+        //         console.log('buid-in')
+        //         setTimeout(function(){
+        //             resolve({buid:232323})
+        //         },2000)
+        //     }),
+        //     dhid:new Promise(function(resolve,reject){
+        //             console.log('dhid-in')
+        //             setTimeout(function(){
+        //                 resolve({dhid:232323})
+        //             },3000)
+        //     })
+        // }
+
+        // Promise.all([func.buid,func.dhid]).then(function(res){
+        //     console.log(4,res)
+        // })
+        // setTimeout(function(){
+        //     Promise.all([func.buid,func.dhid]).then(function(res){
+        //         console.log(5,res)
+        //     })
+        // },3000)
+
+        // function prom(name){
+        //     return new Promise(function(resolve,reject){
+        //         name = name + g;
+        //         setTimeout(function(){
+        //             resolve(name)
+        //         },2000)
+        //     })
+        // }
+
+        // prom('zhang').then(function(rs){
+        //     console.log(4,rs)
+        //     return 'teset01';
+        // }).then(function(rs){
+        //     console.log(5,rs)
+        // }).catch(function(res){
+        //     console.log(6,res)
+        // })
+//         ;(function () {
+//  if ( typeof window.CustomEvent === "function" ) return false;
+   
+//  function CustomEvent ( event, params ) {
+//   params = params || { bubbles: false, cancelable: false, detail: undefined };
+//   var evt = document.createEvent( 'CustomEvent' );
+//   evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+//   return evt;
+//  }
+   
+//  CustomEvent.prototype = window.Event.prototype;
+   
+//  window.CustomEvent = CustomEvent;
+// })();
+// ;(function () {
+//  function ajaxEventTrigger(event) {
+//   var ajaxEvent = new CustomEvent(event, { detail: this });
+//   window.dispatchEvent(ajaxEvent);
+//  }
+    
+//  var oldXHR = window.XMLHttpRequest;
+   
+//  function newXHR() {
+//   var realXHR = new oldXHR();
+   
+//   realXHR.addEventListener('abort', function () { ajaxEventTrigger.call(this, 'ajaxAbort'); }, false);
+   
+//   realXHR.addEventListener('error', function () { ajaxEventTrigger.call(this, 'ajaxError'); }, false);
+   
+//   realXHR.addEventListener('load', function () { ajaxEventTrigger.call(this, 'ajaxLoad'); }, false);
+   
+//   realXHR.addEventListener('loadstart', function () { ajaxEventTrigger.call(this, 'ajaxLoadStart'); }, false);
+   
+//   realXHR.addEventListener('progress', function () { ajaxEventTrigger.call(this, 'ajaxProgress'); }, false);
+   
+//   realXHR.addEventListener('timeout', function () { ajaxEventTrigger.call(this, 'ajaxTimeout'); }, false);
+   
+//   realXHR.addEventListener('loadend', function () { ajaxEventTrigger.call(this, 'ajaxLoadEnd'); }, false);
+   
+//   realXHR.addEventListener('readystatechange', function() { ajaxEventTrigger.call(this, 'ajaxReadyStateChange'); }, false);
+   
+//   return realXHR;
+//  }
+   
+//  window.XMLHttpRequest = newXHR;
+// })();
+
+
+//         var xhr = new XMLHttpRequest();
+        
+//         window.addEventListener('ajaxReadyStateChange', function (e) {
+//             console.log(4,e.detail.status,e.detail.readyState,e.detail.response); // XMLHttpRequest Object
+//         });
+//         window.addEventListener('ajaxAbort', function (e) {
+//         console.log(2,e.detail.responseText); // XHR 返回的内容
+//         });
+//         window.addEventListener('ajaxAbort', function (e) {
+//             console.log(3,e.detail.responseText); // XHR 返回的内容
+//         });
+//         window.addEventListener('ajaxError', function (e) {
+//             console.log(1,e.detail.responseText); // XHR 返回的内容
+//         });
+//         window.addEventListener('ajaxTimeout', function (e) {
+//             console.log(5,e.detail.responseText); // XHR 返回的内容
+//         });
+//         window.addEventListener('ajaxLoadEnd', function (e) {
+//             console.log(6,e.detail); // XHR 返回的内容
+//         });
+        
+
+//         setTimeout(function(){
+//             xhr.open('GET', 'api/callbacka.json');
+//             xhr.send();
+//         },1000)
+//         setTimeout(function(){
+//             var img = new Image;
+//             img.src = 'api/callback.json'
+//         },3000)
+
+window.func = {
+    /*时间格式化参数*/
+    backtime: function (type) {
+        var dt = new Date(),
+            y = dt.getFullYear(),
+            m = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : (dt.getMonth()+1),
+            d = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate(),
+            h = dt.getHours() < 10 ? '0' + dt.getHours() : dt.getHours(),
+            mm = dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes(),
+            s = dt.getSeconds() < 10 ? '0' + dt.getSeconds() : dt.getSeconds(),
+            l = dt.getTime() % 1000;
+        if(type==1){
+            return y + '-' + m + '-' + d + ' ' + h + ':' + mm + ':' + s;
+        }else if(type==2){
+            return y + '' + m + '' + d + '' + h + '' + mm + '' + s;
+        }else{
+            return y + '-' + m + '-' + d + ' ' + h + ':' + mm + ':' + s + '.' + l;
+        }
+    },
+    /*获取url参数*/
+    getRequest: function(search){
+        var url = search||window.location.search,
+            theRequest = {},
+            str = '',
+            para = [];
+        if (url.indexOf("?") != -1) {
+            str = url.substr(1);
+            var strs = str.split("&");
+            for(var i = 0, len = strs.length; i < len; i ++) {
+                para = strs[i].split("=");
+                theRequest[para[0]] = decodeURIComponent( (para.length>=2)?para[1]:"");
+            }
+        }
+        return theRequest;
+    },
+    /*随机32位字符串*/
+    randomString: function (len) {
+        len = len || 32;
+        var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz23456789';
+        var maxPos = chars.length;
+        var token = '';
+        for (i = 0; i < len; i++) {
+            token += chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return token;
+    },
+    paramsString: function(obj,sp){
+        var arr = [];
+        for(key in obj){
+            arr.push(key+':'+obj[key]);
+        }
+        return arr.join(sp||'&')
+    },
+    //生成browserUserId
+    inituserid: function(){
+        return func.backtime(2)+func.randomString(12);
+    },
+    //获取cookie
+    getCookie:function(name){ 
+        var strCookie=document.cookie; 
+        var arrCookie=strCookie.split("; "); 
+        for(var i=0;i<arrCookie.length;i++){ 
+           var arr=arrCookie[i].split("="); 
+           if(arr[0]==name)return decodeURIComponent(arr[1]); 
+        } 
+        return ""; 
+    },
+    //设置cookie
+    setCookie:function(name,value){
+        var Days = 30; 
+        var exp = new Date('2030/1/1'); 
+        exp.setTime(exp.getTime()); 
+        document.cookie = name + "="+ escape (value) + ";path=/;expires=" + exp.toGMTString(); 
+    },
+    //返回from和origChanId拼合url
+    back_f_c:function(url,pid){
+        if(url.indexOf('?')>=0){
+            url += (url.length - url.indexOf('?')>1?'&':'?')+'from='+((pid||pageId)||'outside')+'&channelSource='+(func.getRequest().channelSource||'');
+        }else{
+            url += '?from='+((pid||pageId)||'outside')+'&channelSource='+(func.getRequest().channelSource||'');
+        }
+        return url;
+    },
+    //字符串转json
+    tojson:function(str){
+        if(str){
+            var obj = {},
+                arr = str.split(';'),
+                len = arr.length,
+                para = [];
+
+            for(var i = 0; i < len; i ++) {
+                para = arr[i].split(":");
+                obj[para[0]] = (para.length>=2)?para[1]:"";
+            }
+            return obj;
+        }else{
+            return {};
+        }
+    },
+    //设置返回默认对象
+    back_default_obj:function(type){
+        if(type==1){
+            return {osVer : "1001",osName : "default",wifiVer : "default",brand : "default",model :"default",mac : "default",imei :"default",androidid : "default"}
+        }else{
+            return {};
+        }
+    },
+    //设置browserUserId
+    setbuid:function(cb){
+        //是否有浏览器唯一标示
+        if(!func.getCookie('b')){
+            var b = func.inituserid();
+            window.test.b = b;
+            func.setCookie('b',b);
+            cb();
+        }else{
+            cb();
+        }
+    }
+}
+
+function testck(i){
+    if(!func.getCookie('b')){
+        console.log(3)
+        func.setCookie('b','45454')
+    }
+}
+
+window.test = {
+    b:func.getCookie('b')||''
+}
+
+if(!window.test.b){
+    func.setCookie('b',func.inituserid())
+    alert(func.getCookie('b'))
+}
+
+testck(2)
+testck(3)
+testck(4)
+
+// setTimeout(function(){},0)
+    
+    </script>
+</body>
+</html>
