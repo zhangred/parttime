@@ -21,7 +21,7 @@
     <div class="editlinebox editlinebox-nmt editlinebox-nbt">
         <div class="editline editline-select editline-cover" id="J_line_dataselect">
             <p class="el-ado">单行数据</p>
-            <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
+            <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" id="J_a" /></div>
         </div>
         <div class="J_choosetime editline editline-select editline-cover" data-title="开始日期-列表日期" data-timegroup="y-m-d" data-format="y/m/d">
             <p class="el-ado">开始日期-列表日期</p>
@@ -90,6 +90,7 @@
                 },
                 "confirm":function(rs,cb){
                     cb()
+                    $('#J_a').val(rs.name)
                     console.log('c',rs)
                 }
             });
@@ -99,15 +100,11 @@
                 // "minyear":1960,
                 "confirm":function(rs,cb){
                     console.log(rs)
+                    $(rs.target).find('input').val(rs.time_str)
+                    cb();
                 }
             })
-
-
-
-        
-        
-
-
+            
         })
     </script>
 </body>

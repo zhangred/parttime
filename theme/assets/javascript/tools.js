@@ -221,24 +221,28 @@ window.cmtools = {
         this.boxer.classList.remove('cm-slbox-dis')
         this.renderScroll(this)
     },
-    bindTarget:function(){
-        var that = this;
-        if(this.target){
-            this.target.addEventListener('click',function(){
-                that.pop.classList.add('cm-pop-active');
-            })
-        }
-        this.btn_cal.addEventListener('click',function(){
-            that.pop.classList.remove('cm-pop-active');
-        })
-        this.btn_sure.addEventListener('click',function(){
-            if(typeof(that.v[that.fieldvalue])!='undefined'){
-                that.opts.confirm&&that.opts.confirm(that.v,function(){
-                    that.value = that.v;
-                    that.pop.classList.remove('cm-pop-active');
-                });
+    timeFormat:function(time,format){
+		format = format.replace("y",time.getFullYear());
+		format = format.replace("m",(time.getMonth()+1)<10?'0'+(time.getMonth()+1):(time.getMonth()+1));
+		format = format.replace("d",time.getDate()<10?'0'+time.getDate():time.getDate());
+		format = format.replace("h",time.getHours()<10?'0'+time.getHours():time.getHours());
+		format = format.replace("i",time.getMinutes()<10?'0'+time.getMinutes():time.getMinutes());
+		format = format.replace("s",time.getSeconds()<10?'0'+time.getSeconds():time.getSeconds());
+		return format;
+    },
+    resety:function(){
+        var idx = -1,
+            dl = this.datalist,
+            rid = this.rid;
+
+        for(var i=0,len=dl.length;i<len;i++){
+            if(dl[i].id==rid){
+                idx = i;
+                break;
             }
-        })
+        };
+        this.y = (3-idx)*this.unit;
+        this.roller.style.webkitTransform = 'translateZ(0) translateY('+(this.y)+'px)';
     }
 }
 function applytools(keys){
@@ -248,7 +252,7 @@ function applytools(keys){
 };
 
 function touchscroll(outer){
-    applytools.call(this,['createDom','createPop','createScroller','renderScroll','bindScroll','empty','reset']);
+    applytools.call(this,['createDom','createPop','createScroller','renderScroll','bindScroll','empty','reset','resety']);
     this.boxer = outer.boxer;
     this.createScroller(this,outer.opts)
     this.boxer.appendChild(this.case);
@@ -283,7 +287,7 @@ dataSelect.prototype = {
     render:function(){
         var that = this;
         if(this.target){
-            applytools.call(this,['createDom','createPop','bindTarget']);
+            applytools.call(this,['createDom','createPop']);
             this.createPop();
             this.scroller = new touchscroll(this);
             this.settil(this.title);
@@ -309,6 +313,23 @@ dataSelect.prototype = {
     empty:function(){
         this.v = {};
         this.scroller.empty();
+    },
+    bindTarget:function(){
+        var that = this;
+        this.target.addEventListener('click',function(){
+            that.pop.classList.add('cm-pop-active');
+        })
+        this.btn_cal.addEventListener('click',function(){
+            that.pop.classList.remove('cm-pop-active');
+        })
+        this.btn_sure.addEventListener('click',function(){
+            if(typeof(that.v[that.fieldvalue])!='undefined'){
+                that.opts.confirm&&that.opts.confirm(that.v,function(){
+                    that.value = that.v;
+                    that.pop.classList.remove('cm-pop-active');
+                });
+            }
+        })
     }
 };
 
@@ -322,64 +343,40 @@ datePicker.prototype = {
         this.targets = opts.targets;
         this.timegroups = ['y','m','d','h','i','s'];
         this.unit = opts.unit||36;
-        this.format = 'y/m/d h:i:s';
+        this.format_all = 'y/m/d h:i:s';
+        this.format = opts.format||'y/m/d h:i:s';
         this.confirm = opts.confirm||null;
         this.default_time = opts.default_time||new Date();
-        this.final_time = opts.default_time||new Date();
-        this.v = {};
         this.minyear = opts.minyear||2000;
         this.render();
-        // this.bindTargets();
+        this.bindTargets();
     },
     render:function(){
         var that = this;
-        applytools.call(this,['createDom','createPop','bindTarget']);
+        applytools.call(this,['createDom','createPop','timeFormat']);
         this.createPop();
-        this.pop.classList.add('cm-pop-active')
         this.bindTarget();
         this.group = {y:{},m:{},d:{},h:{},i:{},s:{}};
-
-        //年
-        this.group.y.boxer = this.createDom({"tag":"div","classname":"cm-slbox-time"});
-        this.boxer.appendChild(this.group.y.boxer)
-        this.group.y.opts = {outer:this.group.y.boxer,datalist:this.getlistdata({start:this.minyear,end:2040,range:1,unit:'年'}), default_v:this.minyear};
-        this.group.y.scroller = new touchscroll(this.group.y);
-        // this.group.y.
-        this.group.y.scroller.selected = function(rs){
-            that.changeday();
+        var opt = {
+            y:{outer:this.group.y.boxer,datalist:this.getlistdata({start:this.minyear,end:2040,range:1,unit:'年'}), default_v:this.minyear},
+            m:{outer:this.group.m.boxer,datalist:this.getlistdata({start:1,end:13,range:1,unit:'月'}), default_v:1},
+            d:{outer:this.group.d.boxer,datalist:this.getlistdata({start:1,end:32,range:1,unit:'日'}), default_v:1},
+            h:{outer:this.group.h.boxer,datalist:this.getlistdata({start:0,end:24,range:1,unit:'时'}), default_v:0},
+            i:{outer:this.group.i.boxer,datalist:this.getlistdata({start:0,end:60,range:5,unit:'分'}), default_v:0},
+            s:{outer:this.group.s.boxer,datalist:this.getlistdata({start:0,end:60,range:5,unit:'秒'}), default_v:0}
         }
-        //月
-        this.group.m.boxer = this.createDom({"tag":"div","classname":"cm-slbox-time"});
-        this.boxer.appendChild(this.group.m.boxer)
-        this.group.m.opts = {outer:this.group.m.boxer,datalist:this.getlistdata({start:1,end:13,range:1,unit:'月'}), default_v:1};
-        this.group.m.scroller = new touchscroll(this.group.m);
-        this.group.m.scroller.selected = function(rs){
-            that.changeday();
+
+        for(tp in this.group){
+            this.group[tp].boxer = this.createDom({"tag":"div","classname":"cm-slbox-time"});
+            this.boxer.appendChild(this.group[tp].boxer);
+            this.group[tp].opts = opt[tp];
+            this.group[tp].scroller = new touchscroll(this.group[tp]);
+            if(tp=='y'||tp=='m'){
+                this.group[tp].scroller.selected = function(rs){
+                    that.changeday();
+                }
+            }
         }
-        //日
-        this.group.d.boxer = this.createDom({"tag":"div","classname":"cm-slbox-time"});
-        this.boxer.appendChild(this.group.d.boxer)
-        this.group.d.opts = {outer:this.group.d.boxer,datalist:this.getlistdata({start:1,end:32,range:1,unit:'日'}), default_v:1};
-        this.group.d.scroller = new touchscroll(this.group.d);
-        //时
-        this.group.h.boxer = this.createDom({"tag":"div","classname":"cm-slbox-time"});
-        this.boxer.appendChild(this.group.h.boxer)
-        this.group.h.opts = {outer:this.group.h.boxer,datalist:this.getlistdata({start:0,end:24,range:1,unit:'时'}), default_v:0};
-        this.group.h.scroller = new touchscroll(this.group.h);
-
-        //分
-        this.group.i.boxer = this.createDom({"tag":"div","classname":"cm-slbox-time"});
-        this.boxer.appendChild(this.group.i.boxer)
-        this.group.i.opts = {outer:this.group.i.boxer,datalist:this.getlistdata({start:0,end:60,range:5,unit:'分'}), default_v:0};
-        this.group.i.scroller = new touchscroll(this.group.i);
-
-        //秒
-        this.group.s.boxer = this.createDom({"tag":"div","classname":"cm-slbox-time"});
-        this.boxer.appendChild(this.group.s.boxer)
-        this.group.s.opts = {outer:this.group.s.boxer,datalist:this.getlistdata({start:0,end:60,range:5,unit:'秒'}), default_v:0};
-        this.group.s.scroller = new touchscroll(this.group.s)
-        
-
     },
     getlistdata:function(opts){
         var arr = [];
@@ -412,7 +409,58 @@ datePicker.prototype = {
     settil:function(title){
         this.elm_til.innerHTML = title;
     },
+    bindTarget:function(){
+        var that = this;
+        this.btn_cal.addEventListener('click',function(){
+            that.pop.classList.remove('cm-pop-active');
+        })
+        this.btn_sure.addEventListener('click',function(){
+            var group = that.group,
+                time = new Date(group.y.scroller.v.id+'/'+group.m.scroller.v.id+'/'+group.d.scroller.v.id+' '+group.h.scroller.v.id+':'+group.i.scroller.v.id+':'+group.s.scroller.v.id);
+            that.confirm&&that.confirm({time:time,time_str:that.timeFormat(time,that.format),target:that.target},function(){
+                that.target.setAttribute('data-time',that.timeFormat(time,that.format_all))
+                that.pop.classList.remove('cm-pop-active');
+            })
+        })
+    },
     bindTargets:function(){
-
+        var that = this;
+        for(var i=0,len=this.targets.length;i<len;i++){
+            (function(){
+                var target = that.targets[i];
+                target.addEventListener('click',function(){
+                    that.settil(target.getAttribute('data-title'));
+                    that.timegroup = (target.getAttribute('data-timegroup')||'y-m-d-h-i-s').split('-');
+                    that.format = target.getAttribute('data-format')||'y/m/d h:i:s';
+                    that.default_time = target.getAttribute('data-time')?new Date(target.getAttribute('data-time')):new Date();
+                    that.default_time = that.resettime(that.default_time);
+                    that.resetroller();
+                    that.target = target;
+                    that.pop.classList.add('cm-pop-active')
+                })
+            })()
+        }
+    },
+    resettime:function(time){
+        var i = parseInt(time.getMinutes()/5)*5;
+        var s = parseInt(time.getSeconds()/5)*5;
+        return new Date(time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate()+' '+time.getHours()+':'+i+':'+s);
+    },
+    resetroller:function(){
+        var that = this,
+            time = this.default_time,
+            group = this.group,
+            timegroup = this.timegroup;
+        this.boxer.setAttribute('class','J_slbox cm-slbox cm-slbox'+timegroup.length)
+        group.y.scroller.rid = time.getFullYear();
+        group.m.scroller.rid = time.getMonth()+1;
+        group.d.scroller.rid = time.getDate();
+        group.h.scroller.rid = time.getHours();
+        group.i.scroller.rid = time.getMinutes();
+        group.s.scroller.rid = time.getSeconds();
+        for(i in this.timegroups){
+            group[this.timegroups[i]].scroller.boxer.style.display = (timegroup.indexOf(this.timegroups[i])>-1?'block':"none");
+            group[this.timegroups[i]].scroller.resety();
+        }
     }
 }

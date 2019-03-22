@@ -133,3 +133,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .cm-slbox .cp-case:before{content: ""; display: block; position: absolute; left: 0; top: 0; height: 108px; width: 100%; background:-webkit-linear-gradient(180deg,rgba(246,246,246,1) 0%,rgba(246,246,246,.4) 100%); background:linear-gradient(180deg,rgba(246,246,246,1) 0%,rgba(246,246,246,.4) 100%); border-bottom: 1px solid #aaa; z-index: 2;}
 .cm-slbox .cp-case:after{content: ""; display: block; position: absolute; left: 0; bottom: 0; height: 108px; width: 100%; background:-webkit-linear-gradient(180deg,rgba(246,246,246,.4) 0%,rgba(246,246,246,1) 100%); background:linear-gradient(180deg,rgba(246,246,246,.4) 0%,rgba(246,246,246,1) 100%); border-top: 1px solid #aaa; z-index: 2;}
 .cm-slbox .cm-slbox-time{ float: left; width: 16.6%;}
+.cm-slbox2 .cm-slbox-time{ width: 50%;}
+.cm-slbox3 .cm-slbox-time{ width:33%;}
+.cm-slbox3 .cm-slbox-time:nth-child(1){ width:34%;}
+.cm-slbox5 .cm-slbox-time{ width:20%;}
