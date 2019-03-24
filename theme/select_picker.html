@@ -55,6 +55,9 @@
     <br />
     <div class="" id="J_selecta"></div>
     <br />
+    <div class="" id="J_selectb"></div>
+    <br />
+    <br />
 
     <script>
         $(function(){
@@ -104,7 +107,29 @@
                     cb();
                 }
             })
-            
+
+
+            var dt = new dateTable({
+                "targets":document.getElementsByClassName('J_choosetime'),
+                "confirm":function(rs,cb){
+                    console.log(rs)
+                    $(rs.target).find('input').val(rs.time_str)
+                    cb();
+                }
+            })
+
+
+            var dt = new dateTable({
+                "boxer":document.getElementById('J_selectb'),
+                "paddingBottom":40,
+                "confirm":function(rs,cb){
+                    console.log(5,rs)
+                    // $(rs.target).find('input').val(rs.time_str)
+                    // cb();
+                }
+            })
+
+
         })
     </script>
 </body>

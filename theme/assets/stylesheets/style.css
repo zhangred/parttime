@@ -137,3 +137,19 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .cm-slbox3 .cm-slbox-time{ width:33%;}
 .cm-slbox3 .cm-slbox-time:nth-child(1){ width:34%;}
 .cm-slbox5 .cm-slbox-time{ width:20%;}
+
+.cm-slbox-table{ padding: 0; background: #fff; border-top: 1px solid #eee;}
+.cm-slbox-table .dp-btns{ position: relative; overflow: hidden; padding: 0 40px; line-height: 40px; text-align: center; font-size: 16px; border-bottom: 1px solid #eee;}
+.cm-slbox-table .dt-mbtn{ position: absolute; left: 0; top: 0; height: 40px; width: 40px; font-size: 18px;}
+.cm-slbox-table .dt-mbtna{ left: auto; right: 0;}
+.cm-slbox-table .dt-btn{ position: relative; display: block; float: left; width: 50%;}
+.cm-slbox-table .dt-btn:after{ content: ""; display: inline-block; vertical-align: middle; margin-left: 5px; border: 0 solid #fff; border-color: #ccc transparent transparent transparent; border-width: 6px 6px 0 6px}
+.cm-slbox-table .dt-btna:before{ content: ""; display: block; position: absolute; left: 0; top: 50%; width: 1px; height: 28px; margin-top: -14px; background: #ccc;}
+.cm-slbox-table .xxxx{}
+.cm-slbox-table .xxxx{}
+.cm-slbox-table .xxxx{}
+.cm-slbox-table .xxxx{}
+.cm-slbox-table .xxxx{}
+.cm-slbox-table .xxxx{}
+.cm-slbox-table .xxxx{}
+.cm-slbox-table .xxxx{}

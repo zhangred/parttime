@@ -26,6 +26,17 @@
         <a href="pop.html" class="li">pop-弹框展示</a>
         
         <a href="select_picker.html" class="li">数据选择和数据拾取器</a>
+
+        <a href="xxx.html" class="li">tabs(----)</a>
+
+
+        <a href="xxx.html" class="li">topsearch-line(----)</a>
+
+        <a href="xxx.html" class="li">botmore(----)</a>
+
+        <a href="xxx.html" class="li">pullrefalsh(----)</a>
+
+
     </div>
 
     <script>
@@ -180,150 +191,7 @@
 //             img.src = 'api/callback.json'
 //         },3000)
 
-window.func = {
-    /*时间格式化参数*/
-    backtime: function (type) {
-        var dt = new Date(),
-            y = dt.getFullYear(),
-            m = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : (dt.getMonth()+1),
-            d = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate(),
-            h = dt.getHours() < 10 ? '0' + dt.getHours() : dt.getHours(),
-            mm = dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes(),
-            s = dt.getSeconds() < 10 ? '0' + dt.getSeconds() : dt.getSeconds(),
-            l = dt.getTime() % 1000;
-        if(type==1){
-            return y + '-' + m + '-' + d + ' ' + h + ':' + mm + ':' + s;
-        }else if(type==2){
-            return y + '' + m + '' + d + '' + h + '' + mm + '' + s;
-        }else{
-            return y + '-' + m + '-' + d + ' ' + h + ':' + mm + ':' + s + '.' + l;
-        }
-    },
-    /*获取url参数*/
-    getRequest: function(search){
-        var url = search||window.location.search,
-            theRequest = {},
-            str = '',
-            para = [];
-        if (url.indexOf("?") != -1) {
-            str = url.substr(1);
-            var strs = str.split("&");
-            for(var i = 0, len = strs.length; i < len; i ++) {
-                para = strs[i].split("=");
-                theRequest[para[0]] = decodeURIComponent( (para.length>=2)?para[1]:"");
-            }
-        }
-        return theRequest;
-    },
-    /*随机32位字符串*/
-    randomString: function (len) {
-        len = len || 32;
-        var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz23456789';
-        var maxPos = chars.length;
-        var token = '';
-        for (i = 0; i < len; i++) {
-            token += chars.charAt(Math.floor(Math.random() * maxPos));
-        }
-        return token;
-    },
-    paramsString: function(obj,sp){
-        var arr = [];
-        for(key in obj){
-            arr.push(key+':'+obj[key]);
-        }
-        return arr.join(sp||'&')
-    },
-    //生成browserUserId
-    inituserid: function(){
-        return func.backtime(2)+func.randomString(12);
-    },
-    //获取cookie
-    getCookie:function(name){ 
-        var strCookie=document.cookie; 
-        var arrCookie=strCookie.split("; "); 
-        for(var i=0;i<arrCookie.length;i++){ 
-           var arr=arrCookie[i].split("="); 
-           if(arr[0]==name)return decodeURIComponent(arr[1]); 
-        } 
-        return ""; 
-    },
-    //设置cookie
-    setCookie:function(name,value){
-        var Days = 30; 
-        var exp = new Date('2030/1/1'); 
-        exp.setTime(exp.getTime()); 
-        document.cookie = name + "="+ escape (value) + ";path=/;expires=" + exp.toGMTString(); 
-    },
-    //返回from和origChanId拼合url
-    back_f_c:function(url,pid){
-        if(url.indexOf('?')>=0){
-            url += (url.length - url.indexOf('?')>1?'&':'?')+'from='+((pid||pageId)||'outside')+'&channelSource='+(func.getRequest().channelSource||'');
-        }else{
-            url += '?from='+((pid||pageId)||'outside')+'&channelSource='+(func.getRequest().channelSource||'');
-        }
-        return url;
-    },
-    //字符串转json
-    tojson:function(str){
-        if(str){
-            var obj = {},
-                arr = str.split(';'),
-                len = arr.length,
-                para = [];
 
-            for(var i = 0; i < len; i ++) {
-                para = arr[i].split(":");
-                obj[para[0]] = (para.length>=2)?para[1]:"";
-            }
-            return obj;
-        }else{
-            return {};
-        }
-    },
-    //设置返回默认对象
-    back_default_obj:function(type){
-        if(type==1){
-            return {osVer : "1001",osName : "default",wifiVer : "default",brand : "default",model :"default",mac : "default",imei :"default",androidid : "default"}
-        }else{
-            return {};
-        }
-    },
-    //设置browserUserId
-    setbuid:function(cb){
-        //是否有浏览器唯一标示
-        if(!func.getCookie('b')){
-            var b = func.inituserid();
-            window.test.b = b;
-            func.setCookie('b',b);
-            cb();
-        }else{
-            cb();
-        }
-    }
-}
-
-function testck(i){
-    if(!func.getCookie('b')){
-        console.log(3)
-        func.setCookie('b','45454')
-    }
-}
-
-window.test = {
-    b:func.getCookie('b')||''
-}
-
-if(!window.test.b){
-    func.setCookie('b',func.inituserid())
-    alert(func.getCookie('b'))
-}
-
-testck(2)
-testck(3)
-testck(4)
-
-// setTimeout(function(){},0)
-    
     </script>
 </body>
 </html>

@@ -113,6 +113,11 @@ window.cmtools = {
         }
         return dom;
     },
+    setAttr:function(dom,attrs){
+		for(k in attrs){
+			dom.setAttribute([attrs[k][0]],attrs[k][1]);
+		}
+	},
     createPop:function(){
         this.pop = this.createDom({"tag":"div","classname":"cm-pop"});
         this.pop.innerHTML = '<a href="javascript:;" class="J_popclose cm-pop-bg" data-target="#J_pop_bottom"></a>\
@@ -462,5 +467,97 @@ datePicker.prototype = {
             group[this.timegroups[i]].scroller.boxer.style.display = (timegroup.indexOf(this.timegroups[i])>-1?'block':"none");
             group[this.timegroups[i]].scroller.resety();
         }
+    }
+}
+
+function dateTable(opts){
+    this.opts = opts;
+    this.setting();
+}
+dateTable.prototype = {
+    setting:function(){
+        var that = this,
+			opts = this.opts;
+
+		this.targets = opts.targets;
+		var gt = this.opts.defaultdate?new Date(this.opts.defaultdate.replace(/\-/ig,'/')):new Date();
+		// this.settime(gt);
+		this.prevtext = opts.prevtext?opts.prevtext:"&lt;";
+		this.nexttext = opts.nexttext?opts.nexttext:"&gt;";
+		this.monthtext = opts.monthtext?opts.monthtext:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+        this.weektext = opts.weektext?opts.weektext:["日","一","二","三","四","五","六"];
+        this.pb = opts.paddingBottom||0;
+        this.default_time = opts.default_time||new Date();
+        
+        if(this.targets){
+            applytools.call(this,['createDom','createPop']);
+            this.createPop();
+            this.pop.classList.add('cm-pop-active')
+            this.boxer.classList.add('cm-slbox-table')
+            this.settil(this.title);
+        }else{
+            this.boxer = this.opts.boxer;
+        };
+
+        this.boxer.innerHTML = '<div class="dateselect_table">\
+                <div class="dp-btns">\
+                    <a href="javascript:;" class="J_btn_prev dt-mbtn">&lt;</a>\
+                    <a href="javascript:;" class="J_btn_next dt-mbtn dt-mbtna">&gt;</a>\
+                    <a href="javascript:;" class="J_btn_year dt-btn"><span class="J_year">2012</span>年</a>\
+                    <a href="javascript:;" class="J_btn_month dt-btn dt-btna"><span class="J_year">2012</span>月</a>\
+                </div>\
+                <table width="100%" cellspacing="0" cellpadding="0" class="J_table"></table>\
+                <div class="dateselect_cont">\
+                    <div class="cont-month cont-pop"></div>\
+                    <div class="cont-year cont-pop">\
+                        <div class="cont-yl"><p class="cont-ylrm">&lt;</p></div>\
+                        <div class="cont-yr"><p class="cont-ylrm">&gt;</p></div>\
+                        <div class="cont-yc"></div>\
+                        <div class="cont-yx">取消年份选择</div>\
+                    </div>\
+                </div>\
+            </div>';
+        this.table = this.boxer.getElementsByClassName("J_table")[0];
+        // this.dp_cal = this.boxer.getElementsByClassName("dp-cal")[0];
+        // this.dp_til = this.boxer.getElementsByClassName('dp-til')[0];
+        // this.dp_sure = this.boxer.getElementsByClassName("dp-sure")[0];
+        // this.cont_month = this.boxer.getElementsByClassName('cont-month')[0];
+        // this.cont_year = this.boxer.getElementsByClassName('cont-year')[0];
+        // this.cont_year_c = this.boxer.getElementsByClassName('cont-yc')[0];
+        // this.cont_year_l = this.boxer.getElementsByClassName('cont-yl')[0];
+        // this.cont_year_r = this.boxer.getElementsByClassName('cont-yr')[0];
+        // this.cont_year_x = this.boxer.getElementsByClassName('cont-yx')[0];
+
+        this.resettable(this.default_time)
+    },
+    settil:function(title){
+        this.elm_til.innerHTML = title||'';
+    },
+    rendertable:function(){
+        // this.active = null;
+		// var newdate = new Date(this.year+'/'+this.month+'/1');
+		// var firstday = newdate.getDay();
+		// var m = newdate.getMonth()+1,y = newdate.getFullYear();
+		// var cm = this.selectdate.getMonth()+1,cy = this.selectdate.getFullYear(),cd = this.selectdate.getDate();
+		// var daynum = new Date(y,m,0).getDate();
+		// var trs = Math.ceil((firstday+daynum)/7);
+		var str = '';
+		// for(var i=0;i<trs;i++){
+		// 	var stra = '';
+		// 	for(var ii=1;ii<=7;ii++){
+		// 		var cdstr = (y==cy&&m==cm&&(i*7+ii-firstday)==cd)?'selected':'';
+		// 		if((i*7+ii>firstday) && (i*7+ii<=daynum+firstday)){
+		// 			stra += '<td class="td"><a href="javascript:;" data-month="'+m+'" data-year="'+y+'" data-date="'+(i*7+ii-firstday)+'" class="a '+cdstr+'">'+(i*7+ii-firstday)+'</a></td>';
+		// 		}else{
+		// 			stra += '<td class="td"></td>';
+		// 		}
+		// 	}
+		// 	str += '<tr>'+stra+'</tr>';
+		// }
+		return str;
+    },
+    resettable(time){
+        
+        this.table.innerHTML = this.rendertable();
     }
 }
