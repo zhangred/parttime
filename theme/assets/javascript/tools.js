@@ -488,6 +488,7 @@ dateTable.prototype = {
         this.weektext = opts.weektext?opts.weektext:["日","一","二","三","四","五","六"];
         this.pb = opts.paddingBottom||0;
         this.default_time = opts.default_time||new Date();
+        this.confirm_time = opts.default_time||new Date();
         
         if(this.targets){
             applytools.call(this,['createDom','createPop']);
@@ -528,32 +529,39 @@ dateTable.prototype = {
         // this.cont_year_r = this.boxer.getElementsByClassName('cont-yr')[0];
         // this.cont_year_x = this.boxer.getElementsByClassName('cont-yx')[0];
 
+        this.temporary = {}
+        this.resttemporary();
+
         this.resettable(this.default_time)
     },
     settil:function(title){
         this.elm_til.innerHTML = title||'';
     },
+    resttemporary:function(){
+        this.temporary.year = this.default_time.getFullYear();
+        this.temporary.month = this.default_time.getMonth()+1;
+    },
     rendertable:function(){
-        // this.active = null;
-		// var newdate = new Date(this.year+'/'+this.month+'/1');
-		// var firstday = newdate.getDay();
-		// var m = newdate.getMonth()+1,y = newdate.getFullYear();
-		// var cm = this.selectdate.getMonth()+1,cy = this.selectdate.getFullYear(),cd = this.selectdate.getDate();
-		// var daynum = new Date(y,m,0).getDate();
-		// var trs = Math.ceil((firstday+daynum)/7);
+        this.active = null;
+		var newdate = new Date(this.temporary.year+'/'+this.temporary.month+'/1');
+		var firstday = newdate.getDay();
+		var m = newdate.getMonth()+1,y = newdate.getFullYear();
+		var cm = this.confirm_time.getMonth()+1,cy = this.confirm_time.getFullYear(),cd = this.confirm_time.getDate();
+		var daynum = new Date(y,m,0).getDate();
+		var trs = Math.ceil((firstday+daynum)/7);
 		var str = '';
-		// for(var i=0;i<trs;i++){
-		// 	var stra = '';
-		// 	for(var ii=1;ii<=7;ii++){
-		// 		var cdstr = (y==cy&&m==cm&&(i*7+ii-firstday)==cd)?'selected':'';
-		// 		if((i*7+ii>firstday) && (i*7+ii<=daynum+firstday)){
-		// 			stra += '<td class="td"><a href="javascript:;" data-month="'+m+'" data-year="'+y+'" data-date="'+(i*7+ii-firstday)+'" class="a '+cdstr+'">'+(i*7+ii-firstday)+'</a></td>';
-		// 		}else{
-		// 			stra += '<td class="td"></td>';
-		// 		}
-		// 	}
-		// 	str += '<tr>'+stra+'</tr>';
-		// }
+		for(var i=0;i<trs;i++){
+			var stra = '';
+			for(var ii=1;ii<=7;ii++){
+				var cdstr = (y==cy&&m==cm&&(i*7+ii-firstday)==cd)?'selected':'';
+				if((i*7+ii>firstday) && (i*7+ii<=daynum+firstday)){
+					stra += '<td class="td"><a href="javascript:;" data-month="'+m+'" data-year="'+y+'" data-date="'+(i*7+ii-firstday)+'" class="a '+cdstr+'">'+(i*7+ii-firstday)+'</a></td>';
+				}else{
+					stra += '<td class="td"></td>';
+				}
+			}
+			str += '<tr>'+stra+'</tr>';
+		}
 		return str;
     },
     resettable(time){
