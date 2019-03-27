@@ -22,7 +22,7 @@ html,body{ height: 100%; }
 .clearfix:after{ content: ""; display: block; clear: both; }
 .opacity0{ opacity: 0; }
 .fwb{ font-weight: bold;}
-.html{ width: 100%; margin: 0 auto; position: relative; z-index: 1; overflow: hidden;min-height: 100%;}
+.html{ width: 100%; margin: 0 auto; position: relative; z-index: 1;min-height: 100%;}
 
 input::-webkit-input-placeholder { color: #ccc;}
 textarea::-webkit-input-placeholder { color: #ccc;}
@@ -127,12 +127,12 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .cm-slbox{ position: relative; overflow: hidden; text-align: center; padding: 10px 0; position: relative; background: #f6f6f6;}
 .cm-slbox-nom{ position: relative; padding: 0; background: none;}
 .cm-slbox-dis:before{ content: ""; display: block; position: absolute; z-index: 3; left: 0; top: 0; height: 100%; width: 100%; opacity: 0; }
-.cm-slbox .cp-li{ line-height: 36px; font-size: 18px;}
+.cm-slbox .cp-li{ line-height: 36px; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .cm-slbox .cp-case{ position: relative; overflow: hidden; height: 252px;}
 .cm-slbox .cp-ul{ position: relative;}
 .cm-slbox .cp-case:before{content: ""; display: block; position: absolute; left: 0; top: 0; height: 108px; width: 100%; background:-webkit-linear-gradient(180deg,rgba(246,246,246,1) 0%,rgba(246,246,246,.4) 100%); background:linear-gradient(180deg,rgba(246,246,246,1) 0%,rgba(246,246,246,.4) 100%); border-bottom: 1px solid #aaa; z-index: 2;}
 .cm-slbox .cp-case:after{content: ""; display: block; position: absolute; left: 0; bottom: 0; height: 108px; width: 100%; background:-webkit-linear-gradient(180deg,rgba(246,246,246,.4) 0%,rgba(246,246,246,1) 100%); background:linear-gradient(180deg,rgba(246,246,246,.4) 0%,rgba(246,246,246,1) 100%); border-top: 1px solid #aaa; z-index: 2;}
-.cm-slbox .cm-slbox-time{ float: left; width: 16.6%;}
+.cm-slbox .cm-slbox-time{ position: relative; float: left; width: 16.6%;}
 .cm-slbox2 .cm-slbox-time{ width: 50%;}
 .cm-slbox3 .cm-slbox-time{ width:33%;}
 .cm-slbox3 .cm-slbox-time:nth-child(1){ width:34%;}
@@ -168,3 +168,64 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .cm-dateselect_table .cont-pop-active{ height: 100%; opacity: 0; -webkit-transform: scale(.8,.8); transform: scale(.8,.8);}
 .cm-dateselect_table .cont-pop-show{ height: 100%; opacity: 1;-webkit-transform: scale(1,1); transform: scale(1,1); -webkit-transition: all .3s;transition: all .3s;}
 .cm-dateselect_table .cont-pop-hide{ height: 100%; opacity: 0;-webkit-transform: scale(.8,.8); transform: scale(.8,.8); -webkit-transition: all .3s;transition: all .3s;}
+
+/* px */
+/* .cm-tabbox{ height: 44px; line-height: 44px; border-bottom: 1px solid #eee; background: #fff; text-align: center; font-size: 16px;}
+.cm-tabbox-fixed{ position: fixed; left: 0; top: 0; width: 100%;}
+.cm-tabbox .cmtab{ display: block; float: left; width: 25%;}
+.cm-tabbox2 .cmtab{ width: 50%;}
+.cm-tabbox3 .cmtab{ width: 33%;}
+.cm-tabbox3 .cmtab:nth-last-child(1){ width: 34%;}
+.cm-tabbox5 .cmtab{ width: 20%;}
+.cm-tabbox .cmtab-active{ color: #58B586;}
+.cm-tabbox .cmtab-in{ display: inline-block; height: 44px;}
+.cm-tabbox-full .cmtab-in{ display: block;}
+.cm-tabbox .cmtab-active .cmtab-in{ border-bottom: 3px solid #58B586;}
+.cm-tabbox-x{ overflow-x: scroll; -webkit-overflow-scrolling: touch; white-space: nowrap;}
+.cm-tabbox-x .cmtab{ display: inline-block; width: auto; float:none; padding: 0 10px;} */
+/* rem */
+.cm-tabbox{ height: .44rem; line-height: .44rem; border-bottom: 1px solid #eee; background: #fff; text-align: center; font-size: .16rem;}
+.cm-tabbox-fixed{ position: fixed; left: 0; top: 0; width: 100%;}
+.cm-tabbox .cmtab{ display: block; float: left; width: 25%;}
+.cm-tabbox2 .cmtab{ width: 50%;}
+.cm-tabbox3 .cmtab{ width: 33%;}
+.cm-tabbox3 .cmtab:nth-last-child(1){ width: 34%;}
+.cm-tabbox5 .cmtab{ width: 20%;}
+.cm-tabbox .cmtab-active{ color: #58B586;}
+.cm-tabbox .cmtab-in{ display: inline-block; height: .44rem;}
+.cm-tabbox-full .cmtab-in{ display: block;}
+.cm-tabbox .cmtab-active .cmtab-in{ border-bottom: .03rem solid #58B586;}
+.cm-tabbox-x{ overflow-x: scroll; -webkit-overflow-scrolling: touch; white-space: nowrap;}
+.cm-tabbox-x .cmtab{ display: inline-block; width: auto; float:none; padding: 0 .1rem;}
+
+
+/* px */
+/* .cm-topline{ position: fixed; left: 0; top: 0; height: 48px; width: 100%; padding: 0 48px; background: #fff; line-height: 48px; text-align: center; font-size: 16px; border-bottom: 1px solid #eee; -webkit-transition: all .5s; transition: all .5s;}
+.cm-topline .tl-back{ position: absolute; left: 0; top: 0; width: 48px; height: 48px; z-index: 1;}
+.cm-topline .tl-back:before{ content: ""; position: absolute; left: 18px; top: 50%; display: block; height: 10px; width: 10px; border-top: 1px solid #aaa; border-left: 1px solid #aaa;transform: translate(0,-50%) rotate(-45deg); -webkit-transform: translate(0,-50%) rotate(-45deg);}
+.cm-topline .tl-demo{ position: absolute; z-index: 1; top: 0; right: 0; width: 48px; height: 48px; text-align: left;}
+.cm-topline .tl-demo:before{ content: "搜索"; display: block; font-size: 14px;}
+.cm-topline .cm-tabbox{ height: 48px; line-height: 48px;}
+.cm-topline .cm-tabbox .cmtab-in{ height: 48px;}
+.cm-topline .tl-input{ position: relative; z-index: 2; background-color: #fff; padding-top: 8px;}
+.cm-topline .tl-ctrol{ display: block; height: 32px; width: 100%; padding-left: 10px; border:none; background: #fff; outline: none; background: #eee; border-radius: 24px; color: #333;}
+.cm-topline-focus{ padding: 0 14px;} */
+/* rem */
+.cm-topline{ position: fixed; left: 0; top: 0; height: .48rem; width: 100%; padding: 0 .48rem; background: #fff; line-height: .48rem; text-align: center; font-size: .16rem; border-bottom: 1px solid #eee; -webkit-transition: all .5s; transition: all .5s;}
+.cm-topline .tl-back{ position: absolute; left: 0; top: 0; width: .48rem; height: .48rem; z-index: 1;}
+.cm-topline .tl-back:before{ content: ""; position: absolute; left: .18rem; top: 50%; display: block; height: .1rem; width: .1rem; border-top: 1px solid #aaa; border-left: 1px solid #aaa;transform: translate(0,-50%) rotate(-45deg); -webkit-transform: translate(0,-50%) rotate(-45deg);}
+.cm-topline .tl-demo{ position: absolute; z-index: 1; top: 0; right: 0; width: .48rem; height: .48rem; text-align: left;}
+.cm-topline .tl-demo:before{ content: "搜索"; display: block; font-size: .14rem;}
+.cm-topline .cm-tabbox{ height: .48rem; line-height: .48rem;}
+.cm-topline .cm-tabbox .cmtab-in{ height: .48rem;}
+.cm-topline .tl-input{ position: relative; z-index: 2; background-color: #fff; padding-top: .08rem;}
+.cm-topline .tl-ctrol{ display: block; height: 32px; width: 100%; padding-left: .1rem; border:none; background: #fff; outline: none; background: #eee; border-radius: .24rem; color: #333;}
+.cm-topline-focus{ padding: 0 .14rem;}
+
+
+.botmore{ padding: 10px 0; font-size: 12px; color: #999; text-align: center;}
+.botmore .bmimg{ vertical-align: middle; height: 16px; width: 16px; margin-right: 5px;}
+.botmore .done{ display: none; }
+.botmore-all .bmimg{ display: none; }
+.botmore-all .load{ display: none; }
+.botmore-all .done{ display: inline; }

@@ -141,7 +141,7 @@ window.cmtools = {
         scroller.y = 4*scroller.unit;
         scroller.v = {};
 
-        scroller.case = this.createDom({"tag":"div","classname":"cp-case"})
+        scroller.case = this.createDom({"tag":"div","classname":"cp-case"});
         scroller.roller = this.createDom({"tag":"ul","classname":"cp-ul"});
         scroller.case.appendChild(scroller.roller);
     },
@@ -248,6 +248,13 @@ window.cmtools = {
         };
         this.y = (3-idx)*this.unit;
         this.roller.style.webkitTransform = 'translateZ(0) translateY('+(this.y)+'px)';
+    },
+    distouch:function(c){
+        if(c){
+            this.boxer.classList.add('cm-slbox-dis')
+        }else{
+            this.boxer.classList.remove('cm-slbox-dis')
+        }
     }
 }
 function applytools(keys){
@@ -257,7 +264,7 @@ function applytools(keys){
 };
 
 function touchscroll(outer){
-    applytools.call(this,['createDom','createPop','createScroller','renderScroll','bindScroll','empty','reset','resety']);
+    applytools.call(this,['createDom','createPop','createScroller','renderScroll','bindScroll','empty','reset','resety','distouch']);
     this.boxer = outer.boxer;
     this.createScroller(this,outer.opts)
     this.boxer.appendChild(this.case);
@@ -470,6 +477,73 @@ datePicker.prototype = {
     }
 }
 
+function addressPicker(opts){
+    this.opts = opts;
+    this.setting();
+}
+addressPicker.prototype = {
+    setting:function(){
+        var opts = this.opts;
+        this.target = opts.target;
+        this.unit = opts.unit||36;
+
+        this.province = {};
+        this.render();
+    },
+    render:function(){
+        var that = this,
+            opts = this.opts;
+        applytools.call(this,['createDom','createPop']);
+        this.createPop();
+        this.bindTarget();
+        this.boxer.setAttribute('class','J_slbox cm-slbox cm-slbox3')
+        this.elm_til.innerHTML = this.opts.title||'';
+
+        for(var i=0;i<3;i++){
+            (function(){
+                var tp = ['province','city','area'][i];
+                that[tp] = {};
+                that[tp].boxer = that.createDom({"tag":"div","classname":"cm-slbox-time"});
+                that.boxer.appendChild(that[tp].boxer);
+                that[tp].opts = {outer:that[tp].boxer,datalist:opts[tp].datalist||[],default_v:opts[tp].default_v||null}
+                that[tp].change = opts[tp].change||null;
+                that[tp].scroller = new touchscroll(that[tp])
+                that[tp].scroller.selected = function(rs){
+                    that[tp].change&&that[tp].change(rs);
+                }
+                that[tp].empty = function(){
+                    that[tp].scroller.empty();
+                }
+                that[tp].distouch = function(c){
+                    that[tp].scroller.distouch(c);
+                }
+                that[tp].reset = function(sopts){
+                    that[tp].scroller.reset(sopts);
+                }
+            })()
+        }
+    },
+    bindTarget:function(){
+        var that = this;
+        this.btn_cal.addEventListener('click',function(){
+            that.pop.classList.remove('cm-pop-active');
+        })
+        this.btn_sure.addEventListener('click',function(){
+            var res = {};
+            res.province = that.province.scroller.v;
+            res.city = that.city.scroller.v;
+            res.area = that.area.scroller.v;
+
+            that.opts.confirm&&that.opts.confirm(res,function(){
+                that.pop.classList.remove('cm-pop-active');
+            })
+        })
+        this.target.addEventListener('click',function(){
+            that.pop.classList.add('cm-pop-active')
+        })
+    }
+}
+
 function dateTable(opts){
     this.opts = opts;
     this.setting();
@@ -484,7 +558,7 @@ dateTable.prototype = {
 		// this.settime(gt);
 		this.prevtext = opts.prevtext?opts.prevtext:"&lt;";
 		this.nexttext = opts.nexttext?opts.nexttext:"&gt;";
-		this.monthtext = opts.monthtext?opts.monthtext:['Janu','Feb','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+		this.monthtext = opts.monthtext?opts.monthtext:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
         this.weektext = opts.weektext?opts.weektext:["日","一","二","三","四","五","六"];
         this.format_all = 'y/m/d h:i:s';
         this.format = opts.format||'y/m/d';
@@ -492,13 +566,14 @@ dateTable.prototype = {
         this.confirm_time = opts.default_time||new Date();
         
         if(this.targets){
-            applytools.call(this,['createDom','createPop']);
+            applytools.call(this,['createDom','createPop','timeFormat']);
             this.createPop();
-            this.pop.classList.add('cm-pop-active')
             this.boxer.classList.add('cm-slbox-table')
             this.settil(this.title);
             this.boxer.style.paddingBottom = (opts.paddingBottom||20)+'px';
+            this.bindTargets();
         }else{
+            applytools.call(this,['timeFormat']);
             this.boxer = this.opts.boxer;
         };
 
@@ -542,10 +617,9 @@ dateTable.prototype = {
         this.resetmonth();
         this.temporary.year_copy = this.temporary.year;
         this.resetyear();
-
-        this.resettable(this.default_time);
-
+        this.table.innerHTML = this.rendertable();
         this.bindEvent();
+        
     },
     settil:function(title){
         this.elm_til.innerHTML = title||'';
@@ -553,6 +627,7 @@ dateTable.prototype = {
     resttemporary:function(){
         this.temporary.year = this.default_time.getFullYear();
         this.temporary.month = this.default_time.getMonth()+1;
+        this.temporary.date = this.default_time.getDate();
         this.text_year.innerHTML = this.temporary.year;
         this.text_month.innerHTML = this.monthtext[this.temporary.month-1];
     },
@@ -578,16 +653,19 @@ dateTable.prototype = {
 		var newdate = new Date(this.temporary.year+'/'+this.temporary.month+'/1');
 		var firstday = newdate.getDay();
 		var m = newdate.getMonth()+1,y = newdate.getFullYear();
-		var cm = this.confirm_time.getMonth()+1,cy = this.confirm_time.getFullYear(),cd = this.confirm_time.getDate();
+        var cm = this.confirm_time.getMonth()+1,cy = this.confirm_time.getFullYear(),cd = this.confirm_time.getDate();
+        var ty = this.default_time.getFullYear(),tm = this.default_time.getMonth()+1,td = this.default_time.getDate();
+        var ac = (cy==ty&&cm==tm&&cd==td)?false:true;
 		var daynum = new Date(y,m,0).getDate();
 		var trs = Math.ceil((firstday+daynum)/7);
 		var str = '';
 		for(var i=0;i<trs;i++){
 			var stra = '';
 			for(var ii=1;ii<=7;ii++){
-				var cdstr = (y==cy&&m==cm&&(i*7+ii-firstday)==cd)?'selected':'';
+                var cdstr = (y==cy&&m==cm&&(i*7+ii-firstday)==cd)?'selected':'',
+                    tdstr = (ac&&y==ty&&m==tm&&(i*7+ii-firstday)==td)?'active':'';
 				if((i*7+ii>firstday) && (i*7+ii<=daynum+firstday)){
-					stra += '<td class="td"><a href="javascript:;" data-month="'+m+'" data-year="'+y+'" data-date="'+(i*7+ii-firstday)+'" class="a '+cdstr+'">'+(i*7+ii-firstday)+'</a></td>';
+					stra += '<td class="td"><a href="javascript:;" data-month="'+m+'" data-year="'+y+'" data-date="'+(i*7+ii-firstday)+'" class="a '+cdstr+' '+tdstr+'">'+(i*7+ii-firstday)+'</a></td>';
 				}else{
 					stra += '<td class="td"></td>';
 				}
@@ -596,12 +674,8 @@ dateTable.prototype = {
 		}
 		return str;
     },
-    resettable(time){
-        this.table.innerHTML = this.rendertable();
-    },
     bindEvent:function(){
         var that = this;
-
         //前一个月
 		this._btn_prev.addEventListener('click',function(){
 			that.temporary.month--;
@@ -615,7 +689,6 @@ dateTable.prototype = {
             that.table.innerHTML = that.rendertable();
 			that.opts.monthchange && that.opts.monthchange({year:that.temporary.year,month:that.temporary.month,target:that.target});
 		});
-
 		// 往后一个月
 		this._btn_next.addEventListener('click',function(){
 			that.temporary.month++;
@@ -624,12 +697,10 @@ dateTable.prototype = {
 			}
 			that.text_month.innerHTML = that.monthtext[that.temporary.month-1];
 			that.text_year.innerHTML = that.temporary.year
-			
             that.resetmonth();
             that.table.innerHTML = that.rendertable();
 			that.opts.monthchange && that.opts.monthchange({year:that.temporary.year,month:that.temporary.month,target:that.target});
         });
-        
         //月份操作
 		this.cont_month.addEventListener('click',function(e){
             var tar = e.target;
@@ -644,7 +715,6 @@ dateTable.prototype = {
                 that.opts.monthchange && that.opts.monthchange({year:that.temporary.year,month:that.temporary.month,target:that.target});
             };
         })
-        
         //年份操作
         this.cont_year.addEventListener('click',function(e){
             var tar = e.target;
@@ -666,55 +736,38 @@ dateTable.prototype = {
 			    that.resetyear();
             };
         })
-
         this._btn_month.addEventListener('click',function(){
             that.showpop(that.cont_month);
         })
         this._btn_year.addEventListener('click',function(){
             that.showpop(that.cont_year);
         })
-
         //选择日期
 		this.table.addEventListener('click',function(e){
 			if(e.target.nodeName!="A") return;
 			if(that.active){
 				that.active.classList.remove('active');
 			}
-			that.active = e.target;
-			e.target.classList.add('active');
+            that.active = e.target;
+            var time = new Date(that.active.getAttribute('data-year')+'/'+that.active.getAttribute('data-month')+'/'+that.active.getAttribute('data-date'));
+            e.target.classList.add('active');
+            that.opts.selected&&that.opts.selected({time:time,time_str:that.timeFormat(time,that.format),target:that.target})
         })
-        
         //隐藏弹层
         this.btn_cal&&this.btn_cal.addEventListener('click',function(){
             that.pop.classList.remove('cm-pop-active');
         })
-
-        // this.btn_sure.addEventListener('click',function(){
-        //     var group = that.group,
-        //         time = new Date(group.y.scroller.v.id+'/'+group.m.scroller.v.id+'/'+group.d.scroller.v.id+' '+group.h.scroller.v.id+':'+group.i.scroller.v.id+':'+group.s.scroller.v.id);
-        //     that.confirm&&that.confirm({time:time,time_str:that.timeFormat(time,that.format),target:that.target},function(){
-        //         that.target.setAttribute('data-time',that.timeFormat(time,that.format_all))
-        //         that.pop.classList.remove('cm-pop-active');
-        //     })
-        // })
-		// this.dp_sure.addEventListener('click',function(){
-		// 	var obj = _this.obj,
-		// 		v = obj.format;
-
-		// 	if(!_this.active){
-		// 		CUES.tip({msg:'请选择日期'});
-		// 		return;
-		// 	}
-		// 	var time = new Date(_this.active.getAttribute('data-year')+'/'+_this.active.getAttribute('data-month')+'/'+_this.active.getAttribute('data-date'));
-		// 	_this.obj.target.setAttribute('data-time',_this.timeformat(time,'y/m/d h:i:s'));
-		// 	if(_this.opt.selected){
-		// 		_this.opt.selected({
-		// 			target:_this.obj.target,
-		// 			time:time,
-		// 			timestr:_this.timeformat(time,v)
-		// 		})
-		// 	}
-		// },false)
+        this.btn_sure&&this.btn_sure.addEventListener('click',function(){
+			if(!that.active){
+				CUES.tip({msg:'请选择日期'});
+				return;
+			}
+			var time = new Date(that.active.getAttribute('data-year')+'/'+that.active.getAttribute('data-month')+'/'+that.active.getAttribute('data-date'));
+			that.opts.confirm&&that.opts.confirm({time:time,time_str:that.timeFormat(time,that.format),target:that.target},function(){
+                that.target.setAttribute('data-time',that.timeFormat(time,that.format_all))
+                that.pop.classList.remove('cm-pop-active');
+            })
+        })
     },
 	showpop:function(tar){
 		tar.classList.add('cont-pop-active');
@@ -729,5 +782,97 @@ dateTable.prototype = {
 			tar.classList.remove('cont-pop-hide');
 			tar.classList.remove('cont-pop-active');
 		}, 350);
-	}
+	},
+    bindTargets:function(){
+        var that = this;
+        for(var i=0,len=this.targets.length;i<len;i++){
+            (function(){
+                var target = that.targets[i];
+                target.addEventListener('click',function(){
+                    that.settil(target.getAttribute('data-title'));
+                    that.format = target.getAttribute('data-format')||'y/m/d';
+                    that.default_time = target.getAttribute('data-time')?new Date(target.getAttribute('data-time')):new Date();
+                    that.resttemporary();
+                    that.resetmonth();
+                    that.temporary.year_copy = that.temporary.year;
+                    that.resetyear();
+                    that.table.innerHTML = that.rendertable();
+                    that.active = that.table.getElementsByClassName('active')[0]||null;
+                    that.target = target;
+                    that.pop.classList.add('cm-pop-active')
+                })
+            })()
+        }
+    }
 }
+
+function botmore(num,callback){
+    this.num = num;
+    this.callback = callback;
+    this.bindevent();
+    this.stop = true;
+};
+botmore.prototype = {
+    bindevent:function(){
+        var _this = this;
+        var body = document.body||document.documentElement,
+            win_h = body.offsetHeight;
+
+        this.bodyscroll = function(event){
+            var timer;
+            return function(){
+                clearTimeout(timer)
+                timer = setTimeout(function(){
+                    _this.callback();
+                },100)
+            }
+            // debounce(function(e){
+            //     _this.callback();
+            // },100)
+            // // _this.callback();
+            // clearTimeout(timer);
+            // // if(_this.stop){return false;};
+            // timer = setTimeout(function(){
+            // //     var scrolltop=document.documentElement.scrollTop||document.body.scrollTop,
+            // //         bodyh = body.offsetHeight;
+            // //     if(scrolltop+win_h+_this.num>bodyh){
+            //         _this.callback();
+            //     // }
+                
+            // },100);
+        };
+        this.bindscroll();
+    },
+    bindscroll:function(){
+        var _this = this;
+        window.addEventListener('scroll', _this.bodyscroll,false);
+    },
+    unbindscroll:function(){
+         var _this = this;
+         window.removeEventListener('scroll',_this.bodyscroll,false);
+    }
+};
+
+function debounce(fn, delay) {
+    console.log(4)
+    // 定时器，用来 setTimeout
+    var timer
+  
+    // 返回一个函数，这个函数会在一个时间区间结束后的 delay 毫秒时执行 fn 函数
+    return function () {
+  
+      // 保存函数调用时的上下文和参数，传递给 fn
+      var context = this
+      var args = arguments
+  
+      // 每次这个返回的函数被调用，就清除定时器，以保证不执行 fn
+      clearTimeout(timer)
+  
+      // 当返回的函数被最后一次调用后（也就是用户停止了某个连续的操作），
+      // 再过 delay 毫秒就执行 fn
+      timer = setTimeout(function () {
+        fn.apply(context, args)
+      }, delay)
+    }
+  }
+
