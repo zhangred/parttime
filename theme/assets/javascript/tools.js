@@ -484,9 +484,10 @@ dateTable.prototype = {
 		// this.settime(gt);
 		this.prevtext = opts.prevtext?opts.prevtext:"&lt;";
 		this.nexttext = opts.nexttext?opts.nexttext:"&gt;";
-		this.monthtext = opts.monthtext?opts.monthtext:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+		this.monthtext = opts.monthtext?opts.monthtext:['Janu','Feb','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
         this.weektext = opts.weektext?opts.weektext:["日","一","二","三","四","五","六"];
-        this.pb = opts.paddingBottom||0;
+        this.format_all = 'y/m/d h:i:s';
+        this.format = opts.format||'y/m/d';
         this.default_time = opts.default_time||new Date();
         this.confirm_time = opts.default_time||new Date();
         
@@ -496,43 +497,55 @@ dateTable.prototype = {
             this.pop.classList.add('cm-pop-active')
             this.boxer.classList.add('cm-slbox-table')
             this.settil(this.title);
+            this.boxer.style.paddingBottom = (opts.paddingBottom||20)+'px';
         }else{
             this.boxer = this.opts.boxer;
         };
 
-        this.boxer.innerHTML = '<div class="dateselect_table">\
+        this.boxer.innerHTML = '<div class="cm-dateselect_table">\
                 <div class="dp-btns">\
                     <a href="javascript:;" class="J_btn_prev dt-mbtn">&lt;</a>\
                     <a href="javascript:;" class="J_btn_next dt-mbtn dt-mbtna">&gt;</a>\
                     <a href="javascript:;" class="J_btn_year dt-btn"><span class="J_year">2012</span>年</a>\
-                    <a href="javascript:;" class="J_btn_month dt-btn dt-btna"><span class="J_year">2012</span>月</a>\
+                    <a href="javascript:;" class="J_btn_month dt-btn dt-btna"><span class="J_month">2012</span></a>\
                 </div>\
                 <table width="100%" cellspacing="0" cellpadding="0" class="J_table"></table>\
                 <div class="dateselect_cont">\
-                    <div class="cont-month cont-pop"></div>\
+                    <div class="cont-month cont-pop"><div class="box-month"></div></div>\
                     <div class="cont-year cont-pop">\
-                        <div class="cont-yl"><p class="cont-ylrm">&lt;</p></div>\
-                        <div class="cont-yr"><p class="cont-ylrm">&gt;</p></div>\
+                        <div class="cont-yl"><p class="cont-ylrm cont-ylrm-l">&lt;</p></div>\
+                        <div class="cont-yr"><p class="cont-ylrm cont-ylrm-r">&gt;</p></div>\
                         <div class="cont-yc"></div>\
-                        <div class="cont-yx">取消年份选择</div>\
+                        <p class="cont-mls-hide cont-hide-y">取消选择</p>\
                     </div>\
                 </div>\
             </div>';
+
+        this._btn_prev = this.boxer.getElementsByClassName("J_btn_prev")[0];
+        this._btn_next = this.boxer.getElementsByClassName("J_btn_next")[0];
+
         this.table = this.boxer.getElementsByClassName("J_table")[0];
-        // this.dp_cal = this.boxer.getElementsByClassName("dp-cal")[0];
-        // this.dp_til = this.boxer.getElementsByClassName('dp-til')[0];
-        // this.dp_sure = this.boxer.getElementsByClassName("dp-sure")[0];
-        // this.cont_month = this.boxer.getElementsByClassName('cont-month')[0];
-        // this.cont_year = this.boxer.getElementsByClassName('cont-year')[0];
-        // this.cont_year_c = this.boxer.getElementsByClassName('cont-yc')[0];
-        // this.cont_year_l = this.boxer.getElementsByClassName('cont-yl')[0];
-        // this.cont_year_r = this.boxer.getElementsByClassName('cont-yr')[0];
-        // this.cont_year_x = this.boxer.getElementsByClassName('cont-yx')[0];
+        this.text_year = this.boxer.getElementsByClassName("J_year")[0];
+        this.text_month = this.boxer.getElementsByClassName("J_month")[0];
+
+        this._btn_month = this.boxer.getElementsByClassName('J_btn_month')[0];
+        this.cont_month = this.boxer.getElementsByClassName('cont-month')[0];
+
+        this._btn_year = this.boxer.getElementsByClassName('J_btn_year')[0];
+        this.cont_year = this.boxer.getElementsByClassName('cont-year')[0];
+        this.cont_year_c = this.boxer.getElementsByClassName('cont-yc')[0];
+        this.cont_year_l = this.boxer.getElementsByClassName('cont-yl')[0];
+        this.cont_year_r = this.boxer.getElementsByClassName('cont-yr')[0];
 
         this.temporary = {}
         this.resttemporary();
+        this.resetmonth();
+        this.temporary.year_copy = this.temporary.year;
+        this.resetyear();
 
-        this.resettable(this.default_time)
+        this.resettable(this.default_time);
+
+        this.bindEvent();
     },
     settil:function(title){
         this.elm_til.innerHTML = title||'';
@@ -540,6 +553,25 @@ dateTable.prototype = {
     resttemporary:function(){
         this.temporary.year = this.default_time.getFullYear();
         this.temporary.month = this.default_time.getMonth()+1;
+        this.text_year.innerHTML = this.temporary.year;
+        this.text_month.innerHTML = this.monthtext[this.temporary.month-1];
+    },
+    resetmonth:function(){
+        //月份内容填充
+        var str_m = '';
+        for(var i=1;i<=12;i++){
+            str_m += '<p class="cont-mls '+(i==this.temporary.month?'cont-mls-cur':'')+'" data-value="'+i+'">'+this.monthtext[i-1]+'</p>';
+        };
+        str_m += '<p class="cont-mls-hide cont-hide-m">取消选择</p>'
+        this.cont_month.innerHTML = str_m;
+    },
+    resetyear:function(){
+        var st = this.temporary.year_copy - 4,
+            str = '';
+        for(var i=st;i<this.temporary.year_copy+5;i++){
+            str += '<p class="cont-yls '+(i==this.temporary.year?'cont-yls-cur':'')+'" data-value="'+i+'">'+i+'</p>';
+        }
+        this.cont_year_c.innerHTML = str;
     },
     rendertable:function(){
         this.active = null;
@@ -565,7 +597,137 @@ dateTable.prototype = {
 		return str;
     },
     resettable(time){
-        
         this.table.innerHTML = this.rendertable();
-    }
+    },
+    bindEvent:function(){
+        var that = this;
+
+        //前一个月
+		this._btn_prev.addEventListener('click',function(){
+			that.temporary.month--;
+			if(that.temporary.month<1){
+				that.temporary.year--,that.temporary.month = 12;
+			}
+			that.text_month.innerHTML = that.monthtext[that.temporary.month-1];
+			that.text_year.innerHTML = that.temporary.year;
+            
+            that.resetmonth();
+            that.table.innerHTML = that.rendertable();
+			that.opts.monthchange && that.opts.monthchange({year:that.temporary.year,month:that.temporary.month,target:that.target});
+		});
+
+		// 往后一个月
+		this._btn_next.addEventListener('click',function(){
+			that.temporary.month++;
+			if(that.temporary.month>12){
+				that.temporary.year++,that.temporary.month = 1;
+			}
+			that.text_month.innerHTML = that.monthtext[that.temporary.month-1];
+			that.text_year.innerHTML = that.temporary.year
+			
+            that.resetmonth();
+            that.table.innerHTML = that.rendertable();
+			that.opts.monthchange && that.opts.monthchange({year:that.temporary.year,month:that.temporary.month,target:that.target});
+        });
+        
+        //月份操作
+		this.cont_month.addEventListener('click',function(e){
+            var tar = e.target;
+			if(e.target.classList.contains('cont-hide-m')){
+              that.hidepop(that.cont_month);
+            }else if(e.target.classList.contains('cont-mls')){
+                that.temporary.month = parseInt(tar.getAttribute('data-value'));
+                that.hidepop(that.cont_month);
+                that.text_month.innerHTML = that.monthtext[that.temporary.month-1];
+                that.table.innerHTML = that.rendertable();
+                that.resetmonth();
+                that.opts.monthchange && that.opts.monthchange({year:that.temporary.year,month:that.temporary.month,target:that.target});
+            };
+        })
+        
+        //年份操作
+        this.cont_year.addEventListener('click',function(e){
+            var tar = e.target;
+			if(e.target.classList.contains('cont-hide-y')){
+              that.hidepop(that.cont_year);
+            }else if(e.target.classList.contains('cont-yls')){
+                that.temporary.year = parseInt(tar.getAttribute('data-value'));
+                that.hidepop(that.cont_year);
+                that.text_year.innerHTML = that.temporary.year;
+                that.table.innerHTML = that.rendertable();
+                that.temporary.year_copy = that.temporary.year;
+                that.resetyear();
+                that.opts.monthchange && that.opts.monthchange({year:that.temporary.year,month:that.temporary.month,target:that.target});
+            }else if(e.target.classList.contains('cont-ylrm-l')){
+                that.temporary.year_copy -= 9;
+			    that.resetyear();
+            }else if(e.target.classList.contains('cont-ylrm-r')){
+                that.temporary.year_copy += 9;
+			    that.resetyear();
+            };
+        })
+
+        this._btn_month.addEventListener('click',function(){
+            that.showpop(that.cont_month);
+        })
+        this._btn_year.addEventListener('click',function(){
+            that.showpop(that.cont_year);
+        })
+
+        //选择日期
+		this.table.addEventListener('click',function(e){
+			if(e.target.nodeName!="A") return;
+			if(that.active){
+				that.active.classList.remove('active');
+			}
+			that.active = e.target;
+			e.target.classList.add('active');
+        })
+        
+        //隐藏弹层
+        this.btn_cal&&this.btn_cal.addEventListener('click',function(){
+            that.pop.classList.remove('cm-pop-active');
+        })
+
+        // this.btn_sure.addEventListener('click',function(){
+        //     var group = that.group,
+        //         time = new Date(group.y.scroller.v.id+'/'+group.m.scroller.v.id+'/'+group.d.scroller.v.id+' '+group.h.scroller.v.id+':'+group.i.scroller.v.id+':'+group.s.scroller.v.id);
+        //     that.confirm&&that.confirm({time:time,time_str:that.timeFormat(time,that.format),target:that.target},function(){
+        //         that.target.setAttribute('data-time',that.timeFormat(time,that.format_all))
+        //         that.pop.classList.remove('cm-pop-active');
+        //     })
+        // })
+		// this.dp_sure.addEventListener('click',function(){
+		// 	var obj = _this.obj,
+		// 		v = obj.format;
+
+		// 	if(!_this.active){
+		// 		CUES.tip({msg:'请选择日期'});
+		// 		return;
+		// 	}
+		// 	var time = new Date(_this.active.getAttribute('data-year')+'/'+_this.active.getAttribute('data-month')+'/'+_this.active.getAttribute('data-date'));
+		// 	_this.obj.target.setAttribute('data-time',_this.timeformat(time,'y/m/d h:i:s'));
+		// 	if(_this.opt.selected){
+		// 		_this.opt.selected({
+		// 			target:_this.obj.target,
+		// 			time:time,
+		// 			timestr:_this.timeformat(time,v)
+		// 		})
+		// 	}
+		// },false)
+    },
+	showpop:function(tar){
+		tar.classList.add('cont-pop-active');
+		setTimeout(function(){
+			tar.classList.add('cont-pop-show')
+		}, 0);
+	},
+	hidepop:function(tar){
+		tar.classList.add('cont-pop-hide');
+		setTimeout(function(){
+			tar.classList.remove('cont-pop-show');
+			tar.classList.remove('cont-pop-hide');
+			tar.classList.remove('cont-pop-active');
+		}, 350);
+	}
 }

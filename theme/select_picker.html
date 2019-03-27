@@ -115,6 +115,9 @@
                     console.log(rs)
                     $(rs.target).find('input').val(rs.time_str)
                     cb();
+                },
+                "monthchange":function(rs){
+                    console.log(5,rs)
                 }
             })
 
