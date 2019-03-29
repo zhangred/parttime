@@ -195,7 +195,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .cm-tabbox .cmtab-in{ display: inline-block; height: .44rem;}
 .cm-tabbox-full .cmtab-in{ display: block;}
 .cm-tabbox .cmtab-active .cmtab-in{ border-bottom: .03rem solid #58B586;}
-.cm-tabbox-x{ overflow-x: scroll; -webkit-overflow-scrolling: touch; white-space: nowrap;}
+.cm-tabbox-x{ overflow-x: scroll; -webkit-overflow-scrolling: touch; white-space: nowrap; overflow-y: hidden;}
 .cm-tabbox-x .cmtab{ display: inline-block; width: auto; float:none; padding: 0 .1rem;}
 
 
@@ -229,3 +229,24 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .botmore-all .bmimg{ display: none; }
 .botmore-all .load{ display: none; }
 .botmore-all .done{ display: inline; }
+
+.cm-scrollrefresh{ position: fixed; height: 100%; width: 100%; top: 0; left: 0;overflow: hidden; overflow-y: scroll; -webkit-overflow-scrolling: touch;}
+.cm-scrollrefresh .cm-sr-top{position: fixed; left: 50%; top: -40px; color: #666; -webkit-transform: translate3d(-50%,0,0); transform: translate3d(-50%,0,0); background: #fff; box-shadow: 0 0 5px 0 rgba(0,0,0,.4); line-height: 30px; border-radius: 15px; padding: 0 15px;}
+.cm-scrollrefresh .cm-sr-top-arr{ position: relative; top: -1px; display: inline-block; height: 20px; width: 20px; margin-right: 5px; box-shadow: 0 0 1px 1px #ccc inset; border-radius: 50%; vertical-align: middle;}
+.cm-scrollrefresh .cm-sr-top-ico{ position: absolute; left: 0; top: 0; height: 20px; width: 20px; border:3px solid #ddd; border-color:transparent #58B586; border-radius: 50%;}
+.cm-scrollrefresh .cm-sr-top-ac .cm-sr-top-ico{-webkit-animation: cm-rotate .6s linear infinite;animation: cm-rotate .6s linear infinite;}
+.cm-scrollrefresh-short{padding-bottom: 40px;}
+.cm-scrollrefresh .cm-sr-bot{line-height: 40px;background: rgba(255,255,255,0); text-align: center;}
+.cm-scrollrefresh-short .cm-sr-bot{position: absolute; left: 0; bottom: 0; width: 100%;}
+.cm-scrollrefresh .cm-sr-bot-text-done{ display: none;}
+.cm-scrollrefresh .cm-sr-bot-done .cm-sr-bot-text-done{ display: block;}
+.cm-scrollrefresh .cm-sr-bot-done .cm-sr-bot-text{ display: none;}
+
+@-webkit-keyframes cm-rotate{
+    from { transform: rotate(0);}
+    to { transform: rotate(180deg);}
+}
+@keyframes cm-rotate{
+    from { transform: rotate(0);}
+    to { transform: rotate(180deg);}
+}

@@ -100,6 +100,48 @@
             dom.innerHTML = options.msg;
         }
         return dom;
+    },
+    throttle:function(fn,wait){
+        var timeout, timestamp, result;
+        var later = function(){
+            fn();
+            setTimeout(function(){
+                timeout = null
+            },200)
+        }
+        return function(){
+            timestamp = new Date().getTime();
+            if(!timeout){
+                timeout = setTimeout(later,wait)
+            }
+            if(result){
+                return fn(4)
+            }
+        }
+    },
+    debounce:function(fn,wait,space){
+        var timeout,timestamp,lastfunc;
+        space = space||200;
+        var later = function(){
+            var now = new Date().getTime(),
+                last = now - timestamp;
+            if((last<wait&&last>0)||((lastfunc+space)>=now)){
+                timeout = setTimeout(later,wait);
+            }else{
+                // console.log(4,now)
+                timeout = null;
+                lastfunc = now;
+                fn()
+            }
+        }
+        return function(){
+            timestamp = new Date().getTime();
+            lastfunc = timestamp;
+            // console.log(1,timestamp)
+            if(!timeout){
+                timeout = setTimeout(later,wait)
+            }
+        }
     }
 };
 
@@ -833,7 +875,90 @@ function botmore(num,callback){
     this.unbindscroll = function(){
         window.removeEventListener('scroll',_this.bodyscroll,false);
     }
-
 };
+
+function elmReachBottom(elm,num,callback){
+    var that = this;
+    this.stop = true;
+    num = num||0;
+    var box_h = elm.offsetHeight;
+
+    this.elmscroll = CUES.debounce(function(){
+        if(that.stop){return false;};
+        if(elm.scrollTop+num>elm.scrollHeight - box_h){
+            callback();
+        }
+    },100)
+
+    elm.addEventListener('scroll',that.elmscroll);
+
+    this.unbindscroll = function(){
+        elm.removeEventListener('scroll',that.elmscroll);
+    }
+}
+
+function scrollRefresh(opts){
+    this.opts = opts;
+
+    // this.locked = true;
+    // this.toptimer = null;
+    this.height = opts.height;
+    this.botcut = opts.botCut||40;
+    this.toppx = opts.toppx;
+    // this.alldone = false;
+    
+    applytools.call(this,['createDom']);
+    // setTimeout(function(){
+    //     cr_top.classList.add('cm-sr-top-ac')
+    // },2000)
+    this.setting();
+}
+scrollRefresh.prototype = {
+    setting:function(){
+        var opts = this.opts;
+        this.cr_top = this.createDom({tag:'div',classname:'cm-sr-top',msg:'<span class="cm-sr-top-arr"><span class="cm-sr-top-ico"></span></span><span class="cm-sr-top-text">下拉可以刷新</span>'})
+        this.cr_bot = this.createDom({tag:'div',classname:'cm-sr-bot',msg:'<span class="cm-sr-bot-text">正在加载···</span><span class="cm-sr-bot-text-done">已加载全部数据</span>'})
+        this.target = opts.target;
+        this.target.appendChild(this.cr_top);
+        this.target.appendChild(this.cr_bot);
+
+        if(this.toppx!=undefined){
+            this.cr_top.style.top = this.toppx+'px';
+        }
+
+        this.cr_top_text = this.cr_top.getElementsByClassName('cm-sr-top-text')[0];
+        this.cont = this.target.getElementsByClassName('cm-srcont')[0];
+
+        this.judgebotshort();
+        this.bindevent();
+    },
+    judgebotshort:function(){
+        this.height>=this.cont.scrollHeight+this.botcut?this.target.classList.add('cm-scrollrefresh-short'):this.target.classList.remove('cm-scrollrefresh-short');
+    },
+    bindevent:function(){
+        var that = this,
+            opt = this.opt,
+            target = opt.target,
+            target_dom = target.get(0);
+
+        var wsb_top = this.wsb_top,
+            wsb_top_dom = wsb_top.get(0),
+            wsb_top_text = this.wsb_top_text,
+            wsb_top_arr = this.wsb_top_arr;
+
+        var y_start = 0,
+            elm_scrollHeight = 0,
+            elm_scrollTop = 0,
+            cha = 0,
+            wsb_my = 0;
+
+        var locked = true,
+            locked_type = '',
+            haspullup = this.opt.pullupRefresh?true:false,
+            reachBottom = this.opt.reachBottom?true:false;
+    }
+}
+
+
 
 

@@ -34,164 +34,25 @@
 
         <a href="botmore.html" class="li">botmore</a>
 
-        <a href="xxx.html" class="li">pullrefalsh(----)</a>
+        <a href="elmbotmore.html" class="li">elmReachBottom</a>
 
-        <a href="xxx.html" class="li">fromvaledata(----)</a>
+        <a href="scrollrefresh.html" class="li">pullrefalsh</a>
+
+        <a href="validata.html" class="li">fromvalidata(----)</a>
+
+        <a href="swipe.html" class="li">swipe(----)</a>
+
+        <a href="imgsee.html" class="li">imgsee(----)</a>
+
+        <a href="imgclip.html" class="li">imgclip图片裁切(单独脚本----)</a>
+
+        <a href="canvas.html" class="li">canvas(单独脚本----)</a>
 
 
     </div>
 
     <script>
-        
-        // var p = new Promise(function(resolve, reject){
-        //     //做一些异步操作
-        //     setTimeout(function(){
-        //         console.log('执行完成');
-        //         resolve('随便什么数据');
-        //     }, 2000);
-        // });
-
-        // function prom(cb){
-        //     var p = new Promise(function(resolve, reject){
-        //         setTimeout(function(){
-        //             // resolve({a:4,b:4})
-        //             cb(134)
-        //         },2000)
-        //         setTimeout(function(){
-        //             console.log(45454)
-        //             reject('12')
-        //         },4000)
-        //     })
-        //     return p;
-        // }
-
-        // prom(function(rs){
-        //     console.log(rs)
-        // }).then(function(a){
-        //     console.log(a);
-        // },function(reason, data){
-        //     console.log(9,reason,data)
-        // });
-
-        // window.func = {
-        //     buid:new Promise(function(resolve,reject){
-        //         console.log('buid-in')
-        //         setTimeout(function(){
-        //             resolve({buid:232323})
-        //         },2000)
-        //     }),
-        //     dhid:new Promise(function(resolve,reject){
-        //             console.log('dhid-in')
-        //             setTimeout(function(){
-        //                 resolve({dhid:232323})
-        //             },3000)
-        //     })
-        // }
-
-        // Promise.all([func.buid,func.dhid]).then(function(res){
-        //     console.log(4,res)
-        // })
-        // setTimeout(function(){
-        //     Promise.all([func.buid,func.dhid]).then(function(res){
-        //         console.log(5,res)
-        //     })
-        // },3000)
-
-        // function prom(name){
-        //     return new Promise(function(resolve,reject){
-        //         name = name + g;
-        //         setTimeout(function(){
-        //             resolve(name)
-        //         },2000)
-        //     })
-        // }
-
-        // prom('zhang').then(function(rs){
-        //     console.log(4,rs)
-        //     return 'teset01';
-        // }).then(function(rs){
-        //     console.log(5,rs)
-        // }).catch(function(res){
-        //     console.log(6,res)
-        // })
-//         ;(function () {
-//  if ( typeof window.CustomEvent === "function" ) return false;
-   
-//  function CustomEvent ( event, params ) {
-//   params = params || { bubbles: false, cancelable: false, detail: undefined };
-//   var evt = document.createEvent( 'CustomEvent' );
-//   evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-//   return evt;
-//  }
-   
-//  CustomEvent.prototype = window.Event.prototype;
-   
-//  window.CustomEvent = CustomEvent;
-// })();
-// ;(function () {
-//  function ajaxEventTrigger(event) {
-//   var ajaxEvent = new CustomEvent(event, { detail: this });
-//   window.dispatchEvent(ajaxEvent);
-//  }
-    
-//  var oldXHR = window.XMLHttpRequest;
-   
-//  function newXHR() {
-//   var realXHR = new oldXHR();
-   
-//   realXHR.addEventListener('abort', function () { ajaxEventTrigger.call(this, 'ajaxAbort'); }, false);
-   
-//   realXHR.addEventListener('error', function () { ajaxEventTrigger.call(this, 'ajaxError'); }, false);
-   
-//   realXHR.addEventListener('load', function () { ajaxEventTrigger.call(this, 'ajaxLoad'); }, false);
-   
-//   realXHR.addEventListener('loadstart', function () { ajaxEventTrigger.call(this, 'ajaxLoadStart'); }, false);
-   
-//   realXHR.addEventListener('progress', function () { ajaxEventTrigger.call(this, 'ajaxProgress'); }, false);
-   
-//   realXHR.addEventListener('timeout', function () { ajaxEventTrigger.call(this, 'ajaxTimeout'); }, false);
-   
-//   realXHR.addEventListener('loadend', function () { ajaxEventTrigger.call(this, 'ajaxLoadEnd'); }, false);
-   
-//   realXHR.addEventListener('readystatechange', function() { ajaxEventTrigger.call(this, 'ajaxReadyStateChange'); }, false);
-   
-//   return realXHR;
-//  }
-   
-//  window.XMLHttpRequest = newXHR;
-// })();
-
-
-//         var xhr = new XMLHttpRequest();
-        
-//         window.addEventListener('ajaxReadyStateChange', function (e) {
-//             console.log(4,e.detail.status,e.detail.readyState,e.detail.response); // XMLHttpRequest Object
-//         });
-//         window.addEventListener('ajaxAbort', function (e) {
-//         console.log(2,e.detail.responseText); // XHR 返回的内容
-//         });
-//         window.addEventListener('ajaxAbort', function (e) {
-//             console.log(3,e.detail.responseText); // XHR 返回的内容
-//         });
-//         window.addEventListener('ajaxError', function (e) {
-//             console.log(1,e.detail.responseText); // XHR 返回的内容
-//         });
-//         window.addEventListener('ajaxTimeout', function (e) {
-//             console.log(5,e.detail.responseText); // XHR 返回的内容
-//         });
-//         window.addEventListener('ajaxLoadEnd', function (e) {
-//             console.log(6,e.detail); // XHR 返回的内容
-//         });
-        
-
-//         setTimeout(function(){
-//             xhr.open('GET', 'api/callbacka.json');
-//             xhr.send();
-//         },1000)
-//         setTimeout(function(){
-//             var img = new Image;
-//             img.src = 'api/callback.json'
-//         },3000)
+      
 
 
     </script>

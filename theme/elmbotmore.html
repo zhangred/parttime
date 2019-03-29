@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="assets/stylesheets/style.css" type="text/css" /> 
+    <script language="javascript" type="text/javascript" src="./assets/javascript/size.js"></script>
+    <script language="javascript" type="text/javascript" src="./assets/javascript/jquery-2.1.4.min.js"></script>
+    <script  language="javascript" type="text/javascript" src="./assets/javascript/tools.js?v=1"></script>
+    <title>demo样板</title>
+    <style>
+        .ul{ padding-top: 10px;}
+        .li{ display: block; line-height: 40px; text-align: center; font-size: 14px; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 10px;}
+        #x{ position: fixed; left: 0; top: 0; background: #000; color: #fff;}
+    </style>
+</head>
+<body>
+    <div style="position:fixed; left:0; top:0; height:100%; width:100%; overflow-y:scroll;-webkit-overflow-scrolling: touch;" id="J_box">
+        <div id="J_list">
+            <div class="editlinebox editlinebox-nmt editlinebox-nbt">
+                <div class="editline editline-select editline-cover" id="J_line_dataselect">
+                    <p class="el-ado">单行数据</p>
+                    <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" id="J_a" /></div>
+                </div>
+                <div class="J_choosetime editline editline-select editline-cover" data-title="开始日期-列表日期" data-timegroup="y-m-d" data-format="y/m/d">
+                    <p class="el-ado">开始日期-列表日期</p>
+                    <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
+                </div>
+                <div class="J_choosetime editline editline-select editline-cover" data-title="结束日期-列表日期" data-timegroup="y-m-d" data-format="y/m/d">
+                    <p class="el-ado">结束日期-列表日期</p>
+                    <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
+                </div>
+                <div class="J_choosetable editline editline-select editline-cover" data-title="开始日期-表格日期" data-timegroup="y-m-d" data-format="y/m/d">
+                    <p class="el-ado">开始日期-表格日期</p>
+                    <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
+                </div>
+                <div class="J_choosetable editline editline-select editline-cover" data-title="结束日期-表格日期" data-timegroup="y-m-d" data-format="y/m/d">
+                    <p class="el-ado">结束日期-表格日期</p>
+                    <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
+                </div>
+                <div class="editline editline-select editline-cover" id="J_address">
+                    <p class="el-ado">地址选择</p>
+                    <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
+                </div>
+            </div>
+            <p class="li">在移动web项目的开发中，遇到一个通过点击页面自动到相应的楼层处的需求，最初的想法就是使用html的target属性进行切换，但实际效果十分死板，显得毫无交互性。该前端架构采用zepto这个轻库进行开发，它具有类似jQuery的语法，之后采用了animate({scrollTop:"100px"})这个函数进行页面的动画滚动，结果就是毫无效果。通过查询zepto fx包的源码</p>
+            <p class="li">在移动web项目的开发中，遇到一个通过点击页面自动到相应的楼层处的需求，最初的想法就是使用html的target属性进行切换，但实际效果十分死板，显得毫无交互性。该前端架构采用zepto这个轻库进行开发，它具有类似jQuery的语法，之后采用了animate({scrollTop:"100px"})这个函数进行页面的动画滚动，结果就是毫无效果。通过查询zepto fx包的源码</p>
+            <p class="li">在移动web项目的开发中，遇到一个通过点击页面自动到相应的楼层处的需求，最初的想法就是使用html的target属性进行切换，但实际效果十分死板，显得毫无交互性。该前端架构采用zepto这个轻库进行开发，它具有类似jQuery的语法，之后采用了animate({scrollTop:"100px"})这个函数进行页面的动画滚动，结果就是毫无效果。通过查询zepto fx包的源码</p>
+            <p class="li">在移动web项目的开发中，遇到一个通过点击页面自动到相应的楼层处的需求，最初的想法就是使用html的target属性进行切换，但实际效果十分死板，显得毫无交互性。该前端架构采用zepto这个轻库进行开发，它具有类似jQuery的语法，之后采用了animate({scrollTop:"100px"})这个函数进行页面的动画滚动，结果就是毫无效果。通过查询zepto fx包的源码</p>    
+        </div>
+        <p class="botmore" id="J_botmore"><img src="assets/images/loading.gif" class="bmimg"><span class="load">正在加载更多···</span><span class="done">数据已全部加载完毕</span></p>
+    </div>
+	
+    <p id="x"></p>
+    <script>
+        $(function(){
+
+            var x = $('#x'),
+                co = 1;
+
+            var wayarr = [
+                {"id":1,"name":"1面聊"},
+                {"id":2,"name":"2网络"},
+                {"id":3,"name":"3电话"},
+                {"id":4,"name":"4网络"},
+                {"id":5,"name":"5电话"},
+                {"id":6,"name":"6电话"},
+                {"id":7,"name":"7电话"},
+                {"id":8,"name":"8电话"},
+                {"id":9,"name":"9电话"},
+                {"id":10,"name":"10电话"},
+                {"id":11,"name":"11电话"},
+                {"id":12,"name":"12电话"},
+                {"id":13,"name":"13电话"},
+                {"id":14,"name":"14其他"}
+            ],
+            select_way = new dataSelect({
+                "target":document.getElementById('J_line_dataselect'), // 激活目标对象dom
+                // "outer":document.getElementById('J_selecta'),
+                "default_v":null, // 设置默认值
+                "title":"单行数据",
+                "datalist":wayarr,
+                "selected":function(rs){
+                },
+                "confirm":function(rs,cb){
+                    cb()
+                    $('#J_a').val(rs.name)
+                    console.log('c',rs)
+                }
+            });
+
+
+            var locked = false;
+
+            var J_list = $('#J_list'),
+                J_botmore = $('#J_botmore'),
+                str_dome = '<p class="li">在移动web项目的开发中，遇到一个通过点击页面自动到相应的楼层处的需求，最初的想法就是使用html的target属性进行切换，但实际效果十分死板，显得毫无交互性。该前端架构采用zepto这个轻库进行开发，它具有类似jQuery的语法，之后采用了animate({scrollTop:"100px"})这个函数进行页面的动画滚动，结果就是毫无效果。通过查询zepto fx包的源码</p> '
+            // 注册下拉滚动效果
+			var bm = new elmReachBottom(document.getElementById('J_box'),400,function(){
+                if(locked) return;
+                locked = true;
+                bm.stop = true; //暂停滚动检测
+
+                //模拟 co
+                co++;
+                $.ajax({
+                    url:'/api/callback.json?t='+(new Date().getTime()),
+                    success:function(rs){
+                        if(rs.code==0){
+                            if(co>3){
+                                str_dome = '';
+                            }
+
+                            var res = str_dome+str_dome+str_dome;
+                            J_list.append(res);
+                            setTimeout(function(){
+                                if(res){
+                                    bm.stop = false; //暂停滚动检测
+                                }else{
+                                    J_botmore.addClass('botmore-all')
+                                }
+                                
+                            },0)
+                        }
+                    },
+                    complete:function(){
+                        locked = false;
+                    }
+                })
+			});
+
+			// // 如果第一屏后端渲染，需开放以下一行代码用于打开下拉加载
+            bm.stop = false; // 打开下拉加载
+
+        })
+    </script>
+</body>
+</html>
