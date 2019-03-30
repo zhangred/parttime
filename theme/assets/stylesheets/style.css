@@ -231,7 +231,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .botmore-all .done{ display: inline; }
 
 .cm-scrollrefresh{ position: fixed; height: 100%; width: 100%; top: 0; left: 0;overflow: hidden; overflow-y: scroll; -webkit-overflow-scrolling: touch;}
-.cm-scrollrefresh .cm-sr-top{position: fixed; left: 50%; top: -40px; color: #666; -webkit-transform: translate3d(-50%,0,0); transform: translate3d(-50%,0,0); background: #fff; box-shadow: 0 0 5px 0 rgba(0,0,0,.4); line-height: 30px; border-radius: 15px; padding: 0 15px;}
+.cm-scrollrefresh .cm-sr-top{position: fixed; left: 50%; top: -40px; z-index: 2; color: #666; -webkit-transform: translate3d(-50%,0,0); transform: translate3d(-50%,0,0); background: #fff; box-shadow: 0 0 5px 0 rgba(0,0,0,.4); line-height: 30px; border-radius: 15px; padding: 0 15px;}
 .cm-scrollrefresh .cm-sr-top-arr{ position: relative; top: -1px; display: inline-block; height: 20px; width: 20px; margin-right: 5px; box-shadow: 0 0 1px 1px #ccc inset; border-radius: 50%; vertical-align: middle;}
 .cm-scrollrefresh .cm-sr-top-ico{ position: absolute; left: 0; top: 0; height: 20px; width: 20px; border:3px solid #ddd; border-color:transparent #58B586; border-radius: 50%;}
 .cm-scrollrefresh .cm-sr-top-ac .cm-sr-top-ico{-webkit-animation: cm-rotate .6s linear infinite;animation: cm-rotate .6s linear infinite;}
@@ -250,3 +250,10 @@ textarea::-webkit-input-placeholder { color: #ccc;}
     from { transform: rotate(0);}
     to { transform: rotate(180deg);}
 }
+
+.cm-swipe{ position: relative;}
+.cm-swipe .swipe-cont{ position: relative; z-index: 1; height: 100%; width: 100%; overflow: hidden;}
+.cm-swipe .swipe-item{ position: absolute; left: 0; top: 0; height: 100%; width: 100%;}
+.cm-swipe .swipe-pos{ position: absolute; z-index: 2; bottom: 10px; width: 100%; text-align: center;}
+.cm-swipe .swipe-po{ display: inline-block; margin: 0 3px; height: 8px; width:8px; border-radius: 4px; background: #fff; box-shadow: 0 0 3px rgba(0,0,0,.4); transition:all .3s; -webkit-transition:all .3s;}
+.cm-swipe .swipe-po-ac{ background: #58B586; width: 16px;}

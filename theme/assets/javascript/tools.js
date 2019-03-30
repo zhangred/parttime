@@ -899,13 +899,11 @@ function elmReachBottom(elm,num,callback){
 
 function scrollRefresh(opts){
     this.opts = opts;
-
-    // this.locked = true;
-    // this.toptimer = null;
     this.height = opts.height;
     this.botcut = opts.botCut||40;
     this.toppx = opts.toppx;
-    // this.alldone = false;
+    this.stop = opts.stop||false;
+    this.alldone = false;
     
     applytools.call(this,['createDom']);
     // setTimeout(function(){
@@ -937,14 +935,10 @@ scrollRefresh.prototype = {
     },
     bindevent:function(){
         var that = this,
-            opt = this.opt,
-            target = opt.target,
-            target_dom = target.get(0);
-
-        var wsb_top = this.wsb_top,
-            wsb_top_dom = wsb_top.get(0),
-            wsb_top_text = this.wsb_top_text,
-            wsb_top_arr = this.wsb_top_arr;
+            opts = this.opts,
+            target = this.target,
+            cr_top = this.cr_top,
+            cr_top_text = this.cr_top_text;
 
         var y_start = 0,
             elm_scrollHeight = 0,
@@ -952,13 +946,281 @@ scrollRefresh.prototype = {
             cha = 0,
             wsb_my = 0;
 
-        var locked = true,
+        //默认打开locked
+        var locked = false,
             locked_type = '',
-            haspullup = this.opt.pullupRefresh?true:false,
-            reachBottom = this.opt.reachBottom?true:false;
+            haspullup = opts.pullupRefresh?true:false,
+            reachBottom = opts.reachBottom?true:false;
+
+        target.addEventListener('touchstart',function(e){
+            y_start = e.touches[0].clientY;
+            elm_scrollTop = target.scrollTop;
+            cr_top.style.webkitTransition = "";
+        });
+
+        target.addEventListener('touchmove',function(e){
+            var lasty = e.touches[0].clientY;
+            cha = y_start - lasty + elm_scrollTop;
+            
+            if(locked&&locked_type=='up'){
+                e.preventDefault();
+                return;
+            }
+            if(locked&&cha<0){
+                e.preventDefault();
+                return;
+            }
+            if(cha<0 && haspullup){
+                var a = Math.sin(Math.PI*(-cha/1000));
+                a = a>1?1:a;
+                wsb_my = a*150;
+                cr_top.style.webkitTransform = 'translate3d(-50%,'+(wsb_my)+'px,0)';
+                if(wsb_my>80){
+                    cr_top.classList.add('cm-sr-top-ac');
+                    cr_top_text.innerHTML = '释放立即刷新';
+                }else{
+                    cr_top.classList.remove('cm-sr-top-ac');
+                    cr_top_text.innerHTML = '下拉可以刷新';
+                }
+            };
+            if(cha<0){
+                e.preventDefault();
+            };
+        })
+
+        target.addEventListener('touchend',function(e){
+            if(wsb_my>0&&haspullup&&!locked){
+                if(wsb_my<80){
+                    cr_top.style.webkitTransition = "-webkit-transform 0.3s";
+                    cr_top.style.webkitTransform = 'translate3d(-50%,0,0)';
+                }else{
+                    cr_top.style.webkitTransition = "-webkit-transform 0.3s";
+                    cr_top.style.webkitTransform = 'translate3d(-50%,50px,0)';
+                    cr_top_text.innerHTML = '正在加载···';
+                    locked = true;
+                    locked_type = 'up';
+                    opts.pullupRefresh();
+                    //延时清除加载
+                    that.toptimer = setTimeout(function(){
+                        that.domdone();
+                    },3000)
+                }
+            }
+        });
+
+        this.reset = function(){
+            wsb_my = 0;
+            y_start = 0;
+            locked_type = '';
+            locked = false;
+        }
+        this.lock_open = function(){
+            locked = false;
+        },
+        this.lock_close = function(){
+            locked = true;
+        };
+
+        this.elmscroll = CUES.debounce(function(){
+            opts.scrollEnd&&opts.scrollEnd();
+            if(locked){return false;};
+            elm_scrollHeight = target.scrollHeight;
+            elm_scrollTop = target.scrollTop;
+            if(elm_scrollTop+that.height+(opts.reachNumber||0)+2>=elm_scrollHeight&&reachBottom&&!locked&&!that.alldone){
+                locked = true;
+                opts.reachBottom&&opts.reachBottom();
+                that.toptimer = setTimeout(function(){
+                    that.domdone();
+                },3000)
+            }
+        },100)
+    
+        target.addEventListener('scroll',that.elmscroll);
+    
+        this.unbindscroll = function(){
+            target.removeEventListener('scroll',that.elmscroll);
+        }
+    },
+    domdone:function(){
+        var that = this;
+        clearTimeout(this.toptimer);
+        setTimeout(function(){
+            that.cr_top_text.innerHTML = '加载完成';
+            that.cr_top.style.webkitTransform = 'translate3d(-50%,0,0)';
+            that.cr_top.classList.remove('cm-sr-top-ac');
+            that.reset()
+        },0)
+        setTimeout(function(){
+            that.cr_top_text.innerHTML = '下拉可以刷新';
+        }, 300);
+    },
+    loading_done:function(obj){
+        if(obj.loadingdone){
+            this.alldone = true;
+            this.cr_bot.classList.add('cm-sr-bot-done');
+        }else{
+            this.alldone = false;
+            this.cr_bot.classList.remove('cm-sr-bot-done');
+        }
+        this.judgebotshort();
     }
 }
 
+function swipe(id){
+    var that = this;
 
+    applytools.call(this,['createDom']);
+
+    var el = document.getElementById(id),
+        box = el.getElementsByClassName('swipe-cont')[0],
+        imgs = el.getElementsByClassName('swipe-item'),
+        imglen = imgs.length,
+        poslen = imgs.length,
+        imgmaxlen = imglen - 1,
+        width = el.offsetWidth,
+        timer = '',
+        touch_s = {},
+        touch_m = {},
+        dataindex = 0,
+        isdire = -1;
+
+        if(imglen==1){
+            return;
+        }
+        if(imglen==2){
+            box.innerHTML += box.innerHTML;
+            imgs = el.getElementsByClassName('swipe-item');
+            imglen = imgs.length;
+            imgmaxlen = imglen - 1;
+        };
+
+        var dtlen = this.dtlen,
+            self = this,
+            figs = [];
+
+        for(var i=0,len = imgs.length;i<len;i++){
+            that.styletransform(imgs[i].style,'translateZ(0) translateX(-' + width + 'px)');
+        };
+
+        figs = [imgs[imgmaxlen], imgs[0], imgs[1]];
+
+        that.styletransform(figs[0].style,'translateZ(0) translateX(-' + width + 'px)');
+        that.styletransform(figs[1].style,'translateZ(0) translateX(0)');
+        that.styletransform(figs[2].style,'translateZ(0) translateX(' + width + 'px)');
+
+        var pos = '';
+        for(var i=0;i<poslen;i++){
+            pos += '<span class="swipe-po"></span>';
+        }
+        var po_cont = this.createDom({tag:'p',classname:'swipe-pos',msg:pos});
+        el.appendChild(po_cont);
+
+        pos = el.getElementsByClassName('swipe-po');
+
+        this.handstart = function(event){
+            clearInterval(timer);
+            for (var i = 0; i < 3; i++) {
+                figs[i].style.webkitTransition = "all 0s";
+                figs[i].transition = "all 0s";
+            };
+            touch_s = event.touches[0];
+        }
+        this.handmove = function(event){
+            touch_m = event.touches[0];
+            if(isdire==1){
+                var cy = touch_m.clientX - touch_s.clientX;
+                for (var i = 0; i < 3; i++) {
+                    that.styletransform(figs[i].style,'translateZ(0) translateX(' + ((i - 1) * width + cy) + 'px)')
+                };
+                event.stopPropagation();
+                event.preventDefault();
+                return;
+            };
+            if(isdire==-1){
+                isdire = Math.abs(touch_m.clientY-touch_s.clientY)>Math.abs(touch_m.clientX-touch_s.clientX)?0:1;
+                if(isdire){
+                    event.preventDefault();
+                    return;
+                }
+            };
+        }
+        this.handend = function(event){
+            if(isdire==1){
+                event.stopPropagation();
+            };
+
+            timer = setInterval(function() {
+                that.goleft();
+            }, 3300);
+
+            if (!touch_m.clientX) {
+                return false;
+            };
+            if(touch_m.clientX-touch_s.clientX<=-(width/10)){
+                that.goleft();
+            }else if(touch_m.clientX-touch_s.clientX>=(width/10)){
+                var s = dataindex;
+                dataindex--;
+                if (dataindex < 0) {
+                    dataindex = imgmaxlen;
+                };
+                that.changepo(s, dataindex);
+                figs.pop();
+                var o = imgs[(dataindex - 1) < 0 ? imgmaxlen : dataindex - 1];
+                that.styletransform(o.style,'translateZ(0) translateX(-' + width + 'px)','all 0s');
+                figs = [o].concat(figs);
+                that.styletransform(figs[2].style,'translateZ(0) translateX(' + width + 'px)','all 0.3s');
+                that.styletransform(figs[1].style,'translateZ(0) translateX(0)','all 0.3s');
+            }else{
+                for (var i = 0; i < 3; i++) {
+                    that.styletransform(figs[i].style,'translateZ(0) translateX(' + ((i - 1) * width) + 'px)','all 0.3s')
+                };
+            }
+
+            isdire = -1;
+        }
+
+
+        el.addEventListener('touchstart',this.handstart);
+        el.addEventListener('touchmove',this.handmove);
+        el.addEventListener('touchend',this.handend);
+
+        that.goleft = function(){
+            var s = dataindex;
+            dataindex++;
+            if (dataindex > imgmaxlen) {
+                dataindex = 0;
+            };
+            that.changepo(s, dataindex);
+            figs.shift();
+            var o = imgs[(dataindex + 1) > imgmaxlen ? 0 : dataindex + 1];
+            that.styletransform(o.style,'translateZ(0) translateX(' + width + 'px)','all 0s');
+            figs.push(o);
+
+            that.styletransform(figs[0].style,'translateZ(0) translateX(-' + width + 'px)','all 0.3s');
+            that.styletransform(figs[1].style,'translateZ(0) translateX(0)','all 0.3s');
+        };
+
+        that.changepo = function(f, t) {
+            that.swipeend&&that.swipeend({idx:t%poslen,item:imgs[t%poslen]})
+            pos[f % poslen]&&pos[f % poslen].setAttribute('class', 'swipe-po');
+            pos[t % poslen]&&pos[t % poslen].setAttribute('class', 'swipe-po swipe-po-ac');
+        };
+        timer = setInterval(function() {
+            that.goleft();
+        }, 3000);
+
+        that.changepo(1, dataindex);
+}
+swipe.prototype = {
+    styletransform:function(elm,css,time){
+        if(time){
+            elm.webkitTransition = time;
+            elm.transition = time;
+        };
+        elm.webkitTransform = css;
+        elm.transform = css;
+    }
+}
 
 
