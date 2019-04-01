@@ -14,15 +14,65 @@
     <script  language="javascript" type="text/javascript" src="./assets/javascript/tools.js"></script>
     <title>demo样板</title>
     <style>
-        .ul{ padding-top: 10px;}
-        .li{ display: block; line-height: 40px; text-align: center; font-size: 14px; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 10px;}
+        .img{ width: 100px; height: 100px; margin: 0 20px 20px 0; float: left;}
+        .ul{ height: 2000px; }
     </style>
 </head>
 <body>
 	<div class="ul">
-        <a href="toast.html" class="li">toast提示框</a>
-
-        <a href="editlines.html" class="li">editlines-展示行</a>
+        <div class="J_img img" data-thumb="./img/imgsee2s.jpg" data-origin="./img/imgsee2.jpg"><img src="./img/imgsee2s.jpg" /></div>
+        <div class="J_img img" data-thumb="./img/imgsee3s.jpg" data-origin="./img/imgsee3.jpg"><img src="./img/imgsee3s.jpg" /></div>
+        <div class="J_img img" data-thumb="./img/imgsee4s.jpg" data-origin="./img/imgsee4.jpg"><img src="./img/imgsee4s.jpg" /></div>
+        <div class="J_img img" data-thumb="./img/imgsee5s.jpg" data-origin="./img/imgsee5.jpg"><img src="./img/imgsee5s.jpg" /></div>
+        <div class="J_img img" data-thumb="./img/imgsee1s.jpg" data-origin="./img/imgsee1.jpg"><img src="./img/imgsee1s.jpg" /></div>
     </div>
+    <script>
+        $(function(){
+            var J_img = $('.J_img'),
+                imgarr = [],
+                len = J_img.length;
+            
+            for(var i=0;i<len;i++){
+                var elm = J_img.eq(i);
+                imgarr.push({thumb:elm.attr('data-thumb'),origin:elm.attr('data-origin')});
+            };
+
+            console.log(imgarr)
+
+            J_img.click(function(){
+                var idx = J_img.index($(this));
+                console.log(idx)
+            })
+
+            //图片预览
+			var isee = new imgsee({
+                datalist:imgarr,
+                showdown:true,
+                download:function(rs){
+                    alert(JSON.stringify(rs))
+                }
+            });
+            
+            setTimeout(function(){
+                isee.show({idx:1});
+            },500)
+
+			// $('#J_eupimgs').on('click','.J_eimg',function(){
+			// 	isee.show({idx:$('.J_eimg').index($(this)),datalist:data.imgs});
+			// }).on('click','.J_eimg_del',function(){
+			// 	var that = $(this).parent(),
+			// 		url = that.attr('data-url');
+			// 	CUES.confirm({"msg":"确定要删除该图片吗？","callback":function(r){
+			// 		if(r){
+			// 			data.img.splice(data.img.indexOf(url),1);
+			// 			that.remove();
+			// 		}
+			// 	}})
+			// 	return false;
+            // })
+
+
+        })
+    </script>
 </body>
 </html>

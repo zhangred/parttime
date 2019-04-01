@@ -41,9 +41,9 @@
         </div>
         <script>
             $(function(){
-                var a = new swipe('J_banner')
-                var b = new swipe('J_bannera')
-                var c = new swipe('J_bannerb')
+                var a = new swipe({id:'J_banner'})
+                var b = new swipe({id:'J_bannera'})
+                var c = new swipe({id:'J_bannerb'})
 
                 c.swipeend = function(rs){
                     console.log(7,rs)
