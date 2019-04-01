@@ -12,6 +12,7 @@
     <script language="javascript" type="text/javascript" src="./assets/javascript/size.js"></script>
     <script language="javascript" type="text/javascript" src="./assets/javascript/jquery-2.1.4.min.js"></script>
     <script  language="javascript" type="text/javascript" src="./assets/javascript/tools.js"></script>
+    <script  language="javascript" type="text/javascript" src="./assets/javascript/vconsole.min.js"></script>
     <title>demo样板</title>
     <style>
         .img{ width: 100px; height: 100px; margin: 0 20px 20px 0; float: left;}
@@ -22,7 +23,7 @@
 	<div class="ul">
         <div class="J_img img" data-thumb="./img/imgsee2s.jpg" data-origin="./img/imgsee2.jpg"><img src="./img/imgsee2s.jpg" /></div>
         <div class="J_img img" data-thumb="./img/imgsee3s.jpg" data-origin="./img/imgsee3.jpg"><img src="./img/imgsee3s.jpg" /></div>
-        <div class="J_img img" data-thumb="./img/imgsee4s.jpg" data-origin="./img/imgsee4.jpg"><img src="./img/imgsee4s.jpg" /></div>
+        <div class="J_img img" data-thumb="./img/imgsee4s.jpg?v=2" data-origin="./img/imgsee4.jpg?v=2"><img src="./img/imgsee4s.jpg?v=2" /></div>
         <div class="J_img img" data-thumb="./img/imgsee5s.jpg" data-origin="./img/imgsee5.jpg"><img src="./img/imgsee5s.jpg" /></div>
         <div class="J_img img" data-thumb="./img/imgsee1s.jpg" data-origin="./img/imgsee1.jpg"><img src="./img/imgsee1s.jpg" /></div>
     </div>
@@ -41,7 +42,7 @@
 
             J_img.click(function(){
                 var idx = J_img.index($(this));
-                console.log(idx)
+                isee.show({idx:idx});
             })
 
             //图片预览
@@ -52,25 +53,6 @@
                     alert(JSON.stringify(rs))
                 }
             });
-            
-            setTimeout(function(){
-                isee.show({idx:1});
-            },500)
-
-			// $('#J_eupimgs').on('click','.J_eimg',function(){
-			// 	isee.show({idx:$('.J_eimg').index($(this)),datalist:data.imgs});
-			// }).on('click','.J_eimg_del',function(){
-			// 	var that = $(this).parent(),
-			// 		url = that.attr('data-url');
-			// 	CUES.confirm({"msg":"确定要删除该图片吗？","callback":function(r){
-			// 		if(r){
-			// 			data.img.splice(data.img.indexOf(url),1);
-			// 			that.remove();
-			// 		}
-			// 	}})
-			// 	return false;
-            // })
-
 
         })
     </script>

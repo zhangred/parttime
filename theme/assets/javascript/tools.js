@@ -1229,8 +1229,8 @@ function imgsee(opts){
     var dom = this.createDom({tag:'div',classname:'cm-seeimgbox',msg:'<p class="num"><span class="cur">1</span>/<span class="tol">--</span></p><p class="imgbox"></p><p class="J_down botdo">下载</p>'})
     document.body.appendChild(dom);
 
-    // dom.classList.add('cm-seeimgbox-active');
-
+    // dom.classList.add('cm-seeimgbox-ac');
+    var that = this;
     var cur = dom.getElementsByClassName('cur')[0],
         tol = dom.getElementsByClassName('tol')[0],
         J_down = dom.getElementsByClassName('J_down')[0],
@@ -1329,8 +1329,21 @@ function imgsee(opts){
     },false);
 
     imgbox.addEventListener('click',function(){
-        iszoom&&zoomfet();
+        iszoom?zoomfet():that.domhide();
     },false)
+
+    this.domshow = function(){
+        dom.classList.add('cm-seeimgbox-ac');
+        setTimeout(function(){
+            dom.classList.add('cm-seeimgbox-show');
+        },10)
+    };
+    this.domhide = function(){
+        dom.classList.remove('cm-seeimgbox-show');
+        setTimeout(function(){
+            dom.classList.remove('cm-seeimgbox-ac');
+        },310)
+    }
 
     /*设置点击坐标*/
     function setstartloc(tc,idx){
@@ -1376,13 +1389,15 @@ function imgsee(opts){
 
     /*重置图片元素*/
     function initmobj(hastouch){
+        // alert(454)
         var bc = mobj.getBoundingClientRect();
         mobj.style.cssText = 'width:'+bc.width+'px;height:'+bc.height+'px;top:'+bc.top+'px;left:'+bc.left+'px;';
         scale_loc = {"x":0,"y":0,"range":0,"ox":0,"oy":0};
         start_loc = [{"x":0,"y":0},{"x":0,"y":0}];
         end_loc = [{"x":0,"y":0},{"x":0,"y":0}];
         iszoom = bc.width>width?true:false;
-        if(!iszoom){
+        // alert(dataindex+'-'+JSON.stringify(datalist[dataindex]))
+        if(!iszoom||!datalist[dataindex].isdownload){
             zoomfet();
         }else{
             borderfet(hastouch);
@@ -1419,6 +1434,7 @@ function imgsee(opts){
 
     /*小于比例的时候图片初始化*/
     function zoomfet(){
+        iszoom = false;
         mobj.style.cssText = '';
         mobj.style.webkitTransition = "all .2s";
         setTimeout(function(){
@@ -1430,22 +1446,36 @@ function imgsee(opts){
     function borderfet(hastouch){
         if(hastouch) return
         var bc = mobj.getBoundingClientRect(),
-            ani = false;
-        alert(JSON.stringify(bc))
-        if(bc.top>=0){
+            imgbc = mobj.getElementsByClassName('simgr')[0].getBoundingClientRect(),
+            ani = false,
+            tr = {left:bc.left,top:bc.top};
+        if((imgbc.height<height&&imgbc.top<0)||(imgbc.height>height&&imgbc.top>0)){
             ani = true;
-            bc.top = 0;
-        }else if(bc.left>=0){
+            tr.top = tr.top - imgbc.top
+        }else if((imgbc.height<height&&imgbc.top+imgbc.height>height)||(imgbc.height>height&&imgbc.top+imgbc.height<height)){
             ani = true;
-            bc.top = 0;
-        }else if(bc.left-4){
+            tr.top = tr.top - imgbc.top + (height-imgbc.height);
+        };
 
+        if((imgbc.width<width&&imgbc.left<0)||(imgbc.width>width&&imgbc.left>0)){
+            ani = true;
+            tr.left = tr.left - imgbc.left;
+        }else if((imgbc.width<width&&imgbc.left+imgbc.width>width)||(imgbc.width>width&&imgbc.left+imgbc.width<width)){
+            ani = true;
+            tr.left = tr.left - imgbc.left + (width-imgbc.width);
         }
-        // mobj.style.cssText = 'width:'+bc.width+'px;height:'+bc.height+'px;top:'+bc.top+'px;left:'+bc.left+'px;';
+        if(ani){
+            mobj.style.cssText = 'width:'+bc.width+'px;height:'+bc.height+'px;top:'+tr.top+'px;left:'+tr.left+'px;';
+            mobj.style.webkitTransition = "all .1s";
+            setTimeout(function(){
+                mobj.style.webkitTransition = "none";
+            },110)
+        }
     }
 
     /*展示指针*/
     function changepo(){
+        that.imgdownload(dataindex)
         cur.innerHTML = (dataindex+1)
     };
 
@@ -1454,14 +1484,9 @@ function imgsee(opts){
         opts.download(datalist[dataindex]);
     },false);
 
-    // /*关闭当前图片预览插件*/
-    // J_close.click(function(){
-    //     dom.fadeOut(100);
-    // });
-
     // /*初始图片预览插件*/
     this.show = function(nopts){
-        dom.classList.add('cm-seeimgbox-active');
+        this.domshow();
         this.showdown(nopts.showdown||opts.showdown||false);
         if(nopts.datalist){
             initdata(nopts.datalist);
@@ -1477,7 +1502,30 @@ function imgsee(opts){
         if(figs[2]) figs[2].style.webkitTransform = 'translateZ(0) translateX('+width+'px)';
         mobj = mbox[idx];
         cur.innerHTML = (dataindex+1);
+        that.imgdownload(dataindex)
     };
+
+    this.imgdownload = function(ix){
+        var o = datalist[ix],
+            img = new Image;
+        
+        if(o.isdownload) return;
+        img.src = o.origin;
+        img.onload = function(){
+            var self = this;
+            o.isdownload = true;
+            mbox[ix].getElementsByClassName('siimg')[0].innerHTML = '<img class="simgr" src="'+o.origin+'">';
+            setTimeout(function(){
+                if(self.width<width&&self.height<height){
+                    if(self.width/self.height>width/height){
+                        mbox[ix].getElementsByClassName('simgr')[0].style.minWidth = '100%'
+                    }else{
+                        mbox[ix].getElementsByClassName('simgr')[0].style.minHidth = '100%'
+                    }
+                }
+            },0)
+        }
+    }
 
     /*初始图片dom以及相关展示信息*/
     function initdata(arr){
