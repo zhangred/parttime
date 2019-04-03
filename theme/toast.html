@@ -14,7 +14,7 @@
     <script  language="javascript" type="text/javascript" src="./assets/javascript/tools.js"></script>
     <title>toast提示框-demo样板</title>
     <style>
-        .btns{ padding-top: 10px;}
+        .btns{ padding-top: 10px; height: 2000px;}
         .btn{ display: block; line-height: 40px; text-align: center; font-size: 14px; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 10px;}
     </style>
 </head>
@@ -40,34 +40,37 @@
             })
 
             $('#J_c').click(function(){
-                CUES.tip({"msg":"这是警告提示框","type":"danger"})
+                CUES.tip({"msg":"这是警告提示框，停留2s","type":"danger","time":2000})
             })
 
             $('#J_d').click(function(){
-                CUES.alert({"msg":"这是警告提示框","suretext":"自定义确定","callback":function(){
+                CUES.alert({"msg":"这是警告提示框","suretext":"自定义确定","canceltext":"自定义取消","callback":function(){
                     console.log('回调函数')
                 }})
             })
 
             $('#J_e').click(function(){
-                CUES.confirm({"msg":"这是提示确认按钮","suretext":"自定义确定","callback":function(rs){
+                CUES.confirm({"msg":"这是提示确认按钮","suretext":"自定义确定","canceltext":"自定义取消","callback":function(rs){
                     console.log(rs?'确认':'取消')
                 }})
             })
 
             $('#J_f').click(function(){
-                CUES.input({"msg":"自定义提示","suretext":"自定义确定","callback":function(r){
-                    console.log(r)
+                CUES.input({"msg":"自定义提示","suretext":"自定义确定","canceltext":"自定义取消","callback":function(type,r){
+                    console.log(type,r,type?'确认':'取消')
                 }})
             })
 
             $('#J_g').click(function(){
-                CUES.loading({"msg":"正在加载···"})
+                CUES.loading({"msg":"自定义文案···"})
                 setTimeout(function(){
                     CUES.loadingclose()
                 },2000)
             })
-
+            // setTimeout(function(){
+            //     window.scrollTo(0,100);
+            // },300)
+            
 
         })
     </script>

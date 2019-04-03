@@ -118,24 +118,18 @@
 
                             var res = str_dome+str_dome+str_dome;
                             J_list.append(res);
-                            setTimeout(function(){
-                                if(res){
-                                    bm.stop = false; //暂停滚动检测
-                                }else{
-                                    J_botmore.addClass('botmore-all')
-                                }
-                                
-                            },0)
+
+                            //模拟加载全部数据
+                            if(co>=4){
+                                locked = true;
+                                J_botmore.addClass('botmore-all')
+                            }else{
+                                locked = false;
+                            }
                         }
-                    },
-                    complete:function(){
-                        locked = false;
                     }
                 })
 			});
-
-			// // 如果第一屏后端渲染，需开放以下一行代码用于打开下拉加载
-            bm.stop = false; // 打开下拉加载
 
         })
     </script>

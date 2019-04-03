@@ -51,21 +51,28 @@
                     toppx:-40,
                     stop:true,
                     pullupRefresh:function(){
+                        if(locked) return;
                         console.log('top')
+                        locked = true;
                         J_list.html(str_dome+str_dome+str_dome+str_dome);
                         setTimeout(function(){
                             c = 0;
                             pgscroll.domdone();
                             pgscroll.loading_done({'loadingdone':false});
-                        },1500)
+                            locked = false;
+                        },500)
                     },
                     reachNumber:500,
                     reachBottom:function(){
+                        if(locked) return;
+                        console.log('bottom')
+                        locked = true;
                         c++;
                         J_list.append(str_dome+str_dome+str_dome+str_dome);
-                        pgscroll.domdone();
                         pgscroll.loading_done({'loadingdone':c==4?true:false});
-                        console.log('bottom')
+                        setTimeout(function(){
+                            locked = false;
+                        },800)
                     },
                     scrollEnd:function(){
                         console.log(4545)

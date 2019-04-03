@@ -26,7 +26,6 @@
     },
     alert:function(options){
         var msg = options.msg;
-        alert()
         var elma = this.createdom({"tag":"div","classname":"tippop_alert"});
         var elmb = this.createdom({"tag":"p","classname":"tippop_alert_t","msg":typeof(msg)=='object'?JSON.stringify(options.msg):options.msg});
         var elmc = this.createdom({"tag":"a","classname":"tippop_alert_b","msg":options.suretext||"确定"});
@@ -84,15 +83,21 @@
         a_cal.addEventListener('click',function(){
             elm_bg.remove();
             elma.remove();
-            options.callback && options.callback();
+            options.callback && options.callback(0);
         },false);
         a_sure.addEventListener('click',function(){
             var v = input.value.trim();
             if(v.length==0) return;
             elm_bg.remove();
             elma.remove();
-            options.callback && options.callback(input.value);
+            options.callback && options.callback(1,input.value);
         },false);
+        input.addEventListener('blur',function(){
+            setTimeout(function(){
+                var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                window.scrollTo(0,scrollTop);
+            },300)
+        })
     },
     createdom:function(options){
         var dom = document.createElement(options.tag);
@@ -103,7 +108,7 @@
         return dom;
     },
     throttle:function(fn,wait){
-        var timeout, timestamp, result;
+        var timeout;
         var later = function(){
             fn();
             setTimeout(function(){
@@ -111,12 +116,8 @@
             },200)
         }
         return function(){
-            timestamp = new Date().getTime();
             if(!timeout){
                 timeout = setTimeout(later,wait)
-            }
-            if(result){
-                return fn(4)
             }
         }
     },
@@ -183,9 +184,9 @@ window.cmtools = {
         scroller.y = 4*scroller.unit;
         scroller.v = {};
 
-        scroller.case = this.createDom({"tag":"div","classname":"cp-case"});
+        scroller.caser = this.createDom({"tag":"div","classname":"cp-case"});
         scroller.roller = this.createDom({"tag":"ul","classname":"cp-ul"});
-        scroller.case.appendChild(scroller.roller);
+        scroller.caser.appendChild(scroller.roller);
     },
     renderScroll:function(scroller){
         var len = scroller.datalist.length,
@@ -215,7 +216,7 @@ window.cmtools = {
         var that = this;
         var roller = scroller.roller,
             unit = scroller.unit,
-            outer = scroller.case;
+            outer = scroller.caser;
 
         var fy = ly = 0;
 
@@ -309,7 +310,7 @@ function touchscroll(outer){
     applytools.call(this,['createDom','createPop','createScroller','renderScroll','bindScroll','empty','reset','resety','distouch']);
     this.boxer = outer.boxer;
     this.createScroller(this,outer.opts)
-    this.boxer.appendChild(this.case);
+    this.boxer.appendChild(this.caser);
     this.renderScroll(this);
     this.bindScroll(this);
     return this;
@@ -850,26 +851,19 @@ dateTable.prototype = {
 
 function botmore(num,callback){
     this.num = num;
-    this.stop = true;
 
     var _this = this;
     var body = document.body||document.documentElement,
-        win_h = body.offsetHeight,
-        timer = '';
+        win_h = body.offsetHeight;
 
-    this.bodyscroll = function(event){
-        clearTimeout(timer);
-        if(_this.stop){return false;};
-        timer = setTimeout(function(){
-            var scrolltop=document.documentElement.scrollTop||document.body.scrollTop,
-                bodyh = body.scrollHeight;
+    this.bodyscroll = CUES.debounce(function(){
+        var scrolltop=document.documentElement.scrollTop||document.body.scrollTop,
+            bodyh = body.scrollHeight;
+        if(scrolltop+win_h+num>bodyh){
+            callback();
+        }
+    },100)
 
-            if(scrolltop+win_h+num>bodyh){
-               callback();
-            }
-            
-        },100);
-    };
     window.addEventListener('scroll', _this.bodyscroll,false);
 
     this.unbindscroll = function(){
@@ -879,12 +873,10 @@ function botmore(num,callback){
 
 function elmReachBottom(elm,num,callback){
     var that = this;
-    this.stop = true;
     num = num||0;
     var box_h = elm.offsetHeight;
 
     this.elmscroll = CUES.debounce(function(){
-        if(that.stop){return false;};
         if(elm.scrollTop+num>elm.scrollHeight - box_h){
             callback();
         }
@@ -902,13 +894,9 @@ function scrollRefresh(opts){
     this.height = opts.height;
     this.botcut = opts.botCut||40;
     this.toppx = opts.toppx;
-    this.stop = opts.stop||false;
     this.alldone = false;
     
     applytools.call(this,['createDom']);
-    // setTimeout(function(){
-    //     cr_top.classList.add('cm-sr-top-ac')
-    // },2000)
     this.setting();
 }
 scrollRefresh.prototype = {
@@ -947,8 +935,7 @@ scrollRefresh.prototype = {
             wsb_my = 0;
 
         //默认打开locked
-        var locked = false,
-            locked_type = '',
+        var locked_type = '',
             haspullup = opts.pullupRefresh?true:false,
             reachBottom = opts.reachBottom?true:false;
 
@@ -962,11 +949,7 @@ scrollRefresh.prototype = {
             var lasty = e.touches[0].clientY;
             cha = y_start - lasty + elm_scrollTop;
             
-            if(locked&&locked_type=='up'){
-                e.preventDefault();
-                return;
-            }
-            if(locked&&cha<0){
+            if(locked_type=='up'){
                 e.preventDefault();
                 return;
             }
@@ -988,8 +971,8 @@ scrollRefresh.prototype = {
             };
         })
 
-        target.addEventListener('touchend',function(e){
-            if(wsb_my>0&&haspullup&&!locked){
+        target.addEventListener('touchend',function(e){ 
+            if(wsb_my>0&&haspullup){
                 if(wsb_my<80){
                     cr_top.style.webkitTransition = "-webkit-transform 0.3s";
                     cr_top.style.webkitTransform = 'translate3d(-50%,0,0)';
@@ -997,7 +980,6 @@ scrollRefresh.prototype = {
                     cr_top.style.webkitTransition = "-webkit-transform 0.3s";
                     cr_top.style.webkitTransform = 'translate3d(-50%,50px,0)';
                     cr_top_text.innerHTML = '正在加载···';
-                    locked = true;
                     locked_type = 'up';
                     opts.pullupRefresh();
                     //延时清除加载
@@ -1012,22 +994,13 @@ scrollRefresh.prototype = {
             wsb_my = 0;
             y_start = 0;
             locked_type = '';
-            locked = false;
         }
-        this.lock_open = function(){
-            locked = false;
-        },
-        this.lock_close = function(){
-            locked = true;
-        };
 
         this.elmscroll = CUES.debounce(function(){
             opts.scrollEnd&&opts.scrollEnd();
-            if(locked){return false;};
             elm_scrollHeight = target.scrollHeight;
             elm_scrollTop = target.scrollTop;
-            if(elm_scrollTop+that.height+(opts.reachNumber||0)+2>=elm_scrollHeight&&reachBottom&&!locked&&!that.alldone){
-                locked = true;
+            if(elm_scrollTop+that.height+(opts.reachNumber||0)+2>=elm_scrollHeight&&reachBottom&&!that.alldone){
                 opts.reachBottom&&opts.reachBottom();
                 that.toptimer = setTimeout(function(){
                     that.domdone();
@@ -1553,3 +1526,205 @@ function imgsee(opts){
     };
     this.showdown(opts.showdown);
 };
+
+function zshcanvas(opt){
+    this.opt = opt;
+    this.baseinit();
+}
+zshcanvas.prototype = {
+    baseinit:function(){
+        var opt = this.opt;
+        this.rem = opt.rem||1,
+        this.rate = opt.rate||1,
+        this.steps = opt.steps||[];
+        this.width = opt.width;
+        this.height = opt.height;
+        this.id = opt.id;
+        this.idx = 0;
+        this.len = this.steps.length;
+
+        this.elm = document.getElementById(this.id);
+        this.elm.setAttribute('width',this.width*this.rate);
+        this.elm.setAttribute('height',this.height*this.rate);
+        
+        var that = this;
+        setTimeout(function(){
+            that.canvas = that.elm.getContext("2d");
+            that.setcanvas();
+        },10);
+    },
+    //渲染画布
+    setcanvas:function(){
+        var that = this;
+        if(this.idx>=this.len){
+            setTimeout(function(){
+                var imgdata = that.elm.toDataURL();
+                that.opt.callback&&that.opt.callback({data:imgdata,canvas:that.canvas});
+            },50)
+        }else{
+            var type = this.steps[this.idx].type;
+            if(type=="img"){
+              this.setcanvasImg();
+            }else if(type=="text"){
+              this.setcanvasText();
+            }else if(type=="fillrect"){
+              this.setcanvasFillRect();
+            }else if(type=="line"){
+                this.setcanvasLine();
+            }
+        }
+    },
+    // 渲染图片
+    setcanvasImg:function(){
+        var that = this,
+            v = this.steps[this.idx],
+            rate = this.rate;
+
+        var img = new Image();
+        img.setAttribute("crossOrigin",'Anonymous');
+        img.src = v.url;
+        img.onload = function(res){
+            if(v.radius){
+                that.canvas.save()
+                that.canvas.beginPath()
+                that.canvas.arc((v.left+v.width/2)*rate, (v.top+v.height/2)*rate, v.width*rate/2, 0, 2*Math.PI)
+                that.canvas.clip()
+                that.canvas.drawImage(img,v.left*rate, v.top*rate, v.width*rate, v.height*rate)
+                that.canvas.restore()
+            }else{
+               that.canvas.drawImage(img,v.left*rate,v.top*rate,v.width*rate,v.height*rate); 
+            }
+            that.idx++;
+            that.setcanvas();
+        };
+        img.onerror = img.onabort = function () {
+            that.idx++;
+            that.setcanvas()
+        }
+    },
+    //填充矩形
+    setcanvasFillRect:function(){
+        var that = this,
+            v = this.steps[this.idx],
+            rate = this.rate;
+        this.canvas.fillStyle = v.fillstyle;
+        if(v.radius){
+            var x = v.left*rate,
+                y = v.top*rate,
+                width = v.width*rate,
+                height = v.height*rate,
+                radius = v.radius*rate;
+
+            this.canvas.beginPath();
+            this.canvas.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2);
+            this.canvas.lineTo(width - radius + x, y);
+            this.canvas.arc(width - radius + x, radius + y, radius, Math.PI * 3 / 2, Math.PI * 2);
+            this.canvas.lineTo(width + x, height + y - radius);
+            this.canvas.arc(width - radius + x, height - radius + y, radius, 0, Math.PI * 1 / 2);
+            this.canvas.lineTo(radius + x, height +y);
+            this.canvas.arc(radius + x, height - radius + y, radius, Math.PI * 1 / 2, Math.PI);
+            this.canvas.closePath();
+            this.canvas.fill();
+        }else{
+            this.canvas.fillRect(v.left*rate,v.top*rate,v.width*rate,v.height*rate);
+        };
+
+        that.idx++;
+        that.setcanvas()
+    },
+    //填充文字
+    setcanvasText:function(){
+        var that = this,
+            v = this.steps[this.idx],
+            rate = this.rate,
+            line = 0,
+            align = v.align||"left",
+            text = v.text,
+            fontsize = (v.fontsize||20)*rate,
+            wight = v.weight||'',
+            color = v.color||"#000000",
+            lineheight = (v.lineheight||30)*rate,
+            width = (v.width||750)*rate,
+            left = (v.left||0)*rate,
+            top = (v.top||0)*rate;
+
+        left = align=='center'?left + width/2 : left;
+        left = align=='right'?left + width : left;
+
+        this.canvas.font= wight+' '+fontsize+"px Arial";
+        this.canvas.textBaseline = "top";
+        this.canvas.textAlign= align;
+        this.canvas.fillStyle = color;
+
+        this.cuttext(text,width,function(t,done){
+            that.canvas.fillText(t,left,top+line*lineheight,width);
+            line++;
+            if(done){
+                that.idx++;
+                that.setcanvas();
+            }
+        })
+
+        
+    },
+    //切割文字
+    cuttext:function(text,width,cb){
+        var that = this,
+            len = text.length+1,
+            ctx = this.canvas;
+
+        for(var i=0;i<=len;i++){
+            var t = text.substr(0,i);
+            if(ctx.measureText(t).width>width&&i<len){
+                t = text.substr(0,i-1);
+                cb(t);
+                text = text.substr(i-1);
+                this.cuttext(text,width,cb)
+                break;
+            }else if(i>=len){
+                cb(text,true)
+            }
+        }
+    },
+    //横线
+    setcanvasLine:function(){
+        var that = this,
+            v = this.steps[this.idx],
+            rate = this.rate,
+            ctx = this.canvas,
+            cap = v.cap||"butt";
+
+        ctx.beginPath();
+        ctx.lineCap=cap;
+        if(v.dash){
+            var dash = v.dash.map(function(item){
+                return item*rate;
+            })
+            ctx.setLineDash(dash);
+        }
+        ctx.moveTo(v.left*rate,v.top*rate);
+        ctx.lineTo((v.left+v.oftx)*rate,(v.top+v.ofty)*rate);
+        ctx.lineWidth = v.width*rate;
+        ctx.strokeStyle = v.color||"#000000";
+        ctx.stroke();
+
+        this.idx++;
+        this.setcanvas();
+    },
+    //补充画布
+    addsteps:function(arr){
+        this.steps = this.steps.concat(arr);
+        this.len = this.steps.length;
+        this.setcanvas();
+    },
+    //重新渲染
+    resetsteps:function(arr){
+        this.steps = arr||[];
+        this.len = this.steps.length;
+        this.idx = 0;
+        this.canvas.clearRect(0,0,this.width*this.rate,this.height*this.rate);
+        this.setcanvas();
+    }
+}
+
+
