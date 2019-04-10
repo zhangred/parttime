@@ -849,8 +849,10 @@ dateTable.prototype = {
     }
 }
 
-function botmore(num,callback){
-    this.num = num;
+function botmore(opts){
+    var num = opts.num||200;
+    this.callback = opts.callback;
+    this.stop = opts.stop||false;
 
     var _this = this;
     var body = document.body||document.documentElement,
@@ -859,8 +861,8 @@ function botmore(num,callback){
     this.bodyscroll = CUES.debounce(function(){
         var scrolltop=document.documentElement.scrollTop||document.body.scrollTop,
             bodyh = body.scrollHeight;
-        if(scrolltop+win_h+num>bodyh){
-            callback();
+        if(scrolltop+win_h+num>bodyh&&!_this.stop){
+            _this.callback();
         }
     },100)
 
@@ -871,14 +873,16 @@ function botmore(num,callback){
     }
 };
 
-function elmReachBottom(elm,num,callback){
-    var that = this;
-    num = num||0;
+function elmReachBottom(opts){
+    var that = this,
+        elm = opts.elm;
+    this.stop = opts.stop||false;
+    num = opts.num||0;
     var box_h = elm.offsetHeight;
 
     this.elmscroll = CUES.debounce(function(){
-        if(elm.scrollTop+num>elm.scrollHeight - box_h){
-            callback();
+        if(elm.scrollTop+num>elm.scrollHeight - box_h&&!that.stop){
+            opts.callback();
         }
     },100)
 

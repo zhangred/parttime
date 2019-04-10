@@ -95,42 +95,48 @@
             });
 
 
-            var locked = false;
+            // var locked = false;
 
             var J_list = $('#J_list'),
                 J_botmore = $('#J_botmore'),
                 str_dome = '<p class="li">在移动web项目的开发中，遇到一个通过点击页面自动到相应的楼层处的需求，最初的想法就是使用html的target属性进行切换，但实际效果十分死板，显得毫无交互性。该前端架构采用zepto这个轻库进行开发，它具有类似jQuery的语法，之后采用了animate({scrollTop:"100px"})这个函数进行页面的动画滚动，结果就是毫无效果。通过查询zepto fx包的源码</p> '
             // 注册下拉滚动效果
-			var bm = new elmReachBottom(document.getElementById('J_box'),400,function(){
-                if(locked) return;
-                locked = true;
-                bm.stop = true; //暂停滚动检测
+			var bm = new elmReachBottom({
+                elm:document.getElementById('J_box'),
+                stop:false,
+                num:400,
+                callback:function(){
+                    if(bm.stop) return;
+                    // locked = true;
+                    bm.stop = true; //暂停滚动检测
 
-                //模拟 co
-                co++;
-                $.ajax({
-                    url:'/api/callback.json?t='+(new Date().getTime()),
-                    success:function(rs){
-                        if(rs.code==0){
-                            if(co>3){
-                                str_dome = '';
-                            }
+                    //模拟 co
+                    co++;
+                    $.ajax({
+                        url:'/api/callback.json?t='+(new Date().getTime()),
+                        success:function(rs){
+                            if(rs.code==0){
+                                if(co>3){
+                                    str_dome = '';
+                                }
 
-                            var res = str_dome+str_dome+str_dome;
-                            J_list.append(res);
+                                var res = str_dome+str_dome+str_dome;
+                                J_list.append(res);
 
-                            //模拟加载全部数据
-                            if(co>=4){
-                                locked = true;
-                                J_botmore.addClass('botmore-all')
-                            }else{
-                                locked = false;
+                                //模拟加载全部数据
+                                if(co>=4){
+                                    // locked = true;
+                                    bm.stop = true
+                                    J_botmore.addClass('botmore-all')
+                                }else{
+                                    // locked = false;
+                                    bm.stop = false
+                                }
                             }
                         }
-                    }
-                })
-			});
-
+                    })
+                }
+            })
         })
     </script>
 </body>
