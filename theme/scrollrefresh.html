@@ -39,8 +39,6 @@
         $(function(){
             var c = 0; //虚拟加载次数
 
-            var locked = false;
-
             var J_list = $('#J_list'),
                 J_botmore = $('#J_botmore'),
                 str_dome = '<p class="li">在移动web项目的开发中，遇到一个通过点击页面自动到相应的楼层处的需求，最初的想法就是使用html的target属性进行切换，但实际效果十分死板，显得毫无交互性。该前端架构采用zepto这个轻库进行开发，它具有类似jQuery的语法，之后采用了animate({scrollTop:"100px"})这个函数进行页面的动画滚动，结果就是毫无效果。通过查询zepto fx包的源码</p> '
@@ -49,29 +47,29 @@
                     height: $(window).height(),
                     target: document.getElementById('J_refresh'),
                     toppx:-40,
-                    stop:true,
+                    stop:false,
                     pullupRefresh:function(){
-                        if(locked) return;
+                        if(pgscroll.stop) return;
                         console.log('top')
-                        locked = true;
+                        pgscroll.stop = true;
                         J_list.html(str_dome+str_dome+str_dome+str_dome);
                         setTimeout(function(){
                             c = 0;
                             pgscroll.domdone();
                             pgscroll.loading_done({'loadingdone':false});
-                            locked = false;
+                            pgscroll.stop = false;
                         },500)
                     },
                     reachNumber:500,
                     reachBottom:function(){
-                        if(locked) return;
+                        if(pgscroll.stop) return;
                         console.log('bottom')
-                        locked = true;
+                        pgscroll.stop = true;
                         c++;
                         J_list.append(str_dome+str_dome+str_dome+str_dome);
                         pgscroll.loading_done({'loadingdone':c==4?true:false});
                         setTimeout(function(){
-                            locked = false;
+                            pgscroll.stop = false;
                         },800)
                     },
                     scrollEnd:function(){

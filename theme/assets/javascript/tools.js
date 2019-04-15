@@ -899,6 +899,7 @@ function scrollRefresh(opts){
     this.botcut = opts.botCut||40;
     this.toppx = opts.toppx;
     this.alldone = false;
+    this.stop = opts.stop||false;
     
     applytools.call(this,['createDom']);
     this.setting();
@@ -1004,7 +1005,7 @@ scrollRefresh.prototype = {
             opts.scrollEnd&&opts.scrollEnd();
             elm_scrollHeight = target.scrollHeight;
             elm_scrollTop = target.scrollTop;
-            if(elm_scrollTop+that.height+(opts.reachNumber||0)+2>=elm_scrollHeight&&reachBottom&&!that.alldone){
+            if(elm_scrollTop+that.height+(opts.reachNumber||0)+2>=elm_scrollHeight&&reachBottom&&!that.alldone&&!that.stop){
                 opts.reachBottom&&opts.reachBottom();
                 that.toptimer = setTimeout(function(){
                     that.domdone();
