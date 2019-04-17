@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <div style="position:fixed; left:0; top:0; height:80%; width:100%; overflow-y:scroll;-webkit-overflow-scrolling: touch;" id="J_box">
+    <div style="position:fixed; left:0; top:0; height:100%; width:100%; overflow-y:scroll;-webkit-overflow-scrolling: touch;" id="J_box">
         <div id="J_list">
             <div class="editlinebox editlinebox-nmt editlinebox-nbt">
                 <div class="editline editline-select editline-cover" id="J_line_dataselect">
@@ -55,17 +55,7 @@
         </div>
         <p class="botmore" id="J_botmore"><img src="assets/images/loading.gif" class="bmimg"><span class="load">正在加载更多···</span><span class="done">数据已全部加载完毕</span></p>
     </div>
-	<div>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-            <p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p><p>sdfsdfsdfsdfsd</p>
-    </div>
+	
     <p id="x"></p>
     <script>
         $(function(){
@@ -126,7 +116,7 @@
                         url:'/api/callback.json?t='+(new Date().getTime()),
                         success:function(rs){
                             if(rs.code==0){
-                                if(co>4){
+                                if(co>3){
                                     str_dome = '';
                                 }
 
@@ -134,7 +124,7 @@
                                 J_list.append(res);
 
                                 //模拟加载全部数据
-                                if(co>=5){
+                                if(co>=4){
                                     // locked = true;
                                     bm.stop = true
                                     J_botmore.addClass('botmore-all')
