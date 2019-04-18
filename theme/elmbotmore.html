@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <div style="position:fixed; left:0; top:0; height:80%; width:100%; overflow-y:scroll;-webkit-overflow-scrolling: touch;" id="J_box">
+    <div style="position:fixed; left:0; top:0; height:70%; width:100%; overflow-y:scroll;-webkit-overflow-scrolling: touch; background: #fff;" id="J_box">
         <div id="J_list">
             <div class="editlinebox editlinebox-nmt editlinebox-nbt">
                 <div class="editline editline-select editline-cover" id="J_line_dataselect">
@@ -123,7 +123,7 @@
                     //模拟 co
                     co++;
                     $.ajax({
-                        url:'/api/callback.json?t='+(new Date().getTime()),
+                        url:'./api/callback.json?t='+(new Date().getTime()),
                         success:function(rs){
                             if(rs.code==0){
                                 if(co>4){
