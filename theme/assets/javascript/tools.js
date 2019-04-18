@@ -858,13 +858,13 @@ function botmore(opts){
     var body = document.body||document.documentElement,
         win_h = body.offsetHeight;
 
-    this.bodyscroll = CUES.debounce(function(){
+    this.bodyscroll = CUES.throttle(function(){
         var scrolltop=document.documentElement.scrollTop||document.body.scrollTop,
             bodyh = body.scrollHeight;
         if(scrolltop+win_h+num>bodyh&&!_this.stop){
             _this.callback();
         }
-    },100)
+    },300)
 
     window.addEventListener('scroll', _this.bodyscroll,false);
 
@@ -880,13 +880,30 @@ function elmReachBottom(opts){
     num = opts.num||0;
     var box_h = elm.offsetHeight;
 
-    this.elmscroll = CUES.debounce(function(){
+    this.elmscroll = CUES.throttle(function(){
         if(elm.scrollTop+num>elm.scrollHeight - box_h&&!that.stop){
             opts.callback();
         }
-    },100)
+    },300)
 
     elm.addEventListener('scroll',that.elmscroll);
+
+    var tc_y = 0;
+    elm.addEventListener('touchstart',function(event){
+        tc_y = event.touches[0].clientY;
+    })
+
+    elm.addEventListener('touchmove',function(event){
+        var tcy = event.touches[0].clientY;
+        if(tcy>tc_y&&elm.scrollTop<=0){
+            event.preventDefault();
+            event.stopPropagation();
+        }else if(tcy<tc_y&&elm.scrollTop+box_h>=elm.scrollHeight){
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        tc_y = tcy;
+    })
 
     this.unbindscroll = function(){
         elm.removeEventListener('scroll',that.elmscroll);
@@ -899,6 +916,7 @@ function scrollRefresh(opts){
     this.botcut = opts.botCut||40;
     this.toppx = opts.toppx;
     this.alldone = false;
+    this.stop = opts.stop||false;
     
     applytools.call(this,['createDom']);
     this.setting();
@@ -1004,7 +1022,7 @@ scrollRefresh.prototype = {
             opts.scrollEnd&&opts.scrollEnd();
             elm_scrollHeight = target.scrollHeight;
             elm_scrollTop = target.scrollTop;
-            if(elm_scrollTop+that.height+(opts.reachNumber||0)+2>=elm_scrollHeight&&reachBottom&&!that.alldone){
+            if(elm_scrollTop+that.height+(opts.reachNumber||0)+2>=elm_scrollHeight&&reachBottom&&!that.alldone&&!that.stop){
                 opts.reachBottom&&opts.reachBottom();
                 that.toptimer = setTimeout(function(){
                     that.domdone();
