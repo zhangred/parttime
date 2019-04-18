@@ -878,7 +878,7 @@ function elmReachBottom(opts){
         elm = opts.elm;
     this.stop = opts.stop||false;
     num = opts.num||0;
-    var box_h = elm.offsetHeight;
+    var box_h = opts.height||elm.offsetHeight;
 
     this.elmscroll = CUES.throttle(function(){
         if(elm.scrollTop+num>elm.scrollHeight - box_h&&!that.stop){
