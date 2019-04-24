@@ -27,20 +27,21 @@ html,body{ height: 100%; }
 input::-webkit-input-placeholder { color: #ccc;}
 textarea::-webkit-input-placeholder { color: #ccc;}
 
-.pg-top{ position: fixed; left: 0; top: 0; z-index: 1; height: 54px; background: #f8f9f9; width: 100%;}
+.pg-top{ position: fixed; left: 0; top: 0; z-index: 1; height: 54px; background: #fff; width: 100%;}
 .pg-top .left{ float: left; width: 400px; line-height: 54px; height: 54px; padding-left: 14px; font-size: 20px;}
 .pg-top .right{ float: right; padding-right: 14px;line-height: 54px; height: 54px;}
+.pg-top .logo{ float: left; width: 72px; border-right: 2px solid #eef0f3; line-height: 54px; text-align: center; font-size: 20px;}
 
-.pg-right{}
-.pg-right .left{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
+.pg-right{position: fixed; left: 0; top: 0; z-index: 2; height: 100%; width: 70px;}
+.pg-right .left{ position: absolute; left: 0; top: 54px; bottom: 0; width: 72px; overflow-y: scroll; border-right: 2px solid #eef0f3; border-top: 2px solid #eef0f3; -webkit-overflow-scrolling: touch; background: #fff; text-align: center; }
+.pg-right .lls{ position: relative; height: 70px; padding-top: 5px; cursor: pointer;}
+.pg-right .lls:hover{ background: #eef0f3;}
+.pg-right .lls-active,.pg-right .lls-active:hover{ background: #519bf1; color: #fff;}
+.pg-right .lls-active:before{ content: ""; display: block; position: absolute; right: 0; top: 50%; margin-top: -6px; border:6px solid #fff; border-color: transparent #fff transparent transparent;}
+.pg-right .icon{ display: block; line-height: 36px; font-size: 28px;}
+.pg-right .cont{ position: absolute; left: 72px; top: 54px; bottom: 0; width: 286px; padding: 20px; background: #fff; border-top: 2px solid #eef0f3;}
+.pg-right .exps{ text-align: center; padding: 14px 0; margin-bottom: 20px; cursor: pointer; }
+.pg-right .exps:hover{ box-shadow: 0 0 10px rgba(0,0,0,.1)}
 .pg-right .xxx{}
 .pg-right .xxx{}
 .pg-right .xxx{}
