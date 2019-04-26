@@ -42,12 +42,14 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .pg-right .cont{ position: absolute; left: 72px; top: 54px; bottom: 0; width: 286px; padding: 20px; background: #fff; border-top: 2px solid #eef0f3;}
 .pg-right .exps{ text-align: center; padding: 14px 0; margin-bottom: 20px; cursor: pointer; }
 .pg-right .exps:hover{ box-shadow: 0 0 10px rgba(0,0,0,.1)}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
-.pg-right .xxx{}
+
+.pg-setbox{position: fixed; right: 0; top: 54px; bottom: 0; width: 260px; border-top: 2px solid #eef0f3; background: #fff; overflow-y: scroll;-webkit-overflow-scrolling: touch; box-shadow: 0 4px 12px rgba(40, 120, 255, 0.11), 0 3px 14px rgba(0, 0, 0, 0.11);}
+.pg-setbox .xxx{}
+.pg-setbox .xxx{}
+.pg-setbox .xxx{}
+.pg-setbox .xxx{}
+.pg-setbox .xxx{}
+.pg-setbox .xxx{}
+.pg-setbox .xxx{}
+.pg-setbox .xxx{}
+.pg-setbox .xxx{}
