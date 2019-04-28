@@ -1,0 +1,17 @@
+.bottab{ position: fixed; width: 100%; left: 0; bottom: 0; z-index: 3; border-top: 1px solid #d4d4d4; background: #fff; }
+.iphonex-seat{ height: 180rpx; }
+.uniphonex-seat{ height: 130rpx; }
+.bottab .btab{ position: relative; z-index: 3; display: block; float: left; width: 25%; height: 110rpx; padding-top: 16rpx; text-align: center; font-size: 32rpx;}
+.iphonex-bottab .btab{ padding-bottom: 50rpx; height: 160rpx; }
+.btab-text{line-height: 48rpx; font-size: 20rpx; color: #999;}
+.btab-ico{ position: relative; height: 48rpx; width: 56rpx; margin: 0 auto; overflow: hidden;  }
+.btab .btab-img{ position: absolute; left: 0; top: 0; width: 224rpx; height: 96rpx;}
+.btab-icoa .btab-img{ left: 0; top: 0; }
+.btab-icob .btab-img{ left: -56rpx; top: 0;}
+.btab-icoc .btab-img{ left: -112rpx; top: 0;}
+.btab-icod .btab-img{ left: -168rpx; top: 0;}
+.btab-active .btab-text{ color: #333; }
+.btab-active .btab-icoa .btab-img{ left: 0; top: -48rpx; }
+.btab-active .btab-icob .btab-img{ left: -56rpx; top: -48rpx; }
+.btab-active .btab-icoc .btab-img{ left: -112rpx; top: -48rpx; }
+.btab-active .btab-icod .btab-img{ left: -168rpx; top: -48rpx; }

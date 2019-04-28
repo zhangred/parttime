@@ -1,0 +1,23 @@
+.topbox{ position: relative; height: 270rpx;}
+.topbox .tb-bg{ position: absolute; left: 0; top: 0; height: 100%; width: 100%;}
+.topbox .tb-til{ position:relative; z-index: 2; padding: 40rpx 40rpx 0; font-size: 40rpx; line-height: 56rpx; color: #fff;}
+.topbox .tb-sps{ position: absolute; left: 0; bottom: 0; width: 100%; color: #fff; font-size: 24rpx; padding: 0 40rpx 30rpx 40rpx; overflow: hidden;}
+.topbox .tb-sp{ position: relative; top: -4rpx; display: inline-block; vertical-align: middle; height: 20rpx; width: 6rpx; background: #fff; margin: 0 10rpx;}
+.topbox .tb-ml{}
+
+.list{ background: #fff; padding-left: 40rpx;}
+.list .item{ padding: 28rpx 30rpx 20rpx 0; border-bottom: 1px solid #eee;}
+.list .item-til{ padding-bottom: 6rpx; font-size: 28rpx; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.list .item-sps{ font-size: 24rpx; color: #999;}
+.list .item-sp{ margin-right: 40rpx;}
+
+.new{ position: fixed; right: 20rpx; bottom: 100rpx; display: block; box-shadow:0px 3px 15px 0px rgba(173,173,173,1); border-radius: 50%; }
+.new .newi{ display: block; height: 110rpx; width: 110rpx;}
+.list .xxxx{}
+.list .xxxx{}
+.list .xxxx{}
+.list .xxxx{}
+.list .xxxx{}
+.list .xxxx{}
+.list .xxxx{}
+.list .xxxx{}

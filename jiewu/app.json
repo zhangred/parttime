@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/topic",
+    "pages/message",
+    "pages/forum"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  }
+}
+

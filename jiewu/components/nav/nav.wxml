@@ -1,0 +1,19 @@
+<view class="{{isipx ?'iphonex-seat':'uniphonex-seat'}}"></view>
+<view class="bottab clearfix {{isipx ?'iphonex-bottab':''}}">
+  <navigator hover-class="none" open-type="reLaunch" url="/pages/topic" class="btab {{actab=='topic'?'btab-active':''}}">
+    <view class="btab-ico btab-icoa"><image src="/images/icon_nav.png" class="btab-img" /></view>
+    <view class="btab-text">活动</view>
+  </navigator>
+  <navigator hover-class="none" open-type="reLaunch" url="/pages/forum" class="btab {{actab=='forum'?'btab-active':''}}">
+    <view class="btab-ico btab-icob"><image src="/images/icon_nav.png" class="btab-img" /></view>
+    <view class="btab-text">社区</view>
+  </navigator>
+  <navigator hover-class="none" open-type="reLaunch" url="/pages/mine" class="btab {{actab=='center'?'btab-active':''}}">
+    <view class="btab-ico btab-icoc"><image src="/images/icon_nav.png" class="btab-img" /></view>
+    <view class="btab-text">我的</view>
+  </navigator>
+  <navigator hover-class="none" open-type="reLaunch" url="/pages/message" class="btab {{actab=='message'?'btab-active':''}}">
+    <view class="btab-ico btab-icod"><image src="/images/icon_nav.png" class="btab-img" /></view>
+    <view class="btab-text">消息</view>
+  </navigator>
+</view>

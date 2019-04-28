@@ -1,0 +1,49 @@
+<view class="newmsg {{newmsg>0?'newmsg-active':''}}">
+    <navigator class="link" open-type="reLaunch" url="/pages/message" hover-class="none">更新{{newmsg}}条消息</navigator>
+</view>
+
+<view class="topbox">
+    <view class="tb-til">热门话题</view>
+    <scroll-view scroll-x class="tb-box">
+        <navigator  hover-class="none" class="tb-li">
+            <image src="/images/img01.png" class="tb-li-img" />
+            <view class="tb-li-tx">这就是街</view>
+        </navigator>
+        <navigator  hover-class="none" class="tb-li">
+            <image src="/images/img01.png" class="tb-li-img" />
+            <view class="tb-li-tx">这就是街舞2这就是街舞2</view>
+        </navigator>
+        <navigator  hover-class="none" class="tb-li">
+            <image src="/images/img01.png" class="tb-li-img" />
+            <view class="tb-li-tx">这就是街舞2这就是街舞2</view>
+        </navigator>
+        <navigator  hover-class="none" class="tb-li">
+            <image src="/images/img01.png" class="tb-li-img" />
+            <view class="tb-li-tx">这就是街舞2这就是街舞2</view>
+        </navigator>
+    </scroll-view>
+</view>
+
+<view class="tplist">
+    <view class="tpli" wx:for="{{list}}" wx:key="idx" wx:for-index="idx">
+        <view class="tpli-tl">
+            <image src="/images/head01.jpg" class="tpli-head" />
+            <view class="tpli-name">黄景行</view>
+            <view class="tpli-time">10月12日</view>
+            <button class="tpli-share" open-type='share'><image src="/images/icon_more.png" class="tpli-more" /></button>
+        </view>
+        <navigator  hover-class="none" url="/pages/detail" class="tpli-link">
+            <view class="tpli-til">解读舞者合影刷爆朋解读舞者合影刷爆朋解读舞者合影刷爆朋解读舞者合影刷爆朋</view>
+            <view class="tpli-desc">据台湾媒体报道《这！就是街舞》第2季近日首录，除了罗志祥（小猪）续任导师，与上一季的易烊千玺、韩庚全文续任导师，与上一季的易烊千玺、韩庚全文</view>
+        </navigator>
+        <view class="tpli-bot">
+            <navigator  hover-class="none" url="/pages/topic" class="tpli-tag">#这就是街舞#</navigator>
+            <navigator  hover-class="none" url="/pages/detail" class="tpli-tps">
+                <view class="tpli-tp"><image src="/images/icon_text02.png" class="tpli-tpi" />1999</view>
+                <view class="tpli-tp"><image src="/images/icon_text01.png" class="tpli-tpi" />1999</view>
+            </navigator>
+        </view>
+    </view>
+</view>
+
+<nav actab='forum'></nav>
