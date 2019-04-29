@@ -1,0 +1,13 @@
+page{ padding: 20rpx 0 40rpx;}
+.topbox{ background: #fff; padding-left: 40rpx; margin-bottom: 20rpx;}
+.tb-ctrol{ display: block; height: 100rpx; width: 100%; font-size: 30rpx;}
+.tb-ta{ padding-right: 40rpx; border-top: 1px solid #eee;}
+.tb-textarea{ display: block; padding: 30rpx 0; width: 100%; height: 400rpx; font-size: 30rpx;}
+.tb-inp{ padding-right: 40rpx;}
+.imgs{ background: #fff; overflow: hidden; padding: 30rpx 40rpx 10rpx;}
+.imgls{ float: left; position: relative; height: 160rpx; width: 160rpx; background-size: cover; border-radius: 20rpx; margin: 0 20rpx 20rpx 0;}
+.imgcl{ position: absolute; right: -10rpx; top: -10rpx; background: #fff; display: block; height: 40rpx; width: 40rpx; border-radius: 50%;}
+.imgadd{float: left; position: relative; height: 160rpx; width: 160rpx; margin-bottom: 20rpx; padding-top: 34rpx; border-radius: 20rpx; border: 1px solid #eee; font-size: 20rpx; color: #999; text-align: center;}
+.imgico{ display: block; margin: 0 auto; height: 60rpx; width: 76rpx;}
+.imgin{ display: block;height: 160rpx; width: 160rpx;border-radius: 20rpx;}
+.btn{ display: block; margin: 80rpx auto 0; width: 600rpx; line-height: 80rpx; font-size: 28rpx; color: #fff; text-align: center; border-radius: 40rpx; background: #303030;}

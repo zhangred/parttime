@@ -1,6 +1,8 @@
 {
   "pages":[
+    "pages/detail",
     "pages/topic",
+    "pages/new",
     "pages/message",
     "pages/forum"
   ],
