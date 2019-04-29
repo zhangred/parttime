@@ -1,0 +1,43 @@
+.tophead{}
+.tophead .th-img{}
+.tophead .th-name{}
+.tophead .th-time{}
+.tophead .th-share{ position: absolute; right: 0; top: 0; height: 80rpx; width: 80rpx; background: none;}
+.tophead .th-more{ position: absolute; right: 0; top: 50%; width: 44rpx; height: 8rpx; margin-top: -4rpx;}
+
+.content{}
+.content .ct-til{}
+.content .ct-cont{}
+.content .ct-imgs{}
+.content .ct-img{}
+.content .ct-bot{}
+.content .ct-tag{ float: left; font-size: 24rpx; color: #288EFF;}
+.content .ct-tps{display: block; float: right;}
+.content .ct-tp{ display: block; position: relative; float: left; padding-left: 42rpx; margin-left: 20rpx;}
+.content .ct-tpi{ position: absolute; left: 0; top: 50%; height: 28rpx; width: 32rpx; margin-top: -16rpx;}
+
+
+.subtil{}
+
+.replaybox{}
+.replaybox .rb-item{}
+.replaybox .rb-head{}
+.replaybox .rb-name{}
+.replaybox .rb-hot{}
+.replaybox .rb-msg{}
+.replaybox .rb-replay{}
+.replaybox .rb-rpmsg{}
+.replaybox .rb-rpnm{}
+.replaybox .rb-rpmore{}
+.replaybox .ct-bot{}
+.replaybox .ct-tag{ float: left; font-size: 24rpx; color: #288EFF;}
+.replaybox .ct-tps{display: block; float: right;}
+.replaybox .ct-tp{ display: block; position: relative; float: left; padding-left: 42rpx; margin-left: 20rpx;}
+.replaybox .ct-tpi{ position: absolute; left: 0; top: 50%; height: 28rpx; width: 32rpx; margin-top: -16rpx;}
+
+.bot-rp{}
+
+.bot-rp{}
+.replaybox .xxx{}
+.replaybox .xxx{}
+.replaybox .xxx{}

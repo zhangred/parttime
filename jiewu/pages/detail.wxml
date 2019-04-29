@@ -1,3 +1,47 @@
+<view class="tophead">
+    <image src="/images/head01.jpg" class="th-img" />
+    <view class="th-name">黄景行</view>
+    <view class="th-time">2月5号</view>
+    <button class="th-share" open-type='share'><image src="/images/icon_more.png" class="th-more" /></button>
+</view>
 
+<view class="content">
+    <view class="ct-til">解读舞者合影刷爆朋的的物联网定定位 盆盆解读舞者合影刷爆朋的的物联网定定位 盆盆陪…</view>
+    <view class="ct-cont">据台湾媒体报道《这！就是街舞》第2季近日首录，除了罗志祥（小猪）续任导师，与上一季的易烊千玺、韩庚全文据台湾媒体报道《这！就是街舞》第2季近日首录，除了罗志祥（小猪）续任导师，与上一季的易烊千玺、韩庚全文据台湾媒体报道《这！就是街舞》第2季近日首录，除了罗志祥（小猪）续任导师，与上一季的易烊千玺、韩庚全文据台湾媒体报道《这！就是街舞》第2季近日首录，除了罗志祥（小猪）续任导师，与上一季的易烊千玺、韩庚全文</view>
+    <view class="ct-imgs">
+        <image src="/images/img01.png" mode="widthFix" class="ct-img" />
+        <image src="/images/img02.jpg" mode="widthFix" class="ct-img" />
+    </view>
+    <view class="ct-bot">
+        <navigator  hover-class="none" url="/pages/topic" class="ct-tag">#这就是街舞#</navigator>
+        <view class="ct-tps">
+            <view class="ct-tp"><image src="/images/icon_text02.png" class="ct-tpi" />1999</view>
+            <view class="ct-tp"><image src="/images/icon_text01.png" class="ct-tpi" />1999</view>
+        </view>
+    </view>
+</view>
 
-<nav actab='index'></nav>
+<view class="subtil">全部评论</view>
+
+<view class="replaybox">
+    <view class="rb-item">
+        <image src="/images/head01.jpg" class="rb-head" />
+        <view class="rb-name">黄景行<image src="/images/icon_text04.png" class="rb-hot" /></view>
+        <view class="rb-msg">据台湾媒体报道《这！就是街舞》第2季近日首得的额除了罗志祥（小猪）续任导师，与上一季的易烊千玺、韩庚!</view>
+        <view class="rb-replay">
+            <view class="rb-rpmsg"><text class="rb-rpnm">杨文浩:</text>臭**你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦</view>
+            <view class="rb-rpmore">共有4条回复＞</view>
+        </view>
+        <view class="ct-bot">
+            <view class="ct-tag">10月21日</view>
+            <view class="ct-tps">
+                <view class="ct-tp"><image src="/images/icon_text02.png" class="ct-tpi" />1999</view>
+                <view class="ct-tp"><image src="/images/icon_text03.png" class="ct-tpi" />1999</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="bot-rp">请说点什么...</view>
+
+<!-- <view class=""></view> -->

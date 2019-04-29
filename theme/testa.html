@@ -19,26 +19,21 @@
     </style>
 </head>
 <body>
-    
+        <iframe src="http://qyyxt.hrddqmp.cn/ding/materials/f01547736787" class="iframe" id="J_iframe" name="xx" frameborder="1" name="全员裂变通" scrolling="auto" style=" height:100%; width:100%;border: none;"></iframe>
     <script>
-        function test(params) {
-            this.name = 't'
-        };
-        test.prototype = {
-            funca:function(){
-                console.log('a')
-                return this;
-            },
-            funcb:function(){
-                console.log('b')
-            }
-        }
+        $(function(){
+            //     
+            // 
+            // 
 
-        var a = new test();
-        console.log(a)
-        var b = a.funca();
-        console.log(4,b)
-        a.funca().funcb();
+            var rp_ua = navigator.userAgent,
+                rp_isIos = rp_ua.match(/iPhone|iPad|iPod/i);
+
+            if(rp_isIos){
+                $('#J_iframe').attr({'style':'width: 1px;min-width: 100%;*width: 100%; border: none;','scrolling':'no'})
+            }
+
+        })
     </script>
 </body>
 </html>
