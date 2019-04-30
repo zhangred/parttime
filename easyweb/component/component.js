@@ -9,31 +9,50 @@ Vue.component('texttitle', {
             type: Object,
             // 对象或数组默认值必须从一个工厂函数获取
             default: function () {
-                return { message: 'hello' }
+                return {
+                    id:null,
+                    type:'text_title',
+                    type_belong:'text',
+                    name:'文本模版',
+                    css:{fontSize:14,lineHeight:1.5},
+                    animate:{},
+                    content:"常规文本"
+                }
+            }
+        },
+        bindclick:{
+            type: Function,
+            default:function(){
+                
             }
         }
     },
-    template: '<div class="easy-content easy-text-title" :style="[data.copy_css]"><div><div>{{data.content||"xx"}}</div></div></div>',
+    template: '<div class="easy-content easy-text-title" @click="outclick" :style="[copy_css]"><div><div>{{data.content}}</div></div></div>',
     created:function(){
-        console.log(this)
+        var css = this.data.css;
+        this.copy_css = {
+            fontSize:css.fontSize + 'px',
+            lineHeight:css.lineHeight
+        }
+    },
+    methods:{
+        outclick:function(){
+            this.bindclick('sdfa');
+        }
     }
 })
 
 Vue.component('component-boxer', { 
-    props:['easyData','easyName'],
+    props:['easyData','easyName','easyClick'],
     data:function(){
         return {
-            content:''
         }
     },
     created:function(){
-        console.log(this.easyData,this.easyName)
-        this.copy_css = {
-            fontSize:this.data.css.fontSize + 'px'
-        }
+
     },
     render: function(h){
-        return h(this.easyName.replace('_',''), {props:{data:this.easyData}})
+        return h(this.easyName.replace('_',''), {props:{data:this.easyData,bindclick:this.easyClick}})
     }
 
 })

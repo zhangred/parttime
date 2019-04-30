@@ -29,7 +29,7 @@
                 <div class="lls" :class="{'lls-active':type_active=='music'}" @click="change('music')"><i class="icon zsh sh-yinyue"></i>音乐</div>
             </div>
             <div class="cont" v-show="type_active=='text'">
-                <div class="exps" v-for="(item,key,index) in template_text"><component-boxer :easy-data="easy_module_data[item]" :easy-name="item"></component-boxer></div>
+                <div class="exps" v-for="(item,key,index) in template_text"><component-boxer :easy-click="getclick" :easy-name="item"></component-boxer></div>
             </div>
             <div class="cont" v-show="type_active=='pic'">
                 <div class="exps">
@@ -128,9 +128,19 @@
                 methods:{
                     change:function(type){
                         this.type_active = type;
+                    },
+                    getclick:function(rs){
+                        console.log(45,rs)
                     }
                 }
             })
+
+            var page_data = {
+                title:"默认标题",
+                create_time:'109343434',
+                data:[]
+            };
+
         })
     </script>
 </body>
