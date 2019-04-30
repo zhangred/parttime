@@ -5,19 +5,19 @@
 <view class="topbox">
     <view class="tb-til">热门话题</view>
     <scroll-view scroll-x class="tb-box">
-        <navigator  hover-class="none" class="tb-li">
+        <navigator url="/pages/topic"  hover-class="none" class="tb-li">
             <image src="/images/img01.png" class="tb-li-img" />
             <view class="tb-li-tx">这就是街</view>
         </navigator>
-        <navigator  hover-class="none" class="tb-li">
+        <navigator url="/pages/topic"  hover-class="none" class="tb-li">
             <image src="/images/img01.png" class="tb-li-img" />
             <view class="tb-li-tx">这就是街舞2这就是街舞2</view>
         </navigator>
-        <navigator  hover-class="none" class="tb-li">
+        <navigator url="/pages/topic"  hover-class="none" class="tb-li">
             <image src="/images/img01.png" class="tb-li-img" />
             <view class="tb-li-tx">这就是街舞2这就是街舞2</view>
         </navigator>
-        <navigator  hover-class="none" class="tb-li">
+        <navigator url="/pages/topic"  hover-class="none" class="tb-li">
             <image src="/images/img01.png" class="tb-li-img" />
             <view class="tb-li-tx">这就是街舞2这就是街舞2</view>
         </navigator>

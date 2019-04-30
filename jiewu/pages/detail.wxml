@@ -40,8 +40,53 @@
             </view>
         </view>
     </view>
+    <view class="rb-item">
+        <image src="/images/head01.jpg" class="rb-head" />
+        <view class="rb-name">黄景行<image src="/images/icon_text04.png" class="rb-hot" /></view>
+        <view class="rb-msg">据台湾媒体报道《这！就是街舞》第2季近日首得的额除了罗志祥（小猪）续任导师，与上一季的易烊千玺、韩庚!</view>
+        <view class="rb-replay">
+            <view class="rb-rpmsg"><text class="rb-rpnm">杨文浩:</text>臭**你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦</view>
+            <view class="rb-rpmore">共有4条回复＞</view>
+        </view>
+        <view class="ct-bot">
+            <view class="ct-tag">10月21日</view>
+            <view class="ct-tps">
+                <view class="ct-tp"><image src="/images/icon_text02.png" class="ct-tpi" />1999</view>
+                <view class="ct-tp"><image src="/images/icon_text03.png" class="ct-tpi" />1999</view>
+            </view>
+        </view>
+    </view>
+    <view class="rb-item">
+        <image src="/images/head01.jpg" class="rb-head" />
+        <view class="rb-name">黄景行<image src="/images/icon_text04.png" class="rb-hot" /></view>
+        <view class="rb-msg">据台湾媒体报道《这！就是街舞》第2季近日首得的额除了罗志祥（小猪）续任导师，与上一季的易烊千玺、韩庚!</view>
+        <view class="rb-replay">
+            <view class="rb-rpmsg"><text class="rb-rpnm">杨文浩:</text>臭**你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦你MDE比擦</view>
+            <view class="rb-rpmore">共有4条回复＞</view>
+        </view>
+        <view class="ct-bot">
+            <view class="ct-tag">10月21日</view>
+            <view class="ct-tps">
+                <view class="ct-tp"><image src="/images/icon_text02.png" class="ct-tpi" />1999</view>
+                <view class="ct-tp"><image src="/images/icon_text03.png" class="ct-tpi" />1999</view>
+            </view>
+        </view>
+    </view>
 </view>
 
-<view class="bot-rp">请说点什么...</view>
+<view class="bot-rp" bindtap="togglepop">请说点什么...</view>
 
-<!-- <view class=""></view> -->
+<view class="pop {{showpop?'pop-active':''}}">
+    <view class="pop-bg" bindtap="togglepop"></view>
+    <view class="pop-cont">
+        <view class="pc-ta"><textarea class="pc-textarea" placeholder="我想说…" bindinput="setdata" data-key="content"></textarea></view>
+        <view class="imgs">
+            <view class="imgls" wx:for="{{data.list}}" wx:key="idx" wx:for-index="idx" ><image src="{{item}}" mode="aspectFill" class="imgin" bindtap="seeimg" data-url="{{item}}" /><icon class="imgcl" type="clear" size="20" color="#000000" bindtap="delimg" data-idx="{{idx}}" /></view>
+            <view class="imgadd" bindtap="addimg"><image src="/images/addimg.png" class="imgico" /><view class="img-tx">添加图片</view></view>
+        </view>
+        <view class="btns">
+            <view class="btn" bindtap="togglepop">取消</view>
+            <view class="btn" bindtap="senttopic">发送</view>
+        </view>
+    </view>
+</view>

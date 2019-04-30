@@ -1,10 +1,10 @@
 {
   "pages":[
+    "pages/forum",
     "pages/detail",
     "pages/topic",
     "pages/new",
-    "pages/message",
-    "pages/forum"
+    "pages/message"
   ],
   "window":{
     "backgroundTextStyle":"light",
