@@ -14,132 +14,164 @@
     <title>长文本模版</title>
 </head>
 <body>
-	<div class="html">
-        <div class="pg-top">
-            <p class="logo">EASY</p>
-            <p class="left">长文本模版</p>
-            <p class="right">测试版本</p>
+	<!-- <div class="pg-top">
+        <p class="logo">EASY</p>
+        <p class="left">长文本模版</p>
+        <p class="right">测试版本</p>
+    </div>
+    <div class="pg-right" id="pgtype">
+        <div class="left">
+            <div class="lls" :class="{'lls-active':type_active=='text'}" @click="change('text')"><i class="icon zsh sh-xiahuaxian"></i>文本模板</div>
+            <div class="lls" :class="{'lls-active':type_active=='pic'}" @click="change('pic')"><i class="icon zsh sh-tupian"></i>图片模板</div>
+            <div class="lls" :class="{'lls-active':type_active=='text_pic'}" @click="change('text_pic')"><i class="icon zsh sh-tuwen_o"></i>图文模板</div>
+            <div class="lls" :class="{'lls-active':type_active=='shape'}" @click="change('shape')"><i class="icon zsh sh-xingzhuang-jianxing"></i>形状模板</div>
+            <div class="lls" :class="{'lls-active':type_active=='music'}" @click="change('music')"><i class="icon zsh sh-yinyue"></i>音乐</div>
         </div>
-        <div class="pg-right" id="pgtype">
-            <div class="left">
-                <div class="lls" :class="{'lls-active':type_active=='text'}" @click="change('text')"><i class="icon zsh sh-xiahuaxian"></i>文本模板</div>
-                <div class="lls" :class="{'lls-active':type_active=='pic'}" @click="change('pic')"><i class="icon zsh sh-tupian"></i>图片模板</div>
-                <div class="lls" :class="{'lls-active':type_active=='text_pic'}" @click="change('text_pic')"><i class="icon zsh sh-tuwen_o"></i>图文模板</div>
-                <div class="lls" :class="{'lls-active':type_active=='shape'}" @click="change('shape')"><i class="icon zsh sh-xingzhuang-jianxing"></i>形状模板</div>
-                <div class="lls" :class="{'lls-active':type_active=='music'}" @click="change('music')"><i class="icon zsh sh-yinyue"></i>音乐</div>
+        <div class="cont" v-show="type_active=='text'">
+            <div class="exps" v-for="(item,key,index) in template_text"><component-boxer :easy-click="getclick" :easy-name="item"></component-boxer></div>
+        </div>
+        <div class="cont" v-show="type_active=='pic'">
+            <div class="exps">
+                t大标题
             </div>
-            <div class="cont" v-show="type_active=='text'">
-                <div class="exps" v-for="(item,key,index) in template_text"><component-boxer :easy-click="getclick" :easy-name="item"></component-boxer></div>
+            <div class="exps">
+                t标题
             </div>
-            <div class="cont" v-show="type_active=='pic'">
-                <div class="exps">
-                    t大标题
-                </div>
-                <div class="exps">
-                    t标题
-                </div>
-                <div class="exps">
-                    t副标题
-                </div>
-            </div>
-            <div class="cont" v-show="type_active=='text_pic'">
-                <div class="exps">
-                    tw大标题
-                </div>
-                <div class="exps">
-                    tw标题
-                </div>
-                <div class="exps">
-                    tw副标题
-                </div>
+            <div class="exps">
+                t副标题
             </div>
         </div>
-        <div class="pg-setbox">
-            <div class="pgs-boxer">
-                <div class="pgs-til">文本设置</div>
-                <div class="pgs-elines">
-                    <div class="pgs-eline">
-                        <p class="el-ado">字号</p>
-                        <p class="el-input"><input class="el-ctrol"><span class="el-input-u">px</span></p>
-                    </div>
-                    <div class="pgs-eline">
-                        <p class="el-ado">字号</p>
-                        <p class="el-input-noa"><input class="el-ctrol"></p>
-                    </div>
-                    <div class="pgs-eline">
-                        <p class="el-ado">样式对齐</p>
-                        <p class="el-group"><span class="el-group-btn">A-</span><span class="el-group-btn">A+</span><span class="el-group-btn">A+</span><span class="el-group-btn">A+</span></p>
-                    </div>
-                    <div class="pgs-eline">
-                        <p class="el-ado">字号</p>
-                        <p class="el-input el-fl el-wa el-mgra"><input class="el-ctrol"><span class="el-input-u">px</span></p>
-                        <p class="el-group el-fl el-wb"><span class="el-group-btn">A-</span><span class="el-group-btn">A+</span></p>
-                    </div>
-                    <div class="pgs-eline">
-                        <p class="el-lado">文本内容</p>
-                        <p class="el-textareaer"><textarea class="el-textarea"></textarea></p>
-                    </div>
-                    <!-- <div class="pgs-eline">
-                        <p class="el-ado">行高</p>
-                        <div class="el-slider">
-                            <p class="el-slider-bar"><span class="el-slider-po"></span></p>
-                            <p class="el-input"><input class="el-ctrol"><span class="el-input-u">px</span></p>
-                        </div>
-                    </div>
-                    <div class="pgs-eline">
-                        <p class="el-ado">行高</p>
-                        <div class="el-slider">
-                            <p class="el-slider-bar el-fl el-wc"><span class="el-slider-po"></span></p>
-                            <p class="el-input-noa el-fl el-wd"><input class="el-ctrol"></p>
-                        </div>
-                    </div>
-                    <div class="pgs-eline">
-                        <p class="el-ado">跳转配置</p>
-                        <div class="el-selecter">
-                            <p class="el-select el-fl"><input class="el-ctrol" /><span class="el-select-arr">&gt;</span></p>
-                        </div>
-                    </div> -->
-
-                </div>
+        <div class="cont" v-show="type_active=='text_pic'">
+            <div class="exps">
+                tw大标题
             </div>
-            
+            <div class="exps">
+                tw标题
+            </div>
+            <div class="exps">
+                tw副标题
+            </div>
         </div>
     </div>
+    <div class="page-content" id="J_pgcontent">
+        <div class="pg-articlebox">
+            <div class="pg-article">
+                <component-boxer v-for="(item,key,index) in data" :easy-name="item"></component-boxer>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="pg-setbox">
+        <div class="pgs-boxer">
+            <div class="pgs-til">文本设置</div>
+            <div class="pgs-elines">
+                <div class="pgs-eline">
+                    <p class="el-ado">字号</p>
+                    <p class="el-input"><input class="el-ctrol"><span class="el-input-u">px</span></p>
+                </div>
+                <div class="pgs-eline">
+                    <p class="el-ado">字号</p>
+                    <p class="el-input-noa"><input class="el-ctrol"></p>
+                </div>
+                <div class="pgs-eline">
+                    <p class="el-ado">样式对齐</p>
+                    <p class="el-group"><span class="el-group-btn">A-</span><span class="el-group-btn">A+</span><span class="el-group-btn">A+</span><span class="el-group-btn">A+</span></p>
+                </div>
+                <div class="pgs-eline">
+                    <p class="el-ado">字号</p>
+                    <p class="el-input el-fl el-wa el-mgra"><input class="el-ctrol"><span class="el-input-u">px</span></p>
+                    <p class="el-group el-fl el-wb"><span class="el-group-btn">A-</span><span class="el-group-btn">A+</span></p>
+                </div>
+                <div class="pgs-eline">
+                    <p class="el-lado">文本内容</p>
+                    <p class="el-textareaer"><textarea class="el-textarea"></textarea></p>
+                </div> -->
+                <!-- <div class="pgs-eline">
+                    <p class="el-ado">行高</p>
+                    <div class="el-slider">
+                        <p class="el-slider-bar"><span class="el-slider-po"></span></p>
+                        <p class="el-input"><input class="el-ctrol"><span class="el-input-u">px</span></p>
+                    </div>
+                </div>
+                <div class="pgs-eline">
+                    <p class="el-ado">行高</p>
+                    <div class="el-slider">
+                        <p class="el-slider-bar el-fl el-wc"><span class="el-slider-po"></span></p>
+                        <p class="el-input-noa el-fl el-wd"><input class="el-ctrol"></p>
+                    </div>
+                </div>
+                <div class="pgs-eline">
+                    <p class="el-ado">跳转配置</p>
+                    <div class="el-selecter">
+                        <p class="el-select el-fl"><input class="el-ctrol" /><span class="el-select-arr">&gt;</span></p>
+                    </div>
+                </div> -->
+
+            <!-- </div>
+        </div>
+        
+    </div> -->
     <script language="javascript" type="text/javascript" src="./assets/js/jquery-2.1.4.min.js"></script>
-    <script language="javascript" type="text/javascript" src="./assets/js/vue.min.js"></script>
-    <script language="javascript" type="text/javascript" src="./template/template.js"></script>
-    <script language="javascript" type="text/javascript" src="./component/component.js"></script>
+    <script language="javascript" type="text/javascript" src="./assets/js/react.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./assets/js/react-dom.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./assets/js/browser.min.js"></script>
+    <script type="text/javascript" src="./component/component.js"></script>
+
+
+    <div id="example"></div>
+    <script type="text/babel"> 
+       
+
+
+    ReactDOM.render(
+        <Webtest />,
+        document.getElementById('example')
+    );
+    </script>
     <script>
         $(function(){
 
-            var pgtype_template = {
-                text:['text_title']
-            }
+            // var pgtype_template = {
+            //     text:['text_title']
+            // }
 
-            var pgtype = new Vue({
-                el:'#pgtype',
-                data:{
-                    type_active:'text',
-                    template_text:pgtype_template.text
-                },
-                created:function(){
+            // var pgtype = new Vue({
+            //     el:'#pgtype',
+            //     data:{
+            //         type_active:'text',
+            //         template_text:pgtype_template.text
+            //     },
+            //     created:function(){
                     
-                },
-                methods:{
-                    change:function(type){
-                        this.type_active = type;
-                    },
-                    getclick:function(rs){
-                        console.log(45,rs)
-                    }
-                }
-            })
+            //     },
+            //     methods:{
+            //         change:function(type){
+            //             this.type_active = type;
+            //         },
+            //         getclick:function(rs){
+            //             console.log(pgcont)
+            //             pgcont.data.push(rs)
+            //         }
+            //     }
+            // })
 
-            var page_data = {
-                title:"默认标题",
-                create_time:'109343434',
-                data:[]
-            };
+            // var page_data = {
+            //     title:'这是页面标题',
+            //     id:223232,
+            //     data:[]
+            // };
+
+            // var pgcont = new Vue({
+            //     el:'#J_pgcontent',
+            //     data:page_data,
+            //     created:function(){
+
+            //     },
+            //     methods:{
+
+            //     }
+            // })
+
+
 
         })
     </script>

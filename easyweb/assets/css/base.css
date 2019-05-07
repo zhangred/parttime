@@ -22,7 +22,6 @@ html,body{ height: 100%; }
 .clearfix:after{ content: ""; display: block; clear: both; }
 .opacity0{ opacity: 0; }
 .fwb{ font-weight: bold;}
-.html{ width: 100%; margin: 0 auto; position: relative; z-index: 1;min-height: 100%;}
 
 input::-webkit-input-placeholder { color: #ccc;}
 textarea::-webkit-input-placeholder { color: #ccc;}
@@ -53,3 +52,12 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .pg-setbox .xxx{}
 .pg-setbox .xxx{}
 .pg-setbox .xxx{}
+.page-content{ position: relative; min-height: 100%;}
+.pg-articlebox{ width: 375px; position: fixed; left: 50%; top: 100px; bottom: 100px; margin-left: -180px;display: -webkit-flex; /* Safari */ display: flex;align-items: center;}
+.pg-articlebox .pg-article{ min-height: 670px; box-shadow: 0 0 10px rgba(0,0,0,.2); background: #fff; width: 100%;}
+
+
+.easy-text-title{}
+
+
+

@@ -1,9 +1,0 @@
-<view class="topbox">
-    <view class="tb-inp"><input type="text" class="tb-ctrol" placeholder="请输入您炸街话题" bindinput="setdata" data-key="title" /></view>
-    <view class="tb-ta"><textarea class="tb-textarea" placeholder="我想说…" bindinput="setdata" data-key="content"></textarea></view>
-</view>
-<view class="imgs">
-    <view class="imgls" wx:for="{{data.list}}" wx:key="idx" wx:for-index="idx" ><image src="{{item}}" mode="aspectFill" class="imgin" bindtap="seeimg" data-url="{{item}}" /><icon class="imgcl" type="clear" size="20" color="#000000" bindtap="delimg" data-idx="{{idx}}" /></view>
-    <view class="imgadd" bindtap="addimg"><image src="/images/addimg.png" class="imgico" /><view class="img-tx">添加图片</view></view>
-</view>
-<view class="btn" bindtap="senttopic">发送</view>
