@@ -26,3 +26,55 @@ html,body{ height: 100%; }
 input::-webkit-input-placeholder { color: #ccc;}
 textarea::-webkit-input-placeholder { color: #ccc;}
 
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currentlynot supported by any browser */
+}
+
+.pg-top{ position: fixed; left: 0; top: 0; z-index: 1; height: 54px; background: #fff; width: 100%;}
+.pg-top .left{ float: left; width: 400px; line-height: 54px; height: 54px; padding-left: 14px; font-size: 20px;}
+.pg-top .right{ float: right; padding-right: 14px;line-height: 54px; height: 54px;}
+.pg-top .logo{ float: left; width: 72px; border-right: 2px solid #eef0f3; line-height: 54px; text-align: center; font-size: 20px;}
+
+.pg-left{position: fixed; left: 0; top: 0; z-index: 2; height: 100%; width: 70px;}
+.pg-left .left{ position: absolute; left: 0; top: 54px; bottom: 0; width: 72px; overflow-y: scroll; border-right: 2px solid #eef0f3; border-top: 2px solid #eef0f3; -webkit-overflow-scrolling: touch; background: #fff; text-align: center; }
+.pg-left .lls{ position: relative; height: 70px; padding-top: 5px; cursor: pointer;}
+.pg-left .lls:hover{ background: #eef0f3;}
+.pg-left .lls-active,.pg-left .lls-active:hover{ background: #519bf1; color: #fff;}
+.pg-left .lls-active:before{ content: ""; display: block; position: absolute; right: 0; top: 50%; margin-top: -6px; border:6px solid #fff; border-color: transparent #fff transparent transparent;}
+.pg-left .icon{ display: block; line-height: 36px; font-size: 28px;}
+.pg-left .cont{ display: none; position: absolute; left: 72px; top: 54px; bottom: 0; width: 286px; padding: 20px; background: #fff; border-top: 2px solid #eef0f3;}
+.pg-left .cont-active{ display: block;}
+.pg-left .exps{ text-align: center; padding: 4px 0; margin-bottom: 20px; cursor: pointer; }
+.pg-left .exps:hover{ box-shadow: 0 0 10px rgba(0,0,0,.1)}
+
+.page-content{ position: relative; min-height: 100%;}
+.pg-articlebox{ width: 375px; position: fixed; left: 50%; top: 100px; bottom: 100px; margin-left: -180px;display: -webkit-flex; /* Safari */ display: flex;align-items: center;}
+.pg-articlebox .pg-article{ min-height: 670px; box-shadow: 0 0 10px rgba(0,0,0,.2); background: #fff; width: 100%;}
+
+.pg-formset{position: fixed; right: 0; top: 54px; bottom: 0; width: 260px; border-top: 2px solid #eef0f3; background: #fff; overflow-y: scroll;-webkit-overflow-scrolling: touch; }
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+
+.fs-togglebox{}
+.fs-togglebox .tb-til{ position: relative; padding: 0 40px 0 10px; background: #f6f6f6; line-height: 40px;}
+.fs-togglebox .tb-do{ position: absolute; right: 0; top: 0; padding-right: 10px; font-size: 12px;}
+.fs-togglebox .tb-box{ overflow: hidden;}
+.fs-togglebox .xxx{}
+.fs-togglebox .xxx{}
+.fs-togglebox .xxx{}
+.fs-togglebox .xxx{}
+.fs-togglebox .xxx{}
+.fs-togglebox .xxx{}
+

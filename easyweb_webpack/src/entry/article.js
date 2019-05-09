@@ -2,52 +2,30 @@ require('../lib/func');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
-// const Index = (cb)=> {import('./src/views/pages/index'). then(({default:fnName}) =>{cb(fnName)});}
-// const Gooddetail = (cb)=> {import('./src/views/pages/good_detail'). then(({default:fnName}) =>{cb(fnName)});}
-// const CategoryList = (cb)=> {import('./src/views/category/category'). then(({default:fnName}) =>{cb(fnName)});}
-// const Category = (cb)=> {import('./src/views/category/index'). then(({default:fnName}) =>{cb(fnName)});}
-// const Ordercreate = (cb)=> {import('./src/views/orders/create'). then(({default:fnName}) =>{cb(fnName)});}
-// const Orderresult = (cb)=> {import('./src/views/orders/result'). then(({default:fnName}) =>{cb(fnName)});}
-// const Orderlist = (cb)=> {import('./src/views/orders/list'). then(({default:fnName}) =>{cb(fnName)});}
-// const Orderdetail = (cb)=> {import('./src/views/orders/detail'). then(({default:fnName}) =>{cb(fnName)});}
-// const Recommend = (cb)=> {import('./src/views/recommend/index'). then(({default:fnName}) =>{cb(fnName)});}
-// const Cart = (cb)=> {import('./src/views/cart/index'). then(({default:fnName}) =>{cb(fnName)});}
-// const Center = (cb)=> {import('./src/views/center/main'). then(({default:fnName}) =>{cb(fnName)});}
-// const Cindex = (cb)=> {import('./src/views/center/index'). then(({default:fnName}) =>{cb(fnName)});}
-// const Csetting = (cb)=> {import('./src/views/center/setting'). then(({default:fnName}) =>{cb(fnName)});}
-// const Test = (cb)=> {import('./src/views/test/test'). then(({default:fnName}) =>{cb(fnName)});}
 
-// const loginFilter = (cb, props)=> {
-//     console.log('loginFilter',props)
-//     setTimeout(function(){
-//         cb();
-//     }, 200);
-// }
+import Topline from '../component/topline'
+import {Left,Content} from '../component/article'
 
-class App extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            name:'zhang'
-        }
-    }
-    render() {
-        return (
-            <div>{this.state.name}</div>
-        )
-    }
+function Addtemplate(type,data){
+    content.addTemplate(type,data)
 }
 
 ReactDOM.render(
-    <App/>,
-    document.getElementById('app')
-);
-var m = ReactDOM.render(
-    <App/>,
-    document.getElementById('appa')
+    <Topline/>,
+    document.getElementById('J_topline')
 );
 
-console.log(m)
+ReactDOM.render(
+    <Left addclick={Addtemplate} />,
+    document.getElementById('J_pgleft')
+)
+
+var pgdata = JSON.parse(localStorage.aritcle_data);
+var idx = parseInt(localStorage.active_idx);
+
+let content = ReactDOM.render(
+    <Content data={pgdata} active_idx={idx} />,
+    document.getElementById('J_pgcontent')
+)
 
 
