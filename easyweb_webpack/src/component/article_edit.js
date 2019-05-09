@@ -18,7 +18,6 @@ class Textnormal extends React.Component {
             <div>
                 <Togglebox title="文本" show={true}>
                     <Textarea data={this.props.data.content} />
-                    <div>{this.props.data.content}</div>
                     <div>xxxxxx</div>
                     <div>xxxxxx</div>
                     <div>xxxxxx</div>

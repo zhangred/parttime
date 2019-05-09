@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Chrome } from 'react-color';
 
 class Togglebox extends React.Component {
     constructor(...args){
@@ -40,6 +41,7 @@ class Togglebox extends React.Component {
     }
 }
 
+// 文本输入框
 class Textarea extends React.Component {
     constructor(...args){
         super(...args)
@@ -62,6 +64,9 @@ class Textarea extends React.Component {
 Textarea.contextTypes = {
     toptarget:PropTypes.object
 }
+
+// 滑动条
+
 
 
 export {Togglebox,Textarea}

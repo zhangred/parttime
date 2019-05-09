@@ -57,10 +57,10 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .pg-articlebox .pg-article{ min-height: 670px; box-shadow: 0 0 10px rgba(0,0,0,.2); background: #fff; width: 100%;}
 
 .pg-formset{position: fixed; right: 0; top: 54px; bottom: 0; width: 260px; border-top: 2px solid #eef0f3; background: #fff; overflow-y: scroll;-webkit-overflow-scrolling: touch; }
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
+.pg-formset .form-eline{ border-bottom: 1px solid #eee; padding: 10px 10px 10px 0;}
+.pg-formset .el-lado{ padding-top: 5px; line-height: 30px; color: #666;}
+.pg-formset .el-textareaer{}
+.pg-formset .el-textarea{ display: block; width: 100%; height: 100px; padding: 10px; border-radius: 2px; border:1px solid #eee;}
 .pg-formset .xxx{}
 .pg-formset .xxx{}
 .pg-formset .xxx{}
@@ -70,7 +70,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .fs-togglebox{}
 .fs-togglebox .tb-til{ position: relative; padding: 0 40px 0 10px; background: #f6f6f6; line-height: 40px;}
 .fs-togglebox .tb-do{ position: absolute; right: 0; top: 0; padding-right: 10px; font-size: 12px;}
-.fs-togglebox .tb-box{ overflow: hidden;}
+.fs-togglebox .tb-box{ overflow: hidden; padding:0 0 0 10px;}
 .fs-togglebox .xxx{}
 .fs-togglebox .xxx{}
 .fs-togglebox .xxx{}
