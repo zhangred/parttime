@@ -17,9 +17,10 @@ module.exports = {
     },
     optimization: {
         splitChunks: {
-            chunks: 'initial', // 只对入口文件处理
+            chunks: 'all', // 只对入口文件处理
+            name:'vendor',
             cacheGroups: {
-                vendor: { // split `node_modules`目录下被打包的代码到 `page/vendor.js && .css` 没找到可打包文件的话，则没有。css需要依赖 `ExtractTextPlugin`
+                vendor: {
                     test: /node_modules\//,
                     name: 'vendor',
                     priority: 10,
@@ -31,6 +32,9 @@ module.exports = {
             name: 'manifest'
         }
     },
+    performance: {
+        hints:false     
+    },        
 	module:{
 		rules:[
             {

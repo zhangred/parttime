@@ -7,6 +7,7 @@ import Topline from '../component/topline'
 import {Left,Content} from '../component/article'
 
 function Addtemplate(type,data){
+    // console.log(456465,content,type,data)
     content.addTemplate(type,data)
 }
 
@@ -20,8 +21,8 @@ ReactDOM.render(
     document.getElementById('J_pgleft')
 )
 
-var pgdata = JSON.parse(localStorage.aritcle_data);
-var idx = parseInt(localStorage.active_idx);
+var pgdata = JSON.parse(localStorage.aritcle_data||'[]');
+var idx = parseInt(localStorage.active_idx||'0');
 
 let content = ReactDOM.render(
     <Content data={pgdata} active_idx={idx} />,

@@ -73,7 +73,12 @@ class OutEditComponent extends React.Component {
     }
     render(){
         // return (<div>asdfasdfa</div>)
-        return React.createElement(Edittools[this.props.proto.data.type||'text_normal'], {...this.props.proto}, null);
+        if(this.props.proto.data){
+            return React.createElement(Edittools[this.props.proto.data.type||'text_normal'], {...this.props.proto}, null);
+        }else{
+            return (<div></div>)
+        }
+        
     }
 }
 
