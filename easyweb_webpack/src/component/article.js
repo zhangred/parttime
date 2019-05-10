@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import Template from './article_template'
-import {RandomString, Timeformat} from './_public'
+import {RandomString, Timeformat, Clone} from './_public'
 import Edittools from './article_edit'
 
 class Outcomponent extends React.Component {
@@ -86,13 +86,16 @@ class Content extends React.Component {
     constructor(...args){
         super(...args)
         this.state = {
-            data:this.props.data||[],
+            data:Clone(this.props.data)||[],
             active_idx:this.props.active_idx||0
         }
         this.addTemplate = this.addTemplate.bind(this);
+
+        // console.log(Template)
     }
-    addTemplate(type,data){
+    addTemplate(type){
         var dt = this.state.data;
+        var data = Clone(Template[type+'_data']);
         data.id = Timeformat(new Date(),'ymdhis')+RandomString(4);
         dt.push(data);
         this.setState({data:dt})
@@ -104,8 +107,8 @@ class Content extends React.Component {
             localStorage.active_idx = _this.state.active_idx;
         },3000)
     }
-    changeactive(type,st){
-        this.setState({active_idx:st.idx})
+    changeactive(opts){
+        this.setState({active_idx:opts.idx})
     }
     //传递上下文
     getChildContext() {
@@ -119,7 +122,6 @@ class Content extends React.Component {
                 <div className="pg-articlebox">
                     <div className="pg-article">
                         {this.state.data.map((item,index)=>
-                        // <div key={index.toString()}>asdfa</div>
                             <Outcomponent proto={{type:item.type,data:item,idx:index,eventclick:this.changeactive.bind(this)}} key={index.toString()} />
                         )}
                     </div>

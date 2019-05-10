@@ -21,4 +21,31 @@ function Timeformat(time,format){
     return format;
 }
 
-export {RandomString, Timeformat}
+function Clone(tar){
+    // Handle null or undefined or function
+    // console.log(tar)
+    if (null == tar || tar==undefined || tar==NaN )
+        return tar;
+    // Handle the 3 simple types, Number and String and Boolean
+    if(typeof(tar)=='number'||typeof(tar)=="boolean"||typeof(tar)=="string")
+        return tar.valueOf();
+    // Handle Date
+    if (tar instanceof Date) {
+        var copy = new Date();
+        copy.setTime(tar.getTime());
+        return copy;
+    }
+    // Handle Array or Object
+    if (tar instanceof Object || tar instanceof Array) {
+        var copy = (tar instanceof Array)?[]:{};
+        for (var attr in tar) {
+            if(tar.hasOwnProperty(attr)){
+                copy[attr] = tar[attr]?Clone(tar[attr]):tar[attr];
+            }
+        }
+        return copy;
+    }
+    throw new Error("Unable to clone obj! Its type isn't supported.");
+}
+
+export {RandomString, Timeformat, Clone}

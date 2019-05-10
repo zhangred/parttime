@@ -6,9 +6,9 @@ import ReactDOM from 'react-dom';
 import Topline from '../component/topline'
 import {Left,Content} from '../component/article'
 
-function Addtemplate(type,data){
+function Addtemplate(opts){
     // console.log(456465,content,type,data)
-    content.addTemplate(type,data)
+    content.addTemplate(opts.type)
 }
 
 ReactDOM.render(

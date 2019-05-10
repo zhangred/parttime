@@ -6,7 +6,7 @@ a{ text-decoration:none; color: #222;}
 ul{ list-style: none; }
 dl,ul,p{ -webkit-margin-before:0em; -webkit-margin-after:0em;}
 input,select,textarea{-webkit-appearance: none; font-size: 14px; outline: none; color: #333; font-family:Helvetica, "Helvetica Neue",  STHeiTi, sans-serif;}
-body{ font-size: 14px; line-height: 24px; color: #333; background: #eef0f3; }
+body{ font-size: 14px; color: #333; background: #eef0f3; }
 html,body{ height: 100%; }
 .alic{ text-align: center;}
 .alir{ text-align: right;}
@@ -57,10 +57,25 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .pg-articlebox .pg-article{ min-height: 670px; box-shadow: 0 0 10px rgba(0,0,0,.2); background: #fff; width: 100%;}
 
 .pg-formset{position: fixed; right: 0; top: 54px; bottom: 0; width: 260px; border-top: 2px solid #eef0f3; background: #fff; overflow-y: scroll;-webkit-overflow-scrolling: touch; }
-.pg-formset .form-eline{ border-bottom: 1px solid #eee; padding: 10px 10px 10px 0;}
-.pg-formset .el-lado{ padding-top: 5px; line-height: 30px; color: #666;}
-.pg-formset .el-textareaer{}
+.pg-formset .form-eline{ position: relative; border-bottom: 1px solid #eee; padding: 10px 10px 10px 60px;}
+.pg-formset .form-eline-line{  padding: 10px 10px 10px 0;}
+.pg-formset .el-lado{line-height: 30px; color: #666;}
+.pg-formset .el-ado{ position: absolute; left: 0; top: 10px; line-height: 30px; color: #666;}
 .pg-formset .el-textarea{ display: block; width: 100%; height: 100px; padding: 10px; border-radius: 2px; border:1px solid #eee;}
+.pg-formset .el-sliderbar{ position: relative; height: 30px; padding: 0 60px 0 10px;}
+.pg-formset .el-sb-bg{ position: absolute; left: 0; top: 0; z-index: 2; height: 100%; width: 100%;}
+.pg-formset .el-sb-slider{ position: relative; height: 30px; cursor: pointer;}
+.pg-formset .el-sb-slider:before{ content: ""; display: block; position: absolute; left: 0; top: 50%; height: 2px; width: 100%; margin-top: -1px; background: #ddd; border-radius: 1px;}
+.pg-formset .el-sb-bar{ position: absolute; left: 0; top: 50%; height: 14px; width: 14px; margin: -7px 0 0 -7px; border-radius: 7px; background: #519bf1; box-shadow: 0 0 4px rgba(0,0,0,.3);}
+.pg-formset .el-sb-ctrol{ position: absolute; right: 0; top: 0; height: 30px; width: 50px; display: block; border-radius: 3px; border:1px solid #ddd; text-indent: 5px;}
+.pg-formset .el-textfont{ overflow: hidden; text-align: center; padding-top: 3px; line-height: 24px;}
+.pg-formset .el-tf-ls{ height: 24px; width: 24px; float: left; margin: 0 2px; cursor: pointer;}
+.pg-formset .el-tf-lsac{ background: #519bf1; color: #fff; border-radius: 2px;}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
+.pg-formset .xxx{}
 .pg-formset .xxx{}
 .pg-formset .xxx{}
 .pg-formset .xxx{}

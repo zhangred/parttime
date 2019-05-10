@@ -1,13 +1,9 @@
 import React from 'react'
-import {Togglebox,Textarea} from './_formtools'
+import {Togglebox,Textarea,Sliderbar,Textfont,Fontsize} from './_formtools'
 
 class Textnormal extends React.Component {
     constructor(...args) {
         super(...args)
-        console.log(this.props)
-        // this.state = {
-        //     data:this.props.data
-        // }
     }
     componentDidMount(){
         // console.log(this.props)
@@ -17,7 +13,10 @@ class Textnormal extends React.Component {
         return (
             <div>
                 <Togglebox title="文本" show={true}>
-                    <Textarea data={this.props.data.content} />
+                    <Textarea title="文本内容" data={this.props.data.content} />
+                    <Fontsize title="字号" value={this.props.data.css.fontSize} />
+                    <Sliderbar title="行高" value={this.props.data.css.lineHeight} minvalue={1} maxvalue={3} attra="css" attrb="lineHeight" />
+                    <Textfont title="文本样式" css={this.props.data.css} />
                     <div>xxxxxx</div>
                     <div>xxxxxx</div>
                     <div>xxxxxx</div>
