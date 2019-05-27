@@ -212,7 +212,10 @@ class Fontsize extends React.Component{
     }
     render(){
         return (
-            <div></div>
+            <div className="form-eline">
+                <p className="el-ado">{this.props.title||'设置'}</p>
+                <Droplist  />
+            </div>
         )
     }
 }
