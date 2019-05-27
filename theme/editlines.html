@@ -170,6 +170,12 @@
 			// });
             // textarea和input一致
 			$('.J_el_ctrol').blur(function(){
+                //页面位置恢复
+				setTimeout(function(){
+					var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+					window.scrollTo(0,scrollTop);
+                },300)
+                
 				var self = $(this),
 					val = self.val().trim(),
 					type = self.attr('data-type')||'',

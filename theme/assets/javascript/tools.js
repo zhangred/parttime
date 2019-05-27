@@ -530,7 +530,7 @@ addressPicker.prototype = {
         this.target = opts.target;
         this.unit = opts.unit||36;
 
-        this.province = {};
+        this.fieldrange = this.opts.fieldrange||['province','city','area'];
         this.render();
     },
     render:function(){
@@ -539,12 +539,12 @@ addressPicker.prototype = {
         applytools.call(this,['createDom','createPop']);
         this.createPop();
         this.bindTarget();
-        this.boxer.setAttribute('class','J_slbox cm-slbox cm-slbox3')
+        this.boxer.setAttribute('class','J_slbox cm-slbox cm-slbox'+this.fieldrange.length)
         this.elm_til.innerHTML = this.opts.title||'';
 
-        for(var i=0;i<3;i++){
+        for(var i=0;i<this.fieldrange.length;i++){
             (function(){
-                var tp = ['province','city','area'][i];
+                var tp = that.fieldrange[i];
                 that[tp] = {};
                 that[tp].boxer = that.createDom({"tag":"div","classname":"cm-slbox-time"});
                 that.boxer.appendChild(that[tp].boxer);
@@ -573,9 +573,10 @@ addressPicker.prototype = {
         })
         this.btn_sure.addEventListener('click',function(){
             var res = {};
-            res.province = that.province.scroller.v;
-            res.city = that.city.scroller.v;
-            res.area = that.area.scroller.v;
+            for(var i=0;i<that.fieldrange.length;i++){
+                var key = that.fieldrange[i];
+                res[key] = that[key].scroller.v;
+            }
 
             that.opts.confirm&&that.opts.confirm(res,function(){
                 that.pop.classList.remove('cm-pop-active');

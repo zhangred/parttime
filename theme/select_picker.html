@@ -43,6 +43,11 @@
             <p class="el-ado">地址选择</p>
             <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
         </div>
+
+        <div class="editline editline-select editline-cover" id="J_addressa">
+            <p class="el-ado">地址选择（省市）</p>
+            <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
+        </div>
     </div>
 
     <br />
@@ -257,6 +262,61 @@
                 confirm:function(rs,cb){
                     if(rs.province.id&&rs.city.id&&rs.area.id){
                         $('#J_address').find('input').val(rs.province.name+'/'+rs.city.name+'/'+rs.area.name);
+                        cb();
+                    }else{
+                        CUES.tip({msg:'请选择完整'})
+                    }
+                    console.log(rs)
+                }
+            });
+
+            var adra = new addressPicker({
+                target:document.getElementById('J_addressa'),
+                title:"地址选择",
+                fieldvalue:'id',
+                fieldshow:'name',
+                fieldrange:['province','city'],
+                province:{
+                    datalist:provincelist,
+                    default_v:3,
+                    change:function(rs){
+                        console.log('p',rs)
+                        adra.province.distouch(true);
+                        adra.city.empty();
+                        $.ajax({
+                            url:'/api/callback.json?t='+(new Date().getTime()),
+                            success:function(rs){
+                                if(rs.code==0){
+                                    adra.province.distouch(false);
+
+                                    arealist = [
+                                        {id:1,name:'01邢台市'},
+                                        {id:2,name:'01石家庄'},
+                                        {id:3,name:'01邯郸市'},
+                                        {id:4,name:'01张家口'},
+                                        {id:5,name:'01保定市'},
+                                        {id:6,name:'01唐山市'},
+                                        {id:7,name:'01承德市'},
+                                        {id:8,name:'01沧州市'},
+                                        {id:9,name:'01廊坊市'}
+                                    ];
+                                    adra.city.reset({datalist:arealist,default_v:null})
+                                }
+                            }
+                        })
+                    }
+                },
+                city:{
+                    datalist:citylist,
+                    default_v:0,
+                    change:function(rs){
+                        console.log('c',rs)
+                        
+                    }
+                },
+                confirm:function(rs,cb){
+                    if(rs.province.id&&rs.city.id){
+                        $('#J_addressa').find('input').val(rs.province.name+'/'+rs.city.name);
                         cb();
                     }else{
                         CUES.tip({msg:'请选择完整'})
