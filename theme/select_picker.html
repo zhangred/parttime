@@ -43,9 +43,12 @@
             <p class="el-ado">地址选择</p>
             <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
         </div>
-
         <div class="editline editline-select editline-cover" id="J_addressa">
             <p class="el-ado">地址选择（省市）</p>
+            <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
+        </div>
+        <div class="editline editline-select editline-cover" id="J_mult">
+            <p class="el-ado">多重数据选择</p>
             <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
         </div>
     </div>
@@ -324,6 +327,79 @@
                     console.log(rs)
                 }
             })
+
+            var mutla = [
+                {"id":1,"name":"a1面聊"},
+                {"id":2,"name":"a2网络"},
+                {"id":3,"name":"a3电话"},
+                {"id":4,"name":"a4网络"},
+                {"id":5,"name":"a5电话"},
+                {"id":6,"name":"a6电话"},
+                {"id":7,"name":"a7电话"},
+                {"id":8,"name":"a8电话"},
+                {"id":9,"name":"a9电话"}
+            ],
+            mutlb = [
+                {"id":1,"name":"b1面聊"},
+                {"id":2,"name":"b2网络"},
+                {"id":3,"name":"b3电话"},
+                {"id":4,"name":"b4网络"},
+                {"id":5,"name":"b5电话"},
+                {"id":6,"name":"b6电话"},
+                {"id":7,"name":"b7电话"},
+                {"id":8,"name":"b8电话"},
+                {"id":9,"name":"b9电话"}
+            ],
+            mutlc = [
+                {"id":1,"name":"c1面聊"},
+                {"id":2,"name":"c2网络"},
+                {"id":3,"name":"c3电话"},
+                {"id":4,"name":"c4网络"},
+                {"id":5,"name":"c5电话"},
+                {"id":6,"name":"c6电话"},
+                {"id":7,"name":"c7电话"},
+                {"id":8,"name":"c8电话"},
+                {"id":9,"name":"c9电话"}
+            ],
+            select_mult = new multDataSelect({
+                "target":document.getElementById('J_mult'), // 激活目标对象dom
+                // "outer":document.getElementById('J_selecta'),
+                "default_v":null, // 设置默认值
+                "title":"多重数据",
+                "selectlist":[
+                    {
+                        "key":"keya",
+                        "default_v":null,
+                        "datalist":mutla,
+                        "change":function(rs){
+                            console.log(1,rs)
+                        }
+                    },
+                    {
+                        "key":"keyb",
+                        "default_v":null,
+                        "datalist":mutlb,
+                        "change":function(rs){
+                            console.log(2,rs)
+                        }
+                    },
+                    {
+                        "key":"keyc",
+                        "default_v":null,
+                        "datalist":mutlc,
+                        "change":function(rs){
+                            console.log(3,rs)
+                        }
+                    }
+                ],
+                "confirm":function(rs,cb){
+                    cb()
+                    console.log('c',rs)
+                }
+            });
+
+
+
 
 
         })

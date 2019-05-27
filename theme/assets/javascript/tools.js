@@ -1751,3 +1751,77 @@ zshcanvas.prototype = {
 }
 
 
+function multDataSelect(opts){
+    this.opts = opts;
+    this.setting();
+}
+multDataSelect.prototype = {
+    setting:function(){
+        var opts = this.opts;
+        this.target = opts.target;
+        this.unit = opts.unit||36;
+
+        this.province = {};
+        this.render();
+    },
+    render:function(){
+        var that = this,
+            opts = this.opts,
+            selectlist = opts.selectlist;
+
+        applytools.call(this,['createDom','createPop']);
+        this.createPop();
+        this.bindTarget();
+        this.boxer.setAttribute('class','J_slbox cm-slbox cm-slbox'+selectlist.length)
+        this.elm_til.innerHTML = this.opts.title||'';
+
+        for(var i=0;i<3;i++){
+            (function(){
+                var tp = selectlist[i];
+                console.log(tp)
+                that[tp.key] = {};
+                that[tp.key].boxer = that.createDom({"tag":"div","classname":"cm-slbox-time"});
+                that.boxer.appendChild(that[tp.key].boxer);
+                that[tp.key].opts = {outer:that[tp.key].boxer,datalist:tp.datalist||[],default_v:tp.default_v||null}
+                that[tp.key].change = tp.change||null;
+                that[tp.key].scroller = new touchscroll(that[tp.key])
+                that[tp.key].scroller.selected = function(rs){
+                    that[tp.key].change&&that[tp.key].change(rs);
+                }
+                that[tp.key].empty = function(){
+                    that[tp.key].scroller.empty();
+                }
+                that[tp.key].distouch = function(c){
+                    that[tp.key].scroller.distouch(c);
+                }
+                that[tp.key].reset = function(sopts){
+                    that[tp.key].scroller.reset(sopts);
+                }
+
+            })()
+        }
+        console.log(this)
+    },
+    bindTarget:function(){
+        var that = this;
+        this.btn_cal.addEventListener('click',function(){
+            that.pop.classList.remove('cm-pop-active');
+        })
+        this.btn_sure.addEventListener('click',function(){
+            var res = {},
+                list = that.opts.selectlist,
+                len = list.length;
+            for(var i=0;i<len;i++){
+                var k = list[i].key;
+                res[k] = that[k].scroller.v;
+            }
+
+            that.opts.confirm&&that.opts.confirm(res,function(){
+                that.pop.classList.remove('cm-pop-active');
+            })
+        })
+        this.target.addEventListener('click',function(){
+            that.pop.classList.add('cm-pop-active')
+        })
+    }
+}
