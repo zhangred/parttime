@@ -7,6 +7,7 @@ ul{ list-style: none; }
 dl,ul,p{ -webkit-margin-before:0em; -webkit-margin-after:0em;}
 input,select,textarea{-webkit-appearance: none; font-size: 14px; outline: none; color: #333; font-family:Helvetica, "Helvetica Neue",  STHeiTi, sans-serif;}
 body{ font-size: 14px; color: #333; background: #eef0f3; }
+html{ font-size: 100px;}
 html,body{ height: 100%; }
 .alic{ text-align: center;}
 .alir{ text-align: right;}
@@ -71,11 +72,13 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .pg-formset .el-textfont{ overflow: hidden; text-align: center; padding-top: 3px; line-height: 24px;}
 .pg-formset .el-tf-ls{ height: 24px; width: 24px; float: left; margin: 0 2px; cursor: pointer;}
 .pg-formset .el-tf-lsac{ background: #519bf1; color: #fff; border-radius: 2px;}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
+.pg-formset .el-dropmenu{ position: relative; z-index: 3; height: 30px; width: 100%; border-radius: 3px; border:1px solid #eee; line-height: 28px; padding-left: 10px; cursor: pointer;}
+.pg-formset .el-dm-til{ line-height: 28px;}
+.pg-formset .el-dm-til-dis{ color: #999;}
+.pg-formset .el-dm-drop{ display: none; position: absolute; left: 0; width: 100%; top: 100%; background: #fff; border:1px solid #eee; border-radius: 3px;}
+.pg-formset .el-dm-ls{ line-height: 40px; padding-left: 10px;}
+.pg-formset .el-dm-ls:hover{ background: #eee;}
+.pg-formset .el-dm-drop-hover{ display: block;}
 .pg-formset .xxx{}
 .pg-formset .xxx{}
 .pg-formset .xxx{}

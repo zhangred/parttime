@@ -12,9 +12,7 @@ class Textnormal extends React.Component {
     constructor(...args) {
         super(...args)
         this.state = {
-            css:{
-                fontSize:this.props.data.css.fontSize
-            }
+            css:{}
         }
     }
     componentDidMount(){
@@ -23,7 +21,6 @@ class Textnormal extends React.Component {
     //元素点击
     boxclick(){
         if(this.props.eventclick){
-            // console.log(this.props)
             this.props.eventclick({type:'text_normal',idx:this.props.idx})
         }
     }

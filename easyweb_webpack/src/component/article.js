@@ -36,7 +36,7 @@ class Left extends React.Component {
     }
     //切换类型
     change(type){
-        if(type==this.state.type_active) returnl
+        if(type==this.state.type_active) return
         this.setState({type_active:type})
     }
     //模板点击事件
@@ -104,11 +104,13 @@ class Content extends React.Component {
         var _this = this;
         setInterval(function(){
             localStorage.aritcle_data = JSON.stringify(_this.state.data);
-            localStorage.active_idx = _this.state.active_idx;
+            localStorage.setItem('active_idx',_this.state.active_idx);
         },3000)
     }
     changeactive(opts){
-        this.setState({active_idx:opts.idx})
+        this.setState({active_idx:-1},function(){
+            this.setState({active_idx:opts.idx})
+        })
     }
     //传递上下文
     getChildContext() {
