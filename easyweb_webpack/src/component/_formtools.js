@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Chrome } from 'react-color';
 import {Clone} from './_public'
+import { SketchPicker } from 'react-color';
 
 class Togglebox extends React.Component {
     constructor(...args){
@@ -30,11 +31,13 @@ class Togglebox extends React.Component {
         },300)
     }
     componentDidMount(){
-        this.box.style.webkitTransition = "all 0.3s";
-        this.box.style.height = this.box.scrollHeight + 'px';
         if(this.state.show){
+            this.box.style.height = this.box.scrollHeight + 'px';
             this.box.style.overflow = 'visible'
         }
+        setTimeout(()=>{
+            this.box.style.webkitTransition = "all 0.3s";
+        },0)
     }
     render(){
         return (
@@ -118,14 +121,30 @@ class Droplist extends React.Component{
         }
     }
     render(){
+        let type = this.props.type||'default',
+            dom = '';
+        
+        if(type=='default'){
+            dom = (
+                this.props.data.map((item,index)=>
+                    <p  key={index.toString()} onClick={this.select.bind(this,item)} className="el-dm-ls">{item.name}</p>
+                )
+            )
+        }
+        if(type=='borderstyle'){
+            dom = (
+                this.props.data.map((item,index)=>
+                    <p style={{padding:10}} key={index.toString()} onClick={this.select.bind(this,item)} className="el-dm-ls"><span className="el-dm-bs" style={{borderStyle:item.value}}>{item.text}</span></p>
+                )
+            )
+        }
+
         return (
             <div>
                 <div className="el-dropmenu" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
                     <p className={"el-dm-til "+(this.state.tar.name?'':'el-dm-til-dis')}>{this.state.tar.name||'请选择'}</p>
                     <div className={"el-dm-drop "+(this.state.hover?'el-dm-drop-hover':'')}>
-                        {this.props.data.map((item,index)=>
-                            <p key={index.toString()} onClick={this.select.bind(this,item)} className="el-dm-ls">{item.name}</p>
-                        )}
+                        {dom}
                     </div>
                 </div>
             </div>
@@ -290,6 +309,135 @@ class Sliderbar extends React.Component{
     }
 }
 
+// 颜色
+class Colorpicker extends React.Component{
+    constructor(props){
+        super(props)
+        // console.log(5,this.props)
+        this.state = {
+            color:'#333',
+            show:false
+        }
+    }
+    handleChangeComplete(rs){
+        this.setState({color:rs.hex})
+        this.props.bindevent(rs.hex||'')
+    }
+    componentDidMount(){
+        this.setState({color:this.props.value})
+    }
+    togglepop(){
+        this.setState({show:!this.state.show})
+    }
+    render(){
+        return (
+            <div className="form-eline">
+                <p className="el-ado">{this.props.title||'颜色'}</p>
+                <div className="el-colorbar" onClick={this.togglepop.bind(this)} style={{backgroundColor:this.state.color}}></div>
+                <div onClick={this.togglepop.bind(this)} className={'el-colorbar-pop '+(this.state.show?'el-colorbar-pop-active':'')}></div>
+                <div className={'el-pop-colorbar '+(this.state.show?'el-pop-colorbar-active':'')} ><SketchPicker color={ this.state.color } onChangeComplete={ this.handleChangeComplete.bind(this) } /></div>
+            </div>
+        )
+    }
+}
+
+// 边距
+class Paddingbox extends React.Component{
+    constructor(props){
+        super(props)
+        // console.log(5,this.props)
+        this.state = {
+            padding:[14,14,14,14]
+        }
+    }
+    paddingchange(idx,e){
+        this.state.padding[idx] = parseInt(e.target.value)||0;
+        this.setState({padding:this.state.padding})
+        this.props.bindevent(this.state.padding)
+    }
+    componentDidMount(){
+        this.setState({padding:[this.props.value.top,this.props.value.right,this.props.value.bottom,this.props.value.left]})
+    }
+    render(){
+        return (
+            <div className="form-eline">
+                <p className="el-ado">{this.props.title||'内边距'}</p>
+                <div className="el-paddingbox">
+                    <input type="text" className="el-pd-ctroll el-pd-ctroll-top" value={this.state.padding[0]||''} onChange={this.paddingchange.bind(this,0)} />
+                    <input type="text" className="el-pd-ctroll el-pd-ctroll-right" value={this.state.padding[1]||''}  onChange={this.paddingchange.bind(this,1)}/>
+                    <input type="text" className="el-pd-ctroll el-pd-ctroll-bottom" value={this.state.padding[2]||''} onChange={this.paddingchange.bind(this,2)} />
+                    <input type="text" className="el-pd-ctroll el-pd-ctroll-left" value={this.state.padding[3]||''} onChange={this.paddingchange.bind(this,3)} />
+                </div>
+            </div>
+        )
+    }
+}
 
 
-export {Togglebox,Textarea,Sliderbar,Textfont,Fontsize}
+// 边距
+class Marginbox extends React.Component{
+    constructor(props){
+        super(props)
+        // console.log(5,this.props)
+        this.state = {
+            margin:[14,14,14,14]
+        }
+    }
+    marginchange(idx,e){
+        this.state.margin[idx] = parseInt(e.target.value)||0;
+        this.setState({padding:this.state.margin})
+        this.props.bindevent(this.state.margin)
+    }
+    componentDidMount(){
+        this.setState({margin:[this.props.value.top,this.props.value.right,this.props.value.bottom,this.props.value.left]})
+    }
+    render(){
+        return (
+            <div className="form-eline">
+                <p className="el-ado">{this.props.title||'外边距'}</p>
+                <div className="el-paddingbox el-paddingbox-m">
+                    <input type="text" className="el-pd-ctroll el-pd-ctroll-top" style={{top:0}} value={this.state.margin[0]||'0'} onChange={this.marginchange.bind(this,0)} />
+                    <input type="text" className="el-pd-ctroll el-pd-ctroll-right" style={{right:0}} value={this.state.margin[1]||'0'}  onChange={this.marginchange.bind(this,1)}/>
+                    <input type="text" className="el-pd-ctroll el-pd-ctroll-bottom" style={{bottom:0}} value={this.state.margin[2]||'0'} onChange={this.marginchange.bind(this,2)} />
+                    <input type="text" className="el-pd-ctroll el-pd-ctroll-left" style={{left:0}} value={this.state.margin[3]||'0'} onChange={this.marginchange.bind(this,3)} />
+                </div>
+            </div>
+        )
+    }
+}
+
+// 边框样式
+class Borderstyle extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            list:[
+                {id:4,name:'无',value:'none',text:'无'},
+                {id:5,name:'solid',value:'solid'},
+                {id:1,name:'dashed',value:'dashed'},
+                {id:2,name:'dotted',value:'dotted'},
+                {id:3,name:'double',value:'double'},
+                {id:7,name:'groove',value:'groove'},
+                {id:6,name:'inset',value:'inset'},
+            ]
+        }
+    }
+    change(item){
+        this.props.bindevent(item)
+    }
+    componentDidMount(){
+        
+    }
+    render(){
+        return (
+            <div className="form-eline">
+                <p className="el-ado">{this.props.title||'设置'}</p>
+                <Droplist type="borderstyle" data={this.state.list} value={this.props.value} bindevent={this.change.bind(this)} />
+            </div>
+        )
+    }
+}
+
+
+
+export {Togglebox,Textarea,Sliderbar,Textfont,Fontsize,Colorpicker,Paddingbox,Marginbox,Borderstyle}

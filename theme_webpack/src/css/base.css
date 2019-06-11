@@ -54,11 +54,11 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .pg-left .exps:hover{ box-shadow: 0 0 10px rgba(0,0,0,.1)}
 
 .page-content{ position: relative; min-height: 100%;}
-.pg-articlebox{ width: 500px; position: fixed; left: 50%; top: 100px; bottom: 100px; margin-left: -180px; padding: 10px 0; overflow-y: scroll;}
-.pg-articlebox .pg-article{ width: 375px; margin: 0 auto; min-height: 100%; box-shadow: 0 0 10px rgba(0,0,0,.2); background: #fff;}
+.pg-articlebox{ width: 375px; position: fixed; left: 50%; top: 100px; bottom: 100px; margin-left: -180px;display: -webkit-flex; /* Safari */ display: flex;align-items: center;}
+.pg-articlebox .pg-article{ min-height: 670px; box-shadow: 0 0 10px rgba(0,0,0,.2); background: #fff; width: 100%;}
 
 .pg-formset{position: fixed; right: 0; top: 54px; bottom: 0; width: 260px; border-top: 2px solid #eef0f3; background: #fff; overflow-y: scroll;-webkit-overflow-scrolling: touch; }
-.pg-formset .form-eline{ position: relative; border-bottom: 1px solid #eee; padding: 10px 10px 10px 60px;}
+.pg-formset .form-eline{ position: relative; border-bottom: 1px solid #eee; padding: 10px 10px 10px 60px; z-index: 3;}
 .pg-formset .form-eline-line{  padding: 10px 10px 10px 0;}
 .pg-formset .el-lado{line-height: 30px; color: #666;}
 .pg-formset .el-ado{ position: absolute; left: 0; top: 10px; line-height: 30px; color: #666;}
@@ -72,38 +72,13 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .pg-formset .el-textfont{ overflow: hidden; text-align: center; padding-top: 3px; line-height: 24px;}
 .pg-formset .el-tf-ls{ height: 24px; width: 24px; float: left; margin: 0 2px; cursor: pointer;}
 .pg-formset .el-tf-lsac{ background: #519bf1; color: #fff; border-radius: 2px;}
-.pg-formset .el-dropmenu{ position: relative; z-index: 3; height: 30px; width: 100%; border-radius: 3px; border:1px solid #eee; line-height: 28px; padding-left: 10px; cursor: pointer;}
+.pg-formset .el-dropmenu{ position: relative; height: 30px; width: 100%; border-radius: 3px; border:1px solid #eee; line-height: 28px; padding-left: 10px; cursor: pointer;}
 .pg-formset .el-dm-til{ line-height: 28px;}
 .pg-formset .el-dm-til-dis{ color: #999;}
 .pg-formset .el-dm-drop{ display: none; position: absolute; left: 0; width: 100%; top: 100%; background: #fff; border:1px solid #eee; border-radius: 3px;}
 .pg-formset .el-dm-ls{ line-height: 40px; padding-left: 10px;}
 .pg-formset .el-dm-ls:hover{ background: #eee;}
 .pg-formset .el-dm-drop-hover{ display: block;}
-.pg-formset .el-colorbar{ height:30px; width: 100px; border-radius: 4px; box-shadow: 0 0 2px rgba(0,0,0,.3); cursor: pointer;}
-.pg-formset .el-pop-colorbar{ position: relative; z-index: 3; display: none; position: absolute; left: 0; top: 40px; height: 200px; background: #ddd;}
-.pg-formset .el-pop-colorbar-active{ display: block;}
-.pg-formset .el-colorbar-pop{ display: none; position: fixed; left: 0;top: 0;right: 0; bottom: 0; z-index: 2;}
-.pg-formset .el-colorbar-pop-active{ display: block;}
-.pg-formset .el-paddingbox{ position: relative; height: 100px; border: 1px dashed #aaa; border-radius: 3px;}
-.pg-formset .el-pd-ctroll{ display: block; position: absolute; height: 24px; width: 60px; border: 1px solid #eee; border-radius: 4px; text-align: center;}
-.pg-formset .el-pd-ctroll-top{ left: 50%; top: 5px; margin-left: -30px;}
-.pg-formset .el-pd-ctroll-right{ right: 5px; top: 50%; margin-top: -12px;}
-.pg-formset .el-pd-ctroll-bottom{left: 50%; bottom: 5px; margin-left: -30px;}
-.pg-formset .el-pd-ctroll-left{ left: 5px; top: 50%; margin-top: -12px;}
-.pg-formset .el-paddingbox-m{ border:none}
-.pg-formset .el-paddingbox-m:after{ content: ""; display: block; position: absolute; left: 65px; top: 30px; height: 40px; width: 50px; border: 1px dashed #aaa;}
-.pg-formset .el-dm-bs{ display: block; height: 20px;  border-width: 4px; border-color: #9C1E1E; line-height: 20px; text-align: center;}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
-.pg-formset .xxx{}
 .pg-formset .xxx{}
 .pg-formset .xxx{}
 .pg-formset .xxx{}
@@ -113,7 +88,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .fs-togglebox{}
 .fs-togglebox .tb-til{ position: relative; padding: 0 40px 0 10px; background: #f6f6f6; line-height: 40px;}
 .fs-togglebox .tb-do{ position: absolute; right: 0; top: 0; padding-right: 10px; font-size: 12px;}
-.fs-togglebox .tb-box{ overflow: hidden; padding:0 0 0 10px; height: 0;}
+.fs-togglebox .tb-box{ overflow: hidden; padding:0 0 0 10px;}
 .fs-togglebox .xxx{}
 .fs-togglebox .xxx{}
 .fs-togglebox .xxx{}
