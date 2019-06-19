@@ -21,10 +21,10 @@
 </head>
 <body>
 	<div class="ul">
-        <div class="J_img img" data-thumb="./img/imgsee2s.jpg" data-origin="./img/imgsee2.jpg"><img src="./img/imgsee2s.jpg" /></div>
+        <div class="J_img img" data-thumb="./img/imgsee2s.jpg" data-origin="./img/imgsee2.jpg" data-title="这是图片01的描述啊，这是图片01的描述啊，这是图片01的描述啊，这是图片01的描述啊，这是图片01的描述啊，"><img src="./img/imgsee2s.jpg" /></div>
         <div class="J_img img" data-thumb="./img/imgsee3s.jpg" data-origin="./img/imgsee3.jpg"><img src="./img/imgsee3s.jpg" /></div>
-        <div class="J_img img" data-thumb="./img/imgsee4s.jpg?v=2" data-origin="./img/imgsee4.jpg?v=2"><img src="./img/imgsee4s.jpg?v=2" /></div>
-        <div class="J_img img" data-thumb="./img/imgsee5s.jpg" data-origin="./img/imgsee5.jpg"><img src="./img/imgsee5s.jpg" /></div>
+        <div class="J_img img" data-thumb="./img/imgsee4s.jpg?v=2" data-origin="./img/imgsee4.jpg?v=2" data-title="这是图片04的描述啊，这是图片04的描述啊，这是图片04的描述啊，这是图片04的描述啊，这是图片04的描述啊，"><img src="./img/imgsee4s.jpg?v=2" /></div>
+        <div class="J_img img" data-thumb="./img/imgsee5s.jpg" data-origin="./img/imgsee5.jpg" data-title="这是图片05的描述啊，这是图片05的描述啊，这是图片05的描述啊，这是图片05的描述啊，这是图片05的描述啊，"><img src="./img/imgsee5s.jpg" /></div>
         <div class="J_img img" data-thumb="./img/imgsee1s.jpg" data-origin="./img/imgsee1.jpg"><img src="./img/imgsee1s.jpg" /></div>
     </div>
     <script>
@@ -35,7 +35,7 @@
             
             for(var i=0;i<len;i++){
                 var elm = J_img.eq(i);
-                imgarr.push({thumb:elm.attr('data-thumb'),origin:elm.attr('data-origin')});
+                imgarr.push({thumb:elm.attr('data-thumb'),origin:elm.attr('data-origin'),text:elm.attr('data-title')});
             };
 
             console.log(imgarr)

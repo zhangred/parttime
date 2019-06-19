@@ -1530,7 +1530,8 @@ function imgsee(opts){
 
         var str = '',list = arr,len = list.length;
         for(var i=0;i<len;i++){
-            str += '<a href="javascript:;" class="sibox"><span class="mbox"><span class="siimg" style="background-image:url('+list[i].thumb+');"></span></span></a>';
+            var tx = list[i].text?'<p class="sitx">'+list[i].text+'</p>':''
+            str += '<a href="javascript:;" class="sibox">'+tx+'<span class="mbox"><span class="siimg" style="background-image:url('+list[i].thumb+');"></span></span></a>';
         };
         imgbox.innerHTML = str;
         imglen = arr.length,
