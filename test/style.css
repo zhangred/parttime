@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+body{padding:0; margin:0;font-family:"微软雅黑",Arial, Helvetica, sans-serif; background: #fafafa;}
+div, p, form, label,  textarea, img, span{margin:0; padding:0; border:none;}
+a{ text-decoration:none; color: #222;}
+a:hover{ color: #72db96; transition:color 0.2s,background 0.2s; -moz-transition:color 0.2s,background 0.2s; -webkit-transition:color 0.2s,background 0.2s;}
+ul{ margin:0;   padding:0;  list-style-type:none;}
+div{font-size:12px;line-height:20px; color: #333;}
+html, body { height: 100%}
+img {vertical-align: middle;border: none; -ms-interpolation-mode: bicubic;}
+div,p,span,a,ul,li,nav,input{ -webkit-box-sizing: border-box;  -moz-box-sizing: border-box; box-sizing: border-box;}
+
+.cont{ position: relative; overflow-y: scroll; background: #ddd; padding: 30px;}
+.ls{ height: 150px;}
+.conta{ background: #7cd0bb}
+.contb{ background: #7cb2d0}
+.contc{ background: #7CD0B2}
+
+.lsa{ position: fixed; left: 20%; top: 100px; padding: 20px; width: 60%; background: #ddd;}
+
+.page-animate{-webkit-transition: all 3s; transition: all 3s;}
+.page-ready-out-left{-webkit-transform-origin: left center;transform-origin: left center; }
+.page-ready-in-right{  position: fixed; left: 0; top: 0; width: 100%; min-height: 100%; -webkit-transform: scale(0,1); transform: scale(0,1); -webkit-transform-origin: right center;transform-origin: right center; }
+
+.page-ing-out-left{-webkit-transform: scale(0,1); transform: scale(0,1);}
+.page-ing-in-right{-webkit-transform: scale(1,1); transform: scale(1,1);}
+
+.page-stay-left{ position: fixed; left: 0; top: 0; -webkit-transform: scale(0,1); transform: scale(0,1);}
+
+.out{ position: fixed; z-index: 3; height: 100%; width: 100%; top: 0; left: 0; background: #72db96; -webkit-transform: scale(.6,1); transform: scale(.6,1);}
+.outer{position: fixed; z-index: 3; height: 50%; width: 50%; top: 0; left: 25%; background: #ddd;}

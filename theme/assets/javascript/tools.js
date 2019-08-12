@@ -1175,6 +1175,8 @@ function swipe(opts){
             }
 
             isdire = -1;
+            touch_s = {};
+            touch_m = {};
         }
 
 
