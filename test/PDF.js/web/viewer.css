@@ -2274,3 +2274,53 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
     display: none;
   }
 }
+
+.viewaddloading{ 
+    display:none;
+    height:100px;
+    width:100px;
+    margin: 50px auto;
+    position:relative;
+    line-height:100px;
+    color:#ccc;
+    font-size:12px;
+    text-align:center;
+}
+.viewaddloading-row{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100px;
+    width:100px;
+    -webkit-animation: prgroll linear 950ms infinite;
+    animation: prgroll linear 950ms infinite;
+}
+.viewaddloading-row:after,.viewaddloading-row:before{
+    position:absolute;
+    left:0;
+    top:0;
+    content:"";
+    display:block;
+    height:88px;
+    width:88px;
+    border-radius:50%;
+}
+.viewaddloading-row:after{
+    border:6px solid rgba(255,255,255,.2);
+}
+.viewaddloading-row:before{
+    border:6px solid rgba(0,0,0,0);
+    border-top-color:rgba(255,255,255,.2);
+}
+.loadingInProgress .viewaddloading{
+    display:block;
+}
+@-webkit-keyframes prgroll {
+  0% { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
+}
+
+@keyframes prgroll {
+ 0% { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
+}
