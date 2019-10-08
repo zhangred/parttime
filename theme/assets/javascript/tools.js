@@ -145,26 +145,29 @@
             }
         }
     },
-    jumpstep:function(opts){
+    heartjump:function(opts){
+        let args,timeout,timestamp,lasttamp;
+        let _self = this;
+        opts = opts||{};
         opts.space = opts.space||200;
         opts.stand = opts.stand||200;
-        let args,timeout,timestamp,lasttamp;
+
 
         let later = function(){
             let c = timestamp - lastfunc<opts.space-120;
             timeout = null;
-            console.log(5,c,timestamp - lastfunc,opts.space-120)
             if(!c){
-                opts.jump&&opts.jump(args[0]);   
+                _self.throttle&&_self.throttle(args);   
             }
             setTimeout(()=>{
                 if(!timeout){
-                    opts.stop&&opts.stop(args[0]);
+                    _self.debounce&&_self.debounce(args);
                 }
             },opts.stand)
         }
-        return function(){
-            args = arguments;
+
+        this.step = function(event){
+            args = event;
             timestamp = new Date().getTime();
             if(!timeout){
                 lastfunc = timestamp;
@@ -280,21 +283,35 @@ window.cmtools = {
                 that.selected&&that.selected(v); 
             }
         },false);
-        // outer.addEventListener('mousewheel',function(event){
-        //     console.log(event)
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // })
-        outer.addEventListener('mousewheel',CUES.jumpstep({
-            jump:function(event){
-                console.log(5,event)
-                event.preventDefault();
-                event.stopPropagation();
-            },
-            stop:function(event){
-                console.log(6,event)
+
+        var heartjump = new CUES.heartjump();
+        heartjump.throttle = function(event){
+            roller.style.webkitTransition = "all .05s";
+            if(event.wheelDelta>0){
+                scroller.y =scroller.y-unit;
+            }else{
+                scroller.y =scroller.y+unit;
             }
-        }))
+            if(scroller.y<=scroller.maxY){
+                scroller.y = scroller.maxY;
+            }else if(scroller.y>=3*unit){
+                scroller.y = 3*unit;
+            };
+            roller.style.webkitTransform = 'translateZ(0) translateY('+(scroller.y)+'px)';
+        }
+        heartjump.debounce = function(event){
+            var v = scroller.datalist[3-Math.floor(scroller.y/unit)];
+             if(v[scroller.fieldvalue]!=that.v[scroller.fieldvalue]){
+                that.v = v;
+                that.selected&&that.selected(v); 
+            }
+        }
+        outer.addEventListener('mousewheel',function(event){
+            event.stopPropagation();
+            event.preventDefault();
+            heartjump.step(event);
+            
+        })
     },
     empty:function(){
         this.boxer.classList.add('cm-slbox-dis')
