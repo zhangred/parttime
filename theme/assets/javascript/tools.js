@@ -144,6 +144,33 @@
                 timeout = setTimeout(later,wait)
             }
         }
+    },
+    jumpstep:function(opts){
+        opts.space = opts.space||200;
+        opts.stand = opts.stand||200;
+        let args,timeout,timestamp,lasttamp;
+
+        let later = function(){
+            let c = timestamp - lastfunc<opts.space-120;
+            timeout = null;
+            console.log(5,c,timestamp - lastfunc,opts.space-120)
+            if(!c){
+                opts.jump&&opts.jump(args[0]);   
+            }
+            setTimeout(()=>{
+                if(!timeout){
+                    opts.stop&&opts.stop(args[0]);
+                }
+            },opts.stand)
+        }
+        return function(){
+            args = arguments;
+            timestamp = new Date().getTime();
+            if(!timeout){
+                lastfunc = timestamp;
+                timeout = setTimeout(later,opts.space)
+            }
+        }
     }
 };
 
@@ -253,6 +280,21 @@ window.cmtools = {
                 that.selected&&that.selected(v); 
             }
         },false);
+        // outer.addEventListener('mousewheel',function(event){
+        //     console.log(event)
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        // })
+        outer.addEventListener('mousewheel',CUES.jumpstep({
+            jump:function(event){
+                console.log(5,event)
+                event.preventDefault();
+                event.stopPropagation();
+            },
+            stop:function(event){
+                console.log(6,event)
+            }
+        }))
     },
     empty:function(){
         this.boxer.classList.add('cm-slbox-dis')
@@ -1778,7 +1820,6 @@ multDataSelect.prototype = {
         for(var i=0;i<3;i++){
             (function(){
                 var tp = selectlist[i];
-                console.log(tp)
                 that[tp.key] = {};
                 that[tp.key].boxer = that.createDom({"tag":"div","classname":"cm-slbox-time"});
                 that.boxer.appendChild(that[tp.key].boxer);
@@ -1800,7 +1841,6 @@ multDataSelect.prototype = {
 
             })()
         }
-        console.log(this)
     },
     bindTarget:function(){
         var that = this;

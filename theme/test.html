@@ -16,29 +16,15 @@
     <style>
         .ul{ padding-top: 10px;}
         .li{ display: block; line-height: 40px; text-align: center; font-size: 14px; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 10px;}
+        .test{ height: 300px; background: #ddd;}
     </style>
 </head>
 <body>
-    
+    <div class="test" id="J_test"></div>
     <script>
-        function test(params) {
-            this.name = 't'
-        };
-        test.prototype = {
-            funca:function(){
-                console.log('a')
-                return this;
-            },
-            funcb:function(){
-                console.log('b')
-            }
-        }
-
-        var a = new test();
-        console.log(a)
-        var b = a.funca();
-        console.log(4,b)
-        a.funca().funcb();
+        $(function(){
+            
+        })
     </script>
 </body>
 </html>
