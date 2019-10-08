@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Chrome } from 'react-color';
 import {Clone} from './_public'
 import { SketchPicker } from 'react-color';
 
