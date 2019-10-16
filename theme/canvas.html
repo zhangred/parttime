@@ -26,10 +26,10 @@
     <script>
         rem = window.rem;
         var steps = [
-                {type:"img",url:"./img/head1.jpg",width:1*rem,height:1*rem,left:0,top:0},
-                {type:"img",url:"./img/head1.jpg",width:1*rem,height:1*rem,left:rem*1.5,top:0,radius:.5*rem},
+                {type:"img",url:"./img/head1.jpg",width:1*rem,left:0,top:0},
+                {type:"img",url:"./img/head1.jpg",width:1*rem,height:1*rem,left:rem*1.5,top:0,radius:.2*rem},
                 {type:"fillrect",width:rem*2,height:rem*.5,fillstyle:"#ffffff",left:.25*rem,top:1.2*rem},
-                {type:"fillrect",width:rem*2,height:rem*.5,fillstyle:"#ffffff",left:.25*rem,top:1.9*rem,radius:.06*rem},
+                {type:"fillrect",width:rem*2,height:rem*.5,fillstyle:"#ffffff",left:.25*rem,top:1.9*rem,radius:.2*rem},
                 {type:"text",text:"正常左对齐字段",align:"left",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:2.6*rem},
                 {type:"text",text:"正常居中对齐字段",align:"center",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:3*rem},
                 {type:"text",text:"正常右对齐字段",align:"right",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:3.4*rem},
@@ -50,22 +50,22 @@
             }
         var mm = new zshcanvas(canvas_data);
 
-        var addr = [
-        {type:"text",text:"后添加正常右对齐字段",align:"right",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:5.8*rem}
-        ]
+        // var addr = [
+        // {type:"text",text:"后添加正常右对齐字段",align:"right",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:5.8*rem}
+        // ]
 
-        setTimeout(function(){
-            mm.addsteps(addr);
-        },2000)
+        // setTimeout(function(){
+        //     mm.addsteps(addr);
+        // },2000)
         
-        var rearr = [
-            {type:"text",text:"重新渲染正常左对齐字段加粗",align:"left",weight:"bold",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:3.8*rem},
-            {type:"text",text:"正常长字段正常长字段正常长字段正常长字段正常长字段正常",align:"left",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:4.2*rem},
-            {type:"text",text:"行高自定义正常长字段正常长字段正常长字段正常长字段正常长字段正常长字段",align:"left",fontsize:.2*rem,lineheight:.24*rem,color:"#ffffff",width:3.15*rem,left:0,top:5*rem}
-        ]
-        setTimeout(function(){
-            mm.resetsteps(rearr);
-        },4000)
+        // var rearr = [
+        //     {type:"text",text:"重新渲染正常左对齐字段加粗",align:"left",weight:"bold",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:3.8*rem},
+        //     {type:"text",text:"正常长字段正常长字段正常长字段正常长字段正常长字段正常",align:"left",fontsize:.2*rem,color:"#ffffff",width:3.15*rem,left:0,top:4.2*rem},
+        //     {type:"text",text:"行高自定义正常长字段正常长字段正常长字段正常长字段正常长字段正常长字段",align:"left",fontsize:.2*rem,lineheight:.24*rem,color:"#ffffff",width:3.15*rem,left:0,top:5*rem}
+        // ]
+        // setTimeout(function(){
+        //     mm.resetsteps(rearr);
+        // },4000)
     </script>
 </body>
 </html>

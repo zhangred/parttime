@@ -1669,16 +1669,33 @@ zshcanvas.prototype = {
         img.setAttribute("crossOrigin",'Anonymous');
         img.src = v.url;
         img.onload = function(res){
+            if(!v.height){
+                v.height = this.height*v.width/this.width
+            }
             if(v.radius){
+                var x = v.left*rate,
+                    y = v.top*rate,
+                    width = v.width*rate,
+                    height = v.height*rate,
+                    radius = v.radius*rate;
+
                 that.canvas.save()
                 that.canvas.beginPath()
-                that.canvas.arc((v.left+v.width/2)*rate, (v.top+v.height/2)*rate, v.width*rate/2, 0, 2*Math.PI)
+                that.canvas.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2);
+                that.canvas.lineTo(width - radius + x, y);
+                that.canvas.arc(width - radius + x, radius + y, radius, Math.PI * 3 / 2, Math.PI * 2);
+                that.canvas.lineTo(width + x, height + y - radius);
+                that.canvas.arc(width - radius + x, height - radius + y, radius, 0, Math.PI * 1 / 2);
+                that.canvas.lineTo(radius + x, height +y);
+                that.canvas.arc(radius + x, height - radius + y, radius, Math.PI * 1 / 2, Math.PI);
+                that.canvas.closePath();
                 that.canvas.clip()
                 that.canvas.drawImage(img,v.left*rate, v.top*rate, v.width*rate, v.height*rate)
                 that.canvas.restore()
             }else{
                that.canvas.drawImage(img,v.left*rate,v.top*rate,v.width*rate,v.height*rate); 
             }
+        
             that.idx++;
             that.setcanvas();
         };
