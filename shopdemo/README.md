@@ -1,4 +1,4 @@
-# shopx
+# shopdemo
 
 ## Project setup
 ```
