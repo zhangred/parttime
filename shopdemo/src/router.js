@@ -11,8 +11,8 @@ Vue.use(Router)
 export default new Router({
   routes: [
     { path: '/', name: 'index', component: Index },
-    { path: '/category', name: 'category', component: resolve => require(['./pages/category/index'], resolve) }
-    // { path: '/header',  name: 'Header', component: Header},
+    { path: '/category', name: 'category', component: resolve => require(['./pages/category/index'], resolve) },
+    { path: '/map',  name: 'map', component: resolve=> require(['./pages/single/map'], resolve)}
     // { path: '/admin',  name: 'Admin', component: Admin}
   ]
 })
