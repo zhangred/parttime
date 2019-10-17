@@ -3,16 +3,15 @@ import Router from 'vue-router'
  
 //组件模块
 import Index from './pages/index/index'
-// import Category from './pages/category/index'
-// import Admin from './components/admin/admin'
  
 Vue.use(Router)
  
 export default new Router({
   routes: [
     { path: '/', name: 'index', component: Index },
+    { path: '/question', name: 'question', component: resolve => require(['./pages/question/index'], resolve) },
     { path: '/category', name: 'category', component: resolve => require(['./pages/category/index'], resolve) },
-    { path: '/map',  name: 'map', component: resolve=> require(['./pages/single/map'], resolve)}
-    // { path: '/admin',  name: 'Admin', component: Admin}
+    { path: '/map',  name: 'map', component: resolve=> require(['./pages/single/map'], resolve)},
+    { path: '/lottery',  name: 'lottery', component: resolve=> require(['./pages/lottery/index'], resolve)}
   ]
 })

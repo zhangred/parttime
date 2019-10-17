@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="themeClass">
     <router-view></router-view>
   </div>
 </template>
@@ -9,16 +9,18 @@ export default {
     name: 'app',
     data(){
         return {
-            msg:'5555555555'
+            themeClass:''
         }
     },
     created() {
-        this.Ob.$on('changebg',(res)=>{
-            console.log(55,res)
+        this.Ob.$on('changeTheme',(res)=>{
+            this.themeClass = res;
         })
         this.Ob.$on('changetitle',(res)=>{
           document.title = res;
         })
+
+       this.themeClass = localStorage.getItem('themeClass')||'';
     },
 }
 </script>

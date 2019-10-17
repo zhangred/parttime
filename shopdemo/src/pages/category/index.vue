@@ -14,7 +14,7 @@ export default {
     msg: String
   },
   created(){
-      console.log(5555)
+      
   },
   methods:{
       test(){
