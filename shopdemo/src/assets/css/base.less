@@ -27,3 +27,17 @@ html,body{ height: 100%; }
 input::-webkit-input-placeholder { color: #ccc;}
 textarea::-webkit-input-placeholder { color: #ccc;}
 
+.cm-pop{ position: fixed; left: 0; top: 0; height: 0; overflow: hidden; width: 100%; background: rgba(0,0,0,0.5); z-index: 10; opacity: 0;}
+.cm-popz20{ z-index: 20;}
+.cm-pop-active{ opacity: 1; height: 100%;}
+.cm-pop .cm-pop-bg{position: absolute; left: 0; top: 0; height: 100%; width: 100%;}
+.cm-pop-cont{opacity: 0; transform:translateZ(0) translateY(100%); -webkit-transform:translateZ(0) translateY(100%); transition:all .3s; -webkit-transition:all .3s; background: #fff; border-radius: 10px;}
+.cm-pop-mid-cont{ position: absolute; left: 10%; top: 50%; margin-top: -30px; width: 80%; transform:translateZ(0) translateY(-50%) scale(.8,.8); -webkit-transform:translateZ(0) translateY(-50%) scale(.8,.8); }
+.cm-pop-active .cm-pop-mid-cont{opacity: 1;transform:translateZ(0) translateY(-50%) scale(1,1); -webkit-transform:translateZ(0) translateY(-50%) scale(1,1);}
+.cm-pop-bot-cont{position: absolute; left: 0; bottom: 0; width: 100%; border-radius: 0; transform:translateZ(0) translateY(101%); -webkit-transform:translateZ(0) translateY(101%);}
+.cm-pop-active .cm-pop-bot-cont{opacity: 1;transform:translateZ(0) translateY(0); -webkit-transform:translateZ(0) translateY(0);}
+.cm-pop-top-cont{position: absolute; left: 0; top: 0; border-radius: 0; width: 100%; transform:translateZ(0) translateY(-101%); -webkit-transform:translateZ(0) translateY(-101%);}
+.cm-pop-active .cm-pop-top-cont{opacity: 1;transform:translateZ(0) translateY(0); -webkit-transform:translateZ(0) translateY(0);}
+.cm-pop-right-cont{position: absolute; right: 0; top: 0; border-radius: 0; height: 100%; transform:translateZ(0) translateX(101%); -webkit-transform:translateZ(0) translateX(101%);}
+.cm-pop-active .cm-pop-right-cont{opacity: 1;transform:translateZ(0) translateX(0); -webkit-transform:translateZ(0) translateX(0);}
+.cm-pop-close{position: absolute; right: .1rem; top: -.44rem; width: .34rem; height: .34rem;;}

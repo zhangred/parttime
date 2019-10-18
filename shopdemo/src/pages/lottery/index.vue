@@ -32,8 +32,15 @@
         </div>
 
         <!-- 未中奖 -->
-        <van-popup v-model="popshow" closeable position="bottom" :style="{ height: '68%' }">
-        </van-popup>
+        <div :class="{'cm-pop':true,'cm-pop-active':pop_fail_state}">
+            <p class="cm-pop-bg" @click="pop_fail_state=false"></p>
+            <div class="cm-pop-cont cm-pop-mid-cont pop-noprize">
+                <img class="cm-pop-close" src="~@/assets/images/close.png" />
+                <img class="face-cry" src="~@/assets/images/face.png" />
+                <p class="tip">很遗憾，您未中奖！</p>
+                <p class="btn" @click="pop_fail_state=false">再抽一次</p>
+            </div>
+        </div>
     </div>
 </template>
 <style lang="less"  scoped>
@@ -54,30 +61,33 @@
     .bul{ padding:.14rem .3rem 0;}
     .times{ padding-top: .2rem; text-align: center; font-size: .18rem; color: #fff; line-height: .3rem;}
     .tnm{ padding: 0 .1rem; font-size: .24rem; color: #fffd01;}
-    .xxx{}
-    .xxx{}
-    .xxx{}
-    .xxx{}
-    .xxx{}
-    .xxx{}
+    .pop-noprize{ text-align: center; padding: .3rem 0 .3rem;}
+    .pop-noprize .face-cry{ display: block; width: .82rem; margin: 0 auto;}
+    .pop-noprize .tip{ padding: .1rem 0 .2rem; }
+    .pop-noprize .btn{ width: .8rem; margin: 0 auto; border:1px solid #ff7921; border-radius: .04rem; line-height: .3rem; color: #ff7921; text-align: center;}
+    .pop-noprize .xxxx{}
+    .pop-noprize .xxxx{}
+    .pop-noprize .xxxx{}
+    .pop-noprize .xxxx{}
+    .cm-popup .xxxx{}
+    .cm-popup .xxxx{}
     .xxx{}
 </style>
 <script>
 var locked = false;
 
-import { Popup,Toast } from 'vant';
+import {Toast } from 'vant';
 export default {
     components:{
-        [Popup.name]:Popup,
         [Toast.name]:Toast
     },
     data(){
         return {
             wlist:[],
             times:3,
-            popshow:false,
             prizes:{},
-            deg:0
+            deg:0,
+            pop_fail_state:false
         }
     },
     created(){
@@ -140,6 +150,7 @@ export default {
                         }else{
 
                         }
+                        this.pop_fail_state = true;
 
                     },4000);
 

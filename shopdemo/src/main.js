@@ -21,6 +21,15 @@ var axios_instance = axios.create({
 })
 Vue.use(VueAxios, axios_instance);
 
+router.beforeEach((to, from, next) => {
+    document.body.scrollTop = 0
+    // firefox
+    document.documentElement.scrollTop = 0
+    // safari
+    window.pageYOffset = 0
+    next()
+})
+
 Vue.config.productionTip = false
 Vue.prototype.Ob = new Vue();
 
