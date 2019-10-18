@@ -117,7 +117,7 @@ export default {
         {id:11,dev:true,name:'我的',ico:'mine',path:'/mine'},
         {id:12,dev:true,name:'领券中心',ico:'coupon-center',path:'/coupanCenter'},
         {id:13,dev:true,name:'分销中心',ico:'sell-center',path:'/sellCenter'},
-        {id:14,dev:true,name:'抽奖',ico:'lottery',path:'/lottery'},
+        {id:14,name:'抽奖',ico:'lottery',path:'/lottery'},
         {id:15,dev:true,name:'签到',ico:'signin',path:'/signin'},
         {id:16,name:'常见问题',ico:'question',path:'/question'},
     ];

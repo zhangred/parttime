@@ -7,5 +7,6 @@ module.exports = {
         path.resolve(__dirname, './src/assets/css/base.less'),
       ]
     }
-  }
+  },
+  runtimeCompiler: true
 }

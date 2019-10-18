@@ -4,8 +4,10 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Qs from 'qs'
+import {Toast,Image } from 'vant'
 
 import './filters/filters'
+import './components/BaseComponents'
 
 import './assets/css/base.css'
 import './assets/js/rem'
@@ -19,7 +21,9 @@ var axios_instance = axios.create({
         'Content-Type': 'application/x-www-form-urlencoded'
     }    
 })
-Vue.use(VueAxios, axios_instance);
+Vue.use(VueAxios, axios_instance,Toast);
+Vue.use(Image)
+
 
 router.beforeEach((to, from, next) => {
     document.body.scrollTop = 0
@@ -32,6 +36,9 @@ router.beforeEach((to, from, next) => {
 
 Vue.config.productionTip = false
 Vue.prototype.Ob = new Vue();
+
+Vue.prototype.themes = {};
+Vue.prototype.themes.color = "#ff7921";
 
 new Vue({
     router,

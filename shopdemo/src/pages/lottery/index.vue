@@ -32,20 +32,34 @@
         </div>
 
         <!-- 未中奖 -->
-        <div :class="{'cm-pop':true,'cm-pop-active':pop_fail_state}">
-            <p class="cm-pop-bg" @click="pop_fail_state=false"></p>
-            <div class="cm-pop-cont cm-pop-mid-cont pop-noprize">
-                <img class="cm-pop-close" src="~@/assets/images/close.png" />
+        <div :class="{'cm-pop':true,'cm-pop-active':pop_state.show}">
+            <p class="cm-pop-bg" @click="pop_state.show=false"></p>
+            <div class="cm-pop-cont cm-pop-mid-cont pop-noprize" v-show="pop_state.type==1">
+                <img class="cm-pop-close"  @click="pop_state.show=false" src="~@/assets/images/close.png" />
                 <img class="face-cry" src="~@/assets/images/face.png" />
                 <p class="tip">很遗憾，您未中奖！</p>
-                <p class="btn" @click="pop_fail_state=false">再抽一次</p>
+                <p class="btn" @click="pop_state.show=false">再抽一次</p>
+            </div>
+            <div class="cm-pop-cont cm-pop-mid-cont pop-getprize" v-show="pop_state.type==2">
+                <img class="cm-pop-close"  @click="pop_state.show=false" src="~@/assets/images/close.png" />
+                <img class="ptil" src="~@/assets/images/lottery_img01.png" />
+                <p class="pname">{{pop_state.data.name}}</p>
+                <div class="ptp alic"><span class="ptr"><span class="ptp-tx">想要获得更多奖品?</span><span class="ptp-bg"></span></span></div>
+                <div class="pul">
+                    <p class="pli">1.将活动分享给好友，邀请他一起来抽奖；</p>
+                    <p class="pli">2.您获得1次抽奖机会。</p>
+                </div>
+                <div class="pbtns">
+                    <p class="pbtn">分享微信朋友</p>
+                    <p class="pbtn pbtna">分享朋友圈</p>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <style lang="less"  scoped>
     .pan{ height: 6rem; padding-top: 1.54rem; background: url(~@/assets/images/lettory_bg.jpg) no-repeat; background-size: 100% 100%;}
-    .zhuan{ position: relative; height: 3.39rem; width: 3.39rem; margin: 0 auto;}
+    .zhuan{ position: relative; height: 3.39rem; width: 3.39rem; margin: 0 auto; overflow: hidden;}
     .zhuan{ display: block; height: 3.39rem; width: 3.39rem; transition: all 4s; -webkit-transition: all 4s cubic-bezier(0.42,0,0,1); transform: rotate(0)}
     .po{ position: absolute; left: 1.065rem; top: .775rem; width: 1.26rem; height: 1.55rem; }
     .winer{ padding: .2rem 0; background: #fff;}
@@ -65,13 +79,16 @@
     .pop-noprize .face-cry{ display: block; width: .82rem; margin: 0 auto;}
     .pop-noprize .tip{ padding: .1rem 0 .2rem; }
     .pop-noprize .btn{ width: .8rem; margin: 0 auto; border:1px solid #ff7921; border-radius: .04rem; line-height: .3rem; color: #ff7921; text-align: center;}
-    .pop-noprize .xxxx{}
-    .pop-noprize .xxxx{}
-    .pop-noprize .xxxx{}
-    .pop-noprize .xxxx{}
-    .cm-popup .xxxx{}
-    .cm-popup .xxxx{}
-    .xxx{}
+    .pop-getprize{ padding: .32rem 0 .3rem;}
+    .pop-getprize .ptil{ display: block; width: 2.3rem; margin: 0 auto;}
+    .pop-getprize .pname{ padding: .4rem 0; text-align: center; font-size: .32rem; line-height: .48rem; color:#ff7921; }
+    .pop-getprize .ptr{ padding: 0 .08rem;}
+    .pop-getprize .ptp-tx{ position: relative; z-index: 2; font-size: .15rem;}
+    .pop-getprize .ptp-bg{position: absolute; z-index: 1; left: 0; bottom: 0; right: 0; height: .07rem; background: #fee1bf;}
+    .pop-getprize .pul{ font-size: .13rem; padding: .1rem .2rem .2rem;}
+    .pop-getprize .pbtns{ text-align: center;}
+    .pop-getprize .pbtn{ display: inline-block; width: 1rem; margin: 0 .1rem; text-align: center; line-height: .3rem; border-radius: .04rem; border: 1px solid #ff7921; color: #ff7921;}
+    .pop-getprize .pbtna{ color: #fff; background: #ff7921;}
 </style>
 <script>
 var locked = false;
@@ -87,7 +104,7 @@ export default {
             times:3,
             prizes:{},
             deg:0,
-            pop_fail_state:false
+            pop_state:{show:false,type:0,data:{}}
         }
     },
     created(){
@@ -134,28 +151,23 @@ export default {
             }).then((res) => {
                 let rs = res.data;
                 if(rs.code==0){
-                   
+                   this.times --;
                    //随机获奖
                     var id = Math.floor(Math.random()*3);
-
-                    console.log(id,)
                     let prize = this.prizes[id];
                     this.deg = (Math.ceil(this.deg/360)*360) + 2160 - (prize.start+50*Math.random())
                     setTimeout(()=>{
                         locked = false;
-                        this.times --;
-                        
+
                         if(id==0){
-
+                            this.pop_state.type = 1;
                         }else{
-
+                            this.pop_state.type = 2;
+                            this.pop_state.data = prize;
                         }
-                        this.pop_fail_state = true;
-
+                        this.pop_state.show = true;
                     },4000);
-
                 }
-                
             }).catch(()=>{
                 locked = false;
             });
