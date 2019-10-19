@@ -40,6 +40,8 @@ Vue.prototype.Ob = new Vue();
 Vue.prototype.themes = {};
 Vue.prototype.themes.color = "#ff7921";
 
+console.log(5,process.env);
+
 new Vue({
     router,
     render: h => h(App),

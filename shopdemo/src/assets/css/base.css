@@ -53,8 +53,8 @@ textarea {
   font-family: Helvetica, "Helvetica Neue", STHeiTi, sans-serif;
 }
 body {
-  font-size: 14px;
-  line-height: 24px;
+  font-size: .14rem;
+  line-height: .24rem;
   color: #333;
   background: #f6f6f6;
 }
@@ -225,6 +225,14 @@ textarea::-webkit-input-placeholder {
   width: .34rem;
   height: .34rem;
 }
+.cm-pop-closea {
+  position: absolute;
+  left: 50%;
+  bottom: -0.84rem;
+  width: .46rem;
+  height: .46rem;
+  margin-left: -0.23rem;
+}
 .cm-botnav {
   height: .5rem;
 }
@@ -351,4 +359,112 @@ textarea::-webkit-input-placeholder {
 }
 .cm-prolist .tl-imgo {
   position: relative;
+}
+.cm-prolist.lthree {
+  padding: 0 0 0 .15rem;
+}
+.cm-prolist.lthree .tl-item {
+  width: 1.08rem;
+  margin-right: .1rem;
+}
+.cm-prolist.lthree .tl-item:nth-child(2n) {
+  float: left;
+}
+.cm-prolist.lthree .tl-item:nth-child(3n) {
+  margin-right: 0;
+}
+.cm-prolist.lthree .tl-imgo {
+  border-radius: .05rem;
+  overflow: hidden;
+}
+.cm-prolist.lthree .tl-img {
+  display: block;
+  height: 1.08rem;
+  width: 1.08rem;
+}
+.cm-prolist.lthree .tl-info {
+  padding: .05rem 0 0;
+  border: none;
+}
+.cm-vprolist {
+  padding: 0 .1rem;
+  overflow: hidden;
+}
+.cm-vprolist .pl-item {
+  display: block;
+  height: 1.5rem;
+  padding: .1rem .07rem 0 .07rem;
+  background: #fff;
+  margin-bottom: 1px;
+  border-radius: .05rem;
+}
+.cm-vprolist .pl-imgo {
+  float: left;
+  position: relative;
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: .05rem;
+  overflow: hidden;
+}
+.cm-vprolist .pl-img {
+  display: block;
+  height: 1.3rem;
+  width: 1.3rem;
+}
+.cm-vprolist .pl-info {
+  position: relative;
+  float: right;
+  width: 2rem;
+}
+.cm-vprolist .pl-rtop {
+  height: 1.08rem;
+}
+.cm-vprolist .pl-title {
+  font-size: .16rem;
+  line-height: .20rem;
+  max-height: .4rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.cm-vprolist .pl-rate {
+  width: .74rem;
+  margin-top: .1rem;
+  line-height: .16rem;
+  font-size: .1rem;
+  color: #ff6521;
+  border: 1px solid #ff6521;
+  border-radius: .09rem;
+  text-align: center;
+}
+.cm-vprolist .pl-price {
+  font-size: .16rem;
+  color: #ff6521;
+}
+.cm-vprolist .pl-pun {
+  font-size: .12rem;
+}
+.cm-vprolist .pl-oldpri {
+  margin-left: .06rem;
+  font-size: .12rem;
+  color: #999;
+  text-decoration: line-through;
+}
+.cm-vprolist .pl-btn {
+  position: absolute;
+  right: 0;
+  bottom: .03rem;
+  z-index: 1;
+  width: .58rem;
+  background: #ff6521;
+  text-align: center;
+  line-height: .22rem;
+  font-size: .11rem;
+  color: #fff;
+  border-radius: .12rem;
+}
+.cm-vprolist .pl-btna {
+  background: #ffb821;
 }

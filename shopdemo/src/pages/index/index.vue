@@ -36,10 +36,12 @@
             <van-swipe class="tuangoods" :autoplay="4000" :show-indicators="false" @change="changetuan">
                 <van-swipe-item v-for="index in tuan.loop" v-bind:key="index">
                     <div class="t-list">
-                        <router-link to="/assemble/detail" class="t-item" v-for="sub in 3" v-bind:key="sub" v-if="tuan.list[index*3-4+sub]">
-                            <van-image fit="cover" class="t-img" :src="tuan.list[index*3-4+sub].img" />
-                            <p class="t-info"><span class="t-peo">{{tuan.list[index*3-4+sub].people}}人拼团</span><span class="t-un">¥</span><span class="t-pri">{{tuan.list[index*3-4+sub].price}}</span></p>
-                            <p class="t-total">已有{{tuan.list[index*3-4+sub].total}}人拼</p>
+                        <router-link to="/assemble/detail" class="t-item" v-for="sub in 3" v-bind:key="sub">
+                            <div v-if="tuan.list[index*3-4+sub]">
+                                <van-image fit="cover" class="t-img" :src="tuan.list[index*3-4+sub].img" />
+                                <p class="t-info"><span class="t-peo">{{tuan.list[index*3-4+sub].people}}人拼团</span><span class="t-un">¥</span><span class="t-pri">{{tuan.list[index*3-4+sub].price}}</span></p>
+                                <p class="t-total">已有{{tuan.list[index*3-4+sub].total}}人拼</p>
+                            </div>
                         </router-link>
                     </div>
                 </van-swipe-item>
@@ -104,6 +106,28 @@
         <div class="bottom">到底啦~</div>
 
         <botnav active="home" cartnumber="5"></botnav>
+
+        <!-- 弹层 -->
+        <div :class="{'cm-pop':true,'cm-pop-active':pop_new.show}">
+            <p class="cm-pop-bg" @click="pop_new.show=false"></p>
+            <div class="cm-pop-cont cm-pop-mid-cont pop-redpack">
+                <img class="cm-pop-closea"  @click="pop_new.show=false" src="~@/assets/images/close02.png" />
+                <p class="til">送你88元新人红包</p>
+                <div class="rlist">
+                    <div class="item" v-for="item in pop_new.data" v-bind:key="item.id">
+                        <div class="item-l">
+                            <p class="item-lt"><span class="item-ltn">¥</span>{{item.money}}</p>
+                            <p class="item-lru">{{item.rule}}</p>
+                        </div>
+                        <div class="item-r">
+                            <p class="item-rt">{{item.title}}</p>
+                            <p class="item-rb">{{item.time_start|timeFormat('y-m-d')}}&ensp;-&ensp;{{item.time_end|timeFormat('y-m-d')}}</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="btn" @click="pop_new.show=false">立即使用</p>
+            </div>
+        </div>
   </div>
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -150,6 +174,17 @@
      .seckill{ margin-bottom: .1rem;}
     .bottom{ text-align: center; color: #999; font-size: .12rem; color: #999; }
     .likem{ background: #fff; }
+    .pop-redpack{
+        background: #fc7421;
+        .item{ width: 2.78rem; height: .75rem; margin: 0 auto; padding: .06rem .03rem 0 .1rem; background: url(~@/assets/images/cpbg.png); background-size: 100% 100%;}
+        .item-l{float: left; width: .8rem; padding-top: .08rem;  font-size: .12rem; color: #777; text-align: center; line-height: .18rem;}
+        .item-lt{ color: #ff7921; font-size: .2rem; line-height: .28rem;}
+        .item-ltn{ font-size: .15rem; line-height: .24rem;}
+        .item-r{ float: right; width: 1.72rem; font-size: .12rem; color: #999; line-height: .18rem;}
+        .item-rt{ padding:.08rem 0 0; color: #222; font-size: .16rem; line-height: .28rem;}
+        .btn{ width: 2rem; margin: .14rem auto .24rem; background: #fff; text-align: center; line-height: .36rem; font-size: .15rem; color: #ff7021; border-radius: .18rem;}
+        .til{ padding: .16rem 0 .1rem; line-height: .48rem; font-size: .24rem; text-align: center; color: #fff; font-weight: bold;}
+    }
 </style>
 <style>
     .tuan .ci-tor-cur{ width: 14px;}
@@ -170,74 +205,41 @@ export default {
             gbcolor:'#ff7921',
             tuan:{loop:0,list:[],current:0},
             goodlist:[],
-            seckill:[]
+            seckill:[],
+            pop_new:{show:true,list:[4,5,6]}
         }
     },
     created(){
         this.Ob.$emit('changetitle','首页');
 
-        this.getBanner();
-        this.getCoupon();
-        this.getTuan();
-        this.getGoodlist();
-        this.getSeckill()
+        this.getPageData();
+        this.getNewred();
     },
     methods:{
-        //获取banner
-        getBanner(){
+        //获取首页数据
+        getPageData(){
             this.$http.post("http://card.biaotu.net/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
                 if(rs.code==0){
                     //虚拟数据
-                    let list = [
+                    let banner = [
                         'http://card.biaotu.net/banner01.jpg',
                         'http://card.biaotu.net/banner02.jpg',
                         'http://card.biaotu.net/banner03.jpg'
                     ]
-                    this.banner = list;
-                }
-            });
-        },
-        //获取优惠券
-        getCoupon(){
-            this.$http.post("http://card.biaotu.net/callback.json", {
-                params: 'params'
-            }).then((res) => {
-                let rs = res.data;
-                if(rs.code==0){
-                    //虚拟数据
-                    let list = [
+                    this.banner = banner;
+                    
+                    //获取优惠券
+                    let couponlist = [
                         {id:1,money:50,rule:'满199可用',receive:false},
                         {id:2,money:30,rule:'满199可用',receive:true}
                     ]
-                    this.couponlist = list;
-                }
-            });
-        },
-        //领取优惠券
-        receivecp(item){
-            if(item.receive){ return;}
-            this.$http.post("http://card.biaotu.net/callback.json", {
-                params: 'params'
-            }).then((res) => {
-                let rs = res.data;
-                if(rs.code==0){
-                    item.receive = true;
-                    this.$toast.success({message:'领取成功',duration:1000});
-                }
-            });
-        },
-        //获取拼团商品
-        getTuan(){
-            this.$http.post("http://card.biaotu.net/callback.json", {
-                params: 'params'
-            }).then((res) => {
-                let rs = res.data;
-                if(rs.code==0){
-                    //虚拟数据
-                    let list = [
+                    this.couponlist = couponlist;
+                    
+                    //获取拼团商品
+                    let tuanlist = [
                         {id:1,img:'http://card.biaotu.net/banner01.jpg',people:2,price:9.99,total:1280},
                         {id:2,img:'http://card.biaotu.net/banner02.jpg',people:4,price:9.99,total:180},
                         {id:3,img:'http://card.biaotu.net/banner03.jpg',people:2,price:9.99,total:123},
@@ -248,16 +250,32 @@ export default {
                         {id:8,img:'http://card.biaotu.net/banner03.jpg',people:1,price:9.99,total:1280},
                         {id:9,img:'http://card.biaotu.net/banner01.jpg',people:2,price:9.99,total:1280}
                     ]
-                    this.tuan.loop = Math.ceil(list.length/3);
-                    this.tuan.list = list;
+                    this.tuan.loop = Math.ceil(tuanlist.length/3);
+                    this.tuan.list = tuanlist;
+
+                    //获取商品列表
+                    let goodlist = [
+                        {id:1,img:'http://card.biaotu.net/banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:2,img:'http://card.biaotu.net/banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:3,img:'http://card.biaotu.net/banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:4,img:'http://card.biaotu.net/banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false}
+                    ]
+                    this.goodlist = goodlist;
+
+                    //秒杀商品列表
+                    let seckill = [
+                        {id:1,img:'http://card.biaotu.net/banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers名称花时间In the mood foe flowers',price:19.99,oldprice:29.99,time_end:new Date().getTime()+12*3600000,type:1,rate:100},
+                        {id:2,img:'http://card.biaotu.net/banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:59.99,time_end:new Date().getTime()+11*3600000,type:2,rate:90},
+                        {id:3,img:'http://card.biaotu.net/banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:79.99,time_end:new Date().getTime()+5*3600000,type:1,rate:95}
+                    ]
+                    this.seckill = seckill;
                 }
             });
         },
         changetuan(index){
             this.tuan.current = index;
         },
-        //获取商品列表
-        getGoodlist(){
+        getNewred(){
             this.$http.post("http://card.biaotu.net/callback.json", {
                 params: 'params'
             }).then((res) => {
@@ -265,29 +283,12 @@ export default {
                 if(rs.code==0){
                     //虚拟数据
                     let list = [
-                        {id:1,img:'http://card.biaotu.net/banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:2,img:'http://card.biaotu.net/banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:3,img:'http://card.biaotu.net/banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:4,img:'http://card.biaotu.net/banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false}
+                        {id:1,phone:'158****3345',money:50,rule:'满199可用',title:'满199减50优惠券',time_start:1564848000000,time_end:1571370725296},
+                        {id:2,phone:'158****3345',money:30,rule:'满199可用',title:'满199减100优惠券',time_start:1564848000000,time_end:1571070725296},
+                        {id:3,phone:'158****3345',money:8,rule:'满199可用',title:'满减优惠券',time_start:1564848000000,time_end:1570770725296}
                     ]
-                    this.goodlist = list;
-                }
-            });
-        },
-        //秒杀商品列表
-        getSeckill(){
-            this.$http.post("http://card.biaotu.net/callback.json", {
-                params: 'params'
-            }).then((res) => {
-                let rs = res.data;
-                if(rs.code==0){
-                    //虚拟数据
-                    let list = [
-                        {id:1,img:'http://card.biaotu.net/banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers名称花时间In the mood foe flowers',price:19.99,oldprice:29.99,time_end:new Date().getTime()+12*3600000,type:1,rate:100},
-                        {id:2,img:'http://card.biaotu.net/banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:59.99,time_end:new Date().getTime()+11*3600000,type:2,rate:90},
-                        {id:3,img:'http://card.biaotu.net/banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:79.99,time_end:new Date().getTime()+5*3600000,type:1,rate:95}
-                    ]
-                    this.seckill = list;
+                    this.pop_new.show = true;
+                    this.pop_new.data = list;
                 }
             });
         }

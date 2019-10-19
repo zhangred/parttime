@@ -35,7 +35,6 @@ Vue.component('botnav',{
 
 //指示器
 Vue.component('indicator',{
-    props:['length','current','color','colorhover','bottom'],
     props:{
         length: {
             type: Number,
