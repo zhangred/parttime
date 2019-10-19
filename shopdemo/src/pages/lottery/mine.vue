@@ -34,7 +34,7 @@ export default {
     },
     methods:{
         getlist(item){
-            this.$http.post("http://card.biaotu.net/callback.json", {
+            this.$http.get("/api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;

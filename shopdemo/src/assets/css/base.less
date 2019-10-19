@@ -7,7 +7,6 @@ ul{ list-style: none; }
 dl,ul,p{ -webkit-margin-before:0em; -webkit-margin-after:0em;}
 input,select,textarea{-webkit-appearance: none; font-size: 14px; outline: none; color: #333; font-family:Helvetica, "Helvetica Neue",  STHeiTi, sans-serif;}
 body{ font-size: .14rem; line-height: .24rem; color: #333; background: #f6f6f6; }
-html,body{ height: 100%; }
 .alic{ text-align: center;}
 .alir{ text-align: right;}
 .ovh{ overflow: hidden;}
@@ -91,6 +90,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
     .pl-item{ display: block; height: 1.5rem; padding: .1rem .07rem 0 .07rem; background: #fff;margin-bottom: 1px;border-radius: .05rem; }
     .pl-imgo{ float: left; position: relative; height: 1.3rem; width: 1.3rem; border-radius: .05rem; overflow: hidden;}
     .pl-img{ display: block; height: 1.3rem; width: 1.3rem; }
+    .pl-btime{ position: absolute; left: 0; bottom: 0; right: 0; padding: 0 .05rem; background: #ff6521; color: #fff;}
     .pl-info{ position: relative; float: right; width: 2rem;}
     .pl-rtop{ height: 1.08rem;}
     .pl-title{ font-size: .16rem; line-height: .20rem; max-height: .4rem; display: -webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; text-overflow:ellipsis; overflow:hidden;}
@@ -100,4 +100,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
     .pl-oldpri{ margin-left: .06rem; font-size: .12rem; color: #999; text-decoration: line-through;}
     .pl-btn{ position: absolute; right: 0; bottom: .03rem; z-index: 1; width: .58rem; background: #ff6521; text-align: center; line-height: .22rem; font-size: .11rem; color: #fff; border-radius: .12rem;}
     .pl-btna{ background: #ffb821;}
+    .pl-btnb{ background: #c5c5c5;}
+    .pl-cover{ position: absolute; z-index: 2; left: 0; top: 0; bottom: 0; right: 0; background: rgba(255,255,255,.7);}
+    .pl-cover-tx{position: absolute; z-index: 2; left: .15rem; top: .15rem;  height: 1rem; width: 1rem; background: rgba(0,0,0,.4); border-radius: 50%; line-height: 1rem; font-size: .24rem; text-align: center; color: #fff; }
 }

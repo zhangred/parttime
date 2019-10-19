@@ -12,6 +12,9 @@ import './components/BaseComponents'
 import './assets/css/base.css'
 import './assets/js/rem'
 
+import tools from './assets/js/tools'
+
+
 var axios_instance = axios.create({
     transformRequest: [function (data) {
         data = Qs.stringify(data);
@@ -39,6 +42,7 @@ Vue.prototype.Ob = new Vue();
 
 Vue.prototype.themes = {};
 Vue.prototype.themes.color = "#ff7921";
+Vue.prototype.$tools = tools;
 
 console.log(5,process.env);
 

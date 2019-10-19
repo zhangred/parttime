@@ -108,7 +108,7 @@ export default {
         }
     },
     created(){
-        this.Ob.$emit('changetitle','常见问题');
+        this.Ob.$emit('changetitle','抽奖');
 
         this.getwlist();
 
@@ -120,7 +120,7 @@ export default {
     },
     methods:{
         getwlist(){
-            this.$http.post("http://card.biaotu.net/callback.json", {
+            this.$http.get("/api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -146,7 +146,7 @@ export default {
             }
             locked = true;
 
-            this.$http.post("http://card.biaotu.net/callback.json", {
+            this.$http.get("/api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;

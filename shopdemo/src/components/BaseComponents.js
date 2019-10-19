@@ -61,3 +61,55 @@ Vue.component('indicator',{
                     <span :style="'background:'+(item-1==current?colorhover:color)" class="ci-tor" :class="{'ci-tor':true,'ci-tor-cur':item-1==current}" v-for="item in length" v-bind:key="item"></span>
                 </div>`
 })
+
+//倒计时
+Vue.component('backtime',{
+    props:{
+        lasttime:{
+            type: Number,
+            default:0
+        },
+        classname:{
+            type:String,
+            default:''
+        },
+        format:{
+            type:String,
+            default:'h:m:s'
+        },
+        tag:{
+            type:Object,
+            default:{}
+        }
+    },
+    data(){
+        return {
+            str:'',
+            format_in:this.format,
+            intime_in:parseInt(this.lasttime)||0
+        }
+    },
+    template:`<span :class="[classname]">{{str}}</span>`,
+    created(){
+        let inter;
+        inter = setInterval(()=>{
+            this.intime_in --;
+            var intime = this.intime_in,
+                format = this.format_in;
+            format = format.replace('s',this.fullFormat(intime%60))
+            format = format.replace('m',this.fullFormat(Math.floor((intime/60)%60)))
+            format = format.replace('h',this.fullFormat(Math.floor(intime/3600)))
+            this.str = format;
+            if(this.intime_in<=0){
+                clearInterval(inter);
+                this.$emit('timeend',this.tag)
+            }
+        },1000)
+    },
+    methods:{
+        fullFormat(v){
+            v = Math.round(v);
+            return v<10?'0'+v:v;
+        }
+    }
+})

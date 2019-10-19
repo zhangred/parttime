@@ -1,5 +1,16 @@
 <template>
   <div class="pages">
+        <div class="tcate">
+            <router-link :to="cate.list[index].url" :class="{'item':true,'active':index==0}" v-for="index in [0,1,2,3]" v-bind:key="index">{{cate.list[index].name}}</router-link>
+            <p class="ard" @click="cate.show=true"></p>
+            <div class="plist" v-show="cate.show">
+                <p class="ctil" @click="cate.show=false">全部分类</p>
+                <p class="ard ard-o" @click="cate.show=false"></p>
+                <div class="pitems">
+                    <router-link :to="item.url" :class="{'sitem':true,'active':index==0}" v-for="(item,index) in cate.list" v-bind:key="item.id">{{item.name}}</router-link>
+                </div>
+            </div>
+        </div>
         <van-notice-bar class="text" text="满199减20,满599减50,部分商品满188减100,新老客户赶紧的过来看啊" color="#f94122" background="#fdf1e9" left-icon="volume-o"/>
         <div class="search"><input type="text" class="sctrol" placeholder="搜索您感兴趣的内容" /></div>
         <van-swipe class="banner" :autoplay="3000" indicator-color="white">
@@ -12,11 +23,6 @@
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item03.png" class="cate-ico" /><p class="cate-tx">服饰美妆</p></router-link>
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item04.png" class="cate-ico" /><p class="cate-tx">数码电器</p></router-link>
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item05.png" class="cate-ico" /><p class="cate-tx">时令蔬菜</p></router-link>
-            <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item06.png" class="cate-ico" /><p class="cate-tx">新鲜水果</p></router-link>
-            <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item07.png" class="cate-ico" /><p class="cate-tx">水产冻品</p></router-link>
-            <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item08.png" class="cate-ico" /><p class="cate-tx">肉禽蛋类</p></router-link>
-            <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item09.png" class="cate-ico" /><p class="cate-tx">粗粮调味</p></router-link>
-            <router-link to="/category" class="cate-item"><img src="~@/assets/images/cate_item10.png" class="cate-ico" /><p class="cate-tx">分类</p></router-link>
         </div>
 
         <!-- 优惠券 -->
@@ -134,6 +140,19 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
+    .pages{ padding-top: .4rem;}
+    .tcate{ 
+        position: fixed; top: 0; left: 0; width: 100%; z-index: 4; padding-left: .15rem; line-height: .4rem; background: #fff;
+        .item{ margin-right: .2rem;}
+        .item.active{ color: #ff7021;}
+        .ard{ position: absolute; right: 0; top: 0; height: .4rem; width: .4rem; background: url(~@/assets/images/arr_d01.png) no-repeat center center; background-size: .12rem .07rem;}
+        .ard-o{ transform: rotateX(180deg)}
+        .plist{ position: absolute; left: 0; top: 0; width: 100%; background: #fff; display: block; box-shadow: 0 0 8px 0 rgba(0,0,0,.1)}
+        .ctil{ padding-left: .15rem; position: relative;}
+        .pitems{ background: #fff; overflow: hidden; padding: .1rem 0 .1rem .15rem;}
+        .sitem{ display: block; float: left; width: .788rem; margin: 0 .1rem .1rem 0; line-height: .3rem; border: 1px solid #f5f5f5; font-size: .12rem; text-align: center;}
+        .sitem.active{ color: #ff7021; border-color: #ff7021;}
+    }
     .text{ height: auto; line-height: 24px;}
     .search{ padding-left: .51rem; background: url(~@/assets/images/search.png) no-repeat .2rem center #fff; background-size: .16rem .18rem; line-height: .44rem; }
     .sctrol{ display: block; height: .44rem; width: 100%; border: none; font-size: .14rem; }
@@ -201,6 +220,7 @@ export default {
     },
     data(){
         return {
+            cate:{show:false,list:[]},
             banner:[],
             catelist:[],
             couponlist:[],
@@ -226,6 +246,24 @@ export default {
                 let rs = res.data;
                 if(rs.code==0){
                     //虚拟数据
+                    //分类数据
+                    let cates = [
+                        {id:1,name:'首页精选',url:'/category/list'},
+                        {id:2,name:'特色美食',url:'/category/list'},
+                        {id:3,name:'景区门票',url:'/category/list'},
+                        {id:4,name:'酒店民宿',url:'/category/list'},
+                        {id:5,name:'美妆',url:'/category/list'},
+                        {id:6,name:'箱包',url:'/category/list'},
+                        {id:7,name:'靴鞋',url:'/category/list'},
+                        {id:8,name:'家纺',url:'/category/list'},
+                        {id:9,name:'运动',url:'/category/list'},
+                        {id:10,name:'用品',url:'/category/list'},
+                        {id:11,name:'数码',url:'/category/list'},
+                        {id:12,name:'厨房',url:'/category/list'},
+
+                    ]
+                    this.cate.list = cates;
+
                     let banner = [
                         'http://card.biaotu.net/banner01.jpg',
                         'http://card.biaotu.net/banner02.jpg',
