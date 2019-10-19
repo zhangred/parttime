@@ -68,18 +68,40 @@
         <div class="seckill">
             <div class="ptil">限时秒杀<router-link class="pmore" to="/seckill">更多</router-link></div>
             <div class="cm-vprolist">
-                <router-link to="/seckill/detail" class="pl">
-                    <div class="tl-imgo">
-                        <van-image fit="cover" class="tl-img" src="http://card.biaotu.net/banner01.jpg" />
-                        <p class="tl-btime">据结束<span class="tl-time">23:23:23</span></p>
+                <router-link to="/seckill/detail" class="pl-item" v-for="item in seckill" v-bind:key="item.id">
+                    <div class="pl-imgo">
+                        <van-image fit="cover" class="pl-img" :src="item.img" />
+                        <p class="pl-btime">据结束<span class="pl-time">23:23:23</span></p>
                     </div>
-                    <div class="tl-info">
-                        
+                    <div class="pl-info">
+                        <div class="pl-rtop">
+                            <p class="pl-title">{{item.title}}</p>
+                            <p class="pl-rate">{{item.rate+'%'}}好评率</p>
+                        </div>
+                        <div class="pl-price"><span class="pl-pun">￥</span><span class="pl-pnum">{{item.price}}</span><span class="pl-oldpri">{{item.oldprice}}</span></div>
+                        <p v-if="item.type==1" class="pl-btn">立即抢购</p>
+                        <p v-if="item.type==2" class="pl-btn pl-btna">立即预约</p>
                     </div>
                 </router-link>
             </div>
         </div>
-        <div>asdfasdsa</div>
+
+        <!-- 还喜欢 -->
+        <div class="likem">
+            <div class="ptil">你可以能还喜欢<router-link class="pmore" to="/goodlist">更多</router-link></div>
+            <div class="cm-prolist lthree">
+                <router-link to="/category/detail" class="tl-item" v-for="item in seckill" v-bind:key="item.id">
+                    <div class="tl-imgo">
+                        <van-image fit="cover" class="tl-img" :src="item.img" />
+                    </div>
+                    <div class="tl-info">
+                        <p class="tl-title">{{item.title}}</p>
+                        <p class="tl-price"><span class="tl-pun">¥</span>{{item.price}}</p>
+                    </div>
+                </router-link>
+            </div>
+        </div>
+        <div class="bottom">到底啦~</div>
 
         <botnav active="home" cartnumber="5"></botnav>
   </div>
@@ -125,12 +147,9 @@
         position: relative; padding: 0 .15rem; line-height: .42rem; font-size: .15rem; font-weight: bold;
         .pmore{ float: right; padding-right: .14rem; font-weight: normal; font-size: .14rem; color: #aaa; background: url(~@/assets/images/arr_r01.png) no-repeat right center; background-size: .07rem .13rem;}
      }
-    
-    .jingx{  margin-bottom: .1rem;}
-
-    .xxxx{ }
-    .xxxx{ }
-    .xxxx{ }
+     .seckill{ margin-bottom: .1rem;}
+    .bottom{ text-align: center; color: #999; font-size: .12rem; color: #999; }
+    .likem{ background: #fff; }
 </style>
 <style>
     .tuan .ci-tor-cur{ width: 14px;}
@@ -150,14 +169,18 @@ export default {
             couponlist:[],
             gbcolor:'#ff7921',
             tuan:{loop:0,list:[],current:0},
-            goodlist:[]
+            goodlist:[],
+            seckill:[]
         }
     },
     created(){
+        this.Ob.$emit('changetitle','首页');
+
         this.getBanner();
         this.getCoupon();
         this.getTuan();
         this.getGoodlist();
+        this.getSeckill()
     },
     methods:{
         //获取banner
@@ -248,6 +271,23 @@ export default {
                         {id:4,img:'http://card.biaotu.net/banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false}
                     ]
                     this.goodlist = list;
+                }
+            });
+        },
+        //秒杀商品列表
+        getSeckill(){
+            this.$http.post("http://card.biaotu.net/callback.json", {
+                params: 'params'
+            }).then((res) => {
+                let rs = res.data;
+                if(rs.code==0){
+                    //虚拟数据
+                    let list = [
+                        {id:1,img:'http://card.biaotu.net/banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers名称花时间In the mood foe flowers',price:19.99,oldprice:29.99,time_end:new Date().getTime()+12*3600000,type:1,rate:100},
+                        {id:2,img:'http://card.biaotu.net/banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:59.99,time_end:new Date().getTime()+11*3600000,type:2,rate:90},
+                        {id:3,img:'http://card.biaotu.net/banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:79.99,time_end:new Date().getTime()+5*3600000,type:1,rate:95}
+                    ]
+                    this.seckill = list;
                 }
             });
         }
