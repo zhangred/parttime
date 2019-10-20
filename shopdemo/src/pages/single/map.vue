@@ -105,7 +105,7 @@ export default {
     // 导航设定
     let links = [
         {id:1,name:'首页',ico:'home',open:false,list:[{id:1.1,name:'首页风格1',path:'/index'},{id:1.2,name:'首页风格2',path:'/index01'}]},
-        {id:2,dev:true,name:'商品分类',ico:'category',open:false,list:[{id:1.1,name:'商品分类1',path:'/category'},{id:1.2,name:'商品分类2',path:'/category01'}]},
+        {id:2,name:'商品分类',ico:'category',open:false,list:[{id:1.1,name:'商品分类1',path:'/category'},{id:1.2,name:'商品分类2',path:'/category01'}]},
         {id:3,dev:true,name:'普通商品',ico:'good-normal',path:'/goodDetail'},
         {id:4,dev:true,name:'拼团商品',ico:'good-normal',path:'/goodTuan'},
         {id:5,dev:true,name:'秒杀商品',ico:'good-clock',path:'/goodClock'},

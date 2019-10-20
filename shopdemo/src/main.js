@@ -9,7 +9,7 @@ import {Toast,Image } from 'vant'
 import './filters/filters'
 import './components/BaseComponents'
 
-import './assets/css/base.css'
+import './assets/css/base.less'
 import './assets/js/rem'
 
 import tools from './assets/js/tools'

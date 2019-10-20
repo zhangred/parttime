@@ -90,7 +90,7 @@ export default {
         next()
     },
     methods:{
-        searchkey(e){
+        searchkey(event){
             var key = event.currentTarget.value.trim();
             if(key){
                 this.$router.push('/category/list?key='+key)

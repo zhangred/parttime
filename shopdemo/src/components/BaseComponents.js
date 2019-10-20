@@ -113,3 +113,24 @@ Vue.component('backtime',{
         }
     }
 })
+
+Vue.component('orderico',{
+    props:{
+        colorhover:{
+            type:String,
+            default:'#ff7021'
+        },
+        color:{
+            type:String,
+            default:'#ccc'
+        },
+        order:{
+            type:String,
+            default:''
+        }
+    },
+    template:`<span class="cm-oico">
+        <span class="oar oar-t" :style="'border-bottom-color:'+(order=='asc'?colorhover:color)"></span>
+        <span class="oar oar-b" :style="'border-top-color:'+(order=='desc'?colorhover:color)"></span>
+    </span>`
+})

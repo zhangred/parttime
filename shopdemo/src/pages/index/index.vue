@@ -73,7 +73,7 @@
                 <router-link to="/seckill/detail" class="pl-item" v-for="item in seckill" v-bind:key="item.id">
                     <div class="pl-imgo">
                         <van-image fit="cover" class="pl-img" :src="item.img" />
-                        <p v-if="item.type!=3" class="pl-btime">据结束<backtime :lasttime="item.time_end" classname="fr" :tag="item" v-on:timeend="test"></backtime></p>
+                        <p v-if="item.type!=3" class="pl-btime">据结束<backtime :lasttime="item.time_end" classname="fr" :tag="item"></backtime></p>
                         <div v-if="item.type==3" class="pl-cover"><p class="pl-cover-tx">抢光</p></div>
                     </div>
                     <div class="pl-info">
@@ -173,9 +173,10 @@
         position: relative; padding: 0 .15rem; line-height: .42rem; font-size: .15rem; font-weight: bold;
         .pmore{ float: right; padding-right: .14rem; font-weight: normal; font-size: .14rem; color: #aaa; background: url(~@/assets/images/arr_r01.png) no-repeat right center; background-size: .07rem .13rem;}
      }
+     .jingx{ padding-bottom: .1rem;}
      .seckill{ margin-bottom: .1rem;}
     .bottom{ text-align: center; color: #999; font-size: .12rem; color: #999; line-height: .4rem; }
-    .likem{ background: #fff; }
+    .likem{padding-bottom: .1rem; background: #fff; }
     .pop-redpack{
         background: #fc7421;
         .item{ width: 2.78rem; height: .75rem; margin: 0 auto; padding: .06rem .03rem 0 .1rem; background: url(~@/assets/images/cpbg.png); background-size: 100% 100%;}
@@ -214,8 +215,9 @@ export default {
     created(){
         this.Ob.$emit('changetitle','首页');
 
-        this.getPageData();
         this.getNewred();
+        this.getPageData();
+        
     },
     methods:{
         //获取首页数据
@@ -293,9 +295,6 @@ export default {
                     this.pop_new.data = list;
                 }
             });
-        },
-        test(v){
-            console.log(3,v)
         }
     }
 }
