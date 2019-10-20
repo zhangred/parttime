@@ -18,6 +18,7 @@ export default new Router({
     { path: '/lottery/mine',  name: 'lotteryMine', component: resolve=> require(['./pages/lottery/mine'], resolve)},
     { path: '/category', name: 'category', component: resolve => require(['./pages/category/index'], resolve) },
     { path: '/category01', name: 'category', component: resolve => require(['./pages/category/index01'], resolve) },
-    { path: '/category/list', name: 'categoryList', component: resolve => require(['./pages/category/list'], resolve) }
+    { path: '/category/list', name: 'categoryList', component: resolve => require(['./pages/category/list'], resolve) },
+    { path: '/cart', name: 'cart', component: resolve => require(['./pages/cart/index'], resolve) }
   ]
 })

@@ -74,7 +74,7 @@ export default {
         this.getcatelist()
 
         this.throttle = new this.$tools.throttle_o(200);
-        this.throttle.callback = (rs)=>{
+        this.throttle.callback = ()=>{
             this.checkoffset();
         }
     },
@@ -144,106 +144,106 @@ export default {
                 if(rs.code==0){
                     //虚拟数据
                     let reco = [ //热搜推荐
-                        {id:1,name:'家用电器',icon:'/img/0cate01.jpg'},
-                        {id:2,name:'厨房用品',icon:'/img/0cate02.jpg'},
-                        {id:3,name:'热门潮鞋',icon:'/img/0cate03.jpg'},
-                        {id:4,name:'休闲鞋',icon:'/img/0cate03.jpg'},
-                        {id:5,name:'连衣裙',icon:'/img/0cate01.jpg'},
-                        {id:6,name:'服饰',icon:'/img/0cate02.jpg'},
-                        {id:7,name:'热水器',icon:'/img/0cate03.jpg'},
-                        {id:8,name:'暖风机',icon:'/img/0cate01.jpg'}
+                        {id:1,name:'家用电器',icon:'/tempimg/0cate01.jpg'},
+                        {id:2,name:'厨房用品',icon:'/tempimg/0cate02.jpg'},
+                        {id:3,name:'热门潮鞋',icon:'/tempimg/0cate03.jpg'},
+                        {id:4,name:'休闲鞋',icon:'/tempimg/0cate03.jpg'},
+                        {id:5,name:'连衣裙',icon:'/tempimg/0cate01.jpg'},
+                        {id:6,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                        {id:7,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                        {id:8,name:'暖风机',icon:'/tempimg/0cate01.jpg'}
                     ]
                     let cate = [
                         {id:1,name:'数码电器',list:[
-                            {id:1,name:'家用电器',icon:'/img/0cate01.jpg'},
-                            {id:2,name:'厨房用品',icon:'/img/0cate02.jpg'},
-                            {id:3,name:'热门潮鞋',icon:'/img/0cate03.jpg'},
-                            {id:4,name:'休闲鞋',icon:'/img/0cate03.jpg'},
-                            {id:5,name:'连衣裙',icon:'/img/0cate01.jpg'},
-                            {id:6,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:7,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:8,name:'暖风机',icon:'/img/0cate01.jpg'},
-                            {id:9,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:10,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:11,name:'暖风机',icon:'/img/0cate01.jpg'}
+                            {id:1,name:'家用电器',icon:'/tempimg/0cate01.jpg'},
+                            {id:2,name:'厨房用品',icon:'/tempimg/0cate02.jpg'},
+                            {id:3,name:'热门潮鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:4,name:'休闲鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:5,name:'连衣裙',icon:'/tempimg/0cate01.jpg'},
+                            {id:6,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:7,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:8,name:'暖风机',icon:'/tempimg/0cate01.jpg'},
+                            {id:9,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:10,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:11,name:'暖风机',icon:'/tempimg/0cate01.jpg'}
                         ]},
                         {id:2,name:'内搭服饰',list:[
-                            {id:1,name:'家用电器',icon:'/img/0cate01.jpg'},
-                            {id:2,name:'厨房用品',icon:'/img/0cate02.jpg'},
-                            {id:3,name:'热门潮鞋',icon:'/img/0cate03.jpg'},
-                            {id:4,name:'休闲鞋',icon:'/img/0cate03.jpg'},
-                            {id:5,name:'连衣裙',icon:'/img/0cate01.jpg'},
-                            {id:6,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:7,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:8,name:'暖风机',icon:'/img/0cate01.jpg'},
-                            {id:9,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:10,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:11,name:'暖风机',icon:'/img/0cate01.jpg'}
+                            {id:1,name:'家用电器',icon:'/tempimg/0cate01.jpg'},
+                            {id:2,name:'厨房用品',icon:'/tempimg/0cate02.jpg'},
+                            {id:3,name:'热门潮鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:4,name:'休闲鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:5,name:'连衣裙',icon:'/tempimg/0cate01.jpg'},
+                            {id:6,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:7,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:8,name:'暖风机',icon:'/tempimg/0cate01.jpg'},
+                            {id:9,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:10,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:11,name:'暖风机',icon:'/tempimg/0cate01.jpg'}
                         ]},
                         {id:3,name:'家居生活',list:[
-                            {id:1,name:'家用电器',icon:'/img/0cate01.jpg'},
-                            {id:2,name:'厨房用品',icon:'/img/0cate02.jpg'},
-                            {id:3,name:'热门潮鞋',icon:'/img/0cate03.jpg'},
-                            {id:4,name:'休闲鞋',icon:'/img/0cate03.jpg'},
-                            {id:5,name:'连衣裙',icon:'/img/0cate01.jpg'},
-                            {id:6,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:7,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:8,name:'暖风机',icon:'/img/0cate01.jpg'},
-                            {id:9,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:10,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:11,name:'暖风机',icon:'/img/0cate01.jpg'}
+                            {id:1,name:'家用电器',icon:'/tempimg/0cate01.jpg'},
+                            {id:2,name:'厨房用品',icon:'/tempimg/0cate02.jpg'},
+                            {id:3,name:'热门潮鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:4,name:'休闲鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:5,name:'连衣裙',icon:'/tempimg/0cate01.jpg'},
+                            {id:6,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:7,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:8,name:'暖风机',icon:'/tempimg/0cate01.jpg'},
+                            {id:9,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:10,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:11,name:'暖风机',icon:'/tempimg/0cate01.jpg'}
                         ]},
                         {id:4,name:'时令蔬菜',list:[
-                            {id:1,name:'家用电器',icon:'/img/0cate01.jpg'},
-                            {id:2,name:'厨房用品',icon:'/img/0cate02.jpg'},
-                            {id:3,name:'热门潮鞋',icon:'/img/0cate03.jpg'},
-                            {id:4,name:'休闲鞋',icon:'/img/0cate03.jpg'},
-                            {id:5,name:'连衣裙',icon:'/img/0cate01.jpg'},
-                            {id:6,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:7,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:8,name:'暖风机',icon:'/img/0cate01.jpg'},
-                            {id:9,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:10,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:11,name:'暖风机',icon:'/img/0cate01.jpg'}
+                            {id:1,name:'家用电器',icon:'/tempimg/0cate01.jpg'},
+                            {id:2,name:'厨房用品',icon:'/tempimg/0cate02.jpg'},
+                            {id:3,name:'热门潮鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:4,name:'休闲鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:5,name:'连衣裙',icon:'/tempimg/0cate01.jpg'},
+                            {id:6,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:7,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:8,name:'暖风机',icon:'/tempimg/0cate01.jpg'},
+                            {id:9,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:10,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:11,name:'暖风机',icon:'/tempimg/0cate01.jpg'}
                         ]},
                         {id:6,name:'潮流靴鞋',list:[
-                            {id:1,name:'家用电器',icon:'/img/0cate01.jpg'},
-                            {id:2,name:'厨房用品',icon:'/img/0cate02.jpg'},
-                            {id:3,name:'热门潮鞋',icon:'/img/0cate03.jpg'},
-                            {id:4,name:'休闲鞋',icon:'/img/0cate03.jpg'},
-                            {id:5,name:'连衣裙',icon:'/img/0cate01.jpg'},
-                            {id:6,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:7,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:8,name:'暖风机',icon:'/img/0cate01.jpg'},
-                            {id:9,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:10,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:11,name:'暖风机',icon:'/img/0cate01.jpg'}
+                            {id:1,name:'家用电器',icon:'/tempimg/0cate01.jpg'},
+                            {id:2,name:'厨房用品',icon:'/tempimg/0cate02.jpg'},
+                            {id:3,name:'热门潮鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:4,name:'休闲鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:5,name:'连衣裙',icon:'/tempimg/0cate01.jpg'},
+                            {id:6,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:7,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:8,name:'暖风机',icon:'/tempimg/0cate01.jpg'},
+                            {id:9,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:10,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:11,name:'暖风机',icon:'/tempimg/0cate01.jpg'}
                         ]},
                         {id:7,name:'精品美妆',list:[
-                            {id:1,name:'家用电器',icon:'/img/0cate01.jpg'},
-                            {id:2,name:'厨房用品',icon:'/img/0cate02.jpg'},
-                            {id:3,name:'热门潮鞋',icon:'/img/0cate03.jpg'},
-                            {id:4,name:'休闲鞋',icon:'/img/0cate03.jpg'},
-                            {id:5,name:'连衣裙',icon:'/img/0cate01.jpg'},
-                            {id:6,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:7,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:8,name:'暖风机',icon:'/img/0cate01.jpg'},
-                            {id:9,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:10,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:11,name:'暖风机',icon:'/img/0cate01.jpg'}
+                            {id:1,name:'家用电器',icon:'/tempimg/0cate01.jpg'},
+                            {id:2,name:'厨房用品',icon:'/tempimg/0cate02.jpg'},
+                            {id:3,name:'热门潮鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:4,name:'休闲鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:5,name:'连衣裙',icon:'/tempimg/0cate01.jpg'},
+                            {id:6,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:7,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:8,name:'暖风机',icon:'/tempimg/0cate01.jpg'},
+                            {id:9,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:10,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:11,name:'暖风机',icon:'/tempimg/0cate01.jpg'}
                         ]},
                         {id:8,name:'床上用品',list:[
-                            {id:1,name:'家用电器',icon:'/img/0cate01.jpg'},
-                            {id:2,name:'厨房用品',icon:'/img/0cate02.jpg'},
-                            {id:3,name:'热门潮鞋',icon:'/img/0cate03.jpg'},
-                            {id:4,name:'休闲鞋',icon:'/img/0cate03.jpg'},
-                            {id:5,name:'连衣裙',icon:'/img/0cate01.jpg'},
-                            {id:6,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:7,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:8,name:'暖风机',icon:'/img/0cate01.jpg'},
-                            {id:9,name:'服饰',icon:'/img/0cate02.jpg'},
-                            {id:10,name:'热水器',icon:'/img/0cate03.jpg'},
-                            {id:11,name:'暖风机',icon:'/img/0cate01.jpg'}
+                            {id:1,name:'家用电器',icon:'/tempimg/0cate01.jpg'},
+                            {id:2,name:'厨房用品',icon:'/tempimg/0cate02.jpg'},
+                            {id:3,name:'热门潮鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:4,name:'休闲鞋',icon:'/tempimg/0cate03.jpg'},
+                            {id:5,name:'连衣裙',icon:'/tempimg/0cate01.jpg'},
+                            {id:6,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:7,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:8,name:'暖风机',icon:'/tempimg/0cate01.jpg'},
+                            {id:9,name:'服饰',icon:'/tempimg/0cate02.jpg'},
+                            {id:10,name:'热水器',icon:'/tempimg/0cate03.jpg'},
+                            {id:11,name:'暖风机',icon:'/tempimg/0cate01.jpg'}
                         ]}
                     ];
 
