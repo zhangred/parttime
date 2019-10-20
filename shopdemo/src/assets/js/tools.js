@@ -26,6 +26,13 @@
                 timeout = setTimeout(later,wait)
             }
         }
+    },
+    event_once:function(type,selector,callback){
+        selector = selector||document;
+        selector.addEventListener(type, function fn(e) {
+            selector.removeEventListener(type, fn);
+            return callback(e);
+        }, false);
     }
 }
 export default CUES

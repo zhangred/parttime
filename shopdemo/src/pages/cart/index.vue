@@ -1,7 +1,7 @@
 <template>
     <div class="pages">
 
-        <div class="emp" v-show="list.length==0">
+        <div class="emp" v-show="goodall==0">
             <div class="emp-img">
                 <img src="~@/assets/images/empty_cart.png" class="emp-ico" />
                 <p class="emp-tx">您的购物车空空如也！</p>
@@ -21,54 +21,55 @@
             </div>
         </div>
 
-
-        <div class="glist">
-            <div class="gitem" v-for="shop in list" v-bind:key="shop.id">
-                <div class="gtil"><van-checkbox class="radio" v-model="shop.check" checked-color="#ff7021"></van-checkbox>{{shop.name}}</div>
-                <div class="pros">
-                    <van-swipe-cell  v-for="good in shop.list" v-bind:key="good.id">
-                        <div class="pro">
-                            <div class="pro-check"><van-checkbox class="radio" v-model="good.check" checked-color="#ff7021"></van-checkbox></div>
-                            <div class="pro-img"><van-image fit="cover" class="psimg" :src="good.img" /></div>
-                            <div class="pro-info">
-                                <div class="pro-itop">
-                                    <p class="pro-til">{{good.name}}</p>
-                                    <p class="pro-unit" v-if="good.unit">{{good.unit}}</p>
+        <div v-show="goodall">
+            <div class="glist">
+                <div class="gitem" v-for="shop in list" v-bind:key="shop.id" v-show="shop.list.length">
+                    <div class="gtil"><van-checkbox class="radio" v-model="shop.checked" checked-color="#ff7021" @click="checkshop(shop)"></van-checkbox>{{shop.name}}</div>
+                    <div class="pros">
+                        <swipe-cell class="tedfd" v-for="(good) in shop.list" v-bind:key="good.id">
+                            <div class="pro">
+                                <div class="pro-check"><van-checkbox class="radio" v-model="good.checked" checked-color="#ff7021" @click="checkgood(good,shop)"></van-checkbox></div>
+                                <div class="pro-img"><van-image fit="cover" class="psimg" :src="good.img" /></div>
+                                <div class="pro-info">
+                                    <div class="pro-itop">
+                                        <p class="pro-til">{{good.name}}</p>
+                                        <p class="pro-unit" v-if="good.unit">{{good.unit}}</p>
+                                    </div>
+                                    <div class="pro-price"><span class="pro-uy">¥</span>{{good.price}}</div>
+                                    <van-stepper class="pro-step" v-model="good.number" integer :button-size="rem.ha" @change="numberchange" @blur="numberchange" />
                                 </div>
-                                <div class="pro-price"><span class="pro-uy">¥</span>{{good.price}}</div>
-                                <van-stepper class="pro-step" v-model="good.number" integer :button-size="rem.ha" />
                             </div>
-                        </div>
 
-                        <template slot="right">
-                            <van-button square type="danger" text="删除" />
-                        </template>
-                    </van-swipe-cell>
-                    
+                            <template slot="right">
+                                <p class="cellbtn" @click="deletegood(good.id)">删除</p>
+                            </template>
+                        </swipe-cell>
+                        
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="botdo">
-            <div class="bd-l">
-                <van-checkbox class="fl bd-rado" v-model="checked">全选</van-checkbox>
-                <p class="fl bd-edit">编辑</p>
+            <div class="botdo" v-show="!isedit">
+                <div class="bd-l">
+                    <van-checkbox class="fl bd-rado" v-model="chooseall" checked-color="#ff7021" @click="getall">全选</van-checkbox>
+                    <p class="fl bd-edit" @click="isedit=true">编辑</p>
+                </div>
+                <div class="bd-r">合计：<span class="bd-un">¥</span><span class="bd-total">{{total.money}}</span></div>
+                <div :class="{'bd-btn':true,'active':total.number}">结算<span v-show="total.number">({{total.number}})</span></div>
             </div>
-            <div class="bd-r">合计：<span class="bd-un">¥</span><span class="bd-total">34.34</span></div>
-            <div class="bd-btn">结算<span>(5)</span></div>
+            <div class="botdo" v-show="isedit">
+                <div class="bd-l">
+                    <van-checkbox class="fl bd-rado" v-model="chooseall" checked-color="#ff7021" @click="getall">全选</van-checkbox>
+                    <p class="fl bd-edit" @click="isedit=false">完成</p>
+                </div>
+                <div :class="{'bd-btn':true,'active':total.number}" @click="deleteall">删除<span>(5)</span></div>
+            </div>
         </div>
-        <!-- <div class="botdo">
-            <div class="bd-l">
-                <van-checkbox class="fl bd-rado" v-model="checked">全选</van-checkbox>
-                <p class="fl bd-edit">完成</p>
-            </div>
-            <div class="bd-btn">删除<span>(5)</span></div>
-        </div> -->
-
         <botnav active="cart"></botnav>
     </div>
 </template>
 <style lang="less"  scoped>
+.tedfd{ height: 1.1rem; width: 3.75rem;}
     .pages{padding-bottom: .6rem;}
     .emp{
         .emp-img{ padding: .8rem 0; text-align: center; color: #999; font-size: .16rem;}
@@ -99,12 +100,14 @@
         .pro-uy{ font-size: .12rem;}
         .pro-step{ position: absolute; right: .1rem; bottom: .1rem;}
     }
+    .cellbtn{ line-height: 1.1rem; color: #fff; text-align: center; width: 100px}
     .botdo{
-        position: fixed; left: 0; bottom: .5rem; right: 0; height: .5rem; padding-right: .8rem; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; line-height: .48rem;
+        position: fixed; left: 0; bottom: .5rem; right: 0; z-index: 3; height: .5rem; padding-right: .8rem; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; line-height: .48rem;
         .bd-l{ float: left; padding-left: .15rem; overflow: hidden;}
         .bd-rado{ height: .48rem;}
         .bd-edit{ padding-left: .2rem;}
         .bd-btn{position: absolute; width: .8rem; height: .5rem; top: 0; right: 0; background: #c1c1c1; text-align: center; color: #fff;}
+        .bd-btn.active{ background: #ff7021;}
         .bd-r{ float: right; padding-right: .2rem;}
         .bd-un{ margin-right: .03rem; font-size: .12rem; color: #ff7021;}
         .bd-total{ color: #ff7021;}
@@ -116,7 +119,7 @@
     .xxx{}
 </style>
 <script>
-import { Checkbox,Stepper,SwipeCell } from 'vant';
+import { Checkbox,Stepper,SwipeCell,Cell } from 'vant';
 export default {
     components:{
         [Checkbox.name]:Checkbox,
@@ -127,7 +130,11 @@ export default {
         return {
             rem:{ha:window.rem*.28},
             list:[],
-            goodlist:[]
+            goodlist:[],
+            total:{money:0,number:0},
+            goodall:0,
+            isedit:false,
+            chooseall:false
         }
     },
     created(){
@@ -136,7 +143,7 @@ export default {
         this.getreco();
         setTimeout(()=>{
             this.getData();
-        },2000)
+        },0)
     },
     methods:{
         getData(){
@@ -153,15 +160,16 @@ export default {
                             {id:3,name:'居家划算套餐',img:'/tempimg/0banner03.jpg',price:100,number:1}
                         ]},
                          {id:2,name:'潮流靴鞋',list:[
-                            {id:1,name:'Morphy Richards 摩飞便携式榨汁机果汁杯网红爆款 能榨汁的杯',img:'/tempimg/0banner01.jpg',price:28.88,number:1,unit:'蓝色，大号'}
+                            {id:4,name:'Morphy Richards 摩飞便携式榨汁机果汁杯网红爆款 能榨汁的杯',img:'/tempimg/0banner01.jpg',price:28.88,number:1,unit:'蓝色，大号'}
                         ]},
                          {id:3,name:'可口美食',list:[
-                            {id:1,name:'Morphy Richards 摩飞便',img:'/tempimg/0banner02.jpg',price:28.88,number:1,unit:'蓝色，大号'},
-                            {id:2,name:'便携式海滩明亮装',img:'/tempimg/0banner03.jpg',price:99.88,number:1,unit:'蓝色，大号'}
+                            {id:5,name:'Morphy Richards 摩飞便',img:'/tempimg/0banner02.jpg',price:28.88,number:1,unit:'蓝色，大号'},
+                            {id:6,name:'便携式海滩明亮装',img:'/tempimg/0banner03.jpg',price:99.88,number:1,unit:'蓝色，大号'}
                         ]}
                     ];
                     this.fullkey(cart);
                     this.list = cart;
+                    this.checkgoodall()
                 }
             });
         },
@@ -193,6 +201,137 @@ export default {
                     this.goodlist = goodlist;
                 }
             });
+        },
+        //选中店铺
+        checkshop(item){
+            setTimeout(()=>{
+                for(let i=0,len=item.list.length;i<len;i++){
+                    item.list[i].checked = item.checked;
+                }
+                this.getCountTotal();
+            },10)
+        },
+        //选中商品
+        checkgood(good,shop){
+            setTimeout(()=>{
+                let all = true;
+                for(let i=0,len=shop.list.length;i<len;i++){
+                    if(!shop.list[i].checked){
+                        all = false;
+                    }
+                }
+                shop.checked = all;
+                this.getCountTotal();
+            },10)
+        },
+        //计算总金额
+        getCountTotal(){
+            let money = 0,
+                number = 0,
+                list = this.list;
+            for(let i=0,len=list.length;i<len;i++){
+                for(let k=0,klen=list[i].list.length;k<klen;k++){
+                    var v = list[i].list[k];
+                    if(v.checked){
+                        money += Math.round(v.price*100)*v.number;
+                        number += v.number;
+                    }
+                }
+            }
+            this.total.money = money/100;
+            this.total.number = number;
+        },
+        checkgoodall(){
+            let number = 0,
+                list = this.list;
+            for(let i=0,len=list.length;i<len;i++){
+                number += list[i].list.length
+            }
+            this.goodall = number;
+        },
+        numberchange(){
+            setTimeout(()=>{
+                this.getCountTotal();
+            },10);
+        },
+        deletegood(id){
+            this.$dialog.confirm({
+                title: '提示',
+                message: '是否删除此条商品？'
+            }).then(() => {
+                
+                this.$http.get("/api/callback.json", {
+                    params: 'params'
+                }).then((res) => {
+                    let rs = res.data;
+                    if(rs.code==0){
+                        //虚拟数据
+                        this.$toast.success('删除成功');
+                        this.deleteids([id])
+                    }
+                });
+            });
+        },
+        deleteall(){
+            let ids = this.getChoose();
+            this.$dialog.confirm({
+                title: '提示',
+                message: '是否删除所选商品？'
+            }).then(() => {
+                
+                this.$http.get("/api/callback.json", {
+                    params: 'params'
+                }).then((res) => {
+                    let rs = res.data;
+                    if(rs.code==0){
+                        //虚拟数据
+                        this.$toast.success('删除成功');
+                        this.deleteids(ids)
+                    }
+                });
+            });
+        },
+        getChoose(){
+            let ids = [],
+                list = this.list;
+            for(let i=0,len=list.length;i<len;i++){
+                for(let k=0,klen=list[i].list.length;k<klen;k++){
+                    var v = list[i].list[k];
+                    if(v.checked){
+                        ids.push(v.id)
+                    }
+                }
+            }
+            return ids;
+        },
+        deleteids(ids){
+            var list = this.list;
+            for(let len=list.length,i=len-1;i>=0;i--){
+                for(let klen=list[i].list.length,k=klen-1;k>=0;k--){
+                    if(ids.indexOf(list[i].list[k].id)>=0){
+                        list[i].list.splice(k,1);
+                    }
+                }
+            }
+            setTimeout(()=>{
+                this.checkgoodall();
+                this.getCountTotal();
+            },10)
+        },
+        getall(){
+            setTimeout(()=>{
+                let list = this.list;
+                let rs = this.chooseall;
+                for(let i=0,len=list.length;i<len;i++){
+                    list[i].checked = rs;
+                    for(let k=0,klen=list[i].list.length;k<klen;k++){
+                        list[i].list[k].checked = rs;
+                    }
+                }
+                setTimeout(()=>{
+                    this.getCountTotal();
+                },10)
+            },10)
         }
     }
 }

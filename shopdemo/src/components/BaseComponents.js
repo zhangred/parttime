@@ -134,3 +134,80 @@ Vue.component('orderico',{
         <span class="oar oar-b" :style="'border-top-color:'+(order=='desc'?colorhover:color)"></span>
     </span>`
 })
+
+Vue.component('swipeCell',{
+    props:{
+        rightwidth:{
+            type:Number,
+            default:100
+        }
+    },
+    template:`<div class="cm-swipecell">
+            <div class="wrap" ref="wrap"><slot></slot></div>
+            <div class="right"><slot name="right"></slot></div>
+        </div>`,
+    created(){
+    },
+    mounted(){
+        this.bindEvent()
+    },
+    methods:{
+        bindEvent(){
+            var elm = this.$el,
+                wrap = this.$refs.wrap,
+                that = this;
+
+            var fx = 0,
+                lx=0,
+                fy = 0,
+                isx = false;
+            
+            elm.addEventListener('touchstart',function(event){
+                wrap.style.webkitTransition = "all 0s";
+                var touches = event.targetTouches;
+                fx = touches[0].pageX;
+                fy = touches[0].pageY;
+            },false);
+            elm.addEventListener('touchmove',function(event){
+                
+                var touches = event.targetTouches;
+                if(Math.abs(touches[0].pageX-fx)>Math.abs(touches[0].pageY-fy)){
+                    isx = true
+                }
+
+                lx = touches[0].pageX;
+                var cx =  lx - fx;
+
+
+                if(!isx) return;
+                wrap.style.webkitTransform = 'translateZ(0) translateX('+(cx)+'px)';
+                event.preventDefault();
+            },false)
+            elm.addEventListener('touchend',function(event){
+                wrap.style.webkitTransition = "all .3s";
+                if(lx==0){
+                    fx = lx = 0;
+                    return false;
+                }
+                var ox = fx -lx;
+                if(ox<that.rightwidth){
+                    ox = 0;
+                }else{
+                    ox = that.rightwidth;
+                };
+                wrap.style.webkitTransform = 'translateZ(0) translateX(-'+(ox)+'px)';
+                fx =  lx = fy = 0;
+                isx = false;
+                if(ox){
+                    that.$tools.event_once('touchstart',null,function(){
+                        setTimeout(()=>{
+                            wrap.style.webkitTransition = "all .3s";
+                            wrap.style.webkitTransform = 'translateZ(0) translateX(0)';
+                        },0)
+                        
+                    })
+                }
+            },false);
+        }
+    }
+})
