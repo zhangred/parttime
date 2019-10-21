@@ -114,7 +114,7 @@ export default {
         {id:8,dev:true,name:'收货地址',ico:'adress',path:'/adress'},
         {id:9,dev:true,name:'优惠券',ico:'coupan',path:'/coupan'},
         {id:10,dev:true,name:'我的订单',ico:'mine-order',path:'/mineOrder'},
-        {id:11,dev:true,name:'我的',ico:'mine',path:'/mine'},
+        {id:11,name:'我的',ico:'mine',open:false,list:[{id:1.1,name:'我的1',path:'/mine'},{id:1.2,name:'我的2',path:'/mine01'}]},
         {id:12,dev:true,name:'领券中心',ico:'coupon-center',path:'/coupanCenter'},
         {id:13,dev:true,name:'分销中心',ico:'sell-center',path:'/sellCenter'},
         {id:14,name:'抽奖',ico:'lottery',path:'/lottery'},
