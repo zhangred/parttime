@@ -112,19 +112,13 @@
         .bd-un{ margin-right: .03rem; font-size: .12rem; color: #ff7021;}
         .bd-total{ color: #ff7021;}
     }
-    .xxx{}
-    .xxx{}
-    .xxx{}
-    .xxx{}
-    .xxx{}
 </style>
 <script>
-import { Checkbox,Stepper,SwipeCell,Cell } from 'vant';
+import { Checkbox,Stepper } from 'vant';
 export default {
     components:{
         [Checkbox.name]:Checkbox,
-        [Stepper.name]:Stepper,
-        [SwipeCell.name]:SwipeCell
+        [Stepper.name]:Stepper
     },
     data(){
         return {
@@ -143,7 +137,7 @@ export default {
         this.getreco();
         setTimeout(()=>{
             this.getData();
-        },0)
+        },1000)
     },
     methods:{
         getData(){

@@ -109,7 +109,7 @@ export default {
         {id:3,dev:true,name:'普通商品',ico:'good-normal',path:'/goodDetail'},
         {id:4,dev:true,name:'拼团商品',ico:'good-normal',path:'/goodTuan'},
         {id:5,dev:true,name:'秒杀商品',ico:'good-clock',path:'/goodClock'},
-        {id:6,dev:true,name:'购物车',ico:'cart',path:'/cart'},
+        {id:6,name:'购物车',ico:'cart',path:'/cart'},
         {id:7,dev:true,name:'提交订单',ico:'order-save',path:'/orderSave'},
         {id:8,dev:true,name:'收货地址',ico:'adress',path:'/adress'},
         {id:9,dev:true,name:'优惠券',ico:'coupan',path:'/coupan'},

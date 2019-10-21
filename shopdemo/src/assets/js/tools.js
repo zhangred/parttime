@@ -28,10 +28,10 @@
         }
     },
     event_once:function(type,selector,callback){
-        selector = selector||document;
+        selector = selector||document.getElementById('app');
         selector.addEventListener(type, function fn(e) {
             selector.removeEventListener(type, fn);
-            return callback(e);
+            callback(e);
         }, false);
     }
 }

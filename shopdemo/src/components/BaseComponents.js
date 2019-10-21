@@ -160,7 +160,7 @@ Vue.component('swipeCell',{
             var fx = 0,
                 lx=0,
                 fy = 0,
-                isx = false;
+                isx = null;
             
             elm.addEventListener('touchstart',function(event){
                 wrap.style.webkitTransition = "all 0s";
@@ -169,10 +169,12 @@ Vue.component('swipeCell',{
                 fy = touches[0].pageY;
             },false);
             elm.addEventListener('touchmove',function(event){
-                
+                if(isx==false) return;
                 var touches = event.targetTouches;
                 if(Math.abs(touches[0].pageX-fx)>Math.abs(touches[0].pageY-fy)){
                     isx = true
+                }else{
+                    isx = false;
                 }
 
                 lx = touches[0].pageX;
@@ -180,6 +182,7 @@ Vue.component('swipeCell',{
 
 
                 if(!isx) return;
+
                 wrap.style.webkitTransform = 'translateZ(0) translateX('+(cx)+'px)';
                 event.preventDefault();
             },false)
@@ -197,14 +200,13 @@ Vue.component('swipeCell',{
                 };
                 wrap.style.webkitTransform = 'translateZ(0) translateX(-'+(ox)+'px)';
                 fx =  lx = fy = 0;
-                isx = false;
+                isx = null;
                 if(ox){
                     that.$tools.event_once('touchstart',null,function(){
                         setTimeout(()=>{
                             wrap.style.webkitTransition = "all .3s";
                             wrap.style.webkitTransform = 'translateZ(0) translateX(0)';
-                        },0)
-                        
+                        },400)   
                     })
                 }
             },false);
