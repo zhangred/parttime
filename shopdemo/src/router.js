@@ -13,7 +13,7 @@ export default new Router({
     { path: '/',redirect: '/map', name: 'index', component: Index },
     { path: '/index', name: 'index', component: Index },
     { path: '/index01',  name: 'index', component: Indexa},
-    { path: '/question', name: 'question', component: resolve => require(['./pages/question/index'], resolve) },
+    { path: '/pages/question', name: 'question', component: resolve => require(['./pages/question/index'], resolve) },
     { path: '/lottery',  name: 'lottery', component: resolve=> require(['./pages/lottery/index'], resolve)},
     { path: '/lottery/mine',  name: 'lotteryMine', component: resolve=> require(['./pages/lottery/mine'], resolve)},
     { path: '/category', name: 'category', component: resolve => require(['./pages/category/index'], resolve) },
@@ -22,6 +22,9 @@ export default new Router({
     { path: '/cart', name: 'cart', component: resolve => require(['./pages/cart/index'], resolve) },
     { path: '/mine', name: 'mine', component: resolve => require(['./pages/mine/index'], resolve) },
     { path: '/mine01', name: 'mine', component: resolve => require(['./pages/mine/index01'], resolve) },
+    { path: '/mine/setting', name: 'mineSetting', component: resolve => require(['./pages/mine/setting'], resolve) },
     { path: '/category/detail', name: 'gooddetail', component: resolve => require(['./pages/gooddetails/normal'], resolve) },
+    { path: '/pages/feedback', name: 'feedback', component: resolve => require(['./pages/single/feedback'], resolve) },
+    { path: '/mine/couponlist', name: 'couponlist', component: resolve => require(['./pages/mine/coupon'], resolve) },
   ]
 })

@@ -675,6 +675,29 @@ textarea::-webkit-input-placeholder {
   border-radius: 50%;
   overflow: hidden;
 }
+.editlinebox .el-text {
+  text-align: right;
+  padding: .12rem .14rem .12rem 0;
+  color: #333;
+  line-height: .2rem;
+  display: block;
+}
+.editlinebox .el-text.l {
+  text-align: left;
+}
+.editlinebox .el-text-dis {
+  color: #ccc;
+}
+.editlinebox .editline-full .el-text {
+  padding-left: .14rem;
+  text-align: left;
+}
+.editlinebox .editline-full .el-text-full {
+  padding-left: 0;
+}
+.editlinebox .el-textarea {
+  padding: 0 .14rem .1rem 0;
+}
 .editlinebox .el-input {
   padding-right: .14rem;
 }
@@ -717,4 +740,29 @@ textarea::-webkit-input-placeholder {
 }
 .editlinebox-50 .el-head {
   height: .5rem;
+}
+.editlinebox-50 .el-text {
+  padding: .15rem .14rem .15rem 0;
+}
+.editlinebox-sm .editline {
+  padding-left: .5rem;
+}
+.editlinebox-sm .el-ado {
+  color: #999;
+}
+.editlinebox-bl0.editlinebox {
+  padding-left: .14rem;
+}
+.editlinebox-bl0.editlinebox .el-ado {
+  padding-left: 0;
+}
+.editlinebox-bl0.editlinebox .editline {
+  padding-left: .64rem;
+}
+.editlinebox-bl0.editlinebox-sm .editline {
+  padding-left: .36rem;
+}
+.flex {
+  display: flex;
+  display: -webkit-flex;
 }

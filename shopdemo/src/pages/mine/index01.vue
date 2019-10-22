@@ -33,7 +33,7 @@
         </div>
 
         <div class="lines">
-            <router-link to="/couponlist" class="line arr-ra">
+            <router-link to="/mine/couponlist" class="line arr-ra">
                 <img class="lico" src="~@/assets/images/mine_item02.png" />我的优惠券
             </router-link>
             <router-link to="/mine/address" class="line arr-ra">
@@ -44,10 +44,10 @@
             </a>
         </div>
         <div class="lines">
-            <router-link to="/question" class="line arr-ra">
+            <router-link to="/pages/question" class="line arr-ra">
                 <img class="lico" src="~@/assets/images/mine_item05.png" />常见问题
             </router-link>
-            <router-link to="/single/feedback" class="line arr-ra">
+            <router-link to="/pages/feedback" class="line arr-ra">
                 <img class="lico" src="~@/assets/images/mine_item06.png" />问题反馈
             </router-link>
         </div>
