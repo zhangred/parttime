@@ -33,7 +33,7 @@ export default {
         this.getlist();
     },
     methods:{
-        getlist(item){
+        getlist(){
             this.$http.get("/api/callback.json", {
                 params: 'params'
             }).then((res) => {

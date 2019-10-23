@@ -15,7 +15,7 @@
             class="goodlist"
             v-model="loading"
             :finished="finished"
-            finished-text="没有更多了"
+            finished-text="到底啦～"
             :immediate-check="false"
             @load="getlist"
             >

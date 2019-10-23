@@ -112,7 +112,7 @@ export default {
         {id:6,name:'购物车',ico:'cart',path:'/cart'},
         {id:7,dev:true,name:'提交订单',ico:'order-save',path:'/orderSave'},
         {id:8,dev:true,name:'收货地址',ico:'adress',path:'/adress'},
-        {id:9,dev:true,name:'优惠券',ico:'coupan',path:'/mine/couponlist'},
+        {id:9,name:'优惠券',ico:'coupan',path:'/mine/couponlist'},
         {id:10,dev:true,name:'我的订单',ico:'mine-order',path:'/mineOrder'},
         {id:11,name:'我的',ico:'mine',open:false,list:[{id:1.1,name:'我的1',path:'/mine'},{id:1.2,name:'我的2',path:'/mine01'}]},
         {id:12,dev:true,name:'领券中心',ico:'coupon-center',path:'/coupanCenter'},
