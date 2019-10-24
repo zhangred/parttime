@@ -119,6 +119,12 @@ body {
   z-index: 1;
   min-height: 100%;
 }
+.cff {
+  color: #fff;
+}
+.c {
+  color: #ff6521;
+}
 input::-webkit-input-placeholder {
   color: #ccc;
 }
@@ -520,6 +526,31 @@ textarea::-webkit-input-placeholder {
   font-size: .24rem;
   text-align: center;
   color: #fff;
+}
+.cm-vprolist .pl-sper {
+  position: relative;
+  height: .16rem;
+  width: .7rem;
+  margin-top: .08rem;
+  line-height: .14rem;
+  border: 1px solid #ff6521;
+  border-radius: .09rem;
+}
+.cm-vprolist .pl-sperin {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: .16rem;
+  background: #ff6521;
+  border-radius: .09rem;
+}
+.cm-vprolist .pl-sper-tx {
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 0 .05rem;
+  font-size: .1rem;
+  white-space: nowrap;
 }
 .cm-oico {
   position: relative;

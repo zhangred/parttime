@@ -26,6 +26,7 @@ export default new Router({
     { path: '/category/detail', name: 'gooddetail', component: resolve => require(['./pages/gooddetails/normal'], resolve) },
     { path: '/pages/feedback', name: 'feedback', component: resolve => require(['./pages/single/feedback'], resolve) },
     { path: '/mine/couponlist', name: 'couponlist', component: resolve => require(['./pages/mine/coupon'], resolve) },
-    { path: '/goodClock', name: 'goodClockList', component: resolve => require(['./pages/goodclock/index'], resolve) },
+    { path: '/seckill', name: 'seckill', component: resolve => require(['./pages/seckill/index'], resolve) },
+    { path: '/seckill/detail', name: 'seckillDetail', component: resolve => require(['./pages/gooddetails/seckill'], resolve) },
   ]
 })

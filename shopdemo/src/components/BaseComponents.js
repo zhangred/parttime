@@ -67,7 +67,9 @@ Vue.component('backtime',{
     props:{
         lasttime:{
             type: Number,
-            default:0
+            default:function(){
+                return 0;
+            }
         },
         classname:{
             type:String,
@@ -79,37 +81,52 @@ Vue.component('backtime',{
         },
         tag:{
             type:Object,
-            default:{}
+            default:function(){
+                return {}
+            }
+        }
+    },
+     watch:{
+        lasttime:function(newv,oldv){
+            this.intime_in = parseInt(newv)
+            if(!this.inter){
+                this.setinter();
+            }
         }
     },
     data(){
         return {
             str:'',
             format_in:this.format,
-            intime_in:parseInt(this.lasttime)||0
+            intime_in:0,
+            inter:null
         }
     },
     template:`<span :class="[classname]">{{str}}</span>`,
     created(){
-        let inter;
-        inter = setInterval(()=>{
-            this.intime_in --;
-            var intime = this.intime_in,
-                format = this.format_in;
-            format = format.replace('s',this.fullFormat(intime%60))
-            format = format.replace('m',this.fullFormat(Math.floor((intime/60)%60)))
-            format = format.replace('h',this.fullFormat(Math.floor(intime/3600)))
-            this.str = format;
-            if(this.intime_in<=0){
-                clearInterval(inter);
-                this.$emit('timeend',this.tag)
-            }
-        },1000)
+        if(this.intime_in){
+            this.setinter();
+        }
     },
     methods:{
         fullFormat(v){
             v = Math.round(v);
             return v<10?'0'+v:v;
+        },
+        setinter(){
+            this.inter = setInterval(()=>{
+                this.intime_in --;
+                var intime = this.intime_in,
+                    format = this.format_in;
+                format = format.replace('s',this.fullFormat(intime%60))
+                format = format.replace('m',this.fullFormat(Math.floor((intime/60)%60)))
+                format = format.replace('h',this.fullFormat(Math.floor(intime/3600)))
+                this.str = format;
+                if(this.intime_in<=0){
+                    clearInterval(this.inter);
+                    this.$emit('timeend',this.tag)
+                }
+            },1000)
         }
     }
 })
