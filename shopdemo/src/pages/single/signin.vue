@@ -1,7 +1,7 @@
 <template>
     <div class="pages">
         asdfasdf
-        <calendar :time="new Date('2018/4/4')" >
+        <calendar >
             <template v-slot:cell="{data}" >{{data.date}}</template>
             <!-- sdfasdfasdfasd -->
         </calendar>
