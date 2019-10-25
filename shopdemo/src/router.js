@@ -28,5 +28,6 @@ export default new Router({
     { path: '/mine/couponlist', name: 'couponlist', component: resolve => require(['./pages/mine/coupon'], resolve) },
     { path: '/seckill', name: 'seckill', component: resolve => require(['./pages/seckill/index'], resolve) },
     { path: '/seckill/detail', name: 'seckillDetail', component: resolve => require(['./pages/gooddetails/seckill'], resolve) },
+    { path: '/signin', name: 'signin', component: resolve => require(['./pages/single/signin'], resolve) },
   ]
 })
