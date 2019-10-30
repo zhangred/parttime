@@ -366,6 +366,7 @@ textarea::-webkit-input-placeholder {
   font-size: .12rem;
 }
 .cm-prolist .tl-info {
+  position: relative;
   padding: .1rem;
   background: #fff;
   border: 1px solid #e5e5e5;
@@ -380,6 +381,16 @@ textarea::-webkit-input-placeholder {
 }
 .cm-prolist .tl-imgo {
   position: relative;
+}
+.cm-prolist .pl-btime {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0 .05rem;
+  background: #ff6521;
+  color: #fff;
+  font-size: .1rem;
 }
 .cm-prolist.lthree {
   padding: 0 0 0 .15rem;

@@ -98,7 +98,7 @@ Vue.component('backtime',{
         return {
             str:'',
             format_in:this.format,
-            intime_in:0,
+            intime_in:this.lasttime,
             inter:null
         }
     },
