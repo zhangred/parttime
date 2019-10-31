@@ -31,12 +31,6 @@
     .tl-num{ border: 1px solid #ff7021; background: #ffefe5; color: #ff7021; font-size: .1rem; border-radius: .04rem; padding: 0 .02rem;}
     .tl-oldprice{ color: #999; font-size: .1rem; text-decoration: line-through; margin-left: .05rem;}
     .tl-btn{ position: absolute; right: .1rem; bottom: .12rem; border-radius: .1rem; line-height: .2rem; font-size: .1rem; color: #fff; background: #ff7021; padding: 0 .08rem;}
-    .xxxx{}
-    .xxxx{}
-    .xxxx{}
-    .xxxx{}
-    .xxxx{}.xxxx{}
-    .xxxx{}
 </style>
 <script>
 import { List } from 'vant';

@@ -107,7 +107,7 @@ export default {
         {id:1,name:'首页',ico:'home',open:false,list:[{id:1.1,name:'首页风格1',path:'/index'},{id:1.2,name:'首页风格2',path:'/index01'}]},
         {id:2,name:'商品分类',ico:'category',open:false,list:[{id:1.1,name:'商品分类1',path:'/category'},{id:1.2,name:'商品分类2',path:'/category01'}]},
         {id:3,name:'普通商品',ico:'good-normal',path:'/category/list'},
-        {id:4,dev:true,name:'拼团商品',ico:'good-normal',path:'/goodtuan'},
+        {id:4,dev:true,name:'拼团商品',ico:'good-normal',path:'/assemble'},
         {id:5,name:'秒杀商品',ico:'good-clock',path:'/seckill'},
         {id:6,name:'购物车',ico:'cart',path:'/cart'},
         {id:7,dev:true,name:'提交订单',ico:'order-save',path:'/orderSave'},
