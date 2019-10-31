@@ -59,6 +59,10 @@ body {
   background: #f6f6f6;
   cursor: pointer;
 }
+html,
+body {
+  height: 100%;
+}
 .alic {
   text-align: center;
 }
@@ -807,4 +811,10 @@ textarea::-webkit-input-placeholder {
 .flex {
   display: flex;
   display: -webkit-flex;
+}
+.cm-overtouch {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
 }

@@ -86,8 +86,8 @@ Vue.component('backtime',{
             }
         }
     },
-     watch:{
-        lasttime:function(newv,oldv){
+    watch:{
+        lasttime:function(newv){
             this.intime_in = parseInt(newv)
             if(!this.inter){
                 this.setinter();
@@ -203,7 +203,7 @@ Vue.component('swipeCell',{
                 wrap.style.webkitTransform = 'translateZ(0) translateX('+(cx)+'px)';
                 event.preventDefault();
             },false)
-            elm.addEventListener('touchend',function(event){
+            elm.addEventListener('touchend',function(){
                 wrap.style.webkitTransition = "all .3s";
                 if(lx==0){
                     fx = lx = 0;
@@ -214,7 +214,7 @@ Vue.component('swipeCell',{
                     ox = 0;
                 }else{
                     ox = that.rightwidth;
-                };
+                }
                 wrap.style.webkitTransform = 'translateZ(0) translateX(-'+(ox)+'px)';
                 fx =  lx = fy = 0;
                 isx = null;
@@ -226,6 +226,65 @@ Vue.component('swipeCell',{
                         },400)   
                     })
                 }
+            },false);
+        }
+    }
+})
+
+
+Vue.component('overTouch',{
+    props:{
+        margin:{
+            type:Number,
+            default:0
+        }
+    },
+    template:`<div class="cm-overtouch" ref="elm">
+                <slot></slot>
+        </div>`,
+    created(){
+    },
+    mounted(){
+        this.bindEvent()
+    },
+    methods:{
+        bindEvent(){
+
+            var elm = this.$el,
+                bc = elm.getBoundingClientRect(),
+                elm_w = elm.clientWidth,
+                elm_h = elm.clientHeight,
+                ftouch = {"pageX":0,"pageY":0},
+                ltouch = {"pageX":bc.left,"pageY":bc.top},
+                edge = this.margin,
+                wdw = window.innerWidth,
+                wdh = window.innerHeight;
+
+            elm.style.cssText = "position:fixed; left:0; top:0; bottom:auto;";
+            elm.style.webkitTransform = 'translateZ(0) translate('+bc.left+'px,'+bc.top+'px)';
+            
+            elm.addEventListener('touchstart',function(event){
+               elm.style.webkitTransition = "all 0s";
+                ftouch = event.targetTouches[0];
+            },false);
+            elm.addEventListener('touchmove',function(event){
+                var mtouch = event.targetTouches[0];
+                elm.style.webkitTransform = 'translateZ(0) translate('+(mtouch.pageX - ftouch.pageX + ltouch.pageX)+'px,'+(mtouch.pageY - ftouch.pageY + ltouch.pageY)+'px)';
+                event.preventDefault();
+            },false)
+            elm.addEventListener('touchend',function(){
+                elm.style.webkitTransition = "all .3s";
+                var lbc = elm.getBoundingClientRect();
+                ltouch.pageX = lbc.left<=(wdw/2)?edge:(wdw-edge-elm_w);
+
+                ltouch.pageY = lbc.top;
+                if(lbc.top<=edge){
+                    ltouch.pageY = edge;
+                }
+                if(lbc.top>= wdh - elm_h - edge){
+                    ltouch.pageY = wdh - elm_h - edge
+                }
+                elm.style.webkitTransform = 'translateZ(0) translate('+(ltouch.pageX)+'px,'+(ltouch.pageY)+'px)';
             },false);
         }
     }

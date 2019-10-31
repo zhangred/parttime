@@ -31,5 +31,6 @@ export default new Router({
     { path: '/signin', name: 'signin', component: resolve => require(['./pages/single/signin'], resolve) },
     { path: '/assemble', name: 'assemble', component: resolve => require(['./pages/assemble/index'], resolve) },
     { path: '/assemble/detail', name: 'assembleDetail', component: resolve => require(['./pages/assemble/detail'], resolve) },
+    { path: '/assemble/goodDetail', name: 'assembleDetail', component: resolve => require(['./pages/gooddetails/assemble'], resolve) },
   ]
 })
