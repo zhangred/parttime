@@ -6,8 +6,8 @@
         <div class="tstate">
             <p v-show="!hastime" class="st-end">活动已结束</p>
             <div v-show="hastime" class="st-goon">
-                <div class="st-gol"><span>秒杀价</span><span class="st-gun">¥</span><span class="st-pri">{{detail.price}}</span></div>
-                <div class="st-gor"><p>距离结束还剩</p><p class="st-gtm"><backtime :lasttime="detail.lasttime" v-on:timeend="timeover"></backtime></p></div>
+                <div class="st-gol"><span>拼团价</span><span class="st-gun">¥</span><span class="st-pri">{{detail.price}}</span></div>
+                <div class="st-gor"><p>今日必拼倒计时</p><p class="st-gtm"><backtime :lasttime="detail.lasttime" v-on:timeend="timeover"></backtime></p></div>
             </div>
         </div>
         <div class="topinfo">
@@ -17,13 +17,28 @@
                 <p class="ti-tip">快递：免运费</p><p class="ti-tip">月销量{{detail.sales}}笔</p><p class="ti-tip">{{detail.from}}</p>
             </div>
         </div>
-        <div class="editlinebox editlinebox-sm">
-            <div class="editline editline-cover editline-select" @click="showpop('coupon')">
-                <p class="el-ado">优惠</p>
-                <div class="el-text l"><p>满199减100</p><p>满199减100，部分地区包邮</p></div>
+
+        <div class="tuanlist">
+            <p class="ttil">6800人正在拼购，可直接参与</p>
+            <div class="list">
+                <div class="item flex" v-for="item in detail.assemlist" v-bind:key="item.id">
+                    <van-image fit="cover" class="thead" :src="item.head" />
+                    <p class="tname">{{item.name}}</p>
+                    <div class="tinfo">
+                        <div class="ti-t">人拼，还差<span class="ti-tc">1</span>人成团</div>
+                        <p class="ti-b"><backtime :lasttime="item.end_time" /></p>
+                    </div>
+                    <router-link class="tlink" to="/assemble/detail">去参团</router-link>
+                </div>
             </div>
+            <p class="trl">拼团规则：支付开团邀请1人参团，人数不足自动退款。</p>
         </div>
+        
         <div class="editlinebox editlinebox-sm editlinebox-bl0">
+            <div class="editline editline-cover">
+                <p class="el-ado">已选</p>
+                <div class="el-text l">草莓酱500g X 1瓶 一份</div>
+            </div>
             <div class="editline editline-cover editline-select" @click="showpop('canshu')">
                 <p class="el-ado">参数</p>
                 <div class="el-text l">生产日期，品牌···</div>
@@ -41,26 +56,13 @@
                 <p class="bl-lsico"><van-icon class="ico" v-show="!detail.collect" name="like-o" /><van-icon class="ico" v-show="detail.collect" name="like" /></p>
                 <p class="bl-lstx">{{detail.collect?'已收藏':'收藏'}}</p>
             </div>
-            <p v-show="hastime" class="bl-btn bl-btnc" @click="onBuyClicked">立即抢购</p>
+            
+            <div class="bl-btns flex" v-show="hastime">
+                <p class="bl-btn bl-btne">¥299.99<br />单独购买</p>
+                <p class="bl-btn bl-btne">¥99.99<br />我要开团</p>
+            </div>
             <router-link v-show="!hastime" to="/category/list" class="bl-btn bl-btnd">查看店铺其他商品</router-link>
         </div>
-
-
-        <!-- 优惠券 -->
-        <van-popup v-model="pop_coupon.show" closeable position="bottom">
-            <p class="poptil">优惠券</p>
-            <p class="pop-loading" v-show="!pop_coupon.loaded">正在加载···</p>
-            <div class="cp-list" v-show="pop_coupon.loaded">
-                <div class="cp-citem" v-for="item in pop_coupon.list" v-bind:key="item.id">
-                    <div class="cp-cimon"><span class="cp-ciun">¥</span>{{item.money}}</div>
-                    <div class="cp-info flex">
-                        <p class="cp-nm">{{item.name}}</p>
-                        <p class="cp-time">{{item.time_start|timeFormat('y-m-d')}}&ensp;-&ensp;{{item.time_end|timeFormat('y-m-d')}}</p>
-                    </div>
-                    <div class="cp-rig flex"><p :class="{'cp-btn':true,'disable':item.receive}" @click="getCoupon(item)">{{item.receive?'已领取':'领取'}}</p></div>
-                </div>
-            </div>
-        </van-popup>
 
         <!-- 参数 -->
         <van-popup v-model="pop_canshu" closeable position="bottom">
@@ -114,21 +116,12 @@
         .bl-btnb{ background: #ff5000;}
         .bl-btnc{ width: 3.024rem; background: #ff5000;}
         .bl-btnd{ width: 3.024rem; background: #fe9c02;}
+        .bl-btns{width: 3.024rem;}
+        .bl-btne{ width: 50%; padding-top: .05rem; background: #fe9c02; line-height: .2rem; font-size: .14rem;}
+        .bl-btne:nth-child(2){background: #ff5000;}
     }
     .poptil{ line-height: 50px; text-align: center; font-size: .16rem;}
     .pop-loading{ padding: .3rem 0; text-align: center; color: #666;}
-    .cp-list{
-        padding:.2rem .15rem .3rem;
-        .cp-citem{display: flex; display: -webkit-flex; padding: .15rem 0; box-shadow: 0 0 3px 0 rgba(0,0,0,.2); margin-bottom: .16rem;}
-        .cp-cimon{ width: .9rem; text-align: center; color: #ff7021; font-size: .4rem; line-height: .6rem;}
-        .cp-ciun{ font-size: .2rem; line-height: .4rem;}
-        .cp-info{ flex-direction: column; width: 1.7rem; align-items: flex-start; justify-content: center; }
-        .cp-nm{ font-size: .16rem}
-        .cp-time{ font-size: .12rem; color: #999;}
-        .cp-rig{ width: .82rem; justify-content: center; align-items: center;}
-        .cp-btn{ background: #ff7021; color: #fff; line-height: .3rem; height: .3rem; padding: 0 .15rem; border-radius: .15rem; text-align: center;}
-        .cp-btn.disable{ background: #c5c5c5;}
-    }
     .tstate{
         color: #fff; background: #fe9c02;
         .st-end{ padding-right: .2rem; text-align: right; line-height: .5rem;}
@@ -138,6 +131,20 @@
         .st-pri{ font-weight: bold; font-size: .23rem; }
         .st-gor{ float: right; width: 1rem; padding-top: .06rem; font-size: .1rem; line-height: .2rem; }
         .st-gtm{ font-size: .14rem; letter-spacing: .03rem;}
+    }
+    .tuanlist{
+        background: #fff8f0; margin-top: .1rem;
+        .ttil{ background: url(~@/assets/images/bg05.png) no-repeat center center; background-size: 3.46rem .04rem; text-align: center; color: #ff911b; line-height: .4rem;}
+        .list{ padding-left: .14rem;}
+        .item{ padding: .1rem .14rem .1rem 0; border-bottom: 1px solid #ffd9af; align-items: center; justify-content: space-between;}
+        .thead{height: .3rem; width: .3rem; overflow: hidden; border-radius: 50%;}
+        .tname{ width: 1.1rem; padding: 0 .1rem;}
+        .tinfo{ text-align: right; width:1.3rem; padding:  0 .1rem 0 0; }
+        .ti-t{ padding-top: .04rem; line-height: .18rem;}
+        .ti-tc{ color: #ff7021;}
+        .ti-b{ font-size: .1rem; color: #999; line-height: .14rem;}
+        .tlink{ width: .6rem; text-align: center; line-height: .3rem; color: #fff; background: #ff7021; border-radius: .16rem;}
+        .trl{ padding-left: .14rem; line-height: .32rem; color: #ff911b; font-size: .1rem;}
     }
 </style>
 <script>
@@ -156,7 +163,7 @@ export default {
                 banner:[],
                 lasttime:0
             },
-            pop_coupon:{show:false,loaded:false,list:[]},
+            pop_coupon:{show:false,loaded:false,list:[],assemlist:[]},
             pop_canshu:false,
             hastime:true
         }
@@ -192,7 +199,12 @@ export default {
                         ],
                         content:'<img src="/tempimg/0detail_item01.jpg" /><img src="/tempimg/0detail_item02.jpg" /><img src="/tempimg/0detail_item03.jpg" />',
                         collect:false,
-                        lasttime:10
+                        lasttime:10,
+                        assemlist:[
+                            {id:1,name:'张**man',head:'/tempimg/head.jpg',time:new Date('2019/10/25 12:34:55'),total:3,join:1,end_time:3600},
+                            {id:2,name:'Cary**c',head:'/tempimg/head01.jpg',time:new Date('2019/10/26 11:30:55'),total:5,join:3,end_time:9646}
+                        ],
+                        total:3,
                     }
 
                     this.detail = detail;
