@@ -34,5 +34,6 @@ export default new Router({
     { path: '/assemble/goodDetail', name: 'assembleDetail', component: resolve => require(['./pages/gooddetails/assemble'], resolve) },
     { path: '/coupanCenter', name: 'coupanCenter', component: resolve => require(['./pages/single/couponcenter'], resolve) },
     { path: '/mine/address', name: 'address', component: resolve => require(['./pages/mine/address/list'], resolve) },
+    { path: '/mine/address/edit', name: 'addressEdit', component: resolve => require(['./pages/mine/address/edit'], resolve) },
   ]
 })

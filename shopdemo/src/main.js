@@ -4,7 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Qs from 'qs'
-import {Toast,Image,Dialog } from 'vant'
+import {Toast,Image,Dialog,Icon } from 'vant'
 
 import './filters/filters'
 import './components/BaseComponents'
@@ -27,6 +27,7 @@ var axios_instance = axios.create({
 Vue.use(VueAxios, axios_instance,Toast);
 Vue.use(Image)
 Vue.use(Dialog);
+Vue.use(Icon);
 
 
 router.beforeEach((to, from, next) => {
