@@ -68,7 +68,7 @@
 
         <van-popup v-model="pop_haibao" class="pop-hbbox" :style="{ height: '100%',width:'100%' }">
             <p class="pop-hbbg" @click="pop_haibao=false"></p>
-            <div class="pop-haibao"><img src="/tempimg/0img01.jpg" /></div>
+            <div class="pop-haibao"><img :src="haibao" /></div>
             <p class="pop-hbbtn" @click="savehaibao">保存海报</p>
         </van-popup>
 
@@ -151,7 +151,8 @@ export default {
                 {id:1, name: '邀请好友参团' },
                 {id:2, name: '生成邀请海报' },
             ]},
-            pop_haibao:false
+            pop_haibao:false,
+            haibao:"./tempimg/0img01.jpg"
         }
     },
     created(){
@@ -164,7 +165,7 @@ export default {
     methods:{
         //获取拼团详情
         getDetail(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -172,15 +173,15 @@ export default {
                     //虚拟数据
                     let detail = {
                         good:{
-                            img:'/tempimg/0banner01.jpg',
+                            img:'./tempimg/0banner01.jpg',
                             title:'蜀道香 休闲零食 金针菇蜀道香 休闲零食 金针菇',
                             unit:'原味（200g*24家庭装）',
                             price:12.4,
                             pirce_old:45.00,
                         },
                         member:[
-                            {id:1,name:'张**man',head:'/tempimg/head.jpg',time:new Date('2019/10/25 12:34:55')},
-                            {id:2,name:'Cary**c',head:'/tempimg/head01.jpg',time:new Date('2019/10/26 11:30:55')}
+                            {id:1,name:'张**man',head:'./tempimg/head.jpg',time:new Date('2019/10/25 12:34:55')},
+                            {id:2,name:'Cary**c',head:'./tempimg/head01.jpg',time:new Date('2019/10/26 11:30:55')}
                         ],
                         total:3,
                         end_time:5*3600

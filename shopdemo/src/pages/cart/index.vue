@@ -141,7 +141,7 @@ export default {
     },
     methods:{
         getData(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -149,16 +149,16 @@ export default {
                     //虚拟数据
                     let cart = [
                         {id:1,name:'美妆旗舰店',list:[
-                            {id:1,name:'Morphy Richards 摩飞便携式榨汁机果汁杯网红爆款 能榨汁的杯机果汁杯网红爆款 能榨汁的杯',img:'/tempimg/0banner01.jpg',price:28.88,number:1,unit:'蓝色，大号'},
-                            {id:2,name:'便携式海滩明亮装',img:'/tempimg/0banner02.jpg',price:99.88,number:1,unit:'蓝色，大号'},
-                            {id:3,name:'居家划算套餐',img:'/tempimg/0banner03.jpg',price:100,number:1}
+                            {id:1,name:'Morphy Richards 摩飞便携式榨汁机果汁杯网红爆款 能榨汁的杯机果汁杯网红爆款 能榨汁的杯',img:'./tempimg/0banner01.jpg',price:28.88,number:1,unit:'蓝色，大号'},
+                            {id:2,name:'便携式海滩明亮装',img:'./tempimg/0banner02.jpg',price:99.88,number:1,unit:'蓝色，大号'},
+                            {id:3,name:'居家划算套餐',img:'./tempimg/0banner03.jpg',price:100,number:1}
                         ]},
                          {id:2,name:'潮流靴鞋',list:[
-                            {id:4,name:'Morphy Richards 摩飞便携式榨汁机果汁杯网红爆款 能榨汁的杯',img:'/tempimg/0banner01.jpg',price:28.88,number:1,unit:'蓝色，大号'}
+                            {id:4,name:'Morphy Richards 摩飞便携式榨汁机果汁杯网红爆款 能榨汁的杯',img:'./tempimg/0banner01.jpg',price:28.88,number:1,unit:'蓝色，大号'}
                         ]},
                          {id:3,name:'可口美食',list:[
-                            {id:5,name:'Morphy Richards 摩飞便',img:'/tempimg/0banner02.jpg',price:28.88,number:1,unit:'蓝色，大号'},
-                            {id:6,name:'便携式海滩明亮装',img:'/tempimg/0banner03.jpg',price:99.88,number:1,unit:'蓝色，大号'}
+                            {id:5,name:'Morphy Richards 摩飞便',img:'./tempimg/0banner02.jpg',price:28.88,number:1,unit:'蓝色，大号'},
+                            {id:6,name:'便携式海滩明亮装',img:'./tempimg/0banner03.jpg',price:99.88,number:1,unit:'蓝色，大号'}
                         ]}
                     ];
                     this.fullkey(cart);
@@ -179,7 +179,7 @@ export default {
         },
         //获取推荐数据
         getreco(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -187,10 +187,10 @@ export default {
                     //虚拟数据
                     //获取商品列表
                     let goodlist = [
-                        {id:1,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:2,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:3,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:4,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false}
+                        {id:1,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:2,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:3,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:4,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false}
                     ]
                     this.goodlist = goodlist;
                 }
@@ -254,7 +254,7 @@ export default {
                 message: '是否删除此条商品？'
             }).then(() => {
                 
-                this.$http.get("/api/callback.json", {
+                this.$http.get("./api/callback.json", {
                     params: 'params'
                 }).then((res) => {
                     let rs = res.data;
@@ -273,7 +273,7 @@ export default {
                 message: '是否删除所选商品？'
             }).then(() => {
                 
-                this.$http.get("/api/callback.json", {
+                this.$http.get("./api/callback.json", {
                     params: 'params'
                 }).then((res) => {
                     let rs = res.data;

@@ -62,33 +62,33 @@ export default {
             }
             this.locked = true;
             this.params.pageNo ++
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
                 if(rs.code==0){
                     //虚拟数据
                     let goodlist = [
-                        {id:1+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间称花时间称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:999.99,price_old:1000.00,isnew:true,number:2},
-                        {id:2+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+20000,price:999.99,price_old:1000.00,isnew:true,number:3},
-                        {id:3+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花称花时间称花时间时间In the mood foe flowers',end_time:new Date().getTime()+10*3600000,price:999.99,price_old:1000.00,number:8},
-                        {id:4+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+8*3600000,price:999.99,price_old:1000.00,isnew:true,number:20},
-                        {id:5+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称称花时间称花时间花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:999.99,price_old:1000.00,number:2},
-                        {id:6+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:999.99,price_old:1000.00,number:2},
-                        {id:7+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称称花时间称花时间花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:999.99,price_old:1000.00,isnew:true,number:2},
-                        {id:8+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:9+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:10+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,isnew:true,number:2},
-                        {id:11+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:12+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:13+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:14+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:15+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:16+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:17+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:18+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:19+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
-                        {id:20+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2}
+                        {id:1+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间称花时间称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:999.99,price_old:1000.00,isnew:true,number:2},
+                        {id:2+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+20000,price:999.99,price_old:1000.00,isnew:true,number:3},
+                        {id:3+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花称花时间称花时间时间In the mood foe flowers',end_time:new Date().getTime()+10*3600000,price:999.99,price_old:1000.00,number:8},
+                        {id:4+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+8*3600000,price:999.99,price_old:1000.00,isnew:true,number:20},
+                        {id:5+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称称花时间称花时间花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:999.99,price_old:1000.00,number:2},
+                        {id:6+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:999.99,price_old:1000.00,number:2},
+                        {id:7+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称称花时间称花时间花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:999.99,price_old:1000.00,isnew:true,number:2},
+                        {id:8+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:9+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:10+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,isnew:true,number:2},
+                        {id:11+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:12+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:13+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:14+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:15+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:16+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:17+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:18+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:19+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2},
+                        {id:20+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',end_time:new Date().getTime()+12*3600000,price:19.99,price_old:1000.00,number:2}
                     ]
 
                     goodlist.map((item)=>{

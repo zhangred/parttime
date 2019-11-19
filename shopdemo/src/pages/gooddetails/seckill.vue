@@ -169,7 +169,7 @@ export default {
     methods:{
         //获取商品详情
         getDetail(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -177,9 +177,9 @@ export default {
                     //虚拟数据
                     let detail = {
                         banner : [
-                                '/tempimg/0detail01.jpg',
-                                '/tempimg/0detail02.jpg',
-                                '/tempimg/0detail03.jpg'
+                                './tempimg/0detail01.jpg',
+                                './tempimg/0detail02.jpg',
+                                './tempimg/0detail03.jpg'
                         ],
                         price:39.99,
                         oldprice:59.99,
@@ -190,7 +190,7 @@ export default {
                             {id:2,name:'满99包邮'},
                             {id:3,name:'满199包邮减50'}
                         ],
-                        content:'<img src="/tempimg/0detail_item01.jpg" /><img src="/tempimg/0detail_item02.jpg" /><img src="/tempimg/0detail_item03.jpg" />',
+                        content:'<img src="./tempimg/0detail_item01.jpg" /><img src="./tempimg/0detail_item02.jpg" /><img src="./tempimg/0detail_item03.jpg" />',
                         collect:false,
                         lasttime:10
                     }
@@ -201,7 +201,7 @@ export default {
         },
         //收藏/取消
         changeCollect(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -221,7 +221,7 @@ export default {
         showpop(type){
             if(type=='coupon'){
                 if(!this.pop_coupon.loaded){
-                    this.$http.get("/api/callback.json", {
+                    this.$http.get("./api/callback.json", {
                         params: 'params'
                     }).then((res) => {
                         let rs = res.data;
@@ -247,7 +247,7 @@ export default {
         //领取优惠券
         getCoupon(item){
             if(!item.receive){
-                this.$http.get("/api/callback.json", {
+                this.$http.get("./api/callback.json", {
                     params: 'params'
                 }).then((res) => {
                     let rs = res.data;

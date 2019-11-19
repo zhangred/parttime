@@ -58,7 +58,7 @@ export default {
         return {
             popshow:false,
             data:{
-                head:'/tempimg/head.jpg',
+                head:'./tempimg/head.jpg',
                 name:'',
                 phone:'',
                 sex:0,
@@ -84,7 +84,7 @@ export default {
         checkoutData(){
             if(this.locked) return;
             this.locked = true;
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;

@@ -59,7 +59,7 @@ export default {
                 return;
             }
             this.locked = true;
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;

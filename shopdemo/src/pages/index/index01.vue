@@ -240,7 +240,7 @@ export default {
     methods:{
         //获取首页数据
         getPageData(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -266,9 +266,9 @@ export default {
                     this.cate.shortlist = cates.concat([]).splice(0,4)
 
                     let banner = [
-                        '/tempimg/0banner01.jpg',
-                        '/tempimg/0banner02.jpg',
-                        '/tempimg/0banner03.jpg'
+                        './tempimg/0banner01.jpg',
+                        './tempimg/0banner02.jpg',
+                        './tempimg/0banner03.jpg'
                     ]
                     this.banner = banner;
                     
@@ -281,33 +281,33 @@ export default {
                     
                     //获取拼团商品
                     let tuanlist = [
-                        {id:1,img:'/tempimg/0banner01.jpg',people:2,price:9.99,total:1280},
-                        {id:2,img:'/tempimg/0banner02.jpg',people:4,price:9.99,total:180},
-                        {id:3,img:'/tempimg/0banner03.jpg',people:2,price:9.99,total:123},
-                        {id:4,img:'/tempimg/0banner03.jpg',people:6,price:9.99,total:280},
-                        {id:5,img:'/tempimg/0banner02.jpg',people:2,price:9.99,total:1280},
-                        {id:6,img:'/tempimg/0banner01.jpg',people:2,price:9.99,total:1280},
-                        {id:7,img:'/tempimg/0banner02.jpg',people:2,price:9.99,total:1280},
-                        {id:8,img:'/tempimg/0banner03.jpg',people:1,price:9.99,total:1280},
-                        {id:9,img:'/tempimg/0banner01.jpg',people:2,price:9.99,total:1280}
+                        {id:1,img:'./tempimg/0banner01.jpg',people:2,price:9.99,total:1280},
+                        {id:2,img:'./tempimg/0banner02.jpg',people:4,price:9.99,total:180},
+                        {id:3,img:'./tempimg/0banner03.jpg',people:2,price:9.99,total:123},
+                        {id:4,img:'./tempimg/0banner03.jpg',people:6,price:9.99,total:280},
+                        {id:5,img:'./tempimg/0banner02.jpg',people:2,price:9.99,total:1280},
+                        {id:6,img:'./tempimg/0banner01.jpg',people:2,price:9.99,total:1280},
+                        {id:7,img:'./tempimg/0banner02.jpg',people:2,price:9.99,total:1280},
+                        {id:8,img:'./tempimg/0banner03.jpg',people:1,price:9.99,total:1280},
+                        {id:9,img:'./tempimg/0banner01.jpg',people:2,price:9.99,total:1280}
                     ]
                     this.tuan.loop = Math.ceil(tuanlist.length/3);
                     this.tuan.list = tuanlist;
 
                     //获取商品列表
                     let goodlist = [
-                        {id:1,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:2,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:3,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
-                        {id:4,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false}
+                        {id:1,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:2,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:3,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false},
+                        {id:4,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99,isnew:false}
                     ]
                     this.goodlist = goodlist;
 
                     //秒杀商品列表
                     let seckill = [
-                        {id:1,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers名称花时间In the mood foe flowers',price:19.99,oldprice:29.99,time_end:12*3600,type:1,rate:100},
-                        {id:2,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:59.99,time_end:11*3600,type:2,rate:90},
-                        {id:3,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:79.99,time_end:10*3600,type:3,rate:95}
+                        {id:1,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers名称花时间In the mood foe flowers',price:19.99,oldprice:29.99,time_end:12*3600,type:1,rate:100},
+                        {id:2,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:59.99,time_end:11*3600,type:2,rate:90},
+                        {id:3,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99,oldprice:79.99,time_end:10*3600,type:3,rate:95}
                     ]
                     this.seckill = seckill;
                 }
@@ -317,7 +317,7 @@ export default {
             this.tuan.current = index;
         },
         getNewred(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;

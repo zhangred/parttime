@@ -1,7 +1,7 @@
 <template>
     <div class="pages">
         <div class="top">
-             <van-image fit="cover" class="t-img" src="/tempimg/head.jpg" />
+             <van-image fit="cover" class="t-img" src="./tempimg/head.jpg" />
              <p class="t-name">MRs.Zhang杨</p>
              <img src="~@/assets/images/bg02.jpg" class="tbg" />
         </div>

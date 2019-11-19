@@ -90,7 +90,7 @@ export default {
         },
         //获取月签到数据
         getSignData(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -107,7 +107,7 @@ export default {
         },
         //点击签到按钮
         click_sign(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;

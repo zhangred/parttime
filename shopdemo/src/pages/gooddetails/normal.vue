@@ -166,7 +166,7 @@ export default {
     methods:{
         //获取商品详情
         getDetail(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -174,9 +174,9 @@ export default {
                     //虚拟数据
                     let detail = {
                         banner : [
-                                '/tempimg/0detail01.jpg',
-                                '/tempimg/0detail02.jpg',
-                                '/tempimg/0detail03.jpg'
+                                './tempimg/0detail01.jpg',
+                                './tempimg/0detail02.jpg',
+                                './tempimg/0detail03.jpg'
                         ],
                         price:39.99,
                         oldprice:59.99,
@@ -187,7 +187,7 @@ export default {
                             {id:2,name:'满99包邮'},
                             {id:3,name:'满199包邮减50'}
                         ],
-                        content:'<img src="/tempimg/0detail_item01.jpg" /><img src="/tempimg/0detail_item02.jpg" /><img src="/tempimg/0detail_item03.jpg" />',
+                        content:'<img src="./tempimg/0detail_item01.jpg" /><img src="./tempimg/0detail_item02.jpg" /><img src="./tempimg/0detail_item03.jpg" />',
                         collect:false
                     }
 
@@ -205,14 +205,14 @@ export default {
                                         {
                                             id: '30349', // skuValueId：规格值 id
                                             name: '红色', // skuValueName：规格值名称
-                                            imgUrl: '/tempimg/0detail01.jpg', // 规格类目图片，只有第一个规格类目可以定义图片
-                                            previewImgUrl: '/tempimg/0detail01.jpg', // 用于预览显示的规格类目图片
+                                            imgUrl: './tempimg/0detail01.jpg', // 规格类目图片，只有第一个规格类目可以定义图片
+                                            previewImgUrl: './tempimg/0detail01.jpg', // 用于预览显示的规格类目图片
                                         },
                                         {
                                             id: '1215',
                                             name: '蓝色',
-                                            imgUrl: '/tempimg/0detail02.jpg',
-                                            previewImgUrl: '/tempimg/0detail02.jpg',
+                                            imgUrl: './tempimg/0detail02.jpg',
+                                            previewImgUrl: './tempimg/0detail02.jpg',
                                         }
                                     ],
                                     k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
@@ -266,7 +266,7 @@ export default {
                             // 商品标题
                             title: '测试商品',
                             // 默认商品 sku 缩略图
-                            picture: '/tempimg/0detail01.jpg'
+                            picture: './tempimg/0detail01.jpg'
                             },
                             goodsId:'1234567',
                             quota:5,
@@ -279,7 +279,7 @@ export default {
         },
         //收藏/取消
         changeCollect(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -299,7 +299,7 @@ export default {
         showpop(type){
             if(type=='coupon'){
                 if(!this.pop_coupon.loaded){
-                    this.$http.get("/api/callback.json", {
+                    this.$http.get("./api/callback.json", {
                         params: 'params'
                     }).then((res) => {
                         let rs = res.data;
@@ -325,7 +325,7 @@ export default {
         //领取优惠券
         getCoupon(item){
             if(!item.receive){
-                this.$http.get("/api/callback.json", {
+                this.$http.get("./api/callback.json", {
                     params: 'params'
                 }).then((res) => {
                     let rs = res.data;

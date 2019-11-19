@@ -118,33 +118,33 @@ export default {
             }
             this.locked = true;
             this.params.pageNo ++
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
                 if(rs.code==0){
                     //虚拟数据
                     let goodlist = [
-                        {id:1+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:2+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:3+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:4+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:5+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:6+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:7+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:8+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:9+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:10+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:11+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:12+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:13+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:14+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:15+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:16+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:17+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:18+this.params.pageNo*100,img:'/tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:19+this.params.pageNo*100,img:'/tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
-                        {id:20+this.params.pageNo*100,img:'/tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99}
+                        {id:1+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:2+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:3+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:4+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:5+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:6+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:7+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:8+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:9+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:10+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:11+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:12+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:13+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:14+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:15+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:16+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:17+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:18+this.params.pageNo*100,img:'./tempimg/0banner02.jpg',title:'2热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:19+this.params.pageNo*100,img:'./tempimg/0banner03.jpg',title:'3热卖商品名称花时间In the mood foe flowers',price:19.99},
+                        {id:20+this.params.pageNo*100,img:'./tempimg/0banner01.jpg',title:'4热卖商品名称花时间In the mood foe flowers',price:19.99}
                     ]
                     this.goodlist = this.goodlist.concat(goodlist);
                     
@@ -160,7 +160,7 @@ export default {
         },
         //获取分类
         getcatelist(){
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;

@@ -38,7 +38,7 @@ export default {
     methods:{
         //保存
         onSave(rs) {
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;
@@ -55,7 +55,7 @@ export default {
         },
         //删除
         onDelete() {
-            this.$http.get("/api/callback.json", {
+            this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 let rs = res.data;

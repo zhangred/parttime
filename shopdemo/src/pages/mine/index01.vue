@@ -2,7 +2,7 @@
     <div class="pages">
         <div class="bg"></div>
         <div class="top">
-             <van-image fit="cover" class="t-img" src="/tempimg/head.jpg" />
+             <van-image fit="cover" class="t-img" src="./tempimg/head.jpg" />
              MRs.Zhang杨
         </div>
 
