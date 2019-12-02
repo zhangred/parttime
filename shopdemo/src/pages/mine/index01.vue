@@ -7,25 +7,25 @@
         </div>
 
         <div class="order">
-            <div class="otil">我的订单<a href="/orderlist" class="oall arr-ra l0">查看全部订单</a></div>
+            <div class="otil">我的订单<a href="/order/list" class="oall arr-ra l0">查看全部订单</a></div>
             <div class="olist">
-                <router-link class="oitem" to="/orderlist?type=1">
+                <router-link class="oitem" to="/order/list?status=pay">
                     <img src="~@/assets/images/order_item05.png" class="oico" />
                     <p class="otx">待付款</p>
                 </router-link>
-                <router-link class="oitem" to="/orderlist?type=1">
+                <router-link class="oitem" to="/order/list?status=send">
                     <img src="~@/assets/images/order_item01.png" class="oico" />
                     <p class="otx">待发货</p>
                 </router-link>
-                <router-link class="oitem" to="/orderlist?type=1">
+                <router-link class="oitem" to="/order/list?status=receive">
                     <img src="~@/assets/images/order_item02.png" class="oico" />
                     <p class="otx">待收货</p>
                 </router-link>
-                <router-link class="oitem" to="/orderlist?type=1">
+                <router-link class="oitem" to="/order/list?status=comment">
                     <img src="~@/assets/images/order_item03.png" class="oico" />
                     <p class="otx">待评论</p>
                 </router-link>
-                <router-link class="oitem" to="/orderlist?type=1">
+                <router-link class="oitem" to="/order/list?status=retreat">
                     <img src="~@/assets/images/order_item04.png" class="oico" />
                     <p class="otx">退货/退款</p>
                 </router-link>

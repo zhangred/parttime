@@ -28,7 +28,7 @@
                         <div class="ti-t">人拼，还差<span class="ti-tc">1</span>人成团</div>
                         <p class="ti-b"><backtime :lasttime="item.end_time" /></p>
                     </div>
-                    <router-link class="tlink" to="/assemble/detail">去参团</router-link>
+                    <router-link class="tlink" to="/category/ordersave">去参团</router-link>
                 </div>
             </div>
             <p class="trl">拼团规则：支付开团邀请1人参团，人数不足自动退款。</p>
@@ -58,8 +58,8 @@
             </div>
             
             <div class="bl-btns flex" v-show="hastime">
-                <p class="bl-btn bl-btne">¥299.99<br />单独购买</p>
-                <p class="bl-btn bl-btne">¥99.99<br />我要开团</p>
+                <div @click="goodSku.show=true" class="bl-btn bl-btne">¥299.99<br />单独购买</div>
+                <div @click="goodSku.show=true" class="bl-btn bl-btne">¥99.99<br />我要开团</div>
             </div>
             <router-link v-show="!hastime" to="/category/list" class="bl-btn bl-btnd">查看店铺其他商品</router-link>
         </div>
@@ -87,6 +87,21 @@
             </div>
             <br />
         </van-popup>
+
+        <!-- sku -->
+        <van-sku
+            v-model="goodSku.show"
+            :sku="goodSku.sku"
+            :goods="goodSku.goods"
+            :goods-id="goodSku.goodsId"
+            :quota="goodSku.quota"
+            :hide-stock="goodSku.sku.hide_stock"
+            :initial-sku="goodSku.initialSku"
+            @buy-clicked="onBuyClicked"
+            @add-cart="onAddCartClicked"
+            buy-text="我要开团"
+            add-cart-text="单独购买"
+        />
 
     </div>
 </template>
@@ -165,7 +180,11 @@ export default {
             },
             pop_coupon:{show:false,loaded:false,list:[],assemlist:[]},
             pop_canshu:false,
-            hastime:true
+            hastime:true,
+            goodSku:{
+                show:true,
+                sku:{}
+            }
         }
     },
     created(){
@@ -208,6 +227,88 @@ export default {
                     }
 
                     this.detail = detail;
+
+                    //sku信息
+                    let gsku = {
+                        sku: {
+                            // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
+                            // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
+                            tree: [
+                                {
+                                    k: '颜色', // skuKeyName：规格类目名称
+                                    v: [
+                                        {
+                                            id: '30349', // skuValueId：规格值 id
+                                            name: '红色', // skuValueName：规格值名称
+                                            imgUrl: './tempimg/0detail01.jpg', // 规格类目图片，只有第一个规格类目可以定义图片
+                                            previewImgUrl: './tempimg/0detail01.jpg', // 用于预览显示的规格类目图片
+                                        },
+                                        {
+                                            id: '1215',
+                                            name: '蓝色',
+                                            imgUrl: './tempimg/0detail02.jpg',
+                                            previewImgUrl: './tempimg/0detail02.jpg',
+                                        }
+                                    ],
+                                    k_s: 's1' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+                                },
+                                {
+                                    k: '尺寸', // skuKeyName：规格类目名称
+                                    v: [
+                                        {
+                                            id: '30350', // skuValueId：规格值 id
+                                            name: '大号', // skuValueName：规格值名称
+                                        },
+                                        {
+                                            id: '12151',
+                                            name: '小号',
+                                        }
+                                    ],
+                                    k_s: 's2' // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
+                                }
+                            ],
+                            // 所有 sku 的组合列表，比如红色、M 码为一个 sku 组合，红色、S 码为另一个组合
+                            list: [
+                                {
+                                    id: 2259, // skuId，下单时后端需要
+                                    price: 5000, // 价格（单位分）
+                                    s1: '30349', // 规格类目 k_s 为 s1 的对应规格值 id
+                                    s2: '30350', // 规格类目 k_s 为 s2 的对应规格值 id
+                                    stock_num: 110 // 当前 sku 组合对应的库存
+                                },
+                                {
+                                    id: 2260, // skuId，下单时后端需要
+                                    price: 6000, // 价格（单位分）
+                                    s1: '30349', // 规格类目 k_s 为 s1 的对应规格值 id
+                                    s2: '12151', // 规格类目 k_s 为 s2 的对应规格值 id
+                                    stock_num: 100 // 当前 sku 组合对应的库存
+                                },
+                                {
+                                    id: 2261, // skuId，下单时后端需要
+                                    price: 7000, // 价格（单位分）
+                                    s1: '1215', // 规格类目 k_s 为 s1 的对应规格值 id
+                                    s2: '30350', // 规格类目 k_s 为 s2 的对应规格值 id
+                                    stock_num: 110 // 当前 sku 组合对应的库存
+                                }
+                            ],
+                            price: '39.99', // 默认价格（单位元）
+                            stock_num: 227, // 商品总库存
+                            collection_id: 2261, // 无规格商品 skuId 取 collection_id，否则取所选 sku 组合对应的 id
+                            none_sku: false, // 是否无规格商品
+                            hide_stock: false // 是否隐藏剩余库存
+                            },
+                            goods: {
+                            // 商品标题
+                            title: '测试商品',
+                            // 默认商品 sku 缩略图
+                            picture: './tempimg/0detail01.jpg'
+                            },
+                            goodsId:'1234567',
+                            quota:5,
+                            hide_stock:false,
+                            initialSku:{}
+                    }
+                    this.goodSku = gsku;
                 }
             });
         },
@@ -271,13 +372,18 @@ export default {
                 });
             }
         },
-        //立即购买
-        onBuyClicked(rs){
-            console.log(rs)
-            this.$router.push('/order/save')
-        },
         timeover(){
             this.hastime = false;
+        },
+         //单独购买
+        onBuyClicked(rs){
+            console.log(rs)
+            this.$router.push('/assemble/ordersave')
+        },
+        //加入购物车
+        onAddCartClicked(rs){
+            console.log(rs)
+            this.$router.push('/category/ordersave')
         }
     }
 }

@@ -6,7 +6,7 @@
              <img src="~@/assets/images/bg02.jpg" class="tbg" />
         </div>
         <div class="lines linesa">
-            <router-link to="/orderlist" class="line arr-ra">
+            <router-link to="/order/list" class="line arr-ra">
                 <img class="lico" src="~@/assets/images/mine_item01.png" />我的订单
             </router-link>
             <router-link to="/mine/couponlist" class="line arr-ra">

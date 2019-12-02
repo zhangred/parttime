@@ -11,3 +11,14 @@ Vue.filter('timeFormat',function(value,format){
     format = format.replace("s",time.getSeconds()<10?'0'+time.getSeconds():time.getSeconds());
     return format;
 })
+
+Vue.filter('tofix',function(value,fixed){
+    var v = Math.round(value*Math.pow(10,fixed))/Math.pow(10,fixed)+'',
+        nar = v.split('.');
+    if(!nar[1]){
+        v = v+'.00';
+    }else if(nar[1].length==1){
+        v = v+'0';
+    }
+    return v;
+})

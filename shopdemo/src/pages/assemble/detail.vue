@@ -49,8 +49,8 @@
 
         <over-touch class="ot" :margin="10">
             <div class="otls">
-                <p :class="['otitem',{'otitem-ac':state==1}]" @click="state=1">拼团成功</p>
-                <p :class="['otitem',{'otitem-ac':state==2}]" @click="state=2">拼团未成功</p>
+                <p :class="['otitem',{'otitem-ac':state==1}]" @click="state=1">拼团未成功</p>
+                <p :class="['otitem',{'otitem-ac':state==2}]" @click="state=2">拼团成功</p>
             </div>
         </over-touch>
 

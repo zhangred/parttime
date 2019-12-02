@@ -4,7 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Qs from 'qs'
-import {Toast,Image,Dialog,Icon } from 'vant'
+import {Toast,Image,Dialog,Icon,Button } from 'vant'
 
 import './filters/filters'
 import './components/BaseComponents'
@@ -24,8 +24,10 @@ var axios_instance = axios.create({
         'Content-Type': 'application/x-www-form-urlencoded'
     }    
 })
-Vue.use(VueAxios, axios_instance,Toast);
-Vue.use(Image)
+Vue.use(VueAxios, axios_instance);
+Vue.use(Image);
+Vue.use(Button);
+Vue.use(Toast);
 Vue.use(Dialog);
 Vue.use(Icon);
 

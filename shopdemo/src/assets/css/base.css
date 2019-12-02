@@ -129,11 +129,46 @@ body {
 .c {
   color: #ff6521;
 }
+.ymid {
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+}
 input::-webkit-input-placeholder {
   color: #ccc;
 }
 textarea::-webkit-input-placeholder {
   color: #ccc;
+}
+.arr-ra:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  height: 8px;
+  width: 8px;
+  border-top: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  -webkit-transform: translateY(-50%) rotate(45deg);
+  transform: translateY(-50%) rotate(45deg);
+}
+.arr-ra.l0:after {
+  right: 0;
+}
+.flex {
+  display: flex;
+  display: -webkit-flex;
+}
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+.flex-between {
+  justify-content: space-between;
+}
+.bdtb {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 .cm-pop {
   position: fixed;
@@ -612,22 +647,6 @@ textarea::-webkit-input-placeholder {
   z-index: 2;
   background: #fff;
 }
-.arr-ra:after {
-  content: "";
-  display: block;
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  height: 8px;
-  width: 8px;
-  border-top: 1px solid #aaa;
-  border-right: 1px solid #aaa;
-  -webkit-transform: translateY(-50%) rotate(45deg);
-  transform: translateY(-50%) rotate(45deg);
-}
-.arr-ra.l0:after {
-  right: 0;
-}
 .editlinebox {
   margin-top: 0.1rem;
   background: #fff;
@@ -808,13 +827,8 @@ textarea::-webkit-input-placeholder {
 .editlinebox-bl0.editlinebox-sm .editline {
   padding-left: 0.36rem;
 }
-.flex {
-  display: flex;
-  display: -webkit-flex;
-}
-.flex-center {
-  justify-content: center;
-  align-items: center;
+.editlinebox-alil.editlinebox .el-ctrol {
+  text-align: left;
 }
 .cm-overtouch {
   position: fixed;
@@ -843,4 +857,60 @@ textarea::-webkit-input-placeholder {
 }
 .ot .otitem-ac {
   background: rgba(0, 0, 0, 0.6);
+}
+.cm-tabbox {
+  height: 0.44rem;
+  line-height: 0.44rem;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  text-align: center;
+  font-size: 0.16rem;
+}
+.cm-tabbox-fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.cm-tabbox .cmtab {
+  display: block;
+  float: left;
+  width: 25%;
+}
+.cm-tabbox2 .cmtab {
+  width: 50%;
+}
+.cm-tabbox3 .cmtab {
+  width: 33%;
+}
+.cm-tabbox3 .cmtab:nth-last-child(1) {
+  width: 34%;
+}
+.cm-tabbox5 .cmtab {
+  width: 20%;
+}
+.cm-tabbox .cmtab.active {
+  color: #ff6521;
+}
+.cm-tabbox .cmtab-in {
+  display: inline-block;
+  height: 0.44rem;
+}
+.cm-tabbox-full .cmtab-in {
+  display: block;
+}
+.cm-tabbox .cmtab.active .cmtab-in {
+  border-bottom: 0.03rem solid #ff6521;
+}
+.cm-tabbox-x {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  overflow-y: hidden;
+}
+.cm-tabbox-x .cmtab {
+  display: inline-block;
+  width: auto;
+  float: none;
+  padding: 0 0.1rem;
 }

@@ -261,8 +261,7 @@ export default {
         },
         //立即购买
         onBuyClicked(rs){
-            console.log(rs)
-            this.$router.push('/order/save')
+            this.$router.push('/category/ordersave')
         },
         timeover(){
             this.hastime = false;

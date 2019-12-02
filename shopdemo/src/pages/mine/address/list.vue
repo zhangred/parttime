@@ -7,7 +7,7 @@
         </div>
 
         <div class="list" v-show="state==1">
-            <div class="item" v-for="item in list" :key="item.id">
+            <div class="item" v-for="item in list" :key="item.id" @click="choose(item)">
                 <p class="itil">{{item.name}}&ensp;&ensp;{{item.tel}}</p>
                 <p class="iadr"><span v-show="item.isdef" class="idef">默认</span>{{item.address}}</p>
                 <router-link to="/mine/address/edit" class="ieidt flex flex-center">编辑</router-link>
@@ -43,8 +43,9 @@ export default {
     },
     data(){
         return {
+            from:'',
             list:[],
-            state:1
+            state:1,
         }
     },
     created(){
@@ -52,6 +53,7 @@ export default {
         setTimeout(()=>{
             this.getlist();
         },1000)
+        this.from = this.$route.meta.from||'';
     },
     methods:{
         getlist(){
@@ -68,6 +70,10 @@ export default {
                     this.list = list;
                 }
             });
+        },
+        choose(item){
+            localStorage.setItem('addressItem',JSON.stringify(item));
+            this.$router.back();
         }
     }
 }
