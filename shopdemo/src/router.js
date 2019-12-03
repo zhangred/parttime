@@ -45,5 +45,8 @@ export default new Router({
     { path: '/order/list', name: 'orderlist', component: resolve => require(['./pages/order/list'], resolve) },
     { path: '/order/detail', name: 'orderdetail', component: resolve => require(['./pages/order/detail'], resolve) },
     { path: '/order/logistics', name: 'orderlogistics', component: resolve => require(['./pages/order/logistics'], resolve) },
+    { path: '/order/refundApply', name: 'orderrefundApply', component: resolve => require(['./pages/order/refund_apply'], resolve) },
+    { path: '/order/refundDetail', name: 'orefundDetail', component: resolve => require(['./pages/order/refund_detail'], resolve) },
+    
   ]
 })

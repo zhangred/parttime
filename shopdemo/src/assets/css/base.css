@@ -170,6 +170,23 @@ textarea::-webkit-input-placeholder {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
+.cm-btn {
+  background: #fff;
+  border: 1px solid #eee;
+  line-height: 0.38rem;
+  padding: 0 0.2rem;
+}
+.cm-btn.rd {
+  border-radius: 0.2rem;
+}
+.cm-btn.small {
+  line-height: 0.28rem;
+  padding: 0 0.12rem;
+  font-size: 0.12rem;
+}
+.cm-btn.small.rd {
+  border-radius: 0.16rem;
+}
 .cm-pop {
   position: fixed;
   left: 0;
@@ -844,7 +861,7 @@ textarea::-webkit-input-placeholder {
 .ot .otitem {
   display: block;
   margin: 0.05rem 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   line-height: 0.2rem;
   border-radius: 0.05rem;
   color: #fff;
@@ -856,7 +873,7 @@ textarea::-webkit-input-placeholder {
   padding: 1px 0;
 }
 .ot .otitem-ac {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
 }
 .cm-tabbox {
   height: 0.44rem;

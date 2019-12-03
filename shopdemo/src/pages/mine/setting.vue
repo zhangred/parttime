@@ -125,7 +125,7 @@ export default {
             let inputDOM = this.$refs.head;
             // 通过DOM取文件数据
             this.fil = inputDOM.files;
-            this.data.head = this.getObjectURL(this.fil[0]);
+            this.data.head = this.getObjectURL(this.file[0]);
         },
         getObjectURL(file) {
             var url = null ;
