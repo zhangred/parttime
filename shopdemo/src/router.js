@@ -52,5 +52,7 @@ export default new Router({
     { path: '/salesman/center', name: 'salesmanCenter', component: resolve => require(['./pages/salesman/center'], resolve) },
     { path: '/salesman/guide', name: 'salesmanGuide', component: resolve => require(['./pages/salesman/guide'], resolve) },
     { path: '/salesman/customer', name: 'salesmanCustomer', component: resolve => require(['./pages/salesman/customer'], resolve) },
+    { path: '/salesman/customerDetail', name: 'salesmanCustomerDetail', component: resolve => require(['./pages/salesman/customer_detail'], resolve) },
+    { path: '/salesman/goodlist', name: 'salesmanGoodlist', component: resolve => require(['./pages/salesman/goodlist'], resolve) },
   ]
 })

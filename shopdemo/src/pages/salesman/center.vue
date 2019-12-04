@@ -36,7 +36,7 @@
         </div>
 
         <div class="bar">
-            <router-link class="baritem" to="/order/list?status=pay">
+            <router-link class="baritem" to="/salesman/goodlist">
                 <img src="~@/assets/images/group01a.png" class="barico" />
                 <p class="bartx">商品推广</p>
             </router-link>
@@ -44,7 +44,7 @@
                 <img src="~@/assets/images/group01b.png" class="barico" />
                 <p class="bartx">邀请好友</p>
             </router-link>
-            <router-link class="baritem" to="/order/list?status=receive">
+            <router-link class="baritem" to="/">
                 <img src="~@/assets/images/group01c.png" class="barico" />
                 <p class="bartx">通知中心</p>
             </router-link>
@@ -53,10 +53,6 @@
                 <p class="bartx">新手指引</p>
             </router-link>
         </div>
-
-
-        <van-popup v-model="popshow" closeable position="bottom" :style="{ height: '68%' }">
-        </van-popup>
     </div>
 </template>
 <style lang="less">
@@ -84,14 +80,9 @@
     }
 </style>
 <script>
-import { Popup } from 'vant';
 export default {
-    components:{
-        [Popup.name]:Popup
-    },
     data(){
         return {
-            popshow:false,
             wheight:window.innerHeight||500,
             head:'./tempimg/head01.jpg'
         }

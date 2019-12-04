@@ -78,7 +78,7 @@
         .mf-sp{ color: #999; padding: 0 .1rem;}
         .cm-empty{ padding-top: 1.5rem;}
         .listcont{ -webkit-overflow-scrolling: touch; overflow-y: scroll; }
-        .list{ padding: 1rem .14rem 0;}
+        .list{ padding: .9rem .14rem 0;}
         .item{ display: block; position: relative; padding: .15rem 0 .15rem .82rem; margin-bottom: .12rem; background: #fff; border-radius: .04rem; box-shadow: 0 0 .03rem rgba(0,0,0,.1)}
         .i-head{ position: absolute; left: .14rem; top: 50%; margin-top: -.27rem; height: .54rem; width: .54rem;}
         .i-head.active:after{ content: "分销员"; display: block; position: absolute; left: 50%; bottom: 0; width: .4rem; height: .14rem; margin-left: -.2rem; background: #ff7021;border-radius: .07rem; text-align: center; font-size: .1rem; color: #fff; line-height: .14rem; }
@@ -88,13 +88,6 @@
         .i-info{ overflow: hidden; color: #999; font-size: .12rem;}
         .i-ls{ width: 40%; float: left;}
         .i-num{ color: #333;}
-        .xxx{}
-        .xxx{}
-        .xxx{}
-        .xxx{}
-        .xxx{}
-        .xxx{}
-        .xxx{}
     }
 </style>
 <script>
@@ -111,7 +104,7 @@ export default {
             tabs:{active:'all',list:[]},
             list:[],
             params:{pageNo:1,pageSize:15,time_start:'',time_end:''},
-            loading: false,
+            loading: true,
             finished: false,
             locked:false,
             wHeight:'auto',
@@ -120,6 +113,10 @@ export default {
             current_type:'',
             timepart:{active:'all',list:[]},
         }
+    },
+    beforeRouteLeave(to, from, next) {
+        from.meta.keepAlive = to.name=='salesmanCustomerDetail'?true:false;
+        next();
     },
     created(){
         this.Ob.$emit('changetitle','我对客户');
@@ -170,7 +167,12 @@ export default {
             this.pop_date = false;
         },
         datasure(){
+            if(!this.params.time_end||!this.params.time_start){
+                this.$toast.fail('请选择时间段');
+                return;
+            }
             this.pop_time = false;
+            this.timepart.active = '';
             this.getlist(true)
         },
         //时间段选择
