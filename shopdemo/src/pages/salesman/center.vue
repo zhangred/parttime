@@ -1,63 +1,108 @@
 <template>
-    <div class="pages">
-        <div class="top">
-             <van-image fit="cover" class="t-img" src="./tempimg/head.jpg" />
-             <p class="t-name">MRs.Zhang杨</p>
-             <img src="~@/assets/images/bg02.jpg" class="tbg" />
+    <div class="pages psalecenter" :style="'min-height:'+wheight+'px'">
+        <div class="topbox">
+            <img :src="head" class="tb-head" />
+            <div class="tb-name flex"><span>Mary-Dream</span><p class="tb-tp flex">自购分佣<van-icon name="info-o" class="tb-ico" /></p></div>
+            <p class="tb-sub">店铺:人人商城</p>
         </div>
-        <div class="lines linesa">
-            <router-link to="/order/list" class="line arr-ra">
-                <img class="lico" src="~@/assets/images/mine_item01.png" />我的订单
-            </router-link>
-            <router-link to="/mine/couponlist" class="line arr-ra">
-                <img class="lico" src="~@/assets/images/mine_item02.png" />我的优惠券
-            </router-link>
-            <router-link to="/mine/address" class="line arr-ra">
-                <img class="lico" src="~@/assets/images/mine_item03.png" />收货地址
-            </router-link>
-            <a href="tel:15821670480" class="line arr-ra">
-                <img class="lico" src="~@/assets/images/mine_item04.png" />在线客服
-            </a>
+        
+        <div class="box">
+            <div class="tabs">
+                <div class="tab">
+                    <p class="tb-til">我的收益</p>
+                    <p class="tb-num c">28.00<span class="tb-sp">（今日收益）</span></p>
+                    <p class="tb-ao">可提现<span class="tb-tol">8280.00</span></p>
+                </div>
+                <div class="tab">
+                    <div class="tb-tx flex c">资产明细<p class="tb-ho"></p><router-link class="tb-link" to="/salesman/cashout">提现</router-link></div>
+                    <p class="tb-ao">累计总收益<span class="tb-tol">8280.00</span></p>
+                </div>
+            </div>
         </div>
-        <div class="lines">
-            <router-link to="/pages/question" class="line arr-ra">
-                <img class="lico" src="~@/assets/images/mine_item05.png" />常见问题
-            </router-link>
-            <router-link to="/pages/feedback" class="line arr-ra">
-                <img class="lico" src="~@/assets/images/mine_item06.png" />问题反馈
-            </router-link>
+
+        <div class="box">
+            <div class="tabs">
+                <router-link to="/salesman/customer" class="tab">
+                    <p class="tb-til">我的客户</p>
+                    <p class="tb-num c">124<span class="tb-sp">（今日新增客户）</span></p>
+                    <p class="tb-ao">累计客户<span class="tb-tol">45</span></p>
+                </router-link>
+                <div class="tab">
+                    <p class="tb-til">我的收益</p>
+                    <p class="tb-num c">28<span class="tb-sp">（今日订单）</span></p>
+                    <p class="tb-ao">累计订单<span class="tb-tol">145</span></p>
+                </div>
+            </div>
         </div>
-        <div class="lines">
-            <router-link to="/mine/setting" class="line arr-ra">
-                <img class="lico" src="~@/assets/images/mine_item07.png" />设置
+
+        <div class="bar">
+            <router-link class="baritem" to="/order/list?status=pay">
+                <img src="~@/assets/images/group01a.png" class="barico" />
+                <p class="bartx">商品推广</p>
+            </router-link>
+            <router-link class="baritem" to="/order/list?status=send">
+                <img src="~@/assets/images/group01b.png" class="barico" />
+                <p class="bartx">邀请好友</p>
+            </router-link>
+            <router-link class="baritem" to="/order/list?status=receive">
+                <img src="~@/assets/images/group01c.png" class="barico" />
+                <p class="bartx">通知中心</p>
+            </router-link>
+            <router-link class="baritem" to="/salesman/guide">
+                <img src="~@/assets/images/group01d.png" class="barico" />
+                <p class="bartx">新手指引</p>
             </router-link>
         </div>
 
-         <botnav active="mine"></botnav>
+
+        <van-popup v-model="popshow" closeable position="bottom" :style="{ height: '68%' }">
+        </van-popup>
     </div>
 </template>
-<style lang="less"  scoped>
-    .pages{padding-bottom: .1rem;}
-    .top{ position: relative; height: 1.9rem; padding-top: .3rem; background: url(~@/assets/images/bg01.png) repeat-x; background-size: 1px 100%;}
-    .t-img{ display: block; margin: 0 auto; height: .76rem; width: .76rem; border-radius: 50%; border: .02rem solid #fff; overflow: hidden;}
-    .t-name{ padding-top: .14rem; color: #fff; font-size: .17rem; text-align: center;}
-    .tbg{ position: absolute; left: 0; bottom: 0; right: 0;}
-    .lines{ margin-bottom: .1rem; background: #fff; }
-    .linesa{ padding-top: .3rem; border-top: none;}
-    .line{ display: block; position: relative; padding-left: .5rem; line-height: .5rem; border-bottom: 1px solid #f3f3f3;}
-    .line:nth-last-child(1){ border: none;}
-    .lico{ position: absolute; left: .12rem; top: 50%; height: .28rem; width: .28rem; margin-top: -.14rem;}
+<style lang="less">
+    .psalecenter{
+        padding: .1rem 0 .2rem; background: url(~@/assets/images/bg10.jpg) no-repeat center -.1rem #fff; background-size: 3.75rem .77rem;
+        .topbox{ position: relative; width: 3.47rem; margin: 0 auto; padding: .2rem 0 .2rem .9rem; background: #fff; border-radius: .05rem; box-shadow: 0 0 .03rem rgba(0,0,0,.2);}
+        .tb-head{ position: absolute; left: .14rem; top: 50%; margin-top: -.3rem; width: .6rem; height: .6rem; border-radius: 50%; border:1px solid #eee;}
+        .tb-name{ align-items: center; font-size: .18rem;}
+        .tb-tp{ margin-left: .1rem; padding: 0 .05rem; border: 1px solid #ff7021; color: #ff7021; border-radius: .1rem; line-height: .16rem; font-size: .1rem; align-items: center;}
+        .tb-ico{ margin-left: .05rem;}
+        .tb-sub{ padding-top: .06rem; color: #666;}
+        .box{ width: 3.47rem; margin: .12rem auto 0; background: #fff;box-shadow: 0 0 .03rem rgba(0,0,0,.2); border-radius: .05rem;}
+        .tabs{ overflow: hidden;}
+        .tab{ float: left; width: 50%; padding: .1rem 0 .16rem .18rem;}
+        .tb-num{ padding: .07rem 0 .1rem; font-size: .2rem; line-height: .32rem;}
+        .tb-sp{ font-size: .12rem; color: #999; line-height: .2rem;}
+        .tb-ao{ font-size: .12rem;}
+        .tb-tol{ margin-left: .1rem; font-size: .14rem;}
+        .bar{width: 3.47rem; overflow: hidden; margin: .12rem auto 0; background: #fff; border-radius: .03rem;box-shadow: 0 0 .03rem rgba(0,0,0,.2); text-align: center;}
+        .baritem{ display: block; float: left; width: 25%; padding: .2rem 0 .1rem; line-height: .3rem;}
+        .barico{ display: block; margin: 0 auto; height: .29rem;}
+        .tb-tx{ height: .24rem; margin-bottom: .49rem; padding-right: .14rem; align-items: center; justify-content: flex-end;}
+        .tb-ho{ border-left: 1px solid #ccc; height: .12rem; margin: 0 .1rem;}
+        .tb-link{ padding: 0 .1rem; background: #ff7021; color: #fff; border-radius: .1rem; line-height: .2rem;}
+    }
 </style>
 <script>
+import { Popup } from 'vant';
 export default {
+    components:{
+        [Popup.name]:Popup
+    },
     data(){
         return {
+            popshow:false,
+            wheight:window.innerHeight||500,
+            head:'./tempimg/head01.jpg'
         }
     },
     created(){
-        this.Ob.$emit('changetitle','我的');
+        this.Ob.$emit('changetitle','分销员中心');
     },
     methods:{
+        showContent(item){
+            
+        }
     }
 }
 </script>

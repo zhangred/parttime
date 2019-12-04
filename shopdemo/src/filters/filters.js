@@ -1,7 +1,10 @@
 import Vue from 'vue';
 
 Vue.filter('timeFormat',function(value,format){
-    var time = new Date(value);
+    if(typeof(value)!='object'){
+        var time = value?new Date(value):new Date();
+    }
+    
     
     format = format.replace("y",time.getFullYear());
     format = format.replace("m",(time.getMonth()+1)<10?'0'+(time.getMonth()+1):(time.getMonth()+1));

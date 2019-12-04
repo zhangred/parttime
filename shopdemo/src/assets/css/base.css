@@ -931,3 +931,17 @@ textarea::-webkit-input-placeholder {
   float: none;
   padding: 0 0.1rem;
 }
+.cm-empty {
+  padding-top: 1rem;
+  text-align: center;
+}
+.cm-empty .eimg {
+  display: block;
+  margin: 0 auto;
+  width: 1.6rem;
+}
+.cm-empty .etx {
+  font-size: 0.12rem;
+  color: #666;
+  padding-top: 0.1rem;
+}

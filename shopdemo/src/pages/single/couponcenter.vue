@@ -53,7 +53,7 @@
     .item-rt{ line-height: .18rem; color: #333; }
     .item-tp{font-size: .11rem; color: #666; line-height: .2rem;}
     .item-rb{ font-size: .11rem; color: #999;}
-    .item-rang{ position: absolute; left: 0; bottom: .1rem; font-size: .12rem; color: #ff9921;}
+    .item-rang{ position: absolute; left: 0; bottom: .1rem; font-size: .12rem; color: #ff7021;}
     .item-arr{ vertical-align: middle;}
     .item-btn{ position: absolute; right: .14rem; bottom: .1rem; width: .6rem; text-align: center; font-size: .14rem; color: #fff; background: #ff7021; border-radius: .12rem; line-height: .22rem;} 
     .item-btn.disable{ background: #ccc;}

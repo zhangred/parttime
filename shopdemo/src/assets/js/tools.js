@@ -33,6 +33,13 @@
             selector.removeEventListener(type, fn);
             callback(e);
         }, false);
+    },
+    delay:function(time){
+        return new Promise((resolve, reject)=>{
+            setTimeout(function(){
+                resolve()
+            },time||200)
+        })
     }
 }
 export default CUES

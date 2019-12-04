@@ -50,5 +50,7 @@ export default new Router({
     { path: '/order/rate', name: 'orderrate', component: resolve => require(['./pages/order/rate'], resolve) },
     //分销中心
     { path: '/salesman/center', name: 'salesmanCenter', component: resolve => require(['./pages/salesman/center'], resolve) },
+    { path: '/salesman/guide', name: 'salesmanGuide', component: resolve => require(['./pages/salesman/guide'], resolve) },
+    { path: '/salesman/customer', name: 'salesmanCustomer', component: resolve => require(['./pages/salesman/customer'], resolve) },
   ]
 })
