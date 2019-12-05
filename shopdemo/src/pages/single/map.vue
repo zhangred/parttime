@@ -116,7 +116,7 @@ export default {
         {id:10,name:'我的订单',ico:'mine-order',path:'/order/list'},
         {id:11,name:'我的',ico:'mine',open:false,list:[{id:1.1,name:'我的1',path:'/mine'},{id:1.2,name:'我的2',path:'/mine01'}]},
         {id:12,name:'领券中心',ico:'coupon-center',path:'/coupanCenter'},
-        {id:13,dev:true,name:'分销中心',ico:'sell-center',path:'/salesman/center'},
+        {id:13,name:'分销中心',ico:'sell-center',path:'/salesman/center'},
         {id:14,name:'抽奖',ico:'lottery',path:'/lottery'},
         {id:15,name:'签到',ico:'signin',path:'/signin'},
         {id:16,name:'常见问题',ico:'question',path:'/question'},

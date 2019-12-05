@@ -119,7 +119,7 @@ export default {
         next();
     },
     created(){
-        this.Ob.$emit('changetitle','我对客户');
+        this.Ob.$emit('changetitle','我的客户');
 
         this.tabs.list = [
             {status:'all',name:'全部客户'},

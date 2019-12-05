@@ -54,5 +54,9 @@ export default new Router({
     { path: '/salesman/customer', name: 'salesmanCustomer', component: resolve => require(['./pages/salesman/customer'], resolve) },
     { path: '/salesman/customerDetail', name: 'salesmanCustomerDetail', component: resolve => require(['./pages/salesman/customer_detail'], resolve) },
     { path: '/salesman/goodlist', name: 'salesmanGoodlist', component: resolve => require(['./pages/salesman/goodlist'], resolve) },
+    { path: '/salesman/cashout', name: 'salesmanCashout', component: resolve => require(['./pages/salesman/cashout'], resolve) },
+    { path: '/salesman/history', name: 'salesmanHistory', component: resolve => require(['./pages/salesman/history'], resolve) },
+    { path: '/salesman/banklist', name: 'salesmanBanklist', component: resolve => require(['./pages/salesman/banklist'], resolve) },
+    { path: '/salesman/bankedit', name: 'salesmanBankedit', component: resolve => require(['./pages/salesman/bankedit'], resolve) },
   ]
 })

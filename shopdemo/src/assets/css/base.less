@@ -31,6 +31,7 @@ html,body{ height: 100%; }
 input::-webkit-input-placeholder { color: #ccc;}
 textarea::-webkit-input-placeholder { color: #ccc;}
 
+.arr-ra{ position: relative;}
 .arr-ra:after{ content: ""; display: block; position: absolute; right: 16px; top: 50%; height: 8px; width: 8px; border-top: 1px solid #aaa; border-right: 1px solid #aaa; -webkit-transform: translateY(-50%) rotate(45deg);transform: translateY(-50%) rotate(45deg); }
 .arr-ra.l0:after{ right: 0;}
 
@@ -39,7 +40,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .flex-between{justify-content:space-between;}
 .bdtb{ border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
 
-.cm-btn{ background: #fff; border:1px solid #eee; line-height: .38rem; padding: 0 .2rem;}
+.cm-btn{ display: block; background: #fff; border:1px solid #eee; text-align: center; line-height: .38rem; padding: 0 .2rem;}
 .cm-btn.rd{ border-radius: .2rem;}
 .cm-btn.small{ line-height: .28rem; padding: 0 .12rem; font-size: .12rem;}
 .cm-btn.small.rd{ border-radius: .16rem;}

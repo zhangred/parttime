@@ -40,7 +40,7 @@
                 <img src="~@/assets/images/group01a.png" class="barico" />
                 <p class="bartx">商品推广</p>
             </router-link>
-            <router-link class="baritem" to="/order/list?status=send">
+            <router-link class="baritem" to="/">
                 <img src="~@/assets/images/group01b.png" class="barico" />
                 <p class="bartx">邀请好友</p>
             </router-link>

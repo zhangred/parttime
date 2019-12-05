@@ -46,11 +46,6 @@
         .tb-tp{ margin-left: .1rem; padding: 0 .05rem; border: 1px solid #ff7021; color: #ff7021; border-radius: .1rem; line-height: .16rem; font-size: .1rem;}
         .tb-sub{ padding-top: .06rem; color: #999; font-size:.12rem; }
         .editlinebox .el-ado{ color:#999;}
-        .xxx{}
-        .xxx{}
-        .xxx{}
-        .xxx{}
-        .xxx{}
     }
 </style>
 <script>

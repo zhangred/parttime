@@ -3,6 +3,8 @@ import Vue from 'vue';
 Vue.filter('timeFormat',function(value,format){
     if(typeof(value)!='object'){
         var time = value?new Date(value):new Date();
+    }else{
+        time = value;
     }
     
     
