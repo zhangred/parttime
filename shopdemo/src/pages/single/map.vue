@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="themes bgcfff">
-      <p class="tm-til">选择配色方案</p>
+      <p class="tm-til">选择配色方案<span style="margin-left:20px;text-decoration:underline" @click="getdefault">重置默认</span></p>
       <div class="tm-list">
         <div class="tm-li" v-for="(list,index) in themes" v-bind:key="index">
           <div :class="{'tm-item':true,'tm-item-active':active_id==item.id}" v-for="item in list" v-bind:key="item.id" @click="chooseTheme(item)">
@@ -73,22 +73,22 @@ export default {
     //主题自定
     let themes = [
       [
-        {id:1,name:'theme-red1',colora:'#ff4444',colorb:'#ff8855'},
-        {id:2,name:'theme-red2',colora:'#ff5f15',colorb:'#ff9200'},
-        {id:3,name:'theme-rose1',colora:'#ff547c',colorb:'#ffe6e8'},
-        {id:4,name:'theme-red3',colora:'#ff4344',colorb:'#555555'}
+        {id:1,name:'theme-red',colora:'#ff4444',colorb:'#ff8855'},
+        {id:2,name:'theme-tangerine',colora:'#ff5f15',colorb:'#ff9200'},
+        {id:3,name:'theme-roseo',colora:'#ff547c',colorb:'#ffe6e8'},
+        {id:4,name:'theme-darkred',colora:'#ff4344',colorb:'#555555'}
       ],
       [
-        {id:5,name:'theme-green1',colora:'#66c4aa',colorb:'#def3ec'},
-        {id:6,name:'theme-greed2',colora:'#08ba07',colorb:'#383838'},
-        {id:7,name:'theme-green3',colora:'#63bf73',colorb:'#e0f4e2'},
-        {id:8,name:'theme-yellow3',colora:'#fcc600',colorb:'#1d262e'}
+        {id:5,name:'theme-blackish',colora:'#66c4aa',colorb:'#def3ec'},
+        {id:6,name:'theme-darkgreen',colora:'#08ba07',colorb:'#383838'},
+        {id:7,name:'theme-lightgreen',colora:'#63bf73',colorb:'#e0f4e2'},
+        {id:8,name:'theme-yellow',colora:'#fcc600',colorb:'#1d262e'}
       ],
       [
-        {id:9,name:'theme-blue1',colora:'#4a90e2',colorb:'#dbe9f9'},
-        {id:10,name:'theme-brown2',colora:'#c3a769',colorb:'#f4efe2'},
-        {id:11,name:'theme-dark3',colora:'#2f2f34',colorb:'#ebecf2'},
-        {id:12,name:'theme-purple3',colora:'#884cff',colorb:'#efe6ff'}
+        {id:9,name:'theme-blue',colora:'#4a90e2',colorb:'#dbe9f9'},
+        {id:10,name:'theme-brown',colora:'#c3a769',colorb:'#f4efe2'},
+        {id:11,name:'theme-darkblack',colora:'#2f2f34',colorb:'#ebecf2'},
+        {id:12,name:'theme-purple',colora:'#884cff',colorb:'#efe6ff'}
       ]
       
     ];
@@ -129,6 +129,11 @@ export default {
           this.active_id = item.id;
           localStorage.setItem('themeClass',item.name)
           this.Ob.$emit('changeTheme',item.name)
+      },
+      getdefault(){
+          this.active_id = -1;
+          localStorage.setItem('themeClass','')
+          this.Ob.$emit('changeTheme','')
       },
       //跳转链接
       clickLink(item){

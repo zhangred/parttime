@@ -1,6 +1,7 @@
 <template>
-  <div class="pages">
-        <van-notice-bar class="text" text="满199减20,满599减50,部分商品满188减100,新老客户赶紧的过来看啊" color="#f94122" background="#fdf1e9" left-icon="volume-o"/>
+  <div class="pages pindex">
+        <van-notice-bar class="text" text="满199减20,满599减50,满199减20,满599减50,满199减20,满599减50," color="#f94122" background="#fdf1e9" left-icon="volume-o"/>
+        
         <div class="search"><input type="text" class="sctrol" placeholder="搜索您感兴趣的内容" /></div>
         <van-swipe class="banner" :autoplay="3000" indicator-color="white">
             <van-swipe-item v-for="item in banner" v-bind:key="item"><img :src="item" class="banner_img"></van-swipe-item>
@@ -21,11 +22,11 @@
 
         <!-- 优惠券 -->
         <div class="coup">
-            <div :class="{'citem':true,'disable':item.receive}" v-for="item in couponlist" v-bind:key="item.id">
+            <div :class="{'citem gb-c':true,'disable':item.receive}" v-for="item in couponlist" v-bind:key="item.id">
                 <p class="cleft">{{item.money}}</p>
                 <div class="cright">
                     <p class="ctil">{{item.rule}}</p>
-                    <p class="cbtn" @click="receivecp(item)">{{item.receive?'已领取':'立即领取'}}</p>
+                    <p :class="['cbtn',{'gb-bgc':!item.receive}]" @click="receivecp(item)">{{item.receive?'已领取':'立即领取'}}</p>
                 </div>
             </div>
         </div>
@@ -39,13 +40,13 @@
                         <router-link to="/assemble/detail" class="t-item" v-for="sub in 3" v-bind:key="sub">
                             <div v-if="tuan.list[index*3-4+sub]">
                                 <van-image fit="cover" class="t-img" :src="tuan.list[index*3-4+sub].img" />
-                                <p class="t-info"><span class="t-peo">{{tuan.list[index*3-4+sub].people}}人拼团</span><span class="t-un">¥</span><span class="t-pri">{{tuan.list[index*3-4+sub].price}}</span></p>
+                                <p class="t-info gb-c"><span class="t-peo">{{tuan.list[index*3-4+sub].people}}人拼团</span><span class="t-un">¥</span><span class="t-pri">{{tuan.list[index*3-4+sub].price}}</span></p>
                                 <p class="t-total">已有{{tuan.list[index*3-4+sub].total}}人拼</p>
                             </div>
                         </router-link>
                     </div>
                 </van-swipe-item>
-                <indicator :length="tuan.loop" :current="tuan.current" color="#cccccc" bottom=".05rem" slot="indicator"></indicator>
+                <indicator :length="tuan.loop" :current="tuan.current" :colorhover="gobal.color" color="#ccc" bottom=".05rem" slot="indicator"></indicator>
             </van-swipe>
         </div>
 
@@ -60,7 +61,7 @@
                     </div>
                     <div class="tl-info">
                         <p class="tl-title">{{item.title}}</p>
-                        <p class="tl-price"><span class="tl-pun">¥</span>{{item.price}}</p>
+                        <p class="tl-price gb-c"><span class="tl-pun">¥</span>{{item.price}}</p>
                     </div>
                 </router-link>
             </div>
@@ -73,16 +74,16 @@
                 <router-link to="/seckill/detail" class="pl-item" v-for="item in seckill" v-bind:key="item.id">
                     <div class="pl-imgo">
                         <van-image fit="cover" class="pl-img" :src="item.img" />
-                        <p v-if="item.type!=3" class="pl-btime">据结束<backtime :lasttime="item.time_end" classname="fr" :tag="item"></backtime></p>
+                        <p v-if="item.type!=3" class="pl-btime gb-bgc">据结束<backtime :lasttime="item.time_end" classname="fr" :tag="item"></backtime></p>
                         <div v-if="item.type==3" class="pl-cover"><p class="pl-cover-tx">抢光</p></div>
                     </div>
                     <div class="pl-info">
                         <div class="pl-rtop">
                             <p class="pl-title">{{item.title}}</p>
-                            <p class="pl-rate">{{item.rate+'%'}}好评率</p>
+                            <p class="pl-rate gb-c-bdc">{{item.rate+'%'}}好评率</p>
                         </div>
-                        <div class="pl-price"><span class="pl-pun">￥</span><span class="pl-pnum">{{item.price}}</span><span class="pl-oldpri">{{item.oldprice}}</span></div>
-                        <p v-if="item.type==1" class="pl-btn">立即抢购</p>
+                        <div class="pl-price gb-c"><span class="pl-pun">￥</span><span class="pl-pnum">{{item.price}}</span><span class="pl-oldpri">{{item.oldprice}}</span></div>
+                        <p v-if="item.type==1" class="pl-btn gb-bgc">立即抢购</p>
                         <p v-if="item.type==2" class="pl-btn pl-btna">立即预约</p>
                         <p v-if="item.type==3" class="pl-btn pl-btnb">立即抢购</p>
                     </div>
@@ -100,7 +101,7 @@
                     </div>
                     <div class="tl-info">
                         <p class="tl-title">{{item.title}}</p>
-                        <p class="tl-price"><span class="tl-pun">¥</span>{{item.price}}</p>
+                        <p class="tl-price gb-c"><span class="tl-pun">¥</span>{{item.price}}</p>
                     </div>
                 </router-link>
             </div>
@@ -112,13 +113,13 @@
         <!-- 弹层 -->
         <div :class="{'cm-pop':true,'cm-pop-active':pop_new.show}">
             <p class="cm-pop-bg" @click="pop_new.show=false"></p>
-            <div class="cm-pop-cont cm-pop-mid-cont pop-redpack">
+            <div class="cm-pop-cont cm-pop-mid-cont pop-redpack gb-bgc">
                 <img class="cm-pop-closea"  @click="pop_new.show=false" src="~@/assets/images/close02.png" />
                 <p class="til">送你88元新人红包</p>
                 <div class="rlist">
                     <div class="item" v-for="item in pop_new.data" v-bind:key="item.id">
                         <div class="item-l">
-                            <p class="item-lt"><span class="item-ltn">¥</span>{{item.money}}</p>
+                            <p class="item-lt gb-c"><span class="item-ltn">¥</span>{{item.money}}</p>
                             <p class="item-lru">{{item.rule}}</p>
                         </div>
                         <div class="item-r">
@@ -127,70 +128,69 @@
                         </div>
                     </div>
                 </div>
-                <p class="btn" @click="pop_new.show=false">立即使用</p>
+                <p class="btn gb-c" @click="pop_new.show=false">立即使用</p>
             </div>
         </div>
   </div>
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" scoped>
-    .text{ height: auto; line-height: 24px;}
-    .search{ padding-left: .51rem; background: url(~@/assets/images/search.png) no-repeat .2rem center #fff; background-size: .16rem .18rem; line-height: .44rem; }
-    .sctrol{ display: block; height: .44rem; width: 100%; border: none; font-size: .14rem; }
-    .banner,.banner_img{ height: 1.67rem; }
-    .cate-list{
-        overflow: hidden; padding:  .2rem 0 .1rem; background: #fff; text-align: center;
-        .cate-item{ float: left; width: 20%; height: .7rem; }
-        .cate-ico{ display: block; margin: 0 auto; width: .42rem; }
-        .cate-tx{ font-size: .12rem;} 
+<style lang="less">
+    .pindex{
+        .text{ height: auto; line-height: 24px;}
+        .search{ padding-left: .51rem; background: url(~@/assets/images/search.png) no-repeat .2rem center #fff; background-size: .16rem .18rem; line-height: .4rem; }
+        .sctrol{ display: block; height: .44rem; width: 100%; border: none; font-size: .14rem; }
+        .banner,.banner_img{ height: 1.67rem; }
+        .cate-list{
+            overflow: hidden; padding:  .2rem 0 .1rem; background: #fff; text-align: center;
+            .cate-item{ float: left; width: 20%; height: .7rem; }
+            .cate-ico{ display: block; margin: 0 auto; width: .42rem; }
+            .cate-tx{ font-size: .12rem;} 
+        }
+        
+        .coup{
+            overflow: hidden; padding: .1rem .05rem;
+            .citem{ position: relative; width: 1.78rem; height: .64rem; float: left; background: #fff; border-radius: .06rem; text-align: center; color: @base;}
+            .citem:nth-child(2){ float: right;}
+            .citem:after{ content: ""; display: block; position: absolute; left: .8rem; top: .1rem; bottom: .1rem; border-left: 1px solid #e6d9d2;}
+            .cleft{ float: left; width: .8rem; line-height: .64rem; font-size: .5rem;}
+            .cright{ float: right; width: .97rem;}
+            .ctil{ padding: .07rem 0 .02rem; color: #333; }
+            .cbtn{ width: .68rem; margin: 0 auto; line-height: .18rem; font-size: .1rem; color: #fff; background: @base; border-radius: .09rem;}
+            .disable .cbtn{ background: #999;}
+            .disable .ctil,.disable .cleft{ color: #999;}
+        }
+        .tuan{
+            background: #fff; margin-bottom: .1rem;
+            .tuangoods{ height: 1.8rem;}
+            .t-list{ overflow: hidden; padding-left: .15rem; }
+            .t-item{ float: left; width: 1.08rem; margin-right: .1rem;}
+            .t-un{ margin-left:.05rem;}
+            .t-pri{ font-size: .18rem;}
+            .t-total{text-align: center;font-size: .12rem; line-height: .18rem; color: #999;}
+            .t-img{display: block; width: 1.08rem; height: 1.08rem; border-radius: .1rem; overflow: hidden;}
+            .t-info{ padding: .02rem 0 0; font-size: .12rem; color: @base; text-align: center;}
+        }
+        .ptil{
+            position: relative; padding: 0 .15rem; line-height: .42rem; font-size: .15rem; font-weight: bold;
+            .pmore{ float: right; padding-right: .14rem; font-weight: normal; font-size: .14rem; color: #aaa; background: url(~@/assets/images/arr_r01.png) no-repeat right center; background-size: .07rem .13rem;}
+        }
+        .jingx{ padding-bottom: .1rem;}
+        .seckill{ margin-bottom: .1rem;}
+        .bottom{ text-align: center; color: #999; font-size: .12rem; color: #999; line-height: .4rem; }
+        .likem{padding-bottom: .1rem; background: #fff; }
+        .pop-redpack{
+            background: #fc7421;
+            .item{ width: 2.78rem; height: .75rem; margin: 0 auto; padding: .06rem .03rem 0 .1rem; background: url(~@/assets/images/cpbg.png); background-size: 100% 100%;}
+            .item-l{float: left; width: .8rem; padding-top: .08rem;  font-size: .12rem; color: #777; text-align: center; line-height: .18rem;}
+            .item-lt{ color: #ff7921; font-size: .2rem; line-height: .28rem;}
+            .item-ltn{ font-size: .15rem; line-height: .24rem;}
+            .item-r{ float: right; width: 1.72rem; font-size: .12rem; color: #999; line-height: .18rem;}
+            .item-rt{ padding:.08rem 0 0; color: #222; font-size: .16rem; line-height: .28rem;}
+            .btn{ width: 2rem; margin: .14rem auto .24rem; background: #fff; text-align: center; line-height: .36rem; font-size: .15rem; color: #ff7021; border-radius: .18rem;}
+            .til{ padding: .16rem 0 .1rem; line-height: .48rem; font-size: .24rem; text-align: center; color: #fff; font-weight: bold;}
+        }
     }
     
-    .coup{
-        overflow: hidden; padding: .1rem .05rem;
-        .citem{ position: relative; width: 1.78rem; height: .64rem; float: left; background: #fff; border-radius: .06rem; text-align: center; color: #ff7021;}
-        .citem:nth-child(2){ float: right;}
-        .citem:after{ content: ""; display: block; position: absolute; left: .8rem; top: .1rem; bottom: .1rem; border-left: 1px solid #e6d9d2;}
-        .cleft{ float: left; width: .8rem; line-height: .64rem; font-size: .5rem;}
-        .cright{ float: right; width: .97rem;}
-        .ctil{ padding: .07rem 0 .02rem; color: #333; }
-        .cbtn{ width: .68rem; margin: 0 auto; line-height: .18rem; font-size: .1rem; color: #fff; background: #ff7021; border-radius: .09rem;}
-        .disable .cbtn{ background: #999;}
-        .disable .ctil,.disable .cleft{ color: #999;}
-    }
-    .tuan{
-        background: #fff; margin-bottom: .1rem;
-        .tuangoods{ height: 1.8rem;}
-        .t-list{ overflow: hidden; padding-left: .15rem; }
-        .t-item{ float: left; width: 1.08rem; margin-right: .1rem;}
-        .t-un{ margin-left:.05rem;}
-        .t-pri{ font-size: .18rem;}
-        .t-total{text-align: center;font-size: .12rem; line-height: .18rem; color: #999;}
-        .t-img{display: block; width: 1.08rem; height: 1.08rem; border-radius: .1rem; overflow: hidden;}
-        .t-info{ padding: .02rem 0 0; font-size: .12rem; color: #ff7021; text-align: center;}
-        .ci-tor{ width: 20px;}
-    }
-    .ptil{
-        position: relative; padding: 0 .15rem; line-height: .42rem; font-size: .15rem; font-weight: bold;
-        .pmore{ float: right; padding-right: .14rem; font-weight: normal; font-size: .14rem; color: #aaa; background: url(~@/assets/images/arr_r01.png) no-repeat right center; background-size: .07rem .13rem;}
-     }
-     .jingx{ padding-bottom: .1rem;}
-     .seckill{ margin-bottom: .1rem;}
-    .bottom{ text-align: center; color: #999; font-size: .12rem; color: #999; line-height: .4rem; }
-    .likem{padding-bottom: .1rem; background: #fff; }
-    .pop-redpack{
-        background: #fc7421;
-        .item{ width: 2.78rem; height: .75rem; margin: 0 auto; padding: .06rem .03rem 0 .1rem; background: url(~@/assets/images/cpbg.png); background-size: 100% 100%;}
-        .item-l{float: left; width: .8rem; padding-top: .08rem;  font-size: .12rem; color: #777; text-align: center; line-height: .18rem;}
-        .item-lt{ color: #ff7921; font-size: .2rem; line-height: .28rem;}
-        .item-ltn{ font-size: .15rem; line-height: .24rem;}
-        .item-r{ float: right; width: 1.72rem; font-size: .12rem; color: #999; line-height: .18rem;}
-        .item-rt{ padding:.08rem 0 0; color: #222; font-size: .16rem; line-height: .28rem;}
-        .btn{ width: 2rem; margin: .14rem auto .24rem; background: #fff; text-align: center; line-height: .36rem; font-size: .15rem; color: #ff7021; border-radius: .18rem;}
-        .til{ padding: .16rem 0 .1rem; line-height: .48rem; font-size: .24rem; text-align: center; color: #fff; font-weight: bold;}
-    }
-</style>
-<style>
-    .tuan .cm-indicator .ci-tor-cur{ width: 14px;}
 </style>
 <script>
 import {NoticeBar,Swipe, SwipeItem } from 'vant';
@@ -202,6 +202,7 @@ export default {
     },
     data(){
         return {
+            gobal:this.themes.setting,
             banner:[],
             catelist:[],
             couponlist:[],
@@ -295,6 +296,11 @@ export default {
                     this.pop_new.data = list;
                 }
             });
+        },
+        //领取优惠券
+        receivecp(item){
+            item.receive = true;
+            this.$toast.success("领取成功")
         }
     }
 }

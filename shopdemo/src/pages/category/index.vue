@@ -1,10 +1,10 @@
 <template>
-    <div class="pages">
+    <div class="pages pcategory">
         <div class="search"><input type="text" class="ctrol" placeholder="搜索您感兴趣的商品" v-on:blur="searchkey($event)" /></div>
 
         <div class="leftbox">
-            <div :class="{'item':true,'active':cate_ac==0}" @click="goitem(0)">热搜推荐</div>
-            <div :class="{'item':true,'active':cate_ac==item.id}" v-for="item in cate.cate" v-bind:key="item.id" @click="goitem(item.id)">{{item.name}}</div>
+            <div :class="{'item':true,'active gb-c':cate_ac==0}" @click="goitem(0)">热搜推荐</div>
+            <div :class="{'item':true,'active gb-c':cate_ac==item.id}" v-for="item in cate.cate" v-bind:key="item.id" @click="goitem(item.id)">{{item.name}}</div>
         </div>
 
         <div class="rightbox">
@@ -32,26 +32,28 @@
     </div>
 </template>
 <style lang="less"  scoped>
-    .pages{ background: #fff;}
-    .search{
-        position: fixed; left: 0; top: 0; z-index: 3; width: 100%; background: #fff; padding: .05rem .12rem;
-        .ctrol{ display: block; border: none; height: .3rem; width: 100%; padding-left: .3rem; border-radius: .14rem; background: url(~@/assets/images/search02.png) no-repeat .1rem center #f8f8f8; background-size: .14rem .14rem; font-size: .14rem;}
-    }
-    .leftbox{
-        position: fixed; left: 0; top: 0; bottom: 0; z-index: 1; width: .8rem; height: 100%; padding: .4rem 0 .5rem; background:#f2f2f2; overflow-y: scroll; -webkit-overflow-scrolling: touch;;
-        .item{ display: block; height: .48rem; text-align: center; line-height: .48rem; font-size: .13rem;}
-        .item.active{ background: #fff; color: #ff7021;}
-    }
-    .rightbox{
-        padding: .4rem 0 .1rem .8rem; background: #fff;
-        .ritem{ padding: 0 .14rem;}
-        .itil{ padding: .2rem 0 .1rem; font-size: .14rem;}
-        .imore{ float: right; padding-right: .14rem; font-weight: normal;color: #aaa; background: url(~@/assets/images/arr_r01.png) no-repeat right center; background-size: .07rem .13rem;}
-        .list{ padding: .16rem 0 .1rem .16rem; overflow: hidden; box-shadow: 0 0 .05rem rgba(0,0,0,.1); border-radius: .06rem; text-align: center;}
-        .sitem{ display: block; float: left; width: .62rem; margin-right: .25rem;}
-        .sitem:nth-child(3n){ margin-right: 0;}
-        .simg{ display: block; height: .62rem; width: .62rem; border: 1px solid #f8f8f8;}
-        .stil{ padding: .05rem 0 .08rem; font-size: .12rem; color: #666;}
+    .pcategory{ 
+        background: #fff;
+        .search{
+            position: fixed; left: 0; top: 0; z-index: 3; width: 100%; background: #fff; padding: .05rem .12rem;
+            .ctrol{ display: block; border: none; height: .3rem; width: 100%; padding-left: .3rem; border-radius: .14rem; background: url(~@/assets/images/search02.png) no-repeat .1rem center #f8f8f8; background-size: .14rem .14rem; font-size: .14rem;}
+        }
+        .leftbox{
+            position: fixed; left: 0; top: 0; bottom: 0; z-index: 1; width: .8rem; height: 100%; padding: .4rem 0 .5rem; background:#f2f2f2; overflow-y: scroll; -webkit-overflow-scrolling: touch;;
+            .item{ display: block; height: .48rem; text-align: center; line-height: .48rem; font-size: .13rem;}
+            .item.active{ background: #fff; color: #ff7021;}
+        }
+        .rightbox{
+            padding: .4rem 0 .1rem .8rem; background: #fff;
+            .ritem{ padding: 0 .14rem;}
+            .itil{ padding: .2rem 0 .1rem; font-size: .14rem;}
+            .imore{ float: right; padding-right: .14rem; font-weight: normal;color: #aaa; background: url(~@/assets/images/arr_r01.png) no-repeat right center; background-size: .07rem .13rem;}
+            .list{ padding: .16rem 0 .1rem .16rem; overflow: hidden; box-shadow: 0 0 .05rem rgba(0,0,0,.1); border-radius: .06rem; text-align: center;}
+            .sitem{ display: block; float: left; width: .62rem; margin-right: .25rem;}
+            .sitem:nth-child(3n){ margin-right: 0;}
+            .simg{ display: block; height: .62rem; width: .62rem; border: 1px solid #f8f8f8;}
+            .stil{ padding: .05rem 0 .08rem; font-size: .12rem; color: #666;}
+        }
     }
 </style>
 <script>

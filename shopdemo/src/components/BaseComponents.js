@@ -7,19 +7,19 @@ Vue.component('botnav',{
     template:`<div class="cm-botnav">
         <div class="cb-cont">
             <div :class="{'cb-item':true,'active':active=='home'}" @click="go('/')">
-                <div class="cb-ico cb-ico-home"></div>
+            <div class="cb-ico"><van-icon class-prefix="iconfont" :name="active=='home'?'home':'home-o'" :class="['cb-icon',{'gb-c':active=='home'}]" /></div>
                 <div class="cb-tx">首页</div>
             </div>
             <div :class="{'cb-item':true,'active':active=='cate'}" @click="go('/category')">
-                <div class="cb-ico cb-ico-cate"></div>
+                <div class="cb-ico"><van-icon class-prefix="iconfont" :name="active=='cate'?'cate':'cate-o'" :class="['cb-icon',{'gb-c':active=='cate'}]" /></div>
                 <div class="cb-tx">分类</div>
             </div>
             <div :class="{'cb-item':true,'active':active=='cart'}" @click="go('/cart')">
-                <div class="cb-ico cb-ico-cart"></div>
+            <div class="cb-ico"><van-icon class-prefix="iconfont" :name="active=='cart'?'cart':'cart-o'" :class="['cb-icon',{'gb-c':active=='cart'}]" /></div>
                 <div class="cb-tx">购物车</div>
             </div>
             <div :class="{'cb-item':true,'active':active=='mine'}" @click="go('/mine')">
-                <div class="cb-ico cb-ico-mine"></div>
+                <div class="cb-ico"><van-icon class-prefix="iconfont" :name="active=='mine'?'mine':'mine-o'" :class="['cb-icon',{'gb-c':active=='mine'}]" /></div>
                 <div class="cb-tx">我的</div>
             </div>
         </div>

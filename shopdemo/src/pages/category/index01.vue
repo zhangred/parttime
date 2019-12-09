@@ -1,14 +1,14 @@
 <template>
-    <div class="pages">
+    <div class="pages pcategory01">
         <div class="ftop">
             <div class="sline">
                 <p class="cate-ico" @click="pop_cate.show=true"></p>
                 <div class="search"><input type="text" class="ctrol" placeholder="搜索您感兴趣的内容" v-on:blur="searchkey($event)" /></div>
             </div>
             <div class="tabline">
-                <div :class="{'tab':true,'active':params.type=='all'}" @click="changetab('all')">综合排名</div>
-                <div :class="{'tab alic':true,'active':params.type=='sell'}" @click="changetab('sell')">销量</div>
-                <div :class="{'tab alir':true,'active':params.type=='price'}" @click="changetab('price')">价格<orderico :order="params.value"></orderico></div>
+                <div :class="{'tab':true,'active gb-c':params.type=='all'}" @click="changetab('all')">综合排名</div>
+                <div :class="{'tab alic':true,'active gb-c':params.type=='sell'}" @click="changetab('sell')">销量</div>
+                <div :class="{'tab alir':true,'active gb-c':params.type=='price'}" @click="changetab('price')">价格<orderico :order="params.value" :colorhover="gobal.color"></orderico></div>
             </div>
         </div>
         <van-list
@@ -26,7 +26,7 @@
                     </div>
                     <div class="tl-info">
                         <p class="tl-title">{{item.title}}</p>
-                        <p class="tl-price"><span class="tl-pun">¥</span>{{item.price}}</p>
+                        <p class="tl-price gb-c"><span class="tl-pun">¥</span>{{item.price}}</p>
                     </div>
                 </router-link>
             </div>
@@ -36,8 +36,8 @@
         <div :class="{'cm-pop':true,'cm-pop-active':pop_cate.show}">
             <p class="cm-pop-bg" @click="pop_cate.show=false"></p>
             <div class="cm-pop-cont cm-pop-left-cont pop-cate">
-                <div :class="{'item':true,'active':params.cateid==''}" @click="changecateid('')">全部</div>
-                <div :class="{'item':true,'active':params.cateid==item.id}" v-for="item in pop_cate.list" v-bind:key="item.id" @click="changecateid(item.id)">{{item.name}}</div>
+                <div :class="{'item':true,'active gb-c':params.cateid==''}" @click="changecateid('')">全部</div>
+                <div :class="{'item':true,'active gb-c':params.cateid==item.id}" v-for="item in pop_cate.list" v-bind:key="item.id" @click="changecateid(item.id)">{{item.name}}</div>
             </div>
         </div>
         
@@ -45,25 +45,27 @@
 
     </div>
 </template>
-<style lang="less"  scoped>
-    .pages{ padding-top: .88rem;}
-    .ftop{
-        position: fixed; left: 0; top: 0; width: 100%; background: #fff; z-index: 3;
-        .sline{ position: relative; height: .48rem; padding-left: .5rem; border-bottom: 1px solid #eee;}
-        .cate-ico{ position: absolute; left: 0; top: 0; height: .48rem; width: .5rem; background: url(~@/assets/images/cate.png) no-repeat .15rem center; background-size:.2rem .275rem; }
-        .tabline{ height: .4rem; overflow: hidden; padding: 0 .15rem; line-height: .4rem;}
-        .tab{ float: left; width: 33.3%; font-size: .13rem;}
-        .tab.active{ color: #ff7021;}
-    }
-    .search{
-        background: #fff; padding: .05rem .12rem;
-        .ctrol{ display: block; border: none; height: .3rem; width: 100%; padding-left: .3rem; border-radius: .14rem; background: url(~@/assets/images/search02.png) no-repeat .1rem center #f8f8f8; background-size: .14rem .14rem; font-size: .14rem;}
-    }
-    .cm-prolist{ padding-top: .1rem;}
-    .pop-cate{
-        width: 1.3rem; background: #f2f2f2; height: 100%;
-        .item{ padding-left: .15rem; line-height: .52rem;}
-        .item.active{ background: #fff; color: #ff7021;}
+<style lang="less">
+    .pcategory01{
+        padding-top: .88rem;
+        .ftop{
+            position: fixed; left: 0; top: 0; width: 100%; background: #fff; z-index: 3;
+            .sline{ position: relative; height: .48rem; padding-left: .5rem; border-bottom: 1px solid #eee;}
+            .cate-ico{ position: absolute; left: 0; top: 0; height: .48rem; width: .5rem; background: url(~@/assets/images/cate.png) no-repeat .15rem center; background-size:.2rem .275rem; }
+            .tabline{ height: .4rem; overflow: hidden; padding: 0 .15rem; line-height: .4rem;}
+            .tab{ float: left; width: 33.3%; font-size: .13rem;}
+            .tab.active{ color: #ff7021;}
+        }
+        .search{
+            background: #fff; padding: .05rem .12rem;
+            .ctrol{ display: block; border: none; height: .3rem; width: 100%; padding-left: .3rem; border-radius: .14rem; background: url(~@/assets/images/search02.png) no-repeat .1rem center #f8f8f8; background-size: .14rem .14rem; font-size: .14rem;}
+        }
+        .cm-prolist{ padding-top: .1rem;}
+        .pop-cate{
+            width: 1.3rem; background: #f2f2f2; height: 100%;
+            .item{ padding-left: .15rem; line-height: .52rem;}
+            .item.active{ background: #fff; color: #ff7021;}
+        }
     }
 </style>
 <script>
@@ -74,6 +76,7 @@ export default {
     },
     data(){
         return {
+            gobal:this.themes.setting,
             params:{type:'all',value:'',pageNo:1,pageSize:20,cateid:''},
             loading: false,
             finished: false,

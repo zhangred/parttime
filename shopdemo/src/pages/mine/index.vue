@@ -41,7 +41,7 @@
     .top{ position: relative; height: 1.9rem; padding-top: .3rem; background: url(~@/assets/images/bg01.png) repeat-x; background-size: 1px 100%;}
     .t-img{ display: block; margin: 0 auto; height: .76rem; width: .76rem; border-radius: 50%; border: .02rem solid #fff; overflow: hidden;}
     .t-name{ padding-top: .14rem; color: #fff; font-size: .17rem; text-align: center;}
-    .tbg{ position: absolute; left: 0; bottom: 0; right: 0;}
+    .tbg{ position: absolute; left: 0; bottom: -1px; right: 0;}
     .lines{ margin-bottom: .1rem; background: #fff; }
     .linesa{ padding-top: .3rem; border-top: none;}
     .line{ display: block; position: relative; padding-left: .5rem; line-height: .5rem; border-bottom: 1px solid #f3f3f3;}

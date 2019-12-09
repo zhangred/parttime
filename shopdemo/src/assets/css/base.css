@@ -1,4 +1,34 @@
 @charset "utf-8";
+.theme-red {
+  /* 全局具体样式 */
+  /* 红色模板样式 --end--- */
+}
+.theme-red .gb-c {
+  color: #ff4444 !important;
+}
+.theme-red .gb-bgc {
+  background-color: #ff4444 !important;
+}
+.theme-red .gb-bdc {
+  border-color: #ff4444 !important;
+}
+.theme-red .gb-c-bdc {
+  color: #ff4444 !important;
+  border-color: #ff4444 !important;
+}
+.theme-blackish .gb-c {
+  color: #66c4aa !important;
+}
+.theme-blackish .gb-bgc {
+  background-color: #66c4aa !important;
+}
+.theme-blackish .gb-bdc {
+  border-color: #66c4aa !important;
+}
+.theme-blackish .gb-c-bdc {
+  color: #66c4aa !important;
+  border-color: #66c4aa !important;
+}
 div,
 p,
 span,
@@ -127,7 +157,7 @@ body {
   color: #fff;
 }
 .c {
-  color: #ff6521;
+  color: #ff7021;
 }
 .ymid {
   transform: translateY(-50%);
@@ -330,7 +360,7 @@ textarea::-webkit-input-placeholder {
   float: left;
   width: 25%;
   height: 0.5rem;
-  padding-top: 0.05rem;
+  padding-top: 0.08rem;
   line-height: 0.14rem;
   font-size: 0.1rem;
   color: #787878;
@@ -340,8 +370,6 @@ textarea::-webkit-input-placeholder {
   height: 0.24rem;
   width: 0.24rem;
   margin: 0 auto;
-  background: url(~@/assets/images/botnav.png) no-repeat;
-  background-size: 0.96rem 0.48rem;
 }
 .cm-botnav .active .cb-ico-home {
   background-position: 0 -0.24rem;
@@ -366,6 +394,10 @@ textarea::-webkit-input-placeholder {
 }
 .cm-botnav .active {
   color: #333;
+}
+.cm-botnav .cb-icon {
+  line-height: 0.24rem;
+  font-size: 0.24rem;
 }
 .cm-indicator {
   position: absolute;
@@ -420,7 +452,7 @@ textarea::-webkit-input-placeholder {
 .cm-prolist .tl-price {
   padding-top: 0.05rem;
   font-size: 0.16rem;
-  color: #ff6521;
+  color: #ff7021;
 }
 .cm-prolist .tl-pun {
   margin-right: 0.03rem;
@@ -449,7 +481,7 @@ textarea::-webkit-input-placeholder {
   bottom: 0;
   right: 0;
   padding: 0 0.05rem;
-  background: #ff6521;
+  background: #ff7021;
   color: #fff;
   font-size: 0.1rem;
 }
@@ -513,7 +545,7 @@ textarea::-webkit-input-placeholder {
   bottom: 0;
   right: 0;
   padding: 0 0.05rem;
-  background: #ff6521;
+  background: #ff7021;
   color: #fff;
 }
 .cm-vprolist .pl-info {
@@ -539,14 +571,14 @@ textarea::-webkit-input-placeholder {
   margin-top: 0.1rem;
   line-height: 0.16rem;
   font-size: 0.1rem;
-  color: #ff6521;
-  border: 1px solid #ff6521;
+  color: #ff7021;
+  border: 1px solid #ff7021;
   border-radius: 0.09rem;
   text-align: center;
 }
 .cm-vprolist .pl-price {
   font-size: 0.16rem;
-  color: #ff6521;
+  color: #ff7021;
 }
 .cm-vprolist .pl-pun {
   font-size: 0.12rem;
@@ -563,7 +595,7 @@ textarea::-webkit-input-placeholder {
   bottom: 0.03rem;
   z-index: 1;
   width: 0.58rem;
-  background: #ff6521;
+  background: #ff7021;
   text-align: center;
   line-height: 0.22rem;
   font-size: 0.11rem;
@@ -605,7 +637,7 @@ textarea::-webkit-input-placeholder {
   width: 0.7rem;
   margin-top: 0.08rem;
   line-height: 0.14rem;
-  border: 1px solid #ff6521;
+  border: 1px solid #ff7021;
   border-radius: 0.09rem;
 }
 .cm-vprolist .pl-sperin {
@@ -613,7 +645,7 @@ textarea::-webkit-input-placeholder {
   left: 0;
   top: 0;
   height: 0.16rem;
-  background: #ff6521;
+  background: #ff7021;
   border-radius: 0.09rem;
 }
 .cm-vprolist .pl-sper-tx {
@@ -912,7 +944,7 @@ textarea::-webkit-input-placeholder {
   width: 20%;
 }
 .cm-tabbox .cmtab.active {
-  color: #ff6521;
+  color: #ff7021;
 }
 .cm-tabbox .cmtab-in {
   display: inline-block;
@@ -922,7 +954,7 @@ textarea::-webkit-input-placeholder {
   display: block;
 }
 .cm-tabbox .cmtab.active .cmtab-in {
-  border-bottom: 0.03rem solid #ff6521;
+  border-bottom: 0.03rem solid #ff7021;
 }
 .cm-tabbox-x {
   overflow-x: scroll;

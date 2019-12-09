@@ -15,7 +15,7 @@
                     </div>
                     <div class="tl-info">
                         <p class="tl-title">{{item.title}}</p>
-                        <p class="tl-price"><span class="tl-pun">¥</span>{{item.price}}</p>
+                        <p class="tl-price gb-c"><span class="tl-pun">¥</span>{{item.price}}</p>
                     </div>
                 </router-link>
             </div>
@@ -24,18 +24,18 @@
         <div v-show="goodall">
             <div class="glist">
                 <div class="gitem" v-for="shop in list" v-bind:key="shop.id" v-show="shop.list.length">
-                    <div class="gtil"><van-checkbox class="radio" v-model="shop.checked" checked-color="#ff7021" @click="checkshop(shop)"></van-checkbox>{{shop.name}}</div>
+                    <div class="gtil"><van-checkbox class="radio" v-model="shop.checked" :checked-color="gobal.color" @click="checkshop(shop)"></van-checkbox>{{shop.name}}</div>
                     <div class="pros">
                         <swipe-cell class="tedfd" v-for="(good) in shop.list" v-bind:key="good.id">
                             <div class="pro">
-                                <div class="pro-check"><van-checkbox class="radio" v-model="good.checked" checked-color="#ff7021" @click="checkgood(good,shop)"></van-checkbox></div>
+                                <div class="pro-check"><van-checkbox class="radio" v-model="good.checked" :checked-color="gobal.color" @click="checkgood(good,shop)"></van-checkbox></div>
                                 <div class="pro-img"><van-image fit="cover" class="psimg" :src="good.img" /></div>
                                 <div class="pro-info">
                                     <div class="pro-itop">
                                         <p class="pro-til">{{good.name}}</p>
                                         <p class="pro-unit" v-if="good.unit">{{good.unit}}</p>
                                     </div>
-                                    <div class="pro-price"><span class="pro-uy">¥</span>{{good.price}}</div>
+                                    <div class="pro-price gb-c"><span class="pro-uy">¥</span>{{good.price}}</div>
                                     <van-stepper class="pro-step" v-model="good.number" integer :button-size="rem.ha" @change="numberchange" @blur="numberchange" />
                                 </div>
                             </div>
@@ -51,18 +51,18 @@
 
             <div class="botdo" v-show="!isedit">
                 <div class="bd-l">
-                    <van-checkbox class="fl bd-rado" v-model="chooseall" checked-color="#ff7021" @click="getall">全选</van-checkbox>
+                    <van-checkbox class="fl bd-rado" v-model="chooseall" :checked-color="gobal.color" @click="getall">全选</van-checkbox>
                     <p class="fl bd-edit" @click="isedit=true">编辑</p>
                 </div>
-                <div class="bd-r">合计：<span class="bd-un">¥</span><span class="bd-total">{{total.money}}</span></div>
-                <div :class="{'bd-btn':true,'active':total.number}">结算<span v-show="total.number">({{total.number}})</span></div>
+                <div class="bd-r">合计：<span class="bd-un gb-c">¥</span><span class="bd-total gb-c">{{total.money}}</span></div>
+                <div :class="{'bd-btn':true,'active gb-bgc':total.number}">结算<span v-show="total.number">({{total.number}})</span></div>
             </div>
             <div class="botdo" v-show="isedit">
                 <div class="bd-l">
-                    <van-checkbox class="fl bd-rado" v-model="chooseall" checked-color="#ff7021" @click="getall">全选</van-checkbox>
+                    <van-checkbox class="fl bd-rado" v-model="chooseall" :checked-color="gobal.color" @click="getall">全选</van-checkbox>
                     <p class="fl bd-edit" @click="isedit=false">完成</p>
                 </div>
-                <div :class="{'bd-btn':true,'active':total.number}" @click="deleteall">删除<span>(5)</span></div>
+                <div :class="{'bd-btn':true,'active gb-bgc':total.number}" @click="deleteall">删除<span>(5)</span></div>
             </div>
         </div>
         <botnav active="cart"></botnav>
@@ -122,6 +122,7 @@ export default {
     },
     data(){
         return {
+            gobal:this.themes.setting,
             rem:{ha:window.rem*.28},
             list:[],
             goodlist:[],
