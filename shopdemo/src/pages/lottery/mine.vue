@@ -2,7 +2,7 @@
     <div class="pages">
         <div class="item" v-for="item in list" v-bind:key="item.id">
             <div class="item-l">
-                <p class="item-lt"><span class="item-ltn">¥</span>{{item.money}}</p>
+                <p class="item-lt gb-c"><span class="item-ltn">¥</span>{{item.money}}</p>
                 <p class="item-lru">{{item.rule}}</p>
             </div>
             <div class="item-r">

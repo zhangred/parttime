@@ -2,13 +2,13 @@
     <div class="pages">
         <div class="ftop">
             <div class="sline">
-                <div class="sitem" @click="changecateid('')"><span  :class="{'skin':true,'active':params.cateid==''}">全部</span></div>
-                <div class="sitem" v-for="item in pop_cate.list" v-bind:key="item.id" @click="changecateid(item.id)"><span :class="{'skin':true,'active':params.cateid==item.id}">{{item.name}}</span></div>
+                <div class="sitem" @click="changecateid('')"><span  :class="{'skin':true,'active gb-c gb-bdc':params.cateid==''}">全部</span></div>
+                <div class="sitem" v-for="item in pop_cate.list" v-bind:key="item.id" @click="changecateid(item.id)"><span :class="{'skin':true,'active gb-c gb-bdc':params.cateid==item.id}">{{item.name}}</span></div>
             </div>
             <div class="tabline">
-                <div :class="{'tab':true,'active':params.type=='all'}" @click="changetab('all')">综合排名</div>
-                <div :class="{'tab alic':true,'active':params.type=='sell'}" @click="changetab('sell')">销量</div>
-                <div :class="{'tab alir':true,'active':params.type=='price'}" @click="changetab('price')">价格<orderico :order="params.value"></orderico></div>
+                <div :class="{'tab':true,'active gb-c':params.type=='all'}" @click="changetab('all')">综合排名</div>
+                <div :class="{'tab alic':true,'active gb-c':params.type=='sell'}" @click="changetab('sell')">销量</div>
+                <div :class="{'tab alir':true,'active gb-c':params.type=='price'}" @click="changetab('price')">价格<orderico :order="params.value"></orderico></div>
             </div>
         </div>
         <van-list

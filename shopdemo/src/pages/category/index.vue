@@ -3,8 +3,8 @@
         <div class="search"><input type="text" class="ctrol" placeholder="搜索您感兴趣的商品" v-on:blur="searchkey($event)" /></div>
 
         <div class="leftbox">
-            <div :class="{'item':true,'active gb-c':cate_ac==0}" @click="goitem(0)">热搜推荐</div>
-            <div :class="{'item':true,'active gb-c':cate_ac==item.id}" v-for="item in cate.cate" v-bind:key="item.id" @click="goitem(item.id)">{{item.name}}</div>
+            <div :class="{'item':true,'active gb-c':cate_ac==0}" @click="goitem(0)"><span :class="['ibd',{'gb-bgc':cate_ac==0}]"></span>热搜推荐</div>
+            <div :class="{'item':true,'active gb-c':cate_ac==item.id}" v-for="item in cate.cate" v-bind:key="item.id" @click="goitem(item.id)"><span :class="['ibd',{'gb-bgc':cate_ac==item.id}]"></span>{{item.name}}</div>
         </div>
 
         <div class="rightbox">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="ritem" v-for="item in cate.cate" v-bind:key="item.id" :cateid="item.id"  :id="'J_ritem'+item.id">
-                <div class="itil">{{item.name}}<router-link to="/categirt/list" class="imore">更多</router-link></div>
+                <div class="itil">{{item.name}}<router-link to="/category/list" class="imore">更多</router-link></div>
                 <div class="list">
                     <router-link to="/category/list" class="sitem" v-for="sitem in item.list" v-bind:key="sitem.id">
                         <van-image fit="cover" class="simg" :src="sitem.icon" />
@@ -31,7 +31,7 @@
         <botnav active="cate"></botnav>
     </div>
 </template>
-<style lang="less"  scoped>
+<style lang="less">
     .pcategory{ 
         background: #fff;
         .search{
@@ -40,8 +40,9 @@
         }
         .leftbox{
             position: fixed; left: 0; top: 0; bottom: 0; z-index: 1; width: .8rem; height: 100%; padding: .4rem 0 .5rem; background:#f2f2f2; overflow-y: scroll; -webkit-overflow-scrolling: touch;;
-            .item{ display: block; height: .48rem; text-align: center; line-height: .48rem; font-size: .13rem;}
+            .item{ position: relative; display: block; height: .48rem; text-align: center; line-height: .48rem; font-size: .13rem;}
             .item.active{ background: #fff; color: #ff7021;}
+            .ibd{ display: block; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;background: #f2f2f2;}
         }
         .rightbox{
             padding: .4rem 0 .1rem .8rem; background: #fff;

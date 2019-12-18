@@ -10,23 +10,23 @@
             <div class="otil">我的订单<a href="/order/list" class="oall arr-ra l0">查看全部订单</a></div>
             <div class="olist">
                 <router-link class="oitem" to="/order/list?status=pay">
-                    <img src="~@/assets/images/order_item05.png" class="oico" />
+                    <p class="oico"><i class="oicoin gb-c iconfont iconfont-opay"></i></p>
                     <p class="otx">待付款</p>
                 </router-link>
                 <router-link class="oitem" to="/order/list?status=send">
-                    <img src="~@/assets/images/order_item01.png" class="oico" />
+                    <p class="oico"><i class="oicoin gb-c iconfont iconfont-osend"></i></p>
                     <p class="otx">待发货</p>
                 </router-link>
                 <router-link class="oitem" to="/order/list?status=receive">
-                    <img src="~@/assets/images/order_item02.png" class="oico" />
+                    <p class="oico"><i class="oicoin gb-c iconfont iconfont-otake"></i></p>
                     <p class="otx">待收货</p>
                 </router-link>
                 <router-link class="oitem" to="/order/list?status=comment">
-                    <img src="~@/assets/images/order_item03.png" class="oico" />
+                    <p class="oico"><i class="oicoin gb-c iconfont iconfont-orate"></i></p>
                     <p class="otx">待评论</p>
                 </router-link>
                 <router-link class="oitem" to="/order/list?status=retreat">
-                    <img src="~@/assets/images/order_item04.png" class="oico" />
+                    <p class="oico"><i class="oicoin gb-c iconfont iconfont-otui"></i></p>
                     <p class="otx">退货/退款</p>
                 </router-link>
             </div>
@@ -71,7 +71,8 @@
         .oall{ float: right; position: relative; padding-right: .1rem; font-weight: normal; font-size: .13rem;}
         .olist{ overflow: hidden; padding: .2rem 0; text-align: center; font-size: .12rem;}
         .oitem{ float: left; width: 20%;}
-        .oico{ display: block; width: .28rem; margin: 0 auto;}
+        .oico{ display: block; width: .28rem; margin: 0 auto;color: @base;}
+        .oicoin{ line-height: .32rem; font-size: .24rem; }
         .lines{width: 3.55rem; margin: .1rem auto 0; margin-bottom: .1rem; background: #fff; border-radius: .08rem;}
         .line{ display: block; position: relative; padding-left: .5rem; line-height: .5rem; border-bottom: 1px solid #f3f3f3;}
         .line:nth-last-child(1){ border: none;}

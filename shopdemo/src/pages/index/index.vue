@@ -2,7 +2,10 @@
   <div class="pages pindex">
         <van-notice-bar class="text" text="满199减20,满599减50,满199减20,满599减50,满199减20,满599减50," color="#f94122" background="#fdf1e9" left-icon="volume-o"/>
         
-        <div class="search"><input type="text" class="sctrol" placeholder="搜索您感兴趣的内容" /></div>
+        <div class="search">
+            <i class="sico gb-c iconfont iconfont-search"></i>
+            <input type="text" class="sctrol" placeholder="搜索您感兴趣的内容" />
+        </div>
         <van-swipe class="banner" :autoplay="3000" indicator-color="white">
             <van-swipe-item v-for="item in banner" v-bind:key="item"><img :src="item" class="banner_img"></van-swipe-item>
         </van-swipe>
@@ -137,8 +140,9 @@
 <style lang="less">
     .pindex{
         .text{ height: auto; line-height: 24px;}
-        .search{ padding-left: .51rem; background: url(~@/assets/images/search.png) no-repeat .2rem center #fff; background-size: .16rem .18rem; line-height: .4rem; }
+        .search{ position: relative; padding-left: .51rem; background: #fff; line-height: .44rem; }
         .sctrol{ display: block; height: .44rem; width: 100%; border: none; font-size: .14rem; }
+        .sico{ position: absolute; left: .16rem; top: 0; font-size: .24rem; line-height: .44rem; color:@base;}
         .banner,.banner_img{ height: 1.67rem; }
         .cate-list{
             overflow: hidden; padding:  .2rem 0 .1rem; background: #fff; text-align: center;
