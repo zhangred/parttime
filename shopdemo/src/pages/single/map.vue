@@ -67,7 +67,7 @@ export default {
     }
   },
   created(){
-    this.Ob.$emit('changetitle','演示2');
+    this.Ob.$emit('changetitle','演示');
     let ltn = localStorage.getItem('themeClass')||'';
 
     //主题自定

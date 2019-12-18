@@ -1,14 +1,20 @@
 <template>
-    <div class="pages">
+    <div class="pages pcatelist">
         <div class="ftop">
             <div class="sline">
                 <div class="sitem" @click="changecateid('')"><span  :class="{'skin':true,'active gb-c gb-bdc':params.cateid==''}">全部</span></div>
                 <div class="sitem" v-for="item in pop_cate.list" v-bind:key="item.id" @click="changecateid(item.id)"><span :class="{'skin':true,'active gb-c gb-bdc':params.cateid==item.id}">{{item.name}}</span></div>
             </div>
-            <div class="tabline">
-                <div :class="{'tab':true,'active gb-c':params.type=='all'}" @click="changetab('all')">综合排名</div>
-                <div :class="{'tab alic':true,'active gb-c':params.type=='sell'}" @click="changetab('sell')">销量</div>
-                <div :class="{'tab alir':true,'active gb-c':params.type=='price'}" @click="changetab('price')">价格<orderico :order="params.value"></orderico></div>
+            <div class="tabout">
+                <div class="tabline">
+                    <div :class="{'tab':true,'active gb-c':params.type=='all'}" @click="changetab('all')">综合排名</div>
+                    <div :class="{'tab alic':true,'active gb-c':params.type=='sell'}" @click="changetab('sell')">销量</div>
+                    <div :class="{'tab alir':true,'active gb-c':params.type=='price'}" @click="changetab('price')">价格<orderico :order="params.value"></orderico></div>
+                </div>
+                <div class="tplist" @click="list_df=!list_df">
+                    <i v-show="list_df" class="iconfont iconfont-lista"></i>
+                    <i v-show="!list_df" class="iconfont iconfont-listb"></i>
+                </div>
             </div>
         </div>
         <van-list
@@ -19,13 +25,16 @@
             :immediate-check="false"
             @load="getlist"
             >
-            <div class="cm-prolist">
+            <div :class="[{'cm-prolist':list_df,'cm-vprolist':!list_df}]">
                 <router-link to="/category/detail" class="pl-item" v-for="item in goodlist" v-bind:key="item.id">
                     <div class="pl-imgo">
                         <van-image fit="cover" class="pl-img" :src="item.img" />
                     </div>
                     <div class="pl-info">
-                        <p class="pl-title">{{item.title}}</p>
+                        <div class="pl-rtop">
+                            <p class="pl-title">{{item.title}}</p>
+                            <p class="pl-rate gb-c-bdc">100%好评率</p>
+                        </div>
                         <p class="pl-price gb-c"><span class="pl-pun">¥</span>{{item.price}}</p>
                     </div>
                 </router-link>
@@ -34,25 +43,31 @@
 
     </div>
 </template>
-<style lang="less"  scoped>
-    .pages{ padding-top: .8rem;}
-    .ftop{
-        position: fixed; left: 0; top: 0; width: 100%; background: #fff; z-index: 3;
-        .sline{ position: relative; height: .4rem; border-bottom: 1px solid #eee; white-space: nowrap; overflow-y: hidden; overflow-x: scroll; -webkit-overflow-scrolling: touch;}
-        .cate-ico{ position: absolute; left: 0; top: 0; height: .48rem; width: .5rem; background: url(~@/assets/images/cate.png) no-repeat .15rem center; background-size:.2rem .275rem; }
-        .tabline{ height: .4rem; overflow: hidden; padding: 0 .15rem; line-height: .4rem;}
-        .tab{ float: left; width: 33.3%; font-size: .13rem;}
-        .tab.active{ color: #ff7021;}
-        .sitem{ display: inline-block; padding: 0 .15rem; line-height: .4rem; font-size: .13rem; font-weight: bold;}
-        .skin{ display: block; height: .4rem;}
-        .skin.active{ color: #ff7021; border-bottom: 2px solid #ff7021;}
-    }
-    .cm-prolist{ padding-top: .1rem;}
-    .pop-cate{
-        width: 1.3rem; background: #f2f2f2; height: 100%;
-        .item{ padding-left: .15rem; line-height: .52rem;}
-        .item.active{ background: #fff; color: #ff7021;}
-    }
+<style lang="less">
+    .pcatelist{
+        padding-top: .8rem;
+        .ftop{
+            position: fixed; left: 0; top: 0; width: 100%; background: #fff; z-index: 3;
+            .sline{ position: relative; height: .4rem; border-bottom: 1px solid #eee; white-space: nowrap; overflow-y: hidden; overflow-x: scroll; -webkit-overflow-scrolling: touch;}
+            .cate-ico{ position: absolute; left: 0; top: 0; height: .48rem; width: .5rem; background: url(~@/assets/images/cate.png) no-repeat .15rem center; background-size:.2rem .275rem; }
+            .tabline{ height: .4rem; overflow: hidden; padding: 0 .15rem; line-height: .4rem;}
+            .tab{ float: left; width: 33.3%; font-size: .13rem;}
+            .tab.active{ color: #ff7021;}
+            .sitem{ display: inline-block; padding: 0 .15rem; line-height: .4rem; font-size: .13rem; font-weight: bold;}
+            .skin{ display: block; height: .4rem;}
+            .skin.active{ color: #ff7021; border-bottom: 2px solid #ff7021;}
+            .tabout{ position:relative; padding-right:.5rem;}
+            .tplist{ position:absolute; right:0; top:0; width:.5rem; text-align:center; line-height:.4rem; font-size:.2rem;}
+        }
+        .cm-prolist,.cm-vprolist{ padding-top: .1rem;}
+        .pl-rate{ display:none;}
+        .cm-vprolist .pl-rate{ display:block;}
+        .pop-cate{
+            width: 1.3rem; background: #f2f2f2; height: 100%;
+            .item{ padding-left: .15rem; line-height: .52rem;}
+            .item.active{ background: #fff; color: #ff7021;}
+        }
+    }  
 </style>
 <script>
 import { List } from 'vant';
@@ -67,7 +82,8 @@ export default {
             finished: false,
             goodlist:[],
             locked:false,
-            pop_cate:{show:false,list:[],cur:''}
+            pop_cate:{show:false,list:[],cur:''},
+            list_df:true
         }
     },
     created(){

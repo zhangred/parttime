@@ -1,5 +1,5 @@
 <template>
-    <div class="pages">
+    <div class="pages pgdetailnm">
 
         <van-swipe class="banner" :autoplay="3000" indicator-color="white">
             <van-swipe-item v-for="item in detail.banner" v-bind:key="item"><van-image fit="cover" class="banner_img" :src="item" /></van-swipe-item>
@@ -35,8 +35,8 @@
                 <p class="bl-lsico"><van-icon class="ico" name="shopping-cart-o" /></p>
                 <p class="bl-lstx">购物车</p>
             </router-link>
-            <p class="bl-btn bl-btna" @click="goodSku.show=true">加入购物车</p>
-            <p class="bl-btn bl-btnb" @click="goodSku.show=true">立即购买</p>
+            <p class="bl-btn bl-btna gb-bgc3" @click="goodSku.show=true">加入购物车</p>
+            <p class="bl-btn bl-btnb gb-bgc" @click="goodSku.show=true">立即购买</p>
         </div>
 
 
@@ -46,12 +46,12 @@
             <p class="pop-loading" v-show="!pop_coupon.loaded">正在加载···</p>
             <div class="cp-list" v-show="pop_coupon.loaded">
                 <div class="cp-citem" v-for="item in pop_coupon.list" v-bind:key="item.id">
-                    <div class="cp-cimon"><span class="cp-ciun">¥</span>{{item.money}}</div>
+                    <div class="cp-cimon gb-c"><span class="cp-ciun">¥</span>{{item.money}}</div>
                     <div class="cp-info flex">
                         <p class="cp-nm">{{item.name}}</p>
                         <p class="cp-time">{{item.time_start|timeFormat('y-m-d')}}&ensp;-&ensp;{{item.time_end|timeFormat('y-m-d')}}</p>
                     </div>
-                    <div class="cp-rig flex"><p :class="{'cp-btn':true,'disable':item.receive}" @click="getCoupon(item)">{{item.receive?'已领取':'领取'}}</p></div>
+                    <div class="cp-rig flex"><p :class="{'cp-btn':true,'disable':item.receive,'gb-bgc':!item.receive}" @click="getCoupon(item)">{{item.receive?'已领取':'领取'}}</p></div>
                 </div>
             </div>
         </van-popup>
@@ -95,45 +95,48 @@
 
     </div>
 </template>
-<style lang="less"  scoped>
-    .pages{ padding-bottom: .6rem;}
-    .banner,.banner_img{ height: 3rem; }
-    .topinfo{
-        background: #fff; padding: .1rem .14rem;
-        .dpice{ line-height: .4rem;}
-        .ti-un{ color: #f33b3b; font-size: .18rem;}
-        .ti-pri{ color: #f33b3b; font-size: .24rem;}
-        .ti-oldp{ margin-left: .2rem; font-size: .12rem; color: #666;}
-        .ti-oldpri{ font-size: .12rem; color: #666; text-decoration: line-through;}
-        .ti-til{ padding: .05rem 0 .15rem; line-height: .2rem; font-size: .15rem;}
-        .ti-tips{display: flex; display: -webkit-flex; justify-content: space-between; font-size: .12rem; color: #666;}
+<style lang="less">
+    .pgdetailnm{
+        padding-bottom: .6rem;
+        .banner,.banner_img{ height: 3rem; }
+        .topinfo{
+            background: #fff; padding: .1rem .14rem;
+            .dpice{ line-height: .4rem;}
+            .ti-un{ color: #f33b3b; font-size: .18rem;}
+            .ti-pri{ color: #f33b3b; font-size: .24rem;}
+            .ti-oldp{ margin-left: .2rem; font-size: .12rem; color: #666;}
+            .ti-oldpri{ font-size: .12rem; color: #666; text-decoration: line-through;}
+            .ti-til{ padding: .05rem 0 .15rem; line-height: .2rem; font-size: .15rem;}
+            .ti-tips{display: flex; display: -webkit-flex; justify-content: space-between; font-size: .12rem; color: #666;}
+        }
+        .dcontent{ margin-top: .1rem;}
+        .botline{
+            position: fixed; left: 0; bottom: 0; right: 0; z-index: 3; display: flex; display: -webkit-flex; border-top: 1px solid #eee; background: #fff;
+            .bl-ls{ padding-top: .02rem; width: .725rem; text-align: center;}
+            .bl-ls.active{ color: #ff5000;}
+            .bl-lsico{ height: .28rem; display: flex; display: -webkit-flex; justify-content: center; align-items: center;}
+            .bl-lsico .ico{font-size: .24rem;}
+            .bl-lstx{ font-size: .12rem; line-height: .18rem;}
+            .bl-btn{ line-height: .5rem; text-align: center; font-size: .15rem; color: #fff; width: 1.15rem;}
+            .bl-btna{ background: #fe9c02;}
+            .bl-btnb{ background: #ff5000;}
+        }
+        .poptil{ line-height: 50px; text-align: center; font-size: .16rem;}
+        .pop-loading{ padding: .3rem 0; text-align: center; color: #666;}
+        .cp-list{
+            padding:.2rem .15rem .3rem;
+            .cp-citem{display: flex; display: -webkit-flex; padding: .15rem 0; box-shadow: 0 0 3px 0 rgba(0,0,0,.2); margin-bottom: .16rem;}
+            .cp-cimon{ width: .9rem; text-align: center; color: #ff7021; font-size: .4rem; line-height: .6rem;}
+            .cp-ciun{ font-size: .2rem; line-height: .4rem;}
+            .cp-info{ flex-direction: column; width: 1.7rem; align-items: flex-start; justify-content: center; }
+            .cp-nm{ font-size: .16rem}
+            .cp-time{ font-size: .12rem; color: #999;}
+            .cp-rig{ width: .82rem; justify-content: center; align-items: center;}
+            .cp-btn{ background: #ff7021; color: #fff; line-height: .3rem; height: .3rem; padding: 0 .15rem; border-radius: .15rem; text-align: center;}
+            .cp-btn.disable{ background: #c5c5c5;}
+        }
     }
-    .dcontent{ margin-top: .1rem;}
-    .botline{
-        position: fixed; left: 0; bottom: 0; right: 0; z-index: 3; display: flex; display: -webkit-flex; border-top: 1px solid #eee; background: #fff;
-        .bl-ls{ padding-top: .02rem; width: .725rem; text-align: center;}
-        .bl-ls.active{ color: #ff5000;}
-        .bl-lsico{ height: .28rem; display: flex; display: -webkit-flex; justify-content: center; align-items: center;}
-        .bl-lsico .ico{font-size: .24rem;}
-        .bl-lstx{ font-size: .12rem; line-height: .18rem;}
-        .bl-btn{ line-height: .5rem; text-align: center; font-size: .15rem; color: #fff; width: 1.15rem;}
-        .bl-btna{ background: #fe9c02;}
-        .bl-btnb{ background: #ff5000;}
-    }
-    .poptil{ line-height: 50px; text-align: center; font-size: .16rem;}
-    .pop-loading{ padding: .3rem 0; text-align: center; color: #666;}
-    .cp-list{
-        padding:.2rem .15rem .3rem;
-        .cp-citem{display: flex; display: -webkit-flex; padding: .15rem 0; box-shadow: 0 0 3px 0 rgba(0,0,0,.2); margin-bottom: .16rem;}
-        .cp-cimon{ width: .9rem; text-align: center; color: #ff7021; font-size: .4rem; line-height: .6rem;}
-        .cp-ciun{ font-size: .2rem; line-height: .4rem;}
-        .cp-info{ flex-direction: column; width: 1.7rem; align-items: flex-start; justify-content: center; }
-        .cp-nm{ font-size: .16rem}
-        .cp-time{ font-size: .12rem; color: #999;}
-        .cp-rig{ width: .82rem; justify-content: center; align-items: center;}
-        .cp-btn{ background: #ff7021; color: #fff; line-height: .3rem; height: .3rem; padding: 0 .15rem; border-radius: .15rem; text-align: center;}
-        .cp-btn.disable{ background: #c5c5c5;}
-    }
+    
 </style>
 <script>
 import { Popup,Swipe, SwipeItem,Icon,Sku } from 'vant';
