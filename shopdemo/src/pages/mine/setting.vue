@@ -77,7 +77,6 @@ export default {
     },
     created(){
         this.Ob.$emit('changetitle','设置');
-        console.log(5,areaList)
         this.setarea();
     },
     methods:{
@@ -121,7 +120,7 @@ export default {
             let area = this.data.area;
             this.area = areaList.province_list[area[0]]+'/'+areaList.city_list[area[1]]+'/'+areaList.county_list[area[2]]
         },
-        getImage(r){
+        getImage(){
             let inputDOM = this.$refs.head;
             // 通过DOM取文件数据
             this.fil = inputDOM.files;

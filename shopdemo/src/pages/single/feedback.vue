@@ -46,7 +46,8 @@ export default {
     },
     methods:{
         afterRead(res){
-            console.log(res)
+            this.temp = res;
+            // console.log(res)
         },
         save(){
             if(this.locked) return;

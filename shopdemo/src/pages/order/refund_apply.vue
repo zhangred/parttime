@@ -101,7 +101,6 @@ export default {
     methods:{
         //选择退款原因
         rsselect(item){
-            console.log(6,item)
             this.data.reason = item;
             this.pop_reason.show = false;
         },

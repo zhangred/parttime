@@ -15,7 +15,7 @@ import tools from './assets/js/tools'
 
 import './assets/css/base.less'
 
-console.log(5,process.env);
+// console.log(5,process.env);
 
 
 var axios_instance = axios.create({

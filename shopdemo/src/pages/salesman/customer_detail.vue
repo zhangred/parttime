@@ -64,9 +64,6 @@ export default {
         this.Ob.$emit('changetitle','客户详情');
     },
     methods:{
-        showContent(item){
-            
-        }
     }
 }
 </script>

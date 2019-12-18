@@ -263,7 +263,7 @@ export default {
         getCoupon(item){
             if(this.order.coupon.id){
                 this.order.coupon.choose = false;
-            };
+            }
             item.choose = true;
             this.order.coupon = item;
 

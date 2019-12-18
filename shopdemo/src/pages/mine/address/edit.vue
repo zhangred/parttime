@@ -38,6 +38,7 @@ export default {
     methods:{
         //保存
         onSave(rs) {
+            this.rs = rs;
             this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {

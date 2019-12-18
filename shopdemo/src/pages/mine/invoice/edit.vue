@@ -74,13 +74,6 @@ export default {
         from.meta.keepAlive = this.alive?true:false;
         next();
     },
-    activated() {
-        
-    },
-    deactivated() {
-        // 不显示
-        console.log(2);
-    },
     created(){
         this.Ob.$emit('changetitle','编辑发票');
     },
@@ -95,7 +88,7 @@ export default {
                 this.$toast.fail('请填写企业税号');
                 return;
             }
-            if(this.data.email&&!/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(this.data.email)){
+            if(this.data.email&&!/^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/.test(this.data.email)){
                 this.$toast.fail('邮箱格式不正确');
                 return;
             }

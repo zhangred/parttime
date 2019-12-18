@@ -9,16 +9,16 @@
             @load="getlist"
             >
             <div class="cm-prolist">
-                <router-link to="/assemble/detail" class="tl-item" v-for="item in goodlist" v-bind:key="item.id">
-                    <div class="tl-imgo">
-                        <van-image fit="cover" class="tl-img" :src="item.img" />
-                        <img v-if="item.isnew" src="~@/assets/images/new.png" class="tl-new" />
+                <router-link to="/assemble/detail" class="pl-item" v-for="item in goodlist" v-bind:key="item.id">
+                    <div class="pl-imgo">
+                        <van-image fit="cover" class="pl-img" :src="item.img" />
+                        <img v-if="item.isnew" src="~@/assets/images/new.png" class="pl-new" />
                         <p class="pl-btime">距结束<backtime :lasttime="item.end_time" classname="fr"></backtime></p>
                     </div>
-                    <div class="tl-info">
-                        <p class="tl-title"><span class="tl-num">3人团</span>{{item.title}}</p>
-                        <p class="tl-price"><span class="tl-pun">¥</span>{{item.price}}<span class="tl-oldprice">¥4656</span></p>
-                        <p class="tl-btn">立即抢</p>
+                    <div class="pl-info">
+                        <p class="pl-title"><span class="pl-num">3人团</span>{{item.title}}</p>
+                        <p class="pl-price"><span class="pl-pun">¥</span>{{item.price}}<span class="pl-oldprice">¥4656</span></p>
+                        <p class="pl-btn">立即抢</p>
                     </div>
                 </router-link>
             </div>
@@ -28,9 +28,9 @@
 </template>
 <style lang="less"  scoped>
     .cm-prolist{ padding-top: .1rem;}
-    .tl-num{ border: 1px solid #ff7021; background: #ffefe5; color: #ff7021; font-size: .1rem; border-radius: .04rem; padding: 0 .02rem;}
-    .tl-oldprice{ color: #999; font-size: .1rem; text-decoration: line-through; margin-left: .05rem;}
-    .tl-btn{ position: absolute; right: .1rem; bottom: .12rem; border-radius: .1rem; line-height: .2rem; font-size: .1rem; color: #fff; background: #ff7021; padding: 0 .08rem;}
+    .pl-num{ border: 1px solid #ff7021; background: #ffefe5; color: #ff7021; font-size: .1rem; border-radius: .04rem; padding: 0 .02rem;}
+    .pl-oldprice{ color: #999; font-size: .1rem; text-decoration: line-through; margin-left: .05rem;}
+    .pl-btn{ position: absolute; right: .1rem; bottom: .12rem; border-radius: .1rem; line-height: .2rem; font-size: .1rem; color: #fff; background: #ff7021; padding: 0 .08rem;}
 </style>
 <script>
 import { List } from 'vant';

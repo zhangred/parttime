@@ -236,9 +236,6 @@ export default {
                 this.locked = false;
             });
         },
-        showContent(item){
-            
-        },
         //邀请分享好友
         doselect(v){
             if(v.id==1){
@@ -279,6 +276,7 @@ export default {
         },
         //延长收货
         delayReceive(item){
+            this.temp = item;
             this.$toast.success('延长成功');
         },
         //取消订单

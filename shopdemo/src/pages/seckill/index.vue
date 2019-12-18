@@ -70,7 +70,6 @@ export default {
             this.getlist(true);
         },
         getlist(first){
-            console.log(454)
             if(this.locked) return;
             if(first){
                 this.goodlist = [];

@@ -107,7 +107,7 @@ export default {
         ];
     },
     watch:{
-        money:function(newval,oldval){
+        money:function(newval){
             if(newval){
                 var v = parseFloat(newval);
                 if(v>this.allmoney){

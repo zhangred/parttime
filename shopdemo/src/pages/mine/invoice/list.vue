@@ -64,13 +64,6 @@ export default {
         from.meta.keepAlive = this.alive?true:false;
         next();
     },
-    activated() {
-        
-    },
-    deactivated() {
-        // 不显示
-        console.log(2);
-    },
     created(){
         this.Ob.$emit('changetitle','我的发票');
         setTimeout(()=>{

@@ -86,7 +86,8 @@ export default {
         },
         //点击日期
         dateClick(opts){
-            console.log(opts)
+            this.temp = opts;
+            // console.log(opts)
         },
         //获取月签到数据
         getSignData(){

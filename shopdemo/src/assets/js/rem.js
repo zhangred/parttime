@@ -13,7 +13,7 @@
  
     // 设置了 viewport meta
     if (vpMeta) {
-        var initial = vpMeta.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+        var initial = vpMeta.getAttribute("content").match(/initial-scale=([\d.]+)/);
  
         if (initial) {
             scale = parseFloat(initial[1]); // 已设置的 initialScale
@@ -26,8 +26,8 @@
         var flexMetaContent = flexMeta.getAttribute("content");
         if (flexMetaContent) {
  
-            var initial = flexMetaContent.match(/initial\-dpr=([\d\.]+)/),
-                maximum = flexMetaContent.match(/maximum\-dpr=([\d\.]+)/);
+            initial = flexMetaContent.match(/initial-dpr=([\d.]+)/);
+            var maximum = flexMetaContent.match(/maximum-dpr=([\d.]+)/);
  
             if (initial) {
                 dpr = parseFloat(initial[1]);
@@ -86,7 +86,7 @@
  
         if (winWidth / dpr > 750) {
             (winWidth = 750 * dpr);
-        };
+        }
         // 根节点 fontSize 根据宽度决定
         var baseSize = winWidth / 15*4;
  

@@ -339,12 +339,14 @@ export default {
         },
         //立即购买
         onBuyClicked(rs){
-            console.log(rs)
+            // console.log(rs)
+            this.rs = rs;
             this.$router.push('/category/ordersave')
         },
         //加入购物车
         onAddCartClicked(rs){
-            console.log(4,rs)
+            // console.log(rs)
+            this.rs = rs;
             this.goodSku.show = false;
             this.$toast.success('成功加入购物车');
         }

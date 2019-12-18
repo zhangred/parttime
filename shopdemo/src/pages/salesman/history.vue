@@ -72,9 +72,6 @@ export default {
         this.getlist(true)
     },
     methods:{
-        showContent(item){
-            
-        },
         //提现列表
         getlist(first){
             if(first){

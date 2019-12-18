@@ -12,7 +12,11 @@
         }
     },
     throttle_o:function(wait){
-        var timeout,args,timestamp;
+        var timeout = null,
+            args = null;
+        // var timestamp = 0;
+        // timestamp = timestamp||0;
+
         let that = this;
 
         let later = function(){
@@ -21,7 +25,7 @@
         }
         this.trigger = function(opts){
             args = opts;
-            timestamp = new Date().getTime();
+            // timestamp = new Date().getTime();
             if(!timeout){
                 timeout = setTimeout(later,wait)
             }
@@ -35,7 +39,7 @@
         }, false);
     },
     delay:function(time){
-        return new Promise((resolve, reject)=>{
+        return new Promise((resolve)=>{
             setTimeout(function(){
                 resolve()
             },time||200)

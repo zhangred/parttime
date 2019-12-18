@@ -57,14 +57,16 @@
         <div class="jingx">
             <div class="ptil">精选新品推荐<router-link class="pmore" to="/goodlist">更多</router-link></div>
             <div class="cm-prolist">
-                <router-link to="/category/detail" class="tl-item" v-for="item in goodlist" v-bind:key="item.id">
-                    <div class="tl-imgo">
-                        <img src="~@/assets/images/new.png" class="tl-new" />
-                        <van-image fit="cover" class="tl-img" :src="item.img" />
+                <router-link to="/category/detail" class="pl-item" v-for="item in goodlist" v-bind:key="item.id">
+                    <div class="pl-imgo">
+                        <img src="~@/assets/images/new.png" class="pl-new" />
+                        <van-image fit="cover" class="pl-img" :src="item.img" />
                     </div>
-                    <div class="tl-info">
-                        <p class="tl-title">{{item.title}}</p>
-                        <p class="tl-price gb-c"><span class="tl-pun">¥</span>{{item.price}}</p>
+                    <div class="pl-info">
+                        <div class="pl-rtop">
+                            <p class="pl-title">{{item.title}}</p>
+                        </div>
+                        <p class="pl-price gb-c"><span class="pl-pun">¥</span>{{item.price}}</p>
                     </div>
                 </router-link>
             </div>
@@ -98,13 +100,13 @@
         <div class="likem">
             <div class="ptil">你可以能还喜欢<router-link class="pmore" to="/goodlist">更多</router-link></div>
             <div class="cm-prolist lthree">
-                <router-link to="/category/detail" class="tl-item" v-for="item in seckill" v-bind:key="item.id">
-                    <div class="tl-imgo">
-                        <van-image fit="cover" class="tl-img" :src="item.img" />
+                <router-link to="/category/detail" class="pl-item" v-for="item in seckill" v-bind:key="item.id">
+                    <div class="pl-imgo">
+                        <van-image fit="cover" class="pl-img" :src="item.img" />
                     </div>
-                    <div class="tl-info">
-                        <p class="tl-title">{{item.title}}</p>
-                        <p class="tl-price gb-c"><span class="tl-pun">¥</span>{{item.price}}</p>
+                    <div class="pl-info">
+                        <p class="pl-title">{{item.title}}</p>
+                        <p class="pl-price gb-c"><span class="pl-pun">¥</span>{{item.price}}</p>
                     </div>
                 </router-link>
             </div>

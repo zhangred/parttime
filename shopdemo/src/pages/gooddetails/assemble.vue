@@ -377,12 +377,14 @@ export default {
         },
          //单独购买
         onBuyClicked(rs){
-            console.log(rs)
+             // console.log(rs)
+            this.rs = rs;
             this.$router.push('/assemble/ordersave')
         },
         //加入购物车
         onAddCartClicked(rs){
-            console.log(rs)
+             // console.log(rs)
+            this.rs = rs;
             this.$router.push('/category/ordersave')
         }
     }

@@ -91,9 +91,6 @@ export default {
         this.Ob.$emit('changetitle','分销员中心');
     },
     methods:{
-        showContent(item){
-            
-        }
     }
 }
 </script>

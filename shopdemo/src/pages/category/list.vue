@@ -20,13 +20,13 @@
             @load="getlist"
             >
             <div class="cm-prolist">
-                <router-link to="/category/detail" class="tl-item" v-for="item in goodlist" v-bind:key="item.id">
-                    <div class="tl-imgo">
-                        <van-image fit="cover" class="tl-img" :src="item.img" />
+                <router-link to="/category/detail" class="pl-item" v-for="item in goodlist" v-bind:key="item.id">
+                    <div class="pl-imgo">
+                        <van-image fit="cover" class="pl-img" :src="item.img" />
                     </div>
-                    <div class="tl-info">
-                        <p class="tl-title">{{item.title}}</p>
-                        <p class="tl-price"><span class="tl-pun">¥</span>{{item.price}}</p>
+                    <div class="pl-info">
+                        <p class="pl-title">{{item.title}}</p>
+                        <p class="pl-price gb-c"><span class="pl-pun">¥</span>{{item.price}}</p>
                     </div>
                 </router-link>
             </div>
