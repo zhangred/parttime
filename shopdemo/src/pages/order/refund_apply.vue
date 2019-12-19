@@ -69,7 +69,7 @@
         .pdel{position: absolute; right: 0; top: 0; height: .24rem; width: .24rem; z-index: 2; background: rgba(0,0,0,.5); color: #fff; justify-content: center; align-items: center; }
         .pimg-i{ height: .96rem; width: .96rem;}
         .padd{ position: relative; display: block; float: left; height: .96rem; width: .96rem; margin-bottom: .1rem; padding-top: .48rem; border:.01rem dashed #ddd; background: url(~@/assets/images/photo.png) no-repeat center .16rem #f9f9f9; background-size: .34rem .28rem; font-size: .12rem; text-align: center; line-height: .18rem; color: #888;}
-        .btn{ display: block; margin: .2rem .2rem 0; border-radius: .03rem; background: #ff7021; text-align: center; line-height: .4rem; color: #fff;}
+        .btn{ display: block; margin: .2rem .2rem 0; border-radius: .03rem; background: @base; text-align: center; line-height: .4rem; color: #fff;}
         .pfile{ position: absolute; left: 0; top: 0; z-index: 2; height: 100%; width: 100%; opacity: 0;}
     }
 </style>

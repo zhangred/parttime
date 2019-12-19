@@ -76,7 +76,7 @@
         .li-time{ float: left; width: .6rem; text-align: right; font-size: .1rem; line-height: .18rem;}
         .li-tday{ font-size: .15rem;}
         .li-ico{ position: absolute; left: .84rem; top: 0; z-index: 2; margin-left: -.1rem; display: flex; display: -webkit-flex; align-items: center; justify-content: center; height: .21rem; width: .21rem; line-height: .21rem; color: #fff; background: #ccc; border-radius: 50%;}
-        .li-ico.active{ background: #ff7021}
+        .li-ico.active{ background: @base}
         .li-desc{ width: 2.5rem; float: right;}
         .li-til{ font-size: .15rem;}
         .li-text01{ font-size: .12rem;}

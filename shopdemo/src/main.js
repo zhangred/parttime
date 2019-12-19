@@ -7,6 +7,7 @@ import Qs from 'qs'
 import {Toast,Image,Dialog,Icon,Button } from 'vant'
 
 import './filters/filters'
+import './directive/directive'
 import './components/BaseComponents'
 
 
@@ -36,11 +37,15 @@ Vue.use(Icon);
 
 
 router.beforeEach((to, from, next) => {
-    document.body.scrollTop = 0
-    // firefox
-    document.documentElement.scrollTop = 0
-    // safari
-    window.pageYOffset = 0
+    if (from.meta&&from.meta.keepAlive) {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop || 0;
+        from.meta.scrollTop = scrollTop;
+    }
+    if (!to.meta||!to.meta.keepAlive) {
+        document.body.scrollTop = 0
+        document.documentElement.scrollTop = 0
+        window.pageYOffset = 0
+    }
     next()
 })
 

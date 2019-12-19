@@ -61,7 +61,7 @@
         .mall{ position: absolute; z-index: 2; right: 0; top: 0; color: #347aea; font-size: .16rem;}
         .mtp{ padding: .1rem 0 .3rem; border-top: 1px solid #eee; font-size: .12rem; color: #999;}
         .fee{ color: #333;}
-        .cm-btn{ margin: 0 .23rem .23rem; border-color: #ff7021; color: #fff; background: #ff7021; border-radius: .04rem;}
+        .cm-btn{ margin: 0 .23rem .23rem; border-color: @base; color: #fff; background: @base; border-radius: .04rem;}
         .bot{ padding-top: .1rem;}
         .bot-link{color: #347aea;}
         .pb-til{ justify-content: space-between; padding: 0 .14rem; line-height: .44rem;}
@@ -70,12 +70,12 @@
         .pb-item{ position: relative; padding: .15rem 0; align-items: center; border-bottom: 1px solid #eee;}
         .pb-item:nth-last-child(1){ border-bottom: none;}
         .pb-ico{ position: absolute; left: -.32rem; color: #ccc; font-size: .18rem;}
-        .pb-ico.active{ opacity: 0; color: #ff7021;}
+        .pb-ico.active{ opacity: 0; color: @base;}
         .active .pb-ico{ opacity: 0;}
         .active .active{ opacity: 1;}
         .pb-type{ width: .23rem; margin-right: .1rem;}
         .pb-new{ display: block; padding: .1rem 0 .1rem .46rem; font-size: .16rem;}
-        .pb-btn{ display: block; margin: .3rem .14rem .2rem; border-color: #ff7021; color: #fff; background: #ff7021; border-radius: .04rem;}
+        .pb-btn{ display: block; margin: .3rem .14rem .2rem; border-color: @base; color: #fff; background: @base; border-radius: .04rem;}
     }
 </style>
 <script>

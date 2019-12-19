@@ -43,7 +43,7 @@
     .calebox{ position: relative; z-index: 2; width: 3.55rem; margin: 0 auto; padding: 0 .1rem .2rem; background: #fff; border-radius: .1rem}
     .stip-in{ font-size: .2rem;}
     .ctip{ text-align: center; padding: .1rem 0;}
-    .ctilin{ color: #ff7021;}
+    .ctilin{ color: @base;}
     .cm-calendar .date{ height: .26rem; width: .26rem; margin: .05rem auto 0; line-height: .26rem; text-align: center;}
     .cm-calendar .sged{ height: .2rem; padding-top: .02rem; font-size: .12rem; color: #34bf03;}
     .cm-calendar .sico{ display: block; margin: 0 auto;}

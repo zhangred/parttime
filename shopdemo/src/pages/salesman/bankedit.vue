@@ -33,7 +33,7 @@
 <style lang="less">
     .psalebedit{
         .tline{ padding: 0 .14rem; line-height: .4rem; color: #666;}
-        .btn{ margin: .3rem .14rem 0; border-color: #ff7021; background: #ff7021; color: #fff; border-radius: .04rem;}
+        .btn{ margin: .3rem .14rem 0; border-color: @base; background: @base; color: #fff; border-radius: .04rem;}
         .popbank{ padding-bottom: .2rem;}
         .pb-item{ display: block; padding-left: .14rem; border-bottom: 1px solid #eee; line-height: .48rem;}
     }

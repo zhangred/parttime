@@ -44,6 +44,18 @@
                 resolve()
             },time||200)
         })
+    },
+    getScrollTop(){
+
+    },
+    setScrollTop(top){
+        setTimeout(()=>{
+            if (top) {
+                document.body.scrollTop = top
+                document.documentElement.scrollTop = top
+                window.pageYOffset = top
+            }
+        },30)
     }
 }
 export default CUES

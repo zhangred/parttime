@@ -4,7 +4,7 @@
             <div class="title flex">
                 <img src="~@/assets/images/rate.jpg" class="til-ico"/>
                 <span class="til-ao">描述相符</span>
-                <van-rate v-model="describe" class="star" size=".22rem" gutter=".1rem" color="#ff7021"/>
+                <van-rate v-model="describe" class="star" size=".22rem" gutter=".1rem" :color="gobal.color"/>
                 <span class="sval">{{values[describe]}}</span>
             </div>
             <textarea class="textarea" v-model="message" placeholder="宝贝满足你的期待吗？说出你的想法"></textarea>
@@ -16,7 +16,7 @@
                 <a href="javascript:;" class="padd"><input type="file" multiple class="pfile" accept="image/*" @change="getImage" ref="head" />添加图片</a>
             </div>
             <div class="anon flex flex-between">
-                <van-checkbox v-model="anonymous" checked-color="#ff7021">匿名</van-checkbox>
+                <van-checkbox v-model="anonymous" :checked-color="gobal.color">匿名</van-checkbox>
                 <p class="atp">您的评价将以匿名的形式展现</p>
             </div>
         </div>
@@ -28,18 +28,18 @@
             <div class="srate">
                 <div class="sline flex">
                     <span class="svao">物流服务</span>
-                    <van-rate v-model="logs" class="star" size=".22rem" gutter=".15rem" color="#ff7021"/>
+                    <van-rate v-model="logs" class="star" size=".22rem" gutter=".15rem" :color="gobal.color"/>
                     <span class="sval">{{values[logs]}}</span>
                 </div>
                 <div class="sline flex">
                     <span class="svao">商家态度</span>
-                    <van-rate v-model="service" class="star" size=".22rem" gutter=".15rem" color="#ff7021"/>
+                    <van-rate v-model="service" class="star" size=".22rem" gutter=".15rem" :color="gobal.color"/>
                     <span class="sval">{{values[service]}}</span>
                 </div>
             </div>
         </div>
 
-        <van-button color="#ff7021" class="blbtn" @click="save">发布</van-button>
+        <van-button :color="gobal.color" class="blbtn" @click="save">发布</van-button>
     </div>
 </template>
 <style lang="less">
@@ -77,6 +77,7 @@ export default {
     },
     data(){
         return {
+            gobal:this.themes.setting,
             values:{'1':'非常差','2':'差','3':'一般','4':'好','5':'非常好'},
             popshow:false,
             describe:0,

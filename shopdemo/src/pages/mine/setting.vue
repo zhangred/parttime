@@ -1,5 +1,5 @@
 <template>
-    <div class="pages">
+    <div class="pages pmsetting">
         <div class="editlinebox editlinebox-nmt editlinebox-50">
             <div class="editline editline-select">
                 <p class="el-ado">头像</p>
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="btn" @click="checkoutData">{{locked?'正在保存···':'保存'}}</div>
+        <div class="btn gb-bgc" @click="checkoutData">{{locked?'正在保存···':'保存'}}</div>
 
         <van-popup v-model="popshow" position="bottom">
             <van-picker v-show="pickertype=='sex'" :columns="sex" show-toolbar title="选择性别" @cancel="popshow=false" @confirm="sexConfirm" />
@@ -41,8 +41,10 @@
     </div>
 </template>
 <style lang="less"  scoped>
-    .pages{ padding-top: .1rem;}
-    .btn{ width: 90%; margin: .2rem auto 0; line-height: .42rem; font-size: .16rem; text-align: center; background: #ff7021; color: #fff; border-radius: .04rem;}
+    .pmsetting{ 
+        padding-top: .1rem;
+        .btn{ width: 90%; margin: .2rem auto 0; line-height: .42rem; font-size: .16rem; text-align: center; background: @base; color: #fff; border-radius: .04rem;}
+    }
 </style>
 <script>
 import { Popup,Picker,DatetimePicker,Area } from 'vant';

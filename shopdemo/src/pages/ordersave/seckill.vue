@@ -120,13 +120,13 @@
     .cp-list{
         padding:.2rem .15rem .3rem;
         .cp-citem{display: flex; display: -webkit-flex; padding: .15rem 0; box-shadow: 0 0 3px 0 rgba(0,0,0,.2); margin-bottom: .16rem;}
-        .cp-cimon{ width: .9rem; text-align: center; color: #ff7021; font-size: .4rem; line-height: .6rem;}
+        .cp-cimon{ width: .9rem; text-align: center; color: @base; font-size: .4rem; line-height: .6rem;}
         .cp-ciun{ font-size: .2rem; line-height: .4rem;}
         .cp-info{ flex-direction: column; width: 1.7rem; align-items: flex-start; justify-content: center; }
         .cp-nm{ font-size: .16rem}
         .cp-time{ font-size: .12rem; color: #999;}
         .cp-rig{ width: .82rem; justify-content: center; align-items: center;}
-        .cp-btn{ background: #ff7021; color: #fff; line-height: .3rem; height: .3rem; padding: 0 .15rem; border-radius: .15rem; text-align: center;}
+        .cp-btn{ background: @base; color: #fff; line-height: .3rem; height: .3rem; padding: 0 .15rem; border-radius: .15rem; text-align: center;}
         .cp-btn.disable{ background: #c5c5c5;}
     }
     .tstate{

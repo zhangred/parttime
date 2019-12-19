@@ -15,7 +15,7 @@
                 </p>
             </div>
         </div>
-        <router-link to="/mine/invoice/edit" class="botline">新增抬头</router-link>
+        <router-link to="/mine/invoice/edit" class="botline gb-bgc">新增抬头</router-link>
 
         <over-touch class="ot" :margin="10">
             <div class="otls">
@@ -33,15 +33,12 @@
             padding-top: 1rem; text-align: center; font-size: .16rem; color: #999;
             .eico{ display: block; margin: 0 auto .26rem; font-size: .48rem; }
         }
-        .botline{ position: fixed;left: 0;bottom: 0;right: 0; z-index: 3; background: #ff7021; font-size: .15rem; line-height: .5rem; text-align: center; color: #fff;}
+        .botline{ position: fixed;left: 0;bottom: 0;right: 0; z-index: 3; background: @base; font-size: .15rem; line-height: .5rem; text-align: center; color: #fff;}
         .list{ padding: .2rem .14rem;}
         .item{ margin-bottom: .1rem; background: #fff; border-radius: .04rem; overflow: hidden;}
         .itil{ padding-left: .14rem; font-size: .16rem; line-height: .6rem; border-bottom: 1px solid #f6f6f6;}
         .ibtns{ padding: .05rem .14rem;}
         .ibtn{ margin-left: .1rem;}
-        .xxx{}
-        .xxx{}
-        .xxx{}
     }
     
 </style>

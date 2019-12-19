@@ -70,7 +70,7 @@
     .witem-l{ float: left; width: 24%;}
     .witem-m{ float: left; width: 51%;}
     .witem-r{ float: left; width: 24%;}
-    .bot{ padding: .5rem 0 .4rem; background: url(~@/assets/images/lettory_bg01.png) no-repeat left top #ff7021; background-size: 100% .35rem; color: #fff;}
+    .bot{ padding: .5rem 0 .4rem; background: url(~@/assets/images/lettory_bg01.png) no-repeat left top @base; background-size: 100% .35rem; color: #fff;}
     .btil{ font-size: .18rem; text-align: center;}
     .bul{ padding:.14rem .3rem 0;}
     .times{ padding-top: .2rem; text-align: center; font-size: .18rem; color: #fff; line-height: .3rem;}

@@ -45,7 +45,7 @@
     .item{ margin-bottom: .1rem; height: 1.2rem; background: #fff; border-radius: .08rem; box-shadow: 0 0 .06rem rgba(0,0,0,.1); overflow: hidden;}
     .item.disable{color: #999; border-color:#999;}
     .itop{ position: relative; height: .92rem;}
-    .item-l{ float: left; height: 1.2rem; width: 1.04rem; padding-top: .28rem; text-align: center; background: #ff7021; color: #fff;}
+    .item-l{ float: left; height: 1.2rem; width: 1.04rem; padding-top: .28rem; text-align: center; background: @base; color: #fff;}
     .item-lt{ width: 1rem;font-size: .34rem; line-height: .4rem;}
     .item-lu{ font-size: .2rem; line-height: .3rem;}
     .item-ru{ font-size: .14rem; }
@@ -53,9 +53,9 @@
     .item-rt{ line-height: .18rem; color: #333; }
     .item-tp{font-size: .11rem; color: #666; line-height: .2rem;}
     .item-rb{ font-size: .11rem; color: #999;}
-    .item-rang{ position: absolute; left: 0; bottom: .1rem; font-size: .12rem; color: #ff7021;}
+    .item-rang{ position: absolute; left: 0; bottom: .1rem; font-size: .12rem; color: @base;}
     .item-arr{ vertical-align: middle;}
-    .item-btn{ position: absolute; right: .14rem; bottom: .1rem; width: .6rem; text-align: center; font-size: .14rem; color: #fff; background: #ff7021; border-radius: .12rem; line-height: .22rem;} 
+    .item-btn{ position: absolute; right: .14rem; bottom: .1rem; width: .6rem; text-align: center; font-size: .14rem; color: #fff; background: @base; border-radius: .12rem; line-height: .22rem;} 
     .item-btn.disable{ background: #ccc;}
     .emp{ padding-top: .5rem; text-align: center; font-size: .18rem; color: #888;}
     .emp-img{ display: block; width: .94rem; margin: 0 auto .2rem;}

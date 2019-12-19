@@ -82,11 +82,11 @@
         .i-link{ display: block;}
         .i-img{ position: absolute; left: .12rem; top: .112rem; height: .95rem; width: .95rem; overflow: hidden; border-radius: .05rem;}
         .i-name{display: -webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; text-overflow:ellipsis; overflow:hidden; height: .36rem; line-height: .18rem;}
-        .i-price{padding-top: .15rem; color: #ff7021; font-size: .18rem;}
+        .i-price{padding-top: .15rem; color: @base; font-size: .18rem;}
         .i-pao{ margin-right: .03rem; font-size: .14rem;}
         .i-tp{ font-size: .1rem; line-height: .16rem;}
         .i-gr{ color: #74b62d;}
-        .i-btn{ position: absolute; right: .12rem; bottom: .3rem; padding: 0 .1rem; background: #ff7021; border-radius: .12rem; font-size: .13rem; color: #fff;}
+        .i-btn{ position: absolute; right: .12rem; bottom: .3rem; padding: 0 .1rem; background: @base; border-radius: .12rem; font-size: .13rem; color: #fff;}
         .popshare{overflow: hidden; padding: .3rem .2rem .2rem; text-align: center;}
         .ps-tab{ float: left; width: 33.3%; font-size: .12rem; color: #999; line-height: .3rem;}
         .ps-tabio{ display: block; width: .55rem; margin: 0 auto;}

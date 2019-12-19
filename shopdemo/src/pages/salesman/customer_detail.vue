@@ -43,7 +43,7 @@
         .topbox{ position: relative; height:.8rem; padding: .2rem 0 0 .9rem; background: #fff;}
         .tb-head{ position: absolute; left: .14rem; top: 50%; margin-top: -.3rem; width: .6rem; height: .6rem; border-radius: 50%; border:1px solid #eee;}
         .tb-name{ font-size: .18rem; align-items:center;}
-        .tb-tp{ margin-left: .1rem; padding: 0 .05rem; border: 1px solid #ff7021; color: #ff7021; border-radius: .1rem; line-height: .16rem; font-size: .1rem;}
+        .tb-tp{ margin-left: .1rem; padding: 0 .05rem; border: 1px solid @base; color: @base; border-radius: .1rem; line-height: .16rem; font-size: .1rem;}
         .tb-sub{ padding-top: .06rem; color: #999; font-size:.12rem; }
         .editlinebox .el-ado{ color:#999;}
     }

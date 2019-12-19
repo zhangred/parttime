@@ -28,9 +28,9 @@
 </template>
 <style lang="less"  scoped>
     .cm-prolist{ padding-top: .1rem;}
-    .pl-num{ border: 1px solid #ff7021; background: #ffefe5; color: #ff7021; font-size: .1rem; border-radius: .04rem; padding: 0 .02rem;}
+    .pl-num{ border: 1px solid @base; background: #ffefe5; color: @base; font-size: .1rem; border-radius: .04rem; padding: 0 .02rem;}
     .pl-oldprice{ color: #999; font-size: .1rem; text-decoration: line-through; margin-left: .05rem;}
-    .pl-btn{ position: absolute; right: .1rem; bottom: .12rem; border-radius: .1rem; line-height: .2rem; font-size: .1rem; color: #fff; background: #ff7021; padding: 0 .08rem;}
+    .pl-btn{ position: absolute; right: .1rem; bottom: .12rem; border-radius: .1rem; line-height: .2rem; font-size: .1rem; color: #fff; background: @base; padding: 0 .08rem;}
 </style>
 <script>
 import { List } from 'vant';

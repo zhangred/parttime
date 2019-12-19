@@ -14,7 +14,7 @@
 </template>
 <style lang="less">
     .padredit{
-        .van-button--danger{ background: #ff7021;}
+        .van-button--danger{ background: @base;}
         .van-switch--on{background: #4cdb45}
     }
 

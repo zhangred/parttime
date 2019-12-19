@@ -33,7 +33,7 @@
 </template>
 <style lang="less">
     .pcategory{ 
-        background: #fff;
+        background: #fff; 
         .search{
             position: fixed; left: 0; top: 0; z-index: 3; width: 100%; background: #fff; padding: .05rem .12rem;
             .ctrol{ display: block; border: none; height: .3rem; width: 100%; padding-left: .3rem; border-radius: .14rem; background: url(~@/assets/images/search02.png) no-repeat .1rem center #f8f8f8; background-size: .14rem .14rem; font-size: .14rem;}
@@ -41,7 +41,7 @@
         .leftbox{
             position: fixed; left: 0; top: 0; bottom: 0; z-index: 1; width: .8rem; height: 100%; padding: .4rem 0 .5rem; background:#f2f2f2; overflow-y: scroll; -webkit-overflow-scrolling: touch;;
             .item{ position: relative; display: block; height: .48rem; text-align: center; line-height: .48rem; font-size: .13rem;}
-            .item.active{ background: #fff; color: #ff7021;}
+            .item.active{ background: #fff; color: @base;}
             .ibd{ display: block; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;background: #f2f2f2;}
         }
         .rightbox{
@@ -81,16 +81,13 @@ export default {
             this.checkoffset();
         }
     },
-    beforeRouteEnter(to, from, next) {
-        next(vm=>{
-            if(vm.domstate){
-                vm.bindscroll();
-            }
-        })
+    activated() {
+        this.$tools.setScrollTop(this.$route.meta.scrollTop||0)
+        
+        this.bindscroll();
     },
-    beforeRouteLeave(to,from,next){
+    deactivated() {
         window.removeEventListener('scroll',this.scroll);
-        next()
     },
     methods:{
         searchkey(event){

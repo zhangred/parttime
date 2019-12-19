@@ -86,7 +86,7 @@
 
         <div class="botline">
             共<span class="toc">{{order.num}}</span>件商品，<span class="blco">合计：</span><span class="toc to-num">¥&ensp;{{order.total|tofix(2)}}</span>
-            <van-button class="bl-btn" :loading="paying" color="#ff7021" loading-text="支付中..."  @click="gopay">去支付</van-button>
+            <van-button class="bl-btn" :loading="paying" :color="gobal.color" loading-text="支付中..."  @click="gopay">去支付</van-button>
         </div>
 
         <!-- 优惠券 -->
@@ -112,7 +112,7 @@
         padding: .08rem 0 .6rem;
         .adres-no{ height: .9rem; padding: 0 .08rem; background: #fff; justify-content: space-between; align-items: center;}
         .adr-l{ align-items: center; font-size: .16rem;}
-        .adr-add{ font-size: .2rem; color: #ff7021; margin-right: .08rem;}
+        .adr-add{ font-size: .2rem; color: @base; margin-right: .08rem;}
         .adr-arr{ font-size: .2rem; color: #ccc;}
         .adr-tp{ padding-bottom: .05rem; font-size: .16rem; font-weight: bold;}
         .adr-name{ margin-right: .2rem;}
@@ -124,7 +124,7 @@
         .ginfo-img{ position: absolute; left: .14rem; top: .1rem; height: .75rem; width: .75rem; }
         .ginfo-til{ padding-top: .06rem; font-size: .13rem;}
         .ginfo-sub{ font-size: .12rem; color: #666;}
-        .ginfo-price{ padding-top: .05rem; color: #ff7021; font-size: .12rem;}
+        .ginfo-price{ padding-top: .05rem; color: @base; font-size: .12rem;}
         .ginfo-pr{ margin-left: .05rem; font-size: .15rem;}
         .count{
             background: #fff; margin-top: .1rem;
@@ -134,7 +134,7 @@
             .editlinebox .el-ado{ color: #777;}
         }
         .total{ padding-right: .14rem; font-size: .12rem; line-height: .4rem; margin-left: .14rem; border-top: 1px solid #eee; text-align: right;}
-        .toc{ color: #ff7021;}
+        .toc{ color: @base;}
         .to-num{ font-size: .16rem;}
         .botline{ position: fixed; left: 0; bottom: 0; right: 0; z-index: 3; height: .5rem; padding-right: 1.3rem; background: #fff; border-top: 1px solid #eee; line-height: .5rem; font-size: .12rem; text-align: right;}
         .blco{ font-size: .15rem;}
@@ -144,20 +144,20 @@
         .cp-list{
             padding:.1rem .15rem .1rem; background: #f6f6f6;
             .cp-citem{display: flex; display: -webkit-flex; padding: .1rem 0; background: #fff; margin-bottom: .1rem;}
-            .cp-cimon{ width: .9rem; text-align: center; color: #ff7021; font-size: .32rem; line-height: .6rem;}
+            .cp-cimon{ width: .9rem; text-align: center; color: @base; font-size: .32rem; line-height: .6rem;}
             .cp-ciun{ font-size: .2rem; line-height: .4rem; margin-right: .05rem;}
             .cp-info{ flex-direction: column; width: 1.7rem; align-items: flex-start; justify-content: center; }
             .cp-nm{ font-size: .16rem}
             .cp-time{ font-size: .12rem; color: #999;}
             .cp-rig{ width: .82rem; justify-content: center; align-items: center;}
-            .cp-chk{ color: #ff7021; font-size: .16rem;}
+            .cp-chk{ color: @base; font-size: .16rem;}
             .cp-chk.disable{ color: #c5c5c5;}
         }
         .tuan{ margin: .14rem; background: #fff; border-radius: .04rem; }
         .tuan-til{ font-size: .15rem; padding: .1rem 0 .05rem; text-align: center;}
         .tuan-peo{ padding-bottom: .15rem;}
         .tuan-pls{ position: relative; height: .4rem; width: .4rem;}
-        .tuan-pls:nth-child(1):after{ content: "待支付"; position: absolute; left: 50%; bottom: -.04rem; margin-left: -.2rem; display: block; width: .4rem; text-align: center; background: #ff7021; border-radius: .07rem; color: #fff; font-size: .1rem; line-height: .14rem;}
+        .tuan-pls:nth-child(1):after{ content: "待支付"; position: absolute; left: 50%; bottom: -.04rem; margin-left: -.2rem; display: block; width: .4rem; text-align: center; background: @base; border-radius: .07rem; color: #fff; font-size: .1rem; line-height: .14rem;}
         .tuan-head{ border-radius: 50%; overflow: hidden;}
         .tuan-add{height: .4rem; width: .4rem; margin-left: .2rem; background: url(~@/assets/images/bg09.png); background-size: 100% 100%;}
    }
@@ -173,6 +173,7 @@ export default {
     },
     data(){
         return {
+            gobal:this.themes.setting,
             alive:false,
             order:{address:{},good:{},num:1,coupon:{},invoice:{},total:0,msg:''},
             pop_coupon:{show:false,loaded:false,list:[]},

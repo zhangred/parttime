@@ -61,7 +61,7 @@
         .topbox{ position: relative; width: 3.47rem; margin: 0 auto; padding: .2rem 0 .2rem .9rem; background: #fff; border-radius: .05rem; box-shadow: 0 0 .03rem rgba(0,0,0,.2);}
         .tb-head{ position: absolute; left: .14rem; top: 50%; margin-top: -.3rem; width: .6rem; height: .6rem; border-radius: 50%; border:1px solid #eee;}
         .tb-name{ align-items: center; font-size: .18rem;}
-        .tb-tp{ margin-left: .1rem; padding: 0 .05rem; border: 1px solid #ff7021; color: #ff7021; border-radius: .1rem; line-height: .16rem; font-size: .1rem; align-items: center;}
+        .tb-tp{ margin-left: .1rem; padding: 0 .05rem; border: 1px solid @base; color: @base; border-radius: .1rem; line-height: .16rem; font-size: .1rem; align-items: center;}
         .tb-ico{ margin-left: .05rem;}
         .tb-sub{ padding-top: .06rem; color: #666;}
         .box{ width: 3.47rem; margin: .12rem auto 0; background: #fff;box-shadow: 0 0 .03rem rgba(0,0,0,.2); border-radius: .05rem;}
@@ -76,7 +76,7 @@
         .barico{ display: block; margin: 0 auto; height: .29rem;}
         .tb-tx{ height: .24rem; margin-bottom: .49rem; padding-right: .14rem; align-items: center; justify-content: flex-end;}
         .tb-ho{ border-left: 1px solid #ccc; height: .12rem; margin: 0 .1rem;}
-        .tb-link{ padding: 0 .1rem; background: #ff7021; color: #fff; border-radius: .1rem; line-height: .2rem;}
+        .tb-link{ padding: 0 .1rem; background: @base; color: #fff; border-radius: .1rem; line-height: .2rem;}
     }
 </style>
 <script>

@@ -54,7 +54,7 @@
             .cate-ico{ position: absolute; left: 0; top: 0; height: .48rem; width: .5rem; background: url(~@/assets/images/cate.png) no-repeat .15rem center; background-size:.2rem .275rem; }
             .tabline{ height: .4rem; overflow: hidden; padding: 0 .15rem; line-height: .4rem;}
             .tab{ float: left; width: 33.3%; font-size: .13rem;}
-            .tab.active{ color: #ff7021;}
+            .tab.active{ color: @base;}
         }
         .search{
             background: #fff; padding: .05rem .12rem;
@@ -64,7 +64,7 @@
         .pop-cate{
             width: 1.3rem; background: #f2f2f2; height: 100%;
             .item{ padding-left: .15rem; line-height: .52rem;}
-            .item.active{ background: #fff; color: #ff7021;}
+            .item.active{ background: #fff; color: @base;}
         }
     }
 </style>
@@ -90,6 +90,9 @@ export default {
 
         this.getlist(true);
         this.getcatelist()
+    },
+    activated() {
+        this.$tools.setScrollTop(this.$route.meta.scrollTop||0)
     },
     methods:{
         searchkey(event){

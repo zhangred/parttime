@@ -1,5 +1,5 @@
 <template>
-    <div class="pages">
+    <div class="pages pmadrlist">
         <!-- 没有地址 -->
         <div class="emp" v-show="state==2">
             <img class="img" src="~@/assets/images/address.png" />
@@ -9,11 +9,11 @@
         <div class="list" v-show="state==1">
             <div class="item" v-for="item in list" :key="item.id" @click="choose(item)">
                 <p class="itil">{{item.name}}&ensp;&ensp;{{item.tel}}</p>
-                <p class="iadr"><span v-show="item.isdef" class="idef">默认</span>{{item.address}}</p>
-                <router-link to="/mine/address/edit" class="ieidt flex flex-center">编辑</router-link>
+                <p class="iadr"><span v-show="item.isdef" class="idef gb-c gb-bdc gb-bgc2">默认</span>{{item.address}}</p>
+                <router-link to="/mine/address/edit" class="ieidt flex flex-center gb-c">编辑</router-link>
             </div>
         </div>
-        <router-link to="/mine/address/edti" class="botline">新增地址</router-link>
+        <router-link to="/mine/address/edti" class="botline gb-bgc">新增地址</router-link>
 
         <over-touch class="ot" :margin="10">
             <div class="otls">
@@ -23,17 +23,19 @@
         </over-touch>
     </div>
 </template>
-<style lang="less"  scoped>
-    .pages{ padding-bottom: .6rem;}
-    .botline{ position: fixed;left: 0;bottom: 0;right: 0; z-index: 3; background: #ff7021; font-size: .15rem; line-height: .5rem; text-align: center; color: #fff;}
-    .emp{
-        padding-top: 1.2rem; text-align: center; font-size: .16rem; color: #999;
-        .img{ display: block; margin: 0 auto .26rem; width: .7rem; }
+<style lang="less">
+    .pmadrlist{ 
+        padding-bottom: .6rem;
+        .botline{ position: fixed;left: 0;bottom: 0;right: 0; z-index: 3; background: @base; font-size: .15rem; line-height: .5rem; text-align: center; color: #fff;}
+        .emp{
+            padding-top: 1.2rem; text-align: center; font-size: .16rem; color: #999;
+            .img{ display: block; margin: 0 auto .26rem; width: .7rem; }
+        }
+        .item{ position: relative; padding: .1rem .64rem .1rem .14rem;background: #fff; margin-bottom: 1px;}
+        .iadr{ padding: .1rem 0 .04rem; line-height: .18rem; color: #888;}
+        .ieidt{ position: absolute; right: 0; top: 0; height: 100%; width: .6rem; color: @base;}
+        .idef{ padding: 0 .04rem; border-radius: .03rem; margin-right: .03rem; border:1px solid @base; background: #fde7d6; font-size: .12rem; color: @base;}
     }
-    .item{ position: relative; padding: .1rem .64rem .1rem .14rem;background: #fff; margin-bottom: 1px;}
-    .iadr{ padding: .1rem 0 .04rem; line-height: .18rem; color: #888;}
-    .ieidt{ position: absolute; right: 0; top: 0; height: 100%; width: .6rem; color: #ff7021;}
-    .idef{ padding: 0 .04rem; border-radius: .03rem; margin-right: .03rem; border:1px solid #ff7021; background: #fde7d6; font-size: .12rem; color: #ff7021;}
 </style>
 <script>
 import { AddressList } from 'vant';

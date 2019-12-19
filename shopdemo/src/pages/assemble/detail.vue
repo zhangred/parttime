@@ -84,9 +84,9 @@
         .gimg{ position: absolute; left: .1rem;top: .1rem; height: 1.1rem; width: 1.1rem;}
         .gtop{ height: .85rem;}
         .gtil{ font-size: .13rem; line-height: .18rem;}
-        .gmem{ padding:0 .03rem; margin-right: .04rem; font-size: .1rem; color: #ff7021; border:1px solid #ff7021; border-radius: .03rem;}
+        .gmem{ padding:0 .03rem; margin-right: .04rem; font-size: .1rem; color: @base; border:1px solid @base; border-radius: .03rem;}
         .gtp{font-size: .12rem; color: #999;}
-        .gprice{ color: #ff7021; font-size: .16rem;}
+        .gprice{ color: @base; font-size: .16rem;}
         .gpnu{ font-size: .12rem;}
         .gpold{ margin-left: .1rem; font-size: .1rem; color: #999; text-decoration: line-through;}
     }
@@ -97,20 +97,20 @@
     }
     .box{ 
         padding-top: .15rem; background: #fff; border-top: .1rem solid #f9f9f9;;
-        .btil{ background: url(~@/assets/images/bg08.png) no-repeat center center; background-size: 2.05rem .07rem; text-align: center; color: #ff7021;}
-        .btime{ padding: .1rem 0 .2rem; text-align: center; color: #ff7021;}
-        .btls{ display: inline-block; height: .24rem; width: .24rem; margin: 0 .08rem; vertical-align: middle; border-radius: .03rem; background: #ff7021; color: #fff; text-align: center;}
+        .btil{ background: url(~@/assets/images/bg08.png) no-repeat center center; background-size: 2.05rem .07rem; text-align: center; color: @base;}
+        .btime{ padding: .1rem 0 .2rem; text-align: center; color: @base;}
+        .btls{ display: inline-block; height: .24rem; width: .24rem; margin: 0 .08rem; vertical-align: middle; border-radius: .03rem; background: @base; color: #fff; text-align: center;}
         .bmember{ text-align: center;}
         .bmls{ position: relative; display: inline-block; height: .6rem; width: .6rem; margin: 0 .05rem;}
-        .bmls-img{height: .6rem; width: .6rem; border-radius: 50%; overflow: hidden; border:1px solid #ff7021;}
-        .bmls:nth-child(1):after{ content: "团长"; position: absolute; left: 50%; bottom: 0; margin-left: -.15rem; display: block; width: .3rem; text-align: center; background: #ff7021; border-radius: .07rem; color: #fff; font-size: .1rem; line-height: .14rem;}
+        .bmls-img{height: .6rem; width: .6rem; border-radius: 50%; overflow: hidden; border:1px solid @base;}
+        .bmls:nth-child(1):after{ content: "团长"; position: absolute; left: 50%; bottom: 0; margin-left: -.15rem; display: block; width: .3rem; text-align: center; background: @base; border-radius: .07rem; color: #fff; font-size: .1rem; line-height: .14rem;}
         .bmadd{ display: inline-block; height: .6rem; width: .6rem; margin: 0 .05rem; background: url(~@/assets/images/bg09.png); background-size: 100% 100%;}
-        .bmbtn{ width: 1rem; margin: .1rem auto 0; border: 1px solid #ff7021; border-radius: .14rem; font-size: .12rem; text-align: center; color: #ff7021; line-height: .2rem;}
+        .bmbtn{ width: 1rem; margin: .1rem auto 0; border: 1px solid @base; border-radius: .14rem; font-size: .12rem; text-align: center; color: @base; line-height: .2rem;}
         .bmtp{ padding: .2rem 0 .1rem; text-align:center;}
-        .bmst{ color: #ff7021;}
+        .bmst{ color: @base;}
         .bobtns{ padding: 0 .2rem .3rem; text-align: center;}
-        .bobtn{ display: block; margin-bottom: .1rem; line-height: .4rem; border-radius: .2rem; color: #ff7021; border:1px solid #ff7021;}
-        .bobtna{ background: #ff7021; color: #fff;}
+        .bobtn{ display: block; margin-bottom: .1rem; line-height: .4rem; border-radius: .2rem; color: @base; border:1px solid @base;}
+        .bobtna{ background: @base; color: #fff;}
         .stil{ height: .36rem; margin-bottom: .3rem; line-height: .3rem; text-align: center; color: #fff; background: url(~@/assets/images/bg06.png) no-repeat center center; background-size: 2.33rem .36rem;}
     }
     .pop-member{

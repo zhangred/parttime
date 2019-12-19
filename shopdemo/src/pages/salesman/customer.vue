@@ -65,7 +65,7 @@
         .topfixed{ position: fixed; left: 0; top: 0; width: 100%; z-index: 3; background: #fff;}
         .timesp{ height: .46rem; padding: 0 .14rem; background: #f5f5f5; line-height: .46rem; align-items: center;}
         .ts-btn{ margin-right: .08rem; padding: 0 .06rem; border-radius: .1rem; border: 1px solid #ccc; font-size: .12rem; line-height: .18rem; }
-        .ts-btn.active{ color: #ff7021; border-color: #ff7021; background: #fff2ed;}
+        .ts-btn.active{ color: @base; border-color: @base; background: #fff2ed;}
         .ts-auto{ flex-grow: 1; align-items: center; justify-content: flex-end; font-size: .12rem;}
         .ts-arr{ margin-left: .03rem;}
         .midfixed{ position: fixed;left: 0; top: 0; width: 100%; height: 100%; z-index: 4; overflow: hidden;}
@@ -73,7 +73,7 @@
         .mfinput{background: #fff; padding: .1rem .14rem; align-items: center; justify-content: flex-end;}
         .mf-ctrol{ width: 1rem; line-height: .3rem; border:1px solid #cccc; font-size: .12rem; text-align: center;}
         .mf-ctrol.dis{ color: #999;}
-        .mf-ctrol.btn{ width: .5rem; margin-left: .2rem; color: #fff; border-color: #ff7021; background: #ff7021; border-radius: .04rem;}
+        .mf-ctrol.btn{ width: .5rem; margin-left: .2rem; color: #fff; border-color: @base; background: @base; border-radius: .04rem;}
         .mf-bg{ position: absolute; left: 0; top: 1.4rem; right: 0; bottom: 0; }
         .mf-sp{ color: #999; padding: 0 .1rem;}
         .cm-empty{ padding-top: 1.5rem;}
@@ -81,10 +81,10 @@
         .list{ padding: .9rem .14rem 0;}
         .item{ display: block; position: relative; padding: .15rem 0 .15rem .82rem; margin-bottom: .12rem; background: #fff; border-radius: .04rem; box-shadow: 0 0 .03rem rgba(0,0,0,.1)}
         .i-head{ position: absolute; left: .14rem; top: 50%; margin-top: -.27rem; height: .54rem; width: .54rem;}
-        .i-head.active:after{ content: "分销员"; display: block; position: absolute; left: 50%; bottom: 0; width: .4rem; height: .14rem; margin-left: -.2rem; background: #ff7021;border-radius: .07rem; text-align: center; font-size: .1rem; color: #fff; line-height: .14rem; }
+        .i-head.active:after{ content: "分销员"; display: block; position: absolute; left: 50%; bottom: 0; width: .4rem; height: .14rem; margin-left: -.2rem; background: @base;border-radius: .07rem; text-align: center; font-size: .1rem; color: #fff; line-height: .14rem; }
         .i-headi{height: .54rem; width: .54rem; border-radius: 50%; overflow: hidden;}
         .i-name{ align-items: center;}
-        .i-wx{ margin-left: .1rem; padding: 0 .06rem; line-height: .18rem; font-size: .1rem; color: #ff7021; border:1px solid #ff7021; border-radius: .1rem;}
+        .i-wx{ margin-left: .1rem; padding: 0 .06rem; line-height: .18rem; font-size: .1rem; color: @base; border:1px solid @base; border-radius: .1rem;}
         .i-info{ overflow: hidden; color: #999; font-size: .12rem;}
         .i-ls{ width: 40%; float: left;}
         .i-num{ color: #333;}

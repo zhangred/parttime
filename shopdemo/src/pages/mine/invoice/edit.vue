@@ -5,8 +5,8 @@
                 <p class="el-ado el-ado-m">发票类型</p>
                 <div class="el-input">
                     <van-radio-group v-model="data.type" class="ovh radios">
-                        <van-radio class="radio" name="personal" checked-color="#ff7021">个人</van-radio>
-                        <van-radio class="radio" name="company" checked-color="#ff7021">企业</van-radio>
+                        <van-radio class="radio" name="personal" :checked-color="gobal.color">个人</van-radio>
+                        <van-radio class="radio" name="company" :checked-color="gobal.color">企业</van-radio>
                     </van-radio-group>
                 </div>
             </div>
@@ -21,8 +21,8 @@
             <div class="editline">
                 <p class="el-ado el-ado-m">发票内容</p>
                 <div class="el-btns">
-                    <van-button class="tbtn" round plain :color="(data.detail=='detail'?'#ff7021':'#aaa')" @click="data.detail='detail'" size="small">商品明细</van-button>
-                    <van-button class="tbtn" round plain :color="(data.detail=='kind'?'#ff7021':'#aaa')" @click="data.detail='kind'" size="small">商品类别</van-button>
+                    <van-button class="tbtn" round plain :color="(data.detail=='detail'?'@base':'#aaa')" @click="data.detail='detail'" size="small">商品明细</van-button>
+                    <van-button class="tbtn" round plain :color="(data.detail=='kind'?'@base':'#aaa')" @click="data.detail='kind'" size="small">商品类别</van-button>
                 </div>
             </div>
             <p class="btp"><span v-show="data.detail=='detail'">发票内容将显示详细的商品名称</span><span v-show="data.detail=='kind'">发票内容仅显示商品类别</span></p>
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="botbtn"><van-button color="#ff7021" class="save" @click="save">保存</van-button></div>
+        <div class="botbtn"><van-button :color="gobal.color" class="save" @click="save">保存</van-button></div>
 
        
     </div>
@@ -60,6 +60,7 @@ export default {
     },
     data(){
         return {
+            gobal:this.themes.setting,
             data:{
                 type:'personal',
                 name:'',

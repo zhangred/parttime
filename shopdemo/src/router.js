@@ -9,28 +9,45 @@ Vue.use(Router)
  
 export default new Router({
   routes: [
+    // *网站索引
     { path: '/map',  name: 'map', component: resolve=> require(['./pages/single/map'], resolve)},
-    { path: '/',redirect: '/map', name: 'indexmap', component: Index },
-    { path: '/index', name: 'index', component: Index },
-    { path: '/index01',  name: 'index01', component: Indexa},
-    { path: '/pages/question', name: 'question', component: resolve => require(['./pages/question/index'], resolve) },
+    // *首页
+    { path: '/', name: 'a', component: Index,meta:{keepAlive:true} },
+    { path: '/index', name: 'index', component: Index, meta:{keepAlive:true} },
+    { path: '/index01',  name: 'index01', component: Indexa, meta:{keepAlive:true}},
+    // *常见问题
+    { path: '/question', name: 'question', component: resolve => require(['./pages/question/index'], resolve) },
+    // *抽奖
     { path: '/lottery',  name: 'lottery', component: resolve=> require(['./pages/lottery/index'], resolve)},
     { path: '/lottery/mine',  name: 'lotteryMine', component: resolve=> require(['./pages/lottery/mine'], resolve)},
-    { path: '/category', name: 'category', component: resolve => require(['./pages/category/index'], resolve) },
-    { path: '/category01', name: 'category01', component: resolve => require(['./pages/category/index01'], resolve) },
-    { path: '/category/list', name: 'categoryList', component: resolve => require(['./pages/category/list'], resolve) },
+    // *分类
+    { path: '/category', name: 'category', component: resolve => require(['./pages/category/index'], resolve), meta:{keepAlive:true} },
+    { path: '/category01', name: 'category01', component: resolve => require(['./pages/category/index01'], resolve), meta:{keepAlive:true} },
+    { path: '/category/list', name: 'categoryList', component: resolve => require(['./pages/category/list'], resolve), meta:{keepAlive:true} },
+    // *商品详情-普通
     { path: '/category/detail', name: 'gooddetail', component: resolve => require(['./pages/gooddetails/normal'], resolve) },
+    // *保存订单-普通商品
     { path: '/category/ordersave', name: 'cateordersave', component: resolve => require(['./pages/ordersave/normal'], resolve) },
+    // *购物车
     { path: '/cart', name: 'cart', component: resolve => require(['./pages/cart/index'], resolve) },
+    // *我的
     { path: '/mine', name: 'mine', component: resolve => require(['./pages/mine/index'], resolve) },
     { path: '/mine01', name: 'mine01', component: resolve => require(['./pages/mine/index01'], resolve) },
+    // *我的-设置
     { path: '/mine/setting', name: 'mineSetting', component: resolve => require(['./pages/mine/setting'], resolve) },
+    // *我的-问题反馈
     { path: '/pages/feedback', name: 'feedback', component: resolve => require(['./pages/single/feedback'], resolve) },
+    // *我的-优惠券
     { path: '/mine/couponlist', name: 'couponlist', component: resolve => require(['./pages/mine/coupon'], resolve) },
+    // 秒杀
     { path: '/seckill', name: 'seckill', component: resolve => require(['./pages/seckill/index'], resolve) },
+    // 商品详情-秒杀
     { path: '/seckill/detail', name: 'seckillDetail', component: resolve => require(['./pages/gooddetails/seckill'], resolve) },
+    // 签到
     { path: '/signin', name: 'signin', component: resolve => require(['./pages/single/signin'], resolve) },
+    // 商品详情-拼团
     { path: '/assemble/goodDetail', name: 'assembleGoodDetail', component: resolve => require(['./pages/gooddetails/assemble'], resolve) },
+    // 领券中心
     { path: '/coupanCenter', name: 'coupanCenter', component: resolve => require(['./pages/single/couponcenter'], resolve) },
     { path: '/mine/address', name: 'address', component: resolve => require(['./pages/mine/address/list'], resolve) },
     { path: '/mine/address/edit', name: 'addressEdit', component: resolve => require(['./pages/mine/address/edit'], resolve) },

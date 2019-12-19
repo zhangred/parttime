@@ -156,9 +156,9 @@
         .tname{ width: 1.1rem; padding: 0 .1rem;}
         .tinfo{ text-align: right; width:1.3rem; padding:  0 .1rem 0 0; }
         .ti-t{ padding-top: .04rem; line-height: .18rem;}
-        .ti-tc{ color: #ff7021;}
+        .ti-tc{ color: @base;}
         .ti-b{ font-size: .1rem; color: #999; line-height: .14rem;}
-        .tlink{ width: .6rem; text-align: center; line-height: .3rem; color: #fff; background: #ff7021; border-radius: .16rem;}
+        .tlink{ width: .6rem; text-align: center; line-height: .3rem; color: #fff; background: @base; border-radius: .16rem;}
         .trl{ padding-left: .14rem; line-height: .32rem; color: #ff911b; font-size: .1rem;}
     }
 </style>

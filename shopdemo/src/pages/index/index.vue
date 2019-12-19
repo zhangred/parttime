@@ -192,7 +192,7 @@
             .item-ltn{ font-size: .15rem; line-height: .24rem;}
             .item-r{ float: right; width: 1.72rem; font-size: .12rem; color: #999; line-height: .18rem;}
             .item-rt{ padding:.08rem 0 0; color: #222; font-size: .16rem; line-height: .28rem;}
-            .btn{ width: 2rem; margin: .14rem auto .24rem; background: #fff; text-align: center; line-height: .36rem; font-size: .15rem; color: #ff7021; border-radius: .18rem;}
+            .btn{ width: 2rem; margin: .14rem auto .24rem; background: #fff; text-align: center; line-height: .36rem; font-size: .15rem; color: @base; border-radius: .18rem;}
             .til{ padding: .16rem 0 .1rem; line-height: .48rem; font-size: .24rem; text-align: center; color: #fff; font-weight: bold;}
         }
     }
@@ -225,6 +225,9 @@ export default {
         this.getNewred();
         this.getPageData();
         
+    },
+    activated() {
+        this.$tools.setScrollTop(this.$route.meta.scrollTop||0)
     },
     methods:{
         //获取首页数据

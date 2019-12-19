@@ -148,14 +148,14 @@
         .tcate{ 
             position: fixed; top: 0; left: 0; width: 100%; z-index: 4; padding-left: .15rem; line-height: .4rem; background: #fff;
             .item{ margin-right: .2rem;}
-            .item.active{ color: #ff7021;}
+            .item.active{ color: @base;}
             .ard{ position: absolute; right: 0; top: 0; height: .4rem; width: .4rem; background: url(~@/assets/images/arr_d01.png) no-repeat center center; background-size: .12rem .07rem;}
             .ard-o{ transform: rotateX(180deg)}
             .plist{ position: absolute; left: 0; top: 0; width: 100%; background: #fff; display: block; box-shadow: 0 0 8px 0 rgba(0,0,0,.1)}
             .ctil{ padding-left: .15rem; position: relative;}
             .pitems{ background: #fff; overflow: hidden; padding: .1rem 0 .1rem .15rem;}
             .sitem{ display: block; float: left; width: .788rem; margin: 0 .1rem .1rem 0; line-height: .3rem; border: 1px solid #f5f5f5; font-size: .12rem; text-align: center;}
-            .sitem.active{ color: #ff7021; border-color: #ff7021;}
+            .sitem.active{ color: @base; border-color: @base;}
         }
         .text{ height: auto; line-height: 24px;}
         .search{ position: relative; padding-left: .51rem; background: #fff; line-height: .44rem; }
@@ -171,13 +171,13 @@
         
         .coup{
             overflow: hidden; padding: .1rem .05rem;
-            .citem{ position: relative; width: 1.78rem; height: .64rem; float: left; background: #fff; border-radius: .06rem; text-align: center; color: #ff7021;}
+            .citem{ position: relative; width: 1.78rem; height: .64rem; float: left; background: #fff; border-radius: .06rem; text-align: center; color: @base;}
             .citem:nth-child(2){ float: right;}
             .citem:after{ content: ""; display: block; position: absolute; left: .8rem; top: .1rem; bottom: .1rem; border-left: 1px solid #e6d9d2;}
             .cleft{ float: left; width: .8rem; line-height: .64rem; font-size: .5rem;}
             .cright{ float: right; width: .97rem;}
             .ctil{ padding: .07rem 0 .02rem; color: #333; }
-            .cbtn{ width: .68rem; margin: 0 auto; line-height: .18rem; font-size: .1rem; color: #fff; background: #ff7021; border-radius: .09rem;}
+            .cbtn{ width: .68rem; margin: 0 auto; line-height: .18rem; font-size: .1rem; color: #fff; background: @base; border-radius: .09rem;}
             .disable .cbtn{ background: #999;}
             .disable .ctil,.disable .cleft{ color: #999;}
         }
@@ -190,7 +190,7 @@
             .t-pri{ font-size: .18rem;}
             .t-total{text-align: center;font-size: .12rem; line-height: .18rem; color: #999;}
             .t-img{display: block; width: 1.08rem; height: 1.08rem; border-radius: .1rem; overflow: hidden;}
-            .t-info{ padding: .02rem 0 0; font-size: .12rem; color: #ff7021; text-align: center;}
+            .t-info{ padding: .02rem 0 0; font-size: .12rem; color: @base; text-align: center;}
             .ci-tor{ width: 20px;}
         }
         .ptil{
@@ -209,7 +209,7 @@
             .item-ltn{ font-size: .15rem; line-height: .24rem;}
             .item-r{ float: right; width: 1.72rem; font-size: .12rem; color: #999; line-height: .18rem;}
             .item-rt{ padding:.08rem 0 0; color: #222; font-size: .16rem; line-height: .28rem;}
-            .btn{ width: 2rem; margin: .14rem auto .24rem; background: #fff; text-align: center; line-height: .36rem; font-size: .15rem; color: #ff7021; border-radius: .18rem;}
+            .btn{ width: 2rem; margin: .14rem auto .24rem; background: #fff; text-align: center; line-height: .36rem; font-size: .15rem; color: @base; border-radius: .18rem;}
             .til{ padding: .16rem 0 .1rem; line-height: .48rem; font-size: .24rem; text-align: center; color: #fff; font-weight: bold;}
         }
     }
@@ -241,6 +241,9 @@ export default {
         this.Ob.$emit('changetitle','首页');
         this.getNewred();
         this.getPageData();
+    },
+    activated() {
+        this.$tools.setScrollTop(this.$route.meta.scrollTop||0)
     },
     methods:{
         //获取首页数据

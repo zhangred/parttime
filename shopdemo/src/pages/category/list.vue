@@ -52,10 +52,10 @@
             .cate-ico{ position: absolute; left: 0; top: 0; height: .48rem; width: .5rem; background: url(~@/assets/images/cate.png) no-repeat .15rem center; background-size:.2rem .275rem; }
             .tabline{ height: .4rem; overflow: hidden; padding: 0 .15rem; line-height: .4rem;}
             .tab{ float: left; width: 33.3%; font-size: .13rem;}
-            .tab.active{ color: #ff7021;}
+            .tab.active{ color: @base;}
             .sitem{ display: inline-block; padding: 0 .15rem; line-height: .4rem; font-size: .13rem; font-weight: bold;}
             .skin{ display: block; height: .4rem;}
-            .skin.active{ color: #ff7021; border-bottom: 2px solid #ff7021;}
+            .skin.active{ color: @base; border-bottom: 2px solid @base;}
             .tabout{ position:relative; padding-right:.5rem;}
             .tplist{ position:absolute; right:0; top:0; width:.5rem; text-align:center; line-height:.4rem; font-size:.2rem;}
         }
@@ -65,7 +65,7 @@
         .pop-cate{
             width: 1.3rem; background: #f2f2f2; height: 100%;
             .item{ padding-left: .15rem; line-height: .52rem;}
-            .item.active{ background: #fff; color: #ff7021;}
+            .item.active{ background: #fff; color: @base;}
         }
     }  
 </style>
@@ -83,7 +83,7 @@ export default {
             goodlist:[],
             locked:false,
             pop_cate:{show:false,list:[],cur:''},
-            list_df:true
+            list_df:false
         }
     },
     created(){

@@ -49,7 +49,7 @@
                         <!-- 待成团 -->
                         <div class="oibot flex" v-if="item.status=='ungroup'">
                             <p class="oibtx flex flex-center"><van-icon name="clock-o" class="oiclo" />还差{{item.short||0}}人拼团成功，剩余<backtime :lasttime="item.lasttime" short format="h小时m分钟" /></p>
-                            <van-button class="oibtn" size="small" round color="#ff7021" @click="pop_invi.if=true">邀请好友</van-button>
+                            <van-button class="oibtn" size="small" round :color="gobal.color" @click="pop_invi.if=true">邀请好友</van-button>
                         </div>
                         <!-- 已成团 -->
                         <div class="oibot flex" v-show="item.status=='group'">
@@ -58,25 +58,25 @@
                         <!-- 带支付 -->
                         <div class="oibot flex" v-show="item.status=='pay'">
                             <p class="oibtx flex flex-center"><van-icon name="clock-o" class="oiclo" />支付剩余<backtime :lasttime="item.lasttime" short format="m分钟" /></p>
-                            <van-button class="oibtn" size="small" round color="#ff7021" url="/order/detail">去支付</van-button>
+                            <van-button class="oibtn" size="small" round :color="gobal.color" url="/order/detail">去支付</van-button>
                             <van-button class="oibtn" size="small" round @click="orderCancel(item)">取消订单</van-button>
                         </div>
                         <!-- 待发货 -->
                         <div class="oibot flex" v-show="item.status=='send'">
-                            <van-button class="oibtn" size="small" round color="#ff7021" @click="remindsend(item)">提醒店家发货</van-button>
+                            <van-button class="oibtn" size="small" round :color="gobal.color" @click="remindsend(item)">提醒店家发货</van-button>
                         </div>
                         <!-- 待收货 -->
                         <div class="oibot flex" v-show="item.status=='receive'">
                             <van-button class="oibtn" size="small" round  @click="delayReceive(item)">延长收货</van-button>
                             <van-button class="oibtn" size="small" round url="/order/logistics" >查看物流</van-button>
-                            <van-button class="oibtn" size="small" round color="#ff7021" @click="receive(item)">确认收货</van-button>
+                            <van-button class="oibtn" size="small" round :color="gobal.color" @click="receive(item)">确认收货</van-button>
                         </div>
 
                         <!-- 待评价和已完成 -->
                         <div class="oibot flex" v-show="item.status=='comment'||item.status=='done'">
                             <van-button class="oibtn" size="small" round >开具发票</van-button>
                             <van-button class="oibtn" size="small" round url="/order/logistics" >查看物流</van-button>
-                            <van-button class="oibtn" size="small" v-if="item.status=='comment'" round color="#ff7021" url="/order/comment">写评价</van-button>
+                            <van-button class="oibtn" size="small" v-if="item.status=='comment'" round :color="gobal.color" url="/order/comment">写评价</van-button>
                         </div>
 
                     </div>
@@ -108,8 +108,8 @@
         .olist{ padding: .1rem .12rem;}
         .oitem{ margin-bottom: .1rem; padding: 0 .1rem; border-radius: .05rem; background: #fff;}
         .oitop{ line-height: .4rem; font-size: .13rem;}
-        .oisio{ margin-right: .05rem; color: #ff7021; font-size: .16rem;}
-        .oista{ color: #ff7021;}
+        .oisio{ margin-right: .05rem; color: @base; font-size: .16rem;}
+        .oista{ color: @base;}
         .oigood{ display: block; position: relative; border-top: 1px solid #eee;}
         .oiginfo{ min-height: 1rem; padding: 0 0 0 .9rem;}
         .oigimg{ position: absolute; left: 0; top: .1rem; height: .8rem; width: .8rem; border-radius: .04rem; overflow: hidden;}
@@ -122,7 +122,7 @@
         .oibtx{ font-size: .11rem;}
         .oiclo{ margin-right: .03rem; color: #999;}
         .oibtn{ margin-left: .1rem;}
-        .oigtype{ border:1px solid #ff7021; color: #ff7021; font-size: .1rem; border-radius: .08rem; padding: 0 .04rem}
+        .oigtype{ border:1px solid @base; color: @base; font-size: .1rem; border-radius: .08rem; padding: 0 .04rem}
         .xxx{}
         .pop-hbbox{ background: none;}
         .pop-haibao{ position: absolute; left: 50%; top: 46%; z-index: 2; transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); width: 3.12rem; overflow: hidden; border-radius: .08rem;}
@@ -141,6 +141,7 @@ export default {
     },
     data(){
         return {
+            gobal:this.themes.setting,
             popshow:false,
             active:2,
             tabs:{active:'all',list:[]},

@@ -180,14 +180,14 @@
         .ltps{ margin-top: .1rem; padding: .1rem .14rem; background: #fff; font-size: .12rem; line-height: .2rem; color: #999;}
         .botline{ position: fixed; left: 0; bottom: 0; right: 0; padding: .06rem .14rem; background: #fff; border-top: 1px solid #eee; justify-content: flex-end;}
         .bl-btn,.gi-btn{ display: block; margin-left: .1rem; min-width: .5rem; text-align: center; line-height: .3rem; border: 1px solid #ccc; border-radius: .16rem; padding: 0 .14rem; font-size: .12rem;}
-        .bl-btn.a{ border-color: #ff7021; color: #ff7021;}
-        .bl-btn.b{border-color: #ff7021; background: #ff7021; color: #fff;}
+        .bl-btn.a{ border-color: @base; color: @base;}
+        .bl-btn.b{border-color: @base; background: @base; color: #fff;}
         .ot .otls{ width: .8rem;}
         .tsback{ line-height: .2rem; padding: .18rem 0 .12rem 0;}
         .tstime{ font-size: .12rem;}
         .gi-btns{ overflow: hidden; padding: .1rem 0 0;}
         .gi-btn{ width: auto; float: right; background: #fff;}
-        .gi-btn.a{border-color: #ff7021; color: #ff7021;}
+        .gi-btn.a{border-color: @base; color: @base;}
         .pcc{ overflow: hidden; width: 3rem; border-radius: .06rem; }
         .pcc-til{ padding-left: .14rem; line-height: .48rem; text-align: center; font-size: .18rem;}
         .pcc-list{ padding-left: .14rem; border-top: 1px solid #eee; border-bottom: 1px solid #eee;}

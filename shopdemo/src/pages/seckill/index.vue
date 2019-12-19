@@ -1,8 +1,8 @@
 <template>
     <div class="pages">
         <div class="toptab">
-            <div :class="['ttab',{'active':tab_ac=='today'}]" @click="changeType('today')">正在疯抢</div>
-            <div :class="['ttab',{'active':tab_ac=='tomorrow'}]" @click="changeType('tomorrow')">明日预约(10:00)</div>
+            <div :class="['ttab',{'active gb-c':tab_ac=='today'}]" @click="changeType('today')">正在疯抢</div>
+            <div :class="['ttab',{'active gb-c':tab_ac=='tomorrow'}]" @click="changeType('tomorrow')">明日预约(10:00)</div>
         </div>
         <van-list
             class="goodlist"
@@ -16,19 +16,19 @@
                 <router-link to="/seckill/detail" class="pl-item" v-for="item in goodlist" v-bind:key="item.id">
                     <div class="pl-imgo">
                         <van-image fit="cover" class="pl-img" :src="item.img" />
-                        <p v-if="item.sell<item.total&&tab_ac=='today'" class="pl-btime">距离结束<backtime :lasttime="item.time_end" classname="fr" :tag="item"></backtime></p>
+                        <p v-if="item.sell<item.total&&tab_ac=='today'" class="pl-btime gb-bgc">距离结束<backtime :lasttime="item.time_end" classname="fr" :tag="item"></backtime></p>
                         <div v-if="item.sell>=item.total&&tab_ac=='today'" class="pl-cover"><p class="pl-cover-tx">抢光</p></div>
-                        <div v-if="tab_ac=='tomorrow'" class="pl-btime pl-btimea">距离开始<backtime :lasttime="item.time_end" classname="fr" :tag="item"></backtime></div>
+                        <div v-if="tab_ac=='tomorrow'" class="pl-btime pl-btimea gb-bgc">距离开始<backtime :lasttime="item.time_end" classname="fr" :tag="item"></backtime></div>
                     </div>
                     <div class="pl-info">
                         <div class="pl-rtop">
                             <p class="pl-title">{{item.title}}</p>
-                            <p class="pl-sper" v-if="tab_ac=='today'"><span class="pl-sperin" :style="'width:'+(item.sell*100/item.total)+'%'"></span><span :class="[item.sell/item.total>.5?'fl cff':'fr c','pl-sper-tx']">{{Math.round(item.sell*100/item.total)}}%</span></p>
+                            <p class="pl-sper gb-bdc" v-if="tab_ac=='today'"><span class="pl-sperin gb-bgc" :style="'width:'+(item.sell*100/item.total)+'%'"></span><span :class="[item.sell/item.total>.5?'fl cff':'fr c gb-c','pl-sper-tx']">{{Math.round(item.sell*100/item.total)}}%</span></p>
                         </div>
-                        <div class="pl-price"><span class="pl-pun">￥</span><span class="pl-pnum">{{item.price}}</span><span class="pl-oldpri">{{item.oldprice}}</span></div>
-                        <p v-if="item.sell<item.total&&tab_ac=='today'" class="pl-btn">立即抢购</p>
-                        <p v-if="tab_ac=='tomorrow'" class="pl-btn pl-btna">立即预约</p>
-                        <p v-if="item.sell>=item.total&&tab_ac=='today'" class="pl-btn pl-btnb">立即抢购</p>
+                        <div class="pl-price gb-c"><span class="pl-pun">￥</span><span class="pl-pnum">{{item.price}}</span><span class="pl-oldpri">{{item.oldprice}}</span></div>
+                        <p v-if="item.sell<item.total&&tab_ac=='today'" class="pl-btn gb-bgc">立即抢购</p>
+                        <p v-if="tab_ac=='tomorrow'" class="pl-btn pl-btna gb-bgc3">立即预约</p>
+                        <p v-if="item.sell>=item.total&&tab_ac=='today'" class="pl-btn pl-btnb gb-bgc">立即抢购</p>
                     </div>
                 </router-link>
             </div>
@@ -39,8 +39,8 @@
     .pages{ padding-top: .5rem;}
     .toptab{ position: fixed; left: 0; top: 0; right: 0; z-index: 3; background: #fff; line-height: .4rem; overflow: hidden; text-align: center;}
     .ttab{ float: left; width: 50%; color: #333;}
-    .ttab.active{ color: #ff7021;}
-    .cm-vprolist .pl-btimea{ background: #ff7e21}
+    .ttab.active{ color: @base;}
+    .cm-vprolist .pl-btimea{ background: @base}
 </style>
 <script>
 import { CountDown,List } from 'vant';

@@ -96,7 +96,7 @@
         .pro-til{ line-height: .20rem; max-height: .45rem; display: -webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; text-overflow:ellipsis; overflow:hidden;}
         .pro-unit{ color: #999; font-size: .12rem; line-height: .2rem;}
         .pro-itop{ height: .7rem;}
-        .pro-price{ font-size: .15rem; color: #ff7021;}
+        .pro-price{ font-size: .15rem; color: @base;}
         .pro-uy{ font-size: .12rem;}
         .pro-step{ position: absolute; right: .1rem; bottom: .1rem;}
     }
@@ -107,10 +107,10 @@
         .bd-rado{ height: .48rem;}
         .bd-edit{ padding-left: .2rem;}
         .bd-btn{position: absolute; width: .8rem; height: .5rem; top: 0; right: 0; background: #c1c1c1; text-align: center; color: #fff;}
-        .bd-btn.active{ background: #ff7021;}
+        .bd-btn.active{ background: @base;}
         .bd-r{ float: right; padding-right: .2rem;}
-        .bd-un{ margin-right: .03rem; font-size: .12rem; color: #ff7021;}
-        .bd-total{ color: #ff7021;}
+        .bd-un{ margin-right: .03rem; font-size: .12rem; color: @base;}
+        .bd-total{ color: @base;}
     }
 </style>
 <script>
