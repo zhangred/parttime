@@ -17,7 +17,7 @@
                 </div>
                 <p class="mtp"><span class="fee" v-show="fee">手续费{{fee|tofix(2)}}元，</span><span>可提现金额200.00元</span></p>
             </div>
-            <a href="javascript:;" class="cm-btn" @click="save">确认提现</a>
+            <a href="javascript:;" class="cm-btn gb-bgc-bdc" @click="save">确认提现</a>
         </div>
 
         <p class="bot alic"><router-link class="bot-link" to="/salesman/history">提现记录</router-link></p>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <router-link to="/salesman/bankedit" class="pb-new">使用新卡提现</router-link>
-                <router-link to="/salesman/banklist" class="cm-btn pb-btn">我的银行卡</router-link>
+                <router-link to="/salesman/banklist" class="cm-btn pb-btn gb-bgc-bdc">我的银行卡</router-link>
             </div>
         </van-popup>
     </div>
@@ -74,7 +74,7 @@
         .active .pb-ico{ opacity: 0;}
         .active .active{ opacity: 1;}
         .pb-type{ width: .23rem; margin-right: .1rem;}
-        .pb-new{ display: block; padding: .1rem 0 .1rem .46rem; font-size: .16rem;}
+        .pb-new{ display: block; padding: .1rem 0 .1rem .46rem; font-size: .16rem; font-weight: bold;}
         .pb-btn{ display: block; margin: .3rem .14rem .2rem; border-color: @base; color: #fff; background: @base; border-radius: .04rem;}
     }
 </style>

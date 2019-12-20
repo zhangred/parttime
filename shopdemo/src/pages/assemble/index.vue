@@ -13,12 +13,12 @@
                     <div class="pl-imgo">
                         <van-image fit="cover" class="pl-img" :src="item.img" />
                         <img v-if="item.isnew" src="~@/assets/images/new.png" class="pl-new" />
-                        <p class="pl-btime">距结束<backtime :lasttime="item.end_time" classname="fr"></backtime></p>
+                        <p class="pl-btime gb-bgc">距结束<backtime :lasttime="item.end_time" classname="fr"></backtime></p>
                     </div>
                     <div class="pl-info">
-                        <p class="pl-title"><span class="pl-num">3人团</span>{{item.title}}</p>
-                        <p class="pl-price"><span class="pl-pun">¥</span>{{item.price}}<span class="pl-oldprice">¥4656</span></p>
-                        <p class="pl-btn">立即抢</p>
+                        <p class="pl-title"><span class="pl-num gb-c-bdc gb-bgc4">3人团</span>{{item.title}}</p>
+                        <p class="pl-price gb-c"><span class="pl-pun ">¥</span>{{item.price}}<span class="pl-oldprice">¥4656</span></p>
+                        <p class="pl-btn gb-bgc">立即抢</p>
                     </div>
                 </router-link>
             </div>

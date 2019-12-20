@@ -3,10 +3,10 @@
         <div class="topfixed">
             <div class="search"><input type="text" class="scctrol" placeholder="商品名称/商品编号/订单号" v-on:blur="searchkey($event)" /></div>
             <div :class="'cm-tabbox cm-tabbox'+tabs.list.length">
-                <a href="javascript:;" :class="['cmtab',{'active':item.status==tabs.active}]" v-for="item in tabs.list" :key="item.status" @click="changeStatus(item)"><p class="cmtab-in">{{item.name}}</p></a>
+                <a href="javascript:;" :class="['cmtab',{'active':item.status==tabs.active}]" v-for="item in tabs.list" :key="item.status" @click="changeStatus(item)"><p :class="['cmtab-in',{'gb-c-bdc':item.status==tabs.active}]" >{{item.name}}</p></a>
             </div>
         </div>
-        <div class="listcont" :style="'height:'+(this.wHeight)">
+        <div class="listcont">
             <van-list
                 v-model="loading"
                 :finished="finished"
@@ -17,8 +17,8 @@
                 <div class="olist">
                     <div class="oitem" v-for="item in list" v-bind:key="item.id">
                         <div class="oitop flex flex-between">
-                            <div class="oishop flex flex-center"><van-icon name="shop-collect" class="oisio" />麦兜旗舰店</div>
-                            <div class="oista">
+                            <div class="oishop flex flex-center"><van-icon name="shop-collect" class="oisio gb-c" />麦兜旗舰店</div>
+                            <div class="oista gb-c">
                                 <span v-show="item.status=='ungroup'">待成团</span>
                                 <span v-show="item.status=='group'">已成团</span>
                                 <span v-show="item.status=='pay'">等待买家付款</span>
@@ -34,8 +34,8 @@
                             <div class="oiginfo">
                                 <van-image fit="cover" class="oigimg" :src="item.good.img" />
                                 <p class="oigtil">
-                                    <span class="oigtype" v-if="item.type=='assenble'">拼购</span>
-                                    <span class="oigtype" v-if="item.type=='seckill'">秒杀</span>
+                                    <span class="oigtype gb-c-bdc" v-if="item.type=='assenble'">拼购</span>
+                                    <span class="oigtype gb-c-bdc" v-if="item.type=='seckill'">秒杀</span>
                                     {{item.good.title}}
                                 </p>
                                 <p class="oigsub">红色、大号</p>
@@ -83,7 +83,12 @@
                     
                 </div>
             </van-list>
+            <div class="emp" v-show="list.length==0">
+                <img src="~@/assets/images/empty_list.png" class="emp-img" />
+                <p class="emp-tx">暂无优惠券</p>
+            </div>
         </div>
+        
 
         <van-action-sheet  v-model="pop_invi.show" :actions="pop_invi.actions" :round="false" @select="doselect" cancel-text="取消" />
 
@@ -123,11 +128,14 @@
         .oiclo{ margin-right: .03rem; color: #999;}
         .oibtn{ margin-left: .1rem;}
         .oigtype{ border:1px solid @base; color: @base; font-size: .1rem; border-radius: .08rem; padding: 0 .04rem}
-        .xxx{}
         .pop-hbbox{ background: none;}
         .pop-haibao{ position: absolute; left: 50%; top: 46%; z-index: 2; transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); width: 3.12rem; overflow: hidden; border-radius: .08rem;}
         .pop-hbbtn{ position: absolute; left: 0; bottom: 0; right: 0; z-index: 2; line-height: .48rem; font-size: .16rem; text-align: center; background: #fff;}
         .pop-hbbg{position: absolute; left: 0; bottom: 0; right: 0; top: 0;}
+        .emp{
+            padding-top: .5rem; text-align: center; font-size: .16rem; color: #999;
+            .emp-img{ display: block; margin: 0 auto .26rem; width: 1.6rem; }
+        }
     }
 </style>
 <script>
@@ -159,6 +167,10 @@ export default {
             haibao:"./tempimg/0img01.jpg"
         }
     },
+    activated() {
+        this.tabs.active = this.$route.query.status||'all';
+        this.$tools.setScrollTop(this.$route.meta.scrollTop||0)
+    },
     created(){
         this.Ob.$emit('changetitle','我的订单');
 
@@ -169,6 +181,8 @@ export default {
             {status:'receive',name:'待收货'},
             {status:'comment',name:'待评论'},
         ];
+        console.log(this.$route)
+        this.tabs.active = this.$route.query.status||'all'
 
         this.getlist(true);
 
@@ -181,13 +195,15 @@ export default {
         searchkey(event){
             var key = event.currentTarget.value.trim();
             if(key){
-                // this.$router.push('/category/list?key='+key)
+                this.$router.push('/order/list?key='+key)
             }
         },
         //切换分类
         changeStatus(item){
             if(item.status==this.tabs.active) return;
-            this.tabs.active = item.status
+            this.tabs.active = item.status;
+            this.$router.replace('/order/list?status='+item.status)
+            this.getlist(true)
         },
         //获取订单列表
         getlist(first){
@@ -223,6 +239,9 @@ export default {
                         {id:Math.random()*1000,good:{id:2,img:'./tempimg/0banner01.jpg',title:'1热卖商品名称花时间In the mood foe flowers'},status:'done',type:'normal',total:495.06,fare:8,num:1},
                     ]
                     this.list = this.list.concat(goodlist);
+                    if(this.tabs.active=='pay'){
+                        this.list = [];
+                    }
                     
                     setTimeout(()=>{
                         if(this.list.length>30){

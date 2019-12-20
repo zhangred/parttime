@@ -19,7 +19,7 @@
                         <span>{{item.time|timeFormat('y-m-d h:i:s')}}</span>
                         <span v-if="item.status==1">审核中</span>
                         <span v-if="item.status==2">审核通过</span>
-                        <span v-if="item.status==3" class="c" @click="showreason(item)">审核失败，查看原因</span>
+                        <span v-if="item.status==3" class="c gb-c" @click="showreason(item)">审核失败，查看原因</span>
                     </p>
                 </div>
             </div>
@@ -46,7 +46,6 @@
         .pb-til{ justify-content: space-between; padding: 0 .14rem; line-height: .44rem; border-bottom: 1px solid #eee;}
         .pb-close{ line-height: .44rem;}
         .pb-cont{ min-height: 3rem; padding: .1rem .14rem;}
-        .xxx{}
     }
 </style>
 <script>

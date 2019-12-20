@@ -21,7 +21,7 @@
                 <p class="rs-last">{{data.desc.length}}/500</p>
             </div>
             <div class="rs-money flex flex-between">
-                <p class="rs-ad">退款金额：<span class="c">¥167.00</span></p>
+                <p class="rs-ad">退款金额：<span class="c gb-c">¥167.00</span></p>
                 <p class="rs-mnum">商品¥159.00  含邮费8.00</p>
             </div>
         </div>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <a href="javascript:;" class="btn" @click="save">提交</a>
+        <a href="javascript:;" class="btn gb-bgc" @click="save">提交</a>
 
         <van-action-sheet  v-model="pop_reason.show" :actions="pop_reason.list" :round="false" @select="rsselect" cancel-text="取消" />
 

@@ -2,7 +2,7 @@
     <div class="pages salecdetail">
         <div class="topbox">
             <img :src="head" class="tb-head" />
-            <div class="tb-name flex"><span>Mary-Dream</span><p class="tb-tp">微信号</p></div>
+            <div class="tb-name flex"><span>Mary-Dream</span><p class="tb-tp gb-c-bdc">微信号</p></div>
             <p class="tb-sub">绑定时间：2019.08.27 12:30:08</p>
         </div>
 

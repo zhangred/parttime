@@ -1,26 +1,26 @@
 <template>
     <div class="pages morderdetail">
-        <div class="topsta" v-if="state==1">交易成功<img src="~@/assets/images/cart.png" class="tsio" /></div>
-        <div class="topsta" v-if="state==2||state==5">买家已付款<img src="~@/assets/images/cart.png" class="tsio" /></div>
-        <div class="topsta" v-if="state==3">
+        <div class="topsta gb-gradient-h" v-if="state==1">交易成功<img src="~@/assets/images/cart.png" class="tsio" /></div>
+        <div class="topsta gb-gradient-h" v-if="state==2||state==5">买家已付款<img src="~@/assets/images/cart.png" class="tsio" /></div>
+        <div class="topsta gb-gradient-h" v-if="state==3">
             <p class="tsback">等待买家付款<br /><backtime :lasttime="1800" class="tstime" short format="订单m:s后自动关闭" /></p>
             <img src="~@/assets/images/cart01.png" class="tsio" />
         </div>
-        <div class="topsta" v-if="state==4">
+        <div class="topsta gb-gradient-h" v-if="state==4">
             <p class="tsback">交易关闭<br /><span class="tstime">原因：信息填写错误，重新拍</span></p>
             <img src="~@/assets/images/cart01.png" class="tsio" />
         </div>
-        <div class="topsta" v-if="state==6">交易关闭<img src="~@/assets/images/cart.png" class="tsio" /></div>
-        <div class="topsta a" v-if="state==7">
+        <div class="topsta gb-gradient-h" v-if="state==6">交易关闭<img src="~@/assets/images/cart.png" class="tsio" /></div>
+        <div class="topsta a gb-gradient-h" v-if="state==7">
             <van-icon name="clock" class="tsclock" />
             <p class="tsback">待成团<br /><span class="tstime">请尽快邀请好友参与拼团</span></p>
         </div>
-        <div class="topsta a" v-if="state==8">
+        <div class="topsta a gb-gradient-h" v-if="state==8">
             <van-icon name="clock" class="tsclock" />
             已成团，等待商家发货
             <img src="~@/assets/images/cart01.png" class="tsio" />
         </div>
-        <div class="topsta a" v-if="state==9">
+        <div class="topsta a gb-gradient-h" v-if="state==9">
             <van-icon name="clock" class="tsclock" />
             已成团
             <img src="~@/assets/images/cart01.png" class="tsio" />
@@ -43,12 +43,12 @@
 
         <div class="goodinfo">
             <router-link to="/shop/index" class="gi-shop ovh">
-                <p class="gi-sname flex flex-center arr-ra l0 fl"><van-icon name="shop-collect" class="gi-ico c" />麦兜旗舰店</p>
-                <span class="gi-sta c fr" v-if="state==1">交易成功</span>
-                <span class="gi-sta c fr" v-if="state==7">待成团</span>
-                <span class="gi-sta c fr" v-if="state==2||state==8">买家已付款</span>
-                <span class="gi-sta c fr" v-if="state==9">已发货</span>
-                <span class="gi-sta c fr" v-if="state==6">交易关闭</span>
+                <p class="gi-sname flex flex-center arr-ra l0 fl"><van-icon name="shop-collect gb-c" class="gi-ico c" />麦兜旗舰店</p>
+                <span class="gi-sta c gb-c fr" v-if="state==1">交易成功</span>
+                <span class="gi-sta c gb-c fr" v-if="state==7">待成团</span>
+                <span class="gi-sta c gb-c fr" v-if="state==2||state==8">买家已付款</span>
+                <span class="gi-sta c gb-c fr" v-if="state==9">已发货</span>
+                <span class="gi-sta c gb-c fr" v-if="state==6">交易关闭</span>
             </router-link>
             <router-link to="/category/detail" :class="['gi-gd',{'bg':state==5||state==2||state==6}]">
                 <van-image fit="cover" class="gi-img" src="./tempimg/0detail_item01.jpg" />
@@ -58,7 +58,7 @@
                     <router-link to="/order/refundApply" class="gi-btn">退款</router-link>
                 </p>
                 <p class="gi-btns" v-if="state==5">
-                    <router-link to="/order/refundDetail" class="gi-btn a">退款处理中···</router-link>
+                    <router-link to="/order/refundDetail" class="gi-btn a gb-c-bdc">退款处理中···</router-link>
                 </p>
                 <p class="gi-btns" v-if="state==6">
                     <router-link to="/order/refundDetail" class="gi-btn">退款成功</router-link>
@@ -75,7 +75,7 @@
             <div class="pit">运费<span class="fr">¥0.00</span></div>
             <div class="pit pita">订单总价<span class="fr">¥258.00</span></div>
         </div>
-        <p class="ptotal bdtb">实付款<span class="ptnum fr c">¥258.00</span></p>
+        <p class="ptotal bdtb">实付款<span class="ptnum fr c gb-c">¥258.00</span></p>
 
         <div class="ltps bdtb">
             <p class="">订单编号：102923930489095059</p>
@@ -88,7 +88,7 @@
 
         <div class="botline flex" v-if="state==1">
             <router-link to="/order/logistics" class="bl-btn">查看物流</router-link>
-            <router-link to="/order/rate" class="bl-btn a">评价</router-link>
+            <router-link to="/order/rate" class="bl-btn a gb-c-bdc">评价</router-link>
         </div>
 
         <div class="botline flex" v-if="state==2">
@@ -98,12 +98,12 @@
 
         <div class="botline flex" v-if="state==3">
             <p class="bl-btn" @click="popCancel.show=true">取消订单</p>
-            <p class="bl-btn a">去支付</p>
+            <p class="bl-btn a gb-c-bdc">去支付</p>
         </div>
 
         <div class="botline flex" v-if="state==7">
             <router-link to="/order/refundApply" class="bl-btn">申请退款</router-link>
-            <router-link to="/assemble/detail" class="bl-btn b">邀请好友</router-link>
+            <router-link to="/assemble/detail" class="bl-btn b gb-bgc-bdc">邀请好友</router-link>
         </div>
 
         <div class="botline flex" v-if="state==8">

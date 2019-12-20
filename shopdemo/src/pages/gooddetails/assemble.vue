@@ -3,7 +3,7 @@
         <van-swipe class="banner" :autoplay="3000" indicator-color="white">
             <van-swipe-item v-for="item in detail.banner" v-bind:key="item"><van-image fit="cover" class="banner_img" :src="item" /></van-swipe-item>
         </van-swipe>
-        <div class="tstate">
+        <div class="tstate gb-bgc">
             <p v-show="!hastime" class="st-end">活动已结束</p>
             <div v-show="hastime" class="st-goon">
                 <div class="st-gol"><span>拼团价</span><span class="st-gun">¥</span><span class="st-pri">{{detail.price}}</span></div>
@@ -58,10 +58,10 @@
             </div>
             
             <div class="bl-btns flex" v-show="hastime">
-                <div @click="goodSku.show=true" class="bl-btn bl-btne">¥299.99<br />单独购买</div>
-                <div @click="goodSku.show=true" class="bl-btn bl-btne">¥99.99<br />我要开团</div>
+                <div @click="goodSku.show=true" class="bl-btn bl-btne gb-bgc3">¥299.99<br />单独购买</div>
+                <div @click="goodSku.show=true" class="bl-btn bl-btne gb-bgc">¥99.99<br />我要开团</div>
             </div>
-            <router-link v-show="!hastime" to="/category/list" class="bl-btn bl-btnd">查看店铺其他商品</router-link>
+            <router-link v-show="!hastime" to="/category/list" class="bl-btn bl-btnd gb-bgc">查看店铺其他商品</router-link>
         </div>
 
         <!-- 参数 -->

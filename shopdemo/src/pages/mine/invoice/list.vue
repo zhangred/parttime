@@ -11,7 +11,7 @@
                 <p class="itil"  @click="choose(item)">{{item.name}}</p>
                 <p class="ibtns alir">
                     <van-button class="ibtn" size="small" v-if="item.isdef">默认</van-button>
-                    <van-button class="ibtn" url="/mine/invoice/edit" size="small">编辑</van-button>
+                    <van-button class="ibtn" url="#/mine/invoice/edit" size="small">编辑</van-button>
                 </p>
             </div>
         </div>

@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="cm-btn btn" @click="save">保存</div>
+        <div class="cm-btn btn gb-bgc-bdc" @click="save">保存</div>
 
         <van-popup v-model="popbank.show" position="bottom">
             <div class="popbank">

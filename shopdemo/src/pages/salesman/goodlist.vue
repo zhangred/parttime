@@ -3,7 +3,7 @@
         <div class="topfixed">
             <div class="search"><input type="text" class="scctrol" placeholder="商品名称/商品编号" v-on:blur="searchkey($event)" /></div>
             <div :class="'cm-tabbox cm-tabbox'+tabs.list.length">
-                <a href="javascript:;" :class="['cmtab',{'active':item.status==tabs.active}]" v-for="item in tabs.list" :key="item.status" @click="changeStatus(item)"><p class="cmtab-in">{{item.name}}</p></a>
+                <a href="javascript:;" :class="['cmtab',{'active':item.status==tabs.active}]" v-for="item in tabs.list" :key="item.status" @click="changeStatus(item)"><p :class="['cmtab-in',{'gb-c-bdc':item.status==tabs.active}]">{{item.name}}</p></a>
             </div>
         </div>
 
@@ -25,10 +25,10 @@
                         <router-link to="/category/detail" class="i-link">
                             <van-image fit="cover" class="i-img" :src="item.img" />
                             <p class="i-name">花时间 In the mood foe flowers悦己-樱桃慕斯蛋糕悦己-樱桃慕斯蛋糕悦己-樱桃慕斯蛋糕</p>
-                            <p class="i-price"><span class="i-pao">¥</span>88.80</p>
+                            <p class="i-price gb-c"><span class="i-pao">¥</span>88.80</p>
                             <p class="i-tp"><span class="i-gr">佣金比例 3.00%</span>预计可赚￥2.66</p>
                         </router-link>
-                        <a href="javascript:;" class="i-btn" @click="showshare">分享</a>
+                        <a href="javascript:;" class="i-btn gb-bgc" @click="showshare">分享</a>
                     </div>
                 </div>
             </van-list>

@@ -21,8 +21,8 @@
             <div class="editline">
                 <p class="el-ado el-ado-m">发票内容</p>
                 <div class="el-btns">
-                    <van-button class="tbtn" round plain :color="(data.detail=='detail'?'@base':'#aaa')" @click="data.detail='detail'" size="small">商品明细</van-button>
-                    <van-button class="tbtn" round plain :color="(data.detail=='kind'?'@base':'#aaa')" @click="data.detail='kind'" size="small">商品类别</van-button>
+                    <van-button class="tbtn" round :color="(data.detail=='detail'?gobal.color:'#ccc')" @click="data.detail='detail'" size="small">商品明细</van-button>
+                    <van-button class="tbtn" round :color="(data.detail=='kind'?gobal.color:'#ccc')" @click="data.detail='kind'" size="small">商品类别</van-button>
                 </div>
             </div>
             <p class="btp"><span v-show="data.detail=='detail'">发票内容将显示详细的商品名称</span><span v-show="data.detail=='kind'">发票内容仅显示商品类别</span></p>

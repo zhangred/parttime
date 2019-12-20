@@ -1,4 +1,72 @@
 @charset "utf-8";
+.theme-red {
+  /* 全局具体样式 */
+  /* 红色模板样式 --end--- */
+}
+.theme-red .gb-c {
+  color: #ff4444 !important;
+}
+.theme-red .gb-bgc {
+  background-color: #ff4444 !important;
+}
+.theme-red .gb-bgc2 {
+  background-color: #ff8855 !important;
+}
+.theme-red .gb-bgc3 {
+  background-color: #ff8855 !important;
+}
+.theme-red .gb-bdc {
+  border-color: #ff4444 !important;
+}
+.theme-red .gb-c-bdc {
+  color: #ff4444 !important;
+  border-color: #ff4444 !important;
+}
+.theme-red .gb-bgc-bdc {
+  background-color: #ff4444 !important;
+  border-color: #ff4444 !important;
+}
+.theme-red .gb-gradient {
+  background: linear-gradient(180deg, #ff8855 0%, #ff4444 100%) !important;
+}
+.theme-red .gb-before-bgc:before {
+  background-color: #ff4444 !important;
+}
+.theme-red .gb-after-bgc:after {
+  background-color: #ff4444 !important;
+}
+.theme-blackish .gb-c {
+  color: #66c4aa !important;
+}
+.theme-blackish .gb-bgc {
+  background-color: #66c4aa !important;
+}
+.theme-blackish .gb-bgc2 {
+  background-color: #def3ec !important;
+}
+.theme-blackish .gb-bgc3 {
+  background-color: #82d0ba !important;
+}
+.theme-blackish .gb-bdc {
+  border-color: #66c4aa !important;
+}
+.theme-blackish .gb-c-bdc {
+  color: #66c4aa !important;
+  border-color: #66c4aa !important;
+}
+.theme-blackish .gb-bgc-bdc {
+  background-color: #66c4aa !important;
+  border-color: #66c4aa !important;
+}
+.theme-blackish .gb-gradient {
+  background: linear-gradient(180deg, #66c4aa 0%, #07ad7f 100%) !important;
+}
+.theme-blackish .gb-before-bgc:before {
+  background-color: #66c4aa !important;
+}
+.theme-blackish .gb-after-bgc:after {
+  background-color: #66c4aa !important;
+}
 div,
 p,
 span,

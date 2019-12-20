@@ -3,7 +3,7 @@
         <!-- 地址相关 -->
         <div class="adres-no flex" @click="changeAdr" v-if="!order.address.id">
             <div class="adr-l flex">
-                <van-icon name="add" class="adr-add" />添加收货地址
+                <van-icon name="add" class="adr-add gb-c" />添加收货地址
             </div>
             <van-icon name="arrow" class="adr-arr" />
         </div>
@@ -21,7 +21,7 @@
         <div class="tuan">
             <p class="tuan-til">正在开团】立即支付即可开团</p>
             <div class="tuan-peo flex flex-center">
-                <div class="tuan-pls">
+                <div class="tuan-pls gb-after-bgc">
                     <van-image fit="cover" class="tuan-head" src="./tempimg/head01.jpg"/>
                 </div>
                 <div class="tuan-add"></div>
@@ -35,7 +35,7 @@
                 <van-image fit="cover" class="ginfo-img" :src="order.good.url" />
                 <p class="ginfo-til ellipsis">{{order.good.name||'--'}}</p>
                 <p class="ginfo-sub ellipsis">{{order.good.sub||'--'}}</p>
-                <p class="ginfo-price">¥<span class="ginfo-pr">{{order.good.price|tofix(2)}}</span></p>
+                <p class="ginfo-price gb-c">¥<span class="ginfo-pr">{{order.good.price|tofix(2)}}</span></p>
             </div>
         </div>
 
@@ -70,23 +70,23 @@
             <div class="editlinebox editlinebox-nmt">
                 <div class="editline">
                     <p class="el-ado el-ado-m">商品金额</p>
-                    <div class="el-text">+343.34</div>
+                    <div class="el-text">23.45</div>
                 </div>
                 <div class="editline editline-cover">
                     <p class="el-ado el-ado-m">运费</p>
-                    <div class="el-text"><p>+343.34</p></div>
+                    <div class="el-text"><p>4.00</p></div>
                 </div>
-                <div class="editline editline-cover">
+                <div class="editline editline-cover" v-show="order.coupon.id">
                     <p class="el-ado el-ado-m">优惠</p>
-                    <div class="el-text"><p>+343.34</p></div>
+                    <div class="el-text"><p>{{order.coupon.money|tofix(2)}}</p></div>
                 </div>
             </div>
-            <div class="total">共<span class="toc">{{order.num}}</span>件商品，小计：<span class="toc to-num">¥&ensp;{{order.total|tofix(2)}}</span></div>
+            <div class="total">共<span class="toc gb-c">{{order.num}}</span>件商品，小计：<span class="toc to-num gb-c">¥&ensp;{{order.total|tofix(2)}}</span></div>
         </div>
 
         <div class="botline">
-            共<span class="toc">{{order.num}}</span>件商品，<span class="blco">合计：</span><span class="toc to-num">¥&ensp;{{order.total|tofix(2)}}</span>
-            <van-button class="bl-btn" :loading="paying" :color="gobal.color" loading-text="支付中..."  @click="gopay">去支付</van-button>
+            共<span class="toc gb-c">{{order.num}}</span>件商品，<span class="blco">合计：</span><span class="toc to-num gb-c">¥&ensp;{{order.total|tofix(2)}}</span>
+            <van-button class="bl-btn gb-bgc" :loading="paying" :color="gobal.color" loading-text="支付中..."  @click="gopay">去支付</van-button>
         </div>
 
         <!-- 优惠券 -->
@@ -95,12 +95,12 @@
             <p class="pop-loading" v-show="!pop_coupon.loaded">正在加载···</p>
             <div class="cp-list" v-show="pop_coupon.loaded">
                 <div class="cp-citem" v-for="item in pop_coupon.list" v-bind:key="item.id" @click="getCoupon(item)">
-                    <div class="cp-cimon"><span class="cp-ciun">¥</span>{{item.money}}</div>
+                    <div class="cp-cimon gb-c"><span class="cp-ciun">¥</span>{{item.money}}</div>
                     <div class="cp-info flex">
                         <p class="cp-nm">{{item.name}}</p>
                         <p class="cp-time">{{item.time_start|timeFormat('y-m-d')}}&ensp;-&ensp;{{item.time_end|timeFormat('y-m-d')}}</p>
                     </div>
-                    <div class="cp-rig flex"><van-icon name="checked" :class="{'cp-chk':true,'disable':!item.choose}" /></div>
+                    <div class="cp-rig flex"><van-icon name="checked" :class="{'cp-chk':true,'disable':!item.choose,'gb-c':item.choose}" /></div>
                 </div>
             </div>
         </van-popup>
@@ -139,7 +139,6 @@
         .botline{ position: fixed; left: 0; bottom: 0; right: 0; z-index: 3; height: .5rem; padding-right: 1.3rem; background: #fff; border-top: 1px solid #eee; line-height: .5rem; font-size: .12rem; text-align: right;}
         .blco{ font-size: .15rem;}
         .bl-btn{ position: absolute; right: 0; top: 0; height: .5rem; width: 1.2rem; font-size: .16rem;}
-        .xxxx{}
         .poptil{ text-align: center; padding: .1rem 0; font-size: .16rem; color: #666;}
         .cp-list{
             padding:.1rem .15rem .1rem; background: #f6f6f6;
@@ -279,7 +278,7 @@ export default {
         },
         // 计算价格
         count(){
-            this.order.total = Math.floor(this.order.good.price*100*this.order.num - (this.order.coupon.id?this.order.coupon.money:0)*100)/100
+            this.order.total = Math.floor(this.order.good.price*100*this.order.num - (this.order.coupon.id?this.order.coupon.money:0)*100+ 4*100)/100
         },
         numchange(){
             this.count()

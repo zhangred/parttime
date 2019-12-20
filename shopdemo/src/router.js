@@ -39,27 +39,28 @@ export default new Router({
     { path: '/pages/feedback', name: 'feedback', component: resolve => require(['./pages/single/feedback'], resolve) },
     // *我的-优惠券
     { path: '/mine/couponlist', name: 'couponlist', component: resolve => require(['./pages/mine/coupon'], resolve) },
-    // 秒杀
+    // *秒杀
     { path: '/seckill', name: 'seckill', component: resolve => require(['./pages/seckill/index'], resolve) },
-    // 商品详情-秒杀
+    // *商品详情-秒杀
     { path: '/seckill/detail', name: 'seckillDetail', component: resolve => require(['./pages/gooddetails/seckill'], resolve) },
-    // 签到
+    // *签到
     { path: '/signin', name: 'signin', component: resolve => require(['./pages/single/signin'], resolve) },
-    // 商品详情-拼团
+    // *商品详情-拼团
     { path: '/assemble/goodDetail', name: 'assembleGoodDetail', component: resolve => require(['./pages/gooddetails/assemble'], resolve) },
-    // 领券中心
+    // *领券中心
     { path: '/coupanCenter', name: 'coupanCenter', component: resolve => require(['./pages/single/couponcenter'], resolve) },
+    // *我的地址
     { path: '/mine/address', name: 'address', component: resolve => require(['./pages/mine/address/list'], resolve) },
     { path: '/mine/address/edit', name: 'addressEdit', component: resolve => require(['./pages/mine/address/edit'], resolve) },
-    //发票
+    // *发票
     { path: '/mine/invoicelist', name: 'invoiceList', component: resolve => require(['./pages/mine/invoice/list'], resolve) },
     { path: '/mine/invoice/edit', name: 'invoiceEdit', component: resolve => require(['./pages/mine/invoice/edit'], resolve) },
-    //团购
+    // *团购
     { path: '/assemble', name: 'assemble', component: resolve => require(['./pages/assemble/index'], resolve) },
     { path: '/assemble/detail', name: 'assembleDetail', component: resolve => require(['./pages/assemble/detail'], resolve) },
     { path: '/assemble/ordersave', name: 'assembleOrdersave', component: resolve => require(['./pages/ordersave/assemble'], resolve) },
-    //我的订单
-    { path: '/order/list', name: 'orderlist', component: resolve => require(['./pages/order/list'], resolve) },
+    // *我的订单
+    { path: '/order/list', name: 'orderlist', component: resolve => require(['./pages/order/list'], resolve), meta:{keepAlive:true} },
     { path: '/order/detail', name: 'orderdetail', component: resolve => require(['./pages/order/detail'], resolve) },
     { path: '/order/logistics', name: 'orderlogistics', component: resolve => require(['./pages/order/logistics'], resolve) },
     { path: '/order/refundApply', name: 'orderrefundApply', component: resolve => require(['./pages/order/refund_apply'], resolve) },
@@ -68,7 +69,7 @@ export default new Router({
     //分销中心
     { path: '/salesman/center', name: 'salesmanCenter', component: resolve => require(['./pages/salesman/center'], resolve) },
     { path: '/salesman/guide', name: 'salesmanGuide', component: resolve => require(['./pages/salesman/guide'], resolve) },
-    { path: '/salesman/customer', name: 'salesmanCustomer', component: resolve => require(['./pages/salesman/customer'], resolve) },
+    { path: '/salesman/customer', name: 'salesmanCustomer', component: resolve => require(['./pages/salesman/customer'], resolve), meta:{keepAlive:true} },
     { path: '/salesman/customerDetail', name: 'salesmanCustomerDetail', component: resolve => require(['./pages/salesman/customer_detail'], resolve) },
     { path: '/salesman/goodlist', name: 'salesmanGoodlist', component: resolve => require(['./pages/salesman/goodlist'], resolve) },
     { path: '/salesman/cashout', name: 'salesmanCashout', component: resolve => require(['./pages/salesman/cashout'], resolve) },

@@ -2,7 +2,7 @@
     <div class="pages">
         <div class="cplist">
             <div class="item" v-for="item in list" v-bind:key="item.id">
-                <div class="item-l">
+                <div class="item-l gb-bgc">
                     <div class="item-lt"><span class="item-lu">¥</span>{{item.money}}</div>
                     <div class="item-ru">{{item.rule}}</div>
                 </div>
@@ -11,8 +11,8 @@
                     <p class="item-tp">{{item.sub}}</p>
                     <p class="item-rb">{{item.time_start|timeFormat('y-m-d')}}&ensp;至&ensp;{{item.time_end|timeFormat('y-m-d')}}</p>
                     
-                    <p class="item-rang" @click="popshow=true">查看适用范围&ensp;<van-icon class="item-arr" name="arrow" /></p>
-                    <p :class="['item-btn',{'disable':item.receive}]" @click="getreceive(item)" >{{item.receive?'已领取':'领取'}}</p>
+                    <p class="item-rang gb-c" @click="popshow=true">查看适用范围&ensp;<van-icon class="item-arr" name="arrow" /></p>
+                    <p :class="['item-btn',{'disable':item.receive},{'gb-bgc':!item.receive}]" @click="getreceive(item)" >{{item.receive?'已领取':'领取'}}</p>
                 </div>
             </div>
             <p class="cp-end" v-show="list.length>0">没有更多优惠券了!</p>

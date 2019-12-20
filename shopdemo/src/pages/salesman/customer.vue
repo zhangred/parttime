@@ -2,10 +2,10 @@
     <div class="pages salecust">
         <div class="topfixed">
             <div :class="'cm-tabbox cm-tabbox'+tabs.list.length">
-                <a href="javascript:;" :class="['cmtab',{'active':item.status==tabs.active}]" v-for="item in tabs.list" :key="item.status" @click="changeStatus(item)"><p class="cmtab-in">{{item.name}}</p></a>
+                <a href="javascript:;" :class="['cmtab',{'active':item.status==tabs.active}]" v-for="item in tabs.list" :key="item.status" @click="changeStatus(item)"><p :class="['cmtab-in',{'gb-c-bdc':item.status==tabs.active}]">{{item.name}}</p></a>
             </div>
             <div class="timesp flex">
-                <a href="javascript:;" :class="['ts-btn',{'active':item.status==timepart.active}]" v-for="item in timepart.list" :key="item.status" @click="changeTimes(item)">{{item.name}}</a>
+                <a href="javascript:;" :class="['ts-btn',{'active gb-c-bdc gb-bgc4':item.status==timepart.active}]" v-for="item in timepart.list" :key="item.status" @click="changeTimes(item)">{{item.name}}</a>
                 <a href="javascript:;" class="ts-auto flex" @click="pop_time=true">自定义时间<van-icon name="arrow-down" class="ts-arr" /></a>
             </div>
         </div>
@@ -15,12 +15,12 @@
                 <p :class="['mf-ctrol',{'dis':!params.time_start}]" @click="changeDate(params.time_start,'time_start')"><span v-show="params.time_start">{{params.time_start|timeFormat('y-m-d')}}</span><span v-show="!params.time_start">结束日期</span></p>
                 <p class="mf-sp">-</p>
                 <p :class="['mf-ctrol',{'dis':!params.time_end}]" @click="changeDate(params.time_end,'time_end')"><span v-show="params.time_end">{{params.time_end|timeFormat('y-m-d')}}</span><span v-show="!params.time_end">结束日期</span></p>
-                <p class="mf-ctrol btn" @click="datasure">确定</p>
+                <p class="mf-ctrol btn gb-bgc-bdc" @click="datasure">确定</p>
             </div>
             <p class="mf-bg" @click="pop_time=false"></p>
         </div>
 
-        <div class="listcont" :style="'height:'+(this.wHeight)">
+        <div class="listcont">
             <div class="cm-empty" v-show="list.length==0&&!loading">
                 <img src="~@/assets/images/empty_list.png" class="eimg" />
                 <p class="etx">暂无客户数据</p>
@@ -35,8 +35,8 @@
                 >
                 <div class="list">
                     <router-link to="/salesman/customerDetail" class="item" v-for="item in list" v-bind:key="item.id">
-                        <div :class="['i-head',{'active':item.sale}]"><van-image fit="cover" class="i-headi" :src="item.head" /></div>
-                        <p class="i-name flex">Dalli-YU<span class="i-wx">微信号</span></p>
+                        <div :class="['i-head',{'active gb-after-bgc':item.sale}]"><van-image fit="cover" class="i-headi" :src="item.head" /></div>
+                        <p class="i-name flex">Dalli-YU<span class="i-wx gb-c-bdc">微信号</span></p>
                         <p class="i-info">
                             <span class="i-ls">成交额：<span class="i-num">45</span></span>
                             <span class="i-ls">订单数：<span class="i-num">45</span></span>
@@ -114,9 +114,8 @@ export default {
             timepart:{active:'all',list:[]},
         }
     },
-    beforeRouteLeave(to, from, next) {
-        from.meta.keepAlive = to.name=='salesmanCustomerDetail'?true:false;
-        next();
+    activated() {
+        this.$tools.setScrollTop(this.$route.meta.scrollTop||0)
     },
     created(){
         this.Ob.$emit('changetitle','我的客户');
@@ -189,6 +188,7 @@ export default {
                 this.finished = false;
             }
             this.params.pageNo ++
+            this.loading = true;
             this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {

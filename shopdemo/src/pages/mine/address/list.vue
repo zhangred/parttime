@@ -7,13 +7,13 @@
         </div>
 
         <div class="list" v-show="state==1">
-            <div class="item" v-for="item in list" :key="item.id" @click="choose(item)">
-                <p class="itil">{{item.name}}&ensp;&ensp;{{item.tel}}</p>
-                <p class="iadr"><span v-show="item.isdef" class="idef gb-c gb-bdc gb-bgc2">默认</span>{{item.address}}</p>
+            <div class="item" v-for="item in list" :key="item.id">
+                <p class="itil" @click="choose(item)">{{item.name}}&ensp;&ensp;{{item.tel}}</p>
+                <p class="iadr" @click="choose(item)"><span v-show="item.isdef" class="idef gb-c gb-bdc gb-bgc4">默认</span>{{item.address}}</p>
                 <router-link to="/mine/address/edit" class="ieidt flex flex-center gb-c">编辑</router-link>
             </div>
         </div>
-        <router-link to="/mine/address/edti" class="botline gb-bgc">新增地址</router-link>
+        <router-link to="/mine/address/edit" class="botline gb-bgc">新增地址</router-link>
 
         <over-touch class="ot" :margin="10">
             <div class="otls">

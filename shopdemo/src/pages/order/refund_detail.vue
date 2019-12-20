@@ -4,9 +4,9 @@
             <p class="ti-line">订单编号：<span class="ti-num">334839483849</span></p>
             <p class="ti-line">
                 取消/退款进度：
-                <span class="c" v-if="state==1">退款处理中</span>
-                <span class="c" v-if="state==2">已完成</span>
-                <span class="c" v-if="state==3">已取消</span>
+                <span class="c gb-c" v-if="state==1">退款处理中</span>
+                <span class="c gb-c" v-if="state==2">已完成</span>
+                <span class="c gb-c" v-if="state==3">已取消</span>
             </p>
             <p class="ti-hr"></p>
             <p class="ti-line">退款明细</p>
@@ -26,15 +26,15 @@
             <div class="gi-lines">
                 <p class="gi-line">退款方式：仅退款</p>
                 <p class="gi-line">退款原因：其他</p>
-                <p class="gi-line">退款金额：<span class="gi-price c">￥258.00</span>（含运费￥0.00）</p>
+                <p class="gi-line">退款金额：<span class="gi-price c gb-c">￥258.00</span>（含运费￥0.00）</p>
                 <p class="gi-line">退款编号：201908190236780002</p>
                 <p class="gi-line">申请时间：2019-08-19 10:36</p>
             </div>
         </div>
 
         <div class="linebtns">
-            <a href="" class="linebtn flex flex-center"><van-icon name="chat-o" class="lb-ico c" />在修客服</a>
-            <a href="tel:10086" class="linebtn flex flex-center"><van-icon name="phone-o" class="lb-ico c" />联系商家</a>
+            <a href="" class="linebtn flex flex-center"><van-icon name="chat-o" class="lb-ico c gb-c" />在修客服</a>
+            <a href="tel:10086" class="linebtn flex flex-center"><van-icon name="phone-o" class="lb-ico c gb-c" />联系商家</a>
         </div>
 
         <div class="botline flex" v-if="state==1">

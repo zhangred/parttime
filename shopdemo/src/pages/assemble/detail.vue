@@ -4,33 +4,33 @@
             <router-link to="/assemble/goodDetail" class="good">
                 <van-image fit="cover" class="gimg" :src="detail.good.img"/>
                 <div class="gtop">
-                    <p class="gtil"><span class="gmem">拼团</span>{{detail.good.title}}</p>
+                    <p class="gtil"><span class="gmem gb-c-bdc">拼团</span>{{detail.good.title}}</p>
                     <p class="gtp">{{detail.good.unit}}</p>
                 </div>
                 <div class="gpri">
-                    <span class="gprice"><span class="gpnu">￥</span>{{detail.good.price}}</span>
+                    <span class="gprice gb-c"><span class="gpnu">￥</span>{{detail.good.price}}</span>
                     <span class="gpold">￥{{detail.good.pirce_old}}</span>    
                 </div>
             </router-link>
-            <p class="tip"><img src="~@/assets/images/wenhao.png" class="tip-io" />拼团规则：邀请{{detail.total}}人参团，人数不足自动退款</p>
+            <p class="tip"><i class="iconfont iconfont-wenti tip-io gb-c"></i>拼团规则：邀请{{detail.total}}人参团，人数不足自动退款</p>
         </div>
 
         
 
         <!-- 未成团 -->
         <div class="box" v-show="state==1">
-            <p class="btil">拼团剩余时间</p>
-            <div class="btime"><span class="btls">{{backtime[0]}}</span>:<span class="btls">{{backtime[1]}}</span>:<span class="btls">{{backtime[2]}}</span></div>
+            <div class="btil gb-after-bgc"><span class="btil-in gb-c gb-before-bgc gb-after-bgc">拼团剩余时间</span></div>
+            <div class="btime gb-c"><span class="btls gb-bgc">{{backtime[0]}}</span>:<span class="btls gb-bgc">{{backtime[1]}}</span>:<span class="btls gb-bgc">{{backtime[2]}}</span></div>
             <div class="bmember">
-                <div class="bmls" v-for="item in detail.member" v-bind:key="item.id"><van-image fit="cover" class="bmls-img" :src="item.head"/></div>
+                <div class="bmls gb-after-bgc" v-for="item in detail.member" v-bind:key="item.id"><van-image fit="cover" class="bmls-img gb-bdc" :src="item.head"/></div>
                 <div class="bmadd"></div>
             </div>
-            <p class="bmbtn" @click="pop_members=true">查看全部团员</p>
-            <p class="bmtp">还差<span class="bmst">{{detail.total - detail.member.length}}</span>人，即可拼团成功</p>
+            <p class="bmbtn gb-c-bdc" @click="pop_members=true">查看全部团员</p>
+            <p class="bmtp">还差<span class="bmst gb-c">{{detail.total - detail.member.length}}</span>人，即可拼团成功</p>
 
             <div class="bobtns">
-                <p class="bobtn bobtna" @click="pop_invi.show=true">邀请好友参加</p>
-                <router-link to="/order/ass/detail" class="bobtn">查看订单详情</router-link>
+                <p class="bobtn bobtna gb-bgc-bdc" @click="pop_invi.show=true">邀请好友参加</p>
+                <router-link to="/order/detail" class="bobtn gb-c-bdc">查看订单详情</router-link>
             </div>
         </div>
 
@@ -38,12 +38,12 @@
         <div class="box" v-show="state==2">
             <p class="stil">拼团成功</p>
             <div class="bmember">
-                <div class="bmls" v-for="item in detail.member" v-bind:key="item.id"><van-image fit="cover" class="bmls-img" :src="item.head"/></div>
+                <div class="bmls gb-after-bgc" v-for="item in detail.member" v-bind:key="item.id"><van-image fit="cover" class="bmls-img gb-bdc" :src="item.head"/></div>
             </div>
-            <p class="bmbtn" @click="pop_members=true">查看全部团员</p>
+            <p class="bmbtn gb-c-bdc" @click="pop_members=true">查看全部团员</p>
             <br />
             <div class="bobtns">
-                <router-link to="/order/ass/detail" class="bobtn bobtna">查看订单详情</router-link>
+                <router-link to="/order/detail" class="bobtn bobtna gb-bgc-bdc">查看订单详情</router-link>
             </div>
         </div>
 
@@ -93,11 +93,15 @@
     
     .tip{
         line-height: .5rem; color: #999;
-        .tip-io{ position: relative; margin-right: .02rem; top: -.01rem; height: .14rem; vertical-align: middle;}
+        .tip-io{ position: relative; margin-right: .02rem; top: -.01rem; height: .14rem; vertical-align: middle; color: @base; font-size: .18rem;}
     }
     .box{ 
         padding-top: .15rem; background: #fff; border-top: .1rem solid #f9f9f9;;
-        .btil{ background: url(~@/assets/images/bg08.png) no-repeat center center; background-size: 2.05rem .07rem; text-align: center; color: @base;}
+        .btil{ position: relative; text-align: center; color: @base;}
+        .btil:after{ content: ""; display: block; position: absolute; left: 50%; top: 50%; width: 56%; left: 22%; height: .02rem; background: @base;}
+        .btil-in{position: relative; z-index: 2; background: #fff; padding: 0 .18rem;}
+        .btil-in:before{ content: ""; display: block; position: absolute; left: 0;top: 50%; margin-top: -.04rem; height: .06rem; width: .06rem; border:.02rem solid #fff; background: @base; border-radius: 50%;}
+        .btil-in:after{ content: ""; display: block; position: absolute; right: 0;top: 50%; margin-top: -.04rem; height: .06rem; width: .06rem; border:.02rem solid #fff; background: @base; border-radius: 50%;}
         .btime{ padding: .1rem 0 .2rem; text-align: center; color: @base;}
         .btls{ display: inline-block; height: .24rem; width: .24rem; margin: 0 .08rem; vertical-align: middle; border-radius: .03rem; background: @base; color: #fff; text-align: center;}
         .bmember{ text-align: center;}

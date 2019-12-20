@@ -3,7 +3,7 @@
         <van-swipe class="banner" :autoplay="3000" indicator-color="white">
             <van-swipe-item v-for="item in detail.banner" v-bind:key="item"><van-image fit="cover" class="banner_img" :src="item" /></van-swipe-item>
         </van-swipe>
-        <div class="tstate">
+        <div class="tstate gb-bgc">
             <p v-show="!hastime" class="st-end">活动已结束</p>
             <div v-show="hastime" class="st-goon">
                 <div class="st-gol"><span>秒杀价</span><span class="st-gun">¥</span><span class="st-pri">{{detail.price}}</span></div>
@@ -41,8 +41,8 @@
                 <p class="bl-lsico"><van-icon class="ico" v-show="!detail.collect" name="like-o" /><van-icon class="ico" v-show="detail.collect" name="like" /></p>
                 <p class="bl-lstx">{{detail.collect?'已收藏':'收藏'}}</p>
             </div>
-            <p v-show="hastime" class="bl-btn bl-btnc" @click="onBuyClicked">立即抢购</p>
-            <router-link v-show="!hastime" to="/category/list" class="bl-btn bl-btnd">查看店铺其他商品</router-link>
+            <p v-show="hastime" class="bl-btn bl-btnc gb-bgc" @click="onBuyClicked">立即抢购</p>
+            <router-link v-show="!hastime" to="/category/list" class="bl-btn bl-btnd gb-bgc3">查看店铺其他商品</router-link>
         </div>
 
 
@@ -52,12 +52,12 @@
             <p class="pop-loading" v-show="!pop_coupon.loaded">正在加载···</p>
             <div class="cp-list" v-show="pop_coupon.loaded">
                 <div class="cp-citem" v-for="item in pop_coupon.list" v-bind:key="item.id">
-                    <div class="cp-cimon"><span class="cp-ciun">¥</span>{{item.money}}</div>
+                    <div class="cp-cimon gb-c"><span class="cp-ciun">¥</span>{{item.money}}</div>
                     <div class="cp-info flex">
                         <p class="cp-nm">{{item.name}}</p>
                         <p class="cp-time">{{item.time_start|timeFormat('y-m-d')}}&ensp;-&ensp;{{item.time_end|timeFormat('y-m-d')}}</p>
                     </div>
-                    <div class="cp-rig flex"><p :class="{'cp-btn':true,'disable':item.receive}" @click="getCoupon(item)">{{item.receive?'已领取':'领取'}}</p></div>
+                    <div class="cp-rig flex"><p :class="{'cp-btn':true,'disable':item.receive,'gb-bgc':!item.receive}" @click="getCoupon(item)">{{item.receive?'已领取':'领取'}}</p></div>
                 </div>
             </div>
         </van-popup>
