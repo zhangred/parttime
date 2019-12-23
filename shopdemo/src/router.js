@@ -10,7 +10,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     // *网站索引
-    { path: '/map',  name: 'map', component: resolve=> require(['./pages/single/map'], resolve)},
+    { path: '/',  name: 'map', component: resolve=> require(['./pages/single/map'], resolve)},
     // *首页
     { path: '/', name: 'a', component: Index,meta:{keepAlive:true} },
     { path: '/index', name: 'index', component: Index, meta:{keepAlive:true} },
