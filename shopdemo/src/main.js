@@ -6,6 +6,16 @@ import VueAxios from 'vue-axios'
 import Qs from 'qs'
 import {Toast,Image,Dialog,Icon,Button } from 'vant'
 
+import VueRouter from "vue-router";
+
+const [routerPush, routerReplace] = [VueRouter.prototype.push, VueRouter.prototype.replace];
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error => error);
+};
+VueRouter.prototype.replace = function replace(location) {
+  return routerReplace.call(this, location).catch(error => error);
+};
+
 import './filters/filters'
 import './directive/directive'
 import './components/BaseComponents'
@@ -17,7 +27,6 @@ import tools from './assets/js/tools'
 import './assets/css/base.less'
 
 // console.log(5,process.env);
-
 
 var axios_instance = axios.create({
     transformRequest: [function (data) {
@@ -47,6 +56,7 @@ router.beforeEach((to, from, next) => {
         window.pageYOffset = 0
     }
     next()
+    
 })
 
 Vue.config.productionTip = false
