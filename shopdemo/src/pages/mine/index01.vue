@@ -44,7 +44,7 @@
             </a>
         </div>
         <div class="lines">
-            <router-link to="/pages/question" class="line arr-ra">
+            <router-link to="/question" class="line arr-ra">
                 <img class="lico" src="~@/assets/images/mine_item05.png" />常见问题
             </router-link>
             <router-link to="/pages/feedback" class="line arr-ra">

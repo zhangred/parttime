@@ -27,7 +27,6 @@ export default {
 
        this.themeClass = localStorage.getItem('themeClass')||'';
        this.setTheme();
-
     },
     methods:{
         setTheme(){
