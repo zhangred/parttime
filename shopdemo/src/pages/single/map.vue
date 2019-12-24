@@ -105,7 +105,7 @@ export default {
     // 导航设定
     let links = [
         {id:1,name:'首页',ico:'home',open:false,list:[{id:1.1,name:'首页风格1',path:'/index'},{id:1.2,name:'首页风格2',path:'/index01'}]},
-        {id:2,name:'商品分类',ico:'category',open:false,list:[{id:1.1,name:'商品分类1',path:'/category'},{id:1.2,name:'商品分类2',path:'/category01'}]},
+        {id:2,name:'商品分类',ico:'category',open:false,list:[{id:1.1,name:'商品分类1',path:'/category'},{id:1.2,name:'商品分类2',path:'/category01'},{id:1.3,name:'商品分类3',path:'/category02'}]},
         {id:3,name:'普通商品',ico:'good-normal',path:'/category/list'},
         {id:4,name:'拼团商品',ico:'good-normal',path:'/assemble'},
         {id:5,name:'秒杀商品',ico:'good-clock',path:'/seckill'},
@@ -119,7 +119,7 @@ export default {
         {id:13,name:'分销中心',ico:'sell-center',path:'/salesman/center'},
         {id:14,name:'抽奖',ico:'lottery',path:'/lottery'},
         {id:15,name:'签到',ico:'signin',path:'/signin'},
-        {id:16,name:'常见问题',ico:'question',path:'/question'},
+        {id:16,name:'常见问题',ico:'question',open:false,list:[{id:1.1,name:'常见问题1',path:'/question'},{id:1.2,name:'常见问题2',path:'/question01'}]},
     ];
     this.links = links;
   },

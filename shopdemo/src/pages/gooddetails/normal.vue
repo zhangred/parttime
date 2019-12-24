@@ -90,8 +90,31 @@
             :hide-stock="goodSku.sku.hide_stock"
             :initial-sku="goodSku.initialSku"
             @buy-clicked="onBuyClicked"
-            @add-cart="onAddCartClicked"
-        />
+            @add-cart="onAddCartClicked">
+            <template slot="sku-actions" slot-scope="props">
+                <div class="van-sku-actions">
+                <van-button
+                    square
+                    size="large"
+                    type="warning"
+                    class="vbtn gb-bgc3"
+                    @click="props.skuEventBus.$emit('sku:addCart')"
+                >
+                    加入购物车
+                </van-button>
+                <!-- 直接触发 sku 内部事件，通过内部事件执行 onBuyClicked 回调 -->
+                <van-button
+                    square
+                    size="large"
+                    type="danger"
+                    class="vbtn gb-bgc"
+                    @click="props.skuEventBus.$emit('sku:buy')"
+                >
+                    立即购买
+                </van-button>
+                </div>
+            </template>
+        </van-sku>
 
     </div>
 </template>
@@ -135,6 +158,7 @@
             .cp-btn{ background: @base; color: #fff; line-height: .3rem; height: .3rem; padding: 0 .15rem; border-radius: .15rem; text-align: center;}
             .cp-btn.disable{ background: #c5c5c5;}
         }
+        .vbtn{ background: none;}
     }
     
 </style>
@@ -342,16 +366,16 @@ export default {
         },
         //立即购买
         onBuyClicked(rs){
-            // console.log(rs)
+            console.log(rs)
             this.rs = rs;
-            this.$router.push('/category/ordersave')
+            // this.$router.push('/category/ordersave')
         },
         //加入购物车
         onAddCartClicked(rs){
-            // console.log(rs)
+            console.log(rs)
             this.rs = rs;
             this.goodSku.show = false;
-            this.$toast.success('成功加入购物车');
+            // this.$toast.success('成功加入购物车');
         }
     }
 }

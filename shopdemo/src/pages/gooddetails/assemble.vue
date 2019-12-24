@@ -1,5 +1,5 @@
 <template>
-    <div class="pages">
+    <div class="pages pgdetailam">
         <van-swipe class="banner" :autoplay="3000" indicator-color="white">
             <van-swipe-item v-for="item in detail.banner" v-bind:key="item"><van-image fit="cover" class="banner_img" :src="item" /></van-swipe-item>
         </van-swipe>
@@ -100,66 +100,92 @@
             @buy-clicked="onBuyClicked"
             @add-cart="onAddCartClicked"
             buy-text="我要开团"
-            add-cart-text="单独购买"
-        />
+            add-cart-text="单独购买">
+            <template slot="sku-actions" slot-scope="props">
+                <div class="van-sku-actions">
+                <van-button
+                    square
+                    size="large"
+                    type="warning"
+                    class="vbtn gb-bgc3"
+                    @click="props.skuEventBus.$emit('sku:addCart')"
+                >
+                    单独购买
+                </van-button>
+                <!-- 直接触发 sku 内部事件，通过内部事件执行 onBuyClicked 回调 -->
+                <van-button
+                    square
+                    size="large"
+                    type="danger"
+                    class="vbtn gb-bgc"
+                    @click="props.skuEventBus.$emit('sku:buy')"
+                >
+                    我要开团
+                </van-button>
+                </div>
+            </template>
+        </van-sku>
 
     </div>
 </template>
-<style lang="less"  scoped>
-    .pages{ padding-bottom: .6rem;}
-    .banner,.banner_img{ height: 3rem; }
-    .topinfo{
-        background: #fff; padding: .1rem .14rem;
-        .dpice{ line-height: .4rem;}
-        .ti-un{ color: #f33b3b; font-size: .18rem;}
-        .ti-pri{ color: #f33b3b; font-size: .24rem;}
-        .ti-oldp{ margin-left: .2rem; font-size: .12rem; color: #666;}
-        .ti-oldpri{ font-size: .12rem; color: #666; text-decoration: line-through;}
-        .ti-til{ padding: .05rem 0 .15rem; line-height: .2rem; font-size: .15rem;}
-        .ti-tips{display: flex; display: -webkit-flex; justify-content: space-between; font-size: .12rem; color: #666;}
-    }
-    .dcontent{ margin-top: .1rem;}
-    .botline{
-        position: fixed; left: 0; bottom: 0; right: 0; z-index: 3; display: flex; display: -webkit-flex; border-top: 1px solid #eee; background: #fff;
-        .bl-ls{ padding-top: .02rem; width: .725rem; text-align: center;}
-        .bl-ls.active{ color: #ff5000;}
-        .bl-lsico{ height: .28rem; display: flex; display: -webkit-flex; justify-content: center; align-items: center;}
-        .bl-lsico .ico{font-size: .24rem;}
-        .bl-lstx{ font-size: .12rem; line-height: .18rem;}
-        .bl-btn{ line-height: .5rem; text-align: center; font-size: .15rem; color: #fff; width: 1.15rem;}
-        .bl-btna{ background: #fe9c02;}
-        .bl-btnb{ background: #ff5000;}
-        .bl-btnc{ width: 3.024rem; background: #ff5000;}
-        .bl-btnd{ width: 3.024rem; background: #fe9c02;}
-        .bl-btns{width: 3.024rem;}
-        .bl-btne{ width: 50%; padding-top: .05rem; background: #fe9c02; line-height: .2rem; font-size: .14rem;}
-        .bl-btne:nth-child(2){background: #ff5000;}
-    }
-    .poptil{ line-height: 50px; text-align: center; font-size: .16rem;}
-    .pop-loading{ padding: .3rem 0; text-align: center; color: #666;}
-    .tstate{
-        color: #fff; background: #fe9c02;
-        .st-end{ padding-right: .2rem; text-align: right; line-height: .5rem;}
-        .st-goon{overflow: hidden;}
-        .st-gol{ float: left; line-height: .5rem; padding-left: .2rem; font-size: .17rem;}
-        .st-gun{ margin: 0 .02rem 0 .1rem; font-weight: bold; font-size: .18rem;}
-        .st-pri{ font-weight: bold; font-size: .23rem; }
-        .st-gor{ float: right; width: 1rem; padding-top: .06rem; font-size: .1rem; line-height: .2rem; }
-        .st-gtm{ font-size: .14rem; letter-spacing: .03rem;}
-    }
-    .tuanlist{
-        background: #fff8f0; margin-top: .1rem;
-        .ttil{ background: url(~@/assets/images/bg05.png) no-repeat center center; background-size: 3.46rem .04rem; text-align: center; color: #ff911b; line-height: .4rem;}
-        .list{ padding-left: .14rem;}
-        .item{ padding: .1rem .14rem .1rem 0; border-bottom: 1px solid #ffd9af; align-items: center; justify-content: space-between;}
-        .thead{height: .3rem; width: .3rem; overflow: hidden; border-radius: 50%;}
-        .tname{ width: 1.1rem; padding: 0 .1rem;}
-        .tinfo{ text-align: right; width:1.3rem; padding:  0 .1rem 0 0; }
-        .ti-t{ padding-top: .04rem; line-height: .18rem;}
-        .ti-tc{ color: @base;}
-        .ti-b{ font-size: .1rem; color: #999; line-height: .14rem;}
-        .tlink{ width: .6rem; text-align: center; line-height: .3rem; color: #fff; background: @base; border-radius: .16rem;}
-        .trl{ padding-left: .14rem; line-height: .32rem; color: #ff911b; font-size: .1rem;}
+<style lang="less">
+    .pgdetailam{ 
+        padding-bottom: .6rem;
+        .banner,.banner_img{ height: 3rem; }
+        .topinfo{
+            background: #fff; padding: .1rem .14rem;
+            .dpice{ line-height: .4rem;}
+            .ti-un{ color: #f33b3b; font-size: .18rem;}
+            .ti-pri{ color: #f33b3b; font-size: .24rem;}
+            .ti-oldp{ margin-left: .2rem; font-size: .12rem; color: #666;}
+            .ti-oldpri{ font-size: .12rem; color: #666; text-decoration: line-through;}
+            .ti-til{ padding: .05rem 0 .15rem; line-height: .2rem; font-size: .15rem;}
+            .ti-tips{display: flex; display: -webkit-flex; justify-content: space-between; font-size: .12rem; color: #666;}
+        }
+        .dcontent{ margin-top: .1rem;}
+        .botline{
+            position: fixed; left: 0; bottom: 0; right: 0; z-index: 3; display: flex; display: -webkit-flex; border-top: 1px solid #eee; background: #fff;
+            .bl-ls{ padding-top: .02rem; width: .725rem; text-align: center;}
+            .bl-ls.active{ color: #ff5000;}
+            .bl-lsico{ height: .28rem; display: flex; display: -webkit-flex; justify-content: center; align-items: center;}
+            .bl-lsico .ico{font-size: .24rem;}
+            .bl-lstx{ font-size: .12rem; line-height: .18rem;}
+            .bl-btn{ line-height: .5rem; text-align: center; font-size: .15rem; color: #fff; width: 1.15rem;}
+            .bl-btna{ background: #fe9c02;}
+            .bl-btnb{ background: #ff5000;}
+            .bl-btnc{ width: 3.024rem; background: #ff5000;}
+            .bl-btnd{ width: 3.024rem; background: #fe9c02;}
+            .bl-btns{width: 3.024rem;}
+            .bl-btne{ width: 50%; padding-top: .05rem; background: #fe9c02; line-height: .2rem; font-size: .14rem;}
+            .bl-btne:nth-child(2){background: #ff5000;}
+        }
+        .poptil{ line-height: 50px; text-align: center; font-size: .16rem;}
+        .pop-loading{ padding: .3rem 0; text-align: center; color: #666;}
+        .tstate{
+            color: #fff; background: #fe9c02;
+            .st-end{ padding-right: .2rem; text-align: right; line-height: .5rem;}
+            .st-goon{overflow: hidden;}
+            .st-gol{ float: left; line-height: .5rem; padding-left: .2rem; font-size: .17rem;}
+            .st-gun{ margin: 0 .02rem 0 .1rem; font-weight: bold; font-size: .18rem;}
+            .st-pri{ font-weight: bold; font-size: .23rem; }
+            .st-gor{ float: right; width: 1rem; padding-top: .06rem; font-size: .1rem; line-height: .2rem; }
+            .st-gtm{ font-size: .14rem; letter-spacing: .03rem;}
+        }
+        .tuanlist{
+            background: #fff8f0; margin-top: .1rem;
+            .ttil{ background: url(~@/assets/images/bg05.png) no-repeat center center; background-size: 3.46rem .04rem; text-align: center; color: #ff911b; line-height: .4rem;}
+            .list{ padding-left: .14rem;}
+            .item{ padding: .1rem .14rem .1rem 0; border-bottom: 1px solid #ffd9af; align-items: center; justify-content: space-between;}
+            .thead{height: .3rem; width: .3rem; overflow: hidden; border-radius: 50%;}
+            .tname{ width: 1.1rem; padding: 0 .1rem;}
+            .tinfo{ text-align: right; width:1.3rem; padding:  0 .1rem 0 0; }
+            .ti-t{ padding-top: .04rem; line-height: .18rem;}
+            .ti-tc{ color: @base;}
+            .ti-b{ font-size: .1rem; color: #999; line-height: .14rem;}
+            .tlink{ width: .6rem; text-align: center; line-height: .3rem; color: #fff; background: @base; border-radius: .16rem;}
+            .trl{ padding-left: .14rem; line-height: .32rem; color: #ff911b; font-size: .1rem;}
+        }
+        .vbtn{ background: none;}
     }
 </style>
 <script>

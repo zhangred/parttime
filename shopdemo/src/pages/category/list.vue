@@ -109,6 +109,7 @@ export default {
                     this.params.value = 'asc'
                 }else{
                     this.params.value = ''
+                    this.params.type = ''
                 }
             }
             this.getlist(true);

@@ -41,7 +41,7 @@
         .leftbox{
             position: fixed; left: 0; top: 0; bottom: 0; z-index: 1; width: .8rem; height: 100%; padding: .4rem 0 .5rem; background:#f2f2f2; overflow-y: scroll; -webkit-overflow-scrolling: touch;;
             .item{ position: relative; display: block; height: .48rem; text-align: center; line-height: .48rem; font-size: .13rem;}
-            .item.active{ background: #fff; color: @base;}
+            .item.active{ background: #fff; color: #ff7021;}
             .ibd{ display: block; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;background: #f2f2f2;}
         }
         .rightbox{

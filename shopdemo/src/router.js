@@ -17,12 +17,14 @@ export default new Router({
     { path: '/index01',  name: 'index01', component: Indexa, meta:{keepAlive:true}},
     // *常见问题
     { path: '/question', name: 'question', component: resolve => require(['./pages/question/index'], resolve) },
+    { path: '/question01', name: 'question01', component: resolve => require(['./pages/question/index01'], resolve) },
     // *抽奖
     { path: '/lottery',  name: 'lottery', component: resolve=> require(['./pages/lottery/index'], resolve)},
     { path: '/lottery/mine',  name: 'lotteryMine', component: resolve=> require(['./pages/lottery/mine'], resolve)},
     // *分类
     { path: '/category', name: 'category', component: resolve => require(['./pages/category/index'], resolve), meta:{keepAlive:true} },
     { path: '/category01', name: 'category01', component: resolve => require(['./pages/category/index01'], resolve), meta:{keepAlive:true} },
+    { path: '/category02', name: 'category02', component: resolve => require(['./pages/category/index02'], resolve), meta:{keepAlive:true} },
     { path: '/category/list', name: 'categoryList', component: resolve => require(['./pages/category/list'], resolve), meta:{keepAlive:true} },
     // *商品详情-普通
     { path: '/category/detail', name: 'gooddetail', component: resolve => require(['./pages/gooddetails/normal'], resolve) },

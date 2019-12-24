@@ -46,6 +46,8 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .flex-between{justify-content:space-between;}
 .bdtb{ border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
 
+.cm-ani{transition: all .3s; -webkit-transition: all .3s;}
+
 .cm-btn{ display: block; background: #fff; border:1px solid #eee; text-align: center; line-height: .38rem; padding: 0 .2rem;}
 .cm-btn.rd{ border-radius: .2rem;}
 .cm-btn.small{ line-height: .28rem; padding: 0 .12rem; font-size: .12rem;}
@@ -105,15 +107,17 @@ textarea::-webkit-input-placeholder { color: #ccc;}
     .pl-new{ position: absolute; left: .1rem; top: 0; z-index: 1; width: .27rem;}
     .pl-imgo{ position: relative;}
     .pl-btime{ position: absolute; left: 0; bottom: 0; right: 0; padding: 0 .05rem; background: @base; color: #fff; font-size: .1rem;}
+    .pl-oldpri{ margin-left: .06rem; font-size: .12rem; color: #999; text-decoration: line-through;}
+    .pl-addcart{ position: absolute; right: .1rem; bottom: .1rem; color: @base; font-size: .16rem;}
     &.lthree{
         padding: 0 0 0 .15rem;
-        .tl-item{ width: 1.08rem; margin-right: .1rem;}
-        .tl-item:nth-child(2n){ float: left;} 
-        .tl-item:nth-child(3n){ margin-right: 0;}
-        .tl-item:nth-child(3){ margin-top: 0;}
-        .tl-imgo{ border-radius: .05rem; overflow: hidden;}
-        .tl-img{ display: block; height: 1.08rem; width: 1.08rem;}
-        .tl-info{ padding: .05rem 0 0; border: none;}
+        .pl-item{ width: 1.08rem; margin-right: .1rem;}
+        .pl-item:nth-child(2n){ float: left;} 
+        .pl-item:nth-child(3n){ margin-right: 0;}
+        .pl-item:nth-child(3){ margin-top: 0;}
+        .pl-imgo{ border-radius: .05rem; overflow: hidden;}
+        .pl-img{ display: block; height: 1.08rem; width: 1.08rem;}
+        .pl-info{ padding: .05rem 0 0; border: none;}
     }
 }
 
@@ -124,7 +128,7 @@ textarea::-webkit-input-placeholder { color: #ccc;}
     .pl-img{ display: block; height: 1.3rem; width: 1.3rem; }
     .pl-btime{ position: absolute; left: 0; bottom: 0; right: 0; padding: 0 .05rem; background: @base; color: #fff;}
     .pl-info{ position: relative; float: right; width: 2rem;}
-    .pl-rtop{ height: 1.08rem;}
+    .pl-rtop{ display: block; height: 1.08rem;}
     .pl-title{ font-size: .16rem; line-height: .20rem; max-height: .4rem; display: -webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; text-overflow:ellipsis; overflow:hidden;}
     .pl-rate{ width: .74rem; margin-top: .1rem; line-height: .16rem; font-size: .1rem; color: @base; border:1px solid @base; border-radius: .09rem; text-align: center;}
     .pl-price{ font-size: .16rem; color: @base;}
@@ -136,8 +140,33 @@ textarea::-webkit-input-placeholder { color: #ccc;}
     .pl-cover{ position: absolute; z-index: 2; left: 0; top: 0; bottom: 0; right: 0; background: rgba(255,255,255,.7);}
     .pl-cover-tx{position: absolute; z-index: 2; left: .15rem; top: .15rem;  height: 1rem; width: 1rem; background: rgba(0,0,0,.4); border-radius: 50%; line-height: 1rem; font-size: .24rem; text-align: center; color: #fff; }
     .pl-sper{ position: relative; height: .16rem; width: .7rem; margin-top: .08rem;line-height: .14rem; border:1px solid @base;border-radius: .09rem;}
-    .pl-sperin{ position: absolute; left: 0; top: 0; height: .16rem; background: @base; border-radius: .09rem;}
-    .pl-sper-tx{ position: relative; z-index: 2; display: block; padding: 0 .05rem; font-size: .1rem; white-space: nowrap;}
+    .pl-sperin{ position: absolute; left: 0; top: 0; bottom: 0; background: @base; border-radius: .09rem;}
+    .pl-sper-tx{ position: absolute; left: 100%; z-index: 2; display: block; padding: 0 .05rem; font-size: .1rem; white-space: nowrap;}
+    .pl-addcart{ position: absolute; right: .1rem; bottom: .1rem; color: @base; font-size: .16rem;}
+}
+
+.cm-lprolist{
+    padding-left: .14rem; background: #fff; overflow: hidden;
+    .pl-item{ display: block; height: 1.5rem; padding: .1rem .07rem 0 0; background: #fff; border-bottom: 1px solid #f5f5f5; }
+    .pl-imgo{ float: left; position: relative; height: 1.3rem; width: 1.3rem; border-radius: .05rem; overflow: hidden;}
+    .pl-img{ display: block; height: 1.3rem; width: 1.3rem; }
+    // .pl-btime{ position: absolute; left: 0; bottom: 0; right: 0; padding: 0 .05rem; background: @base; color: #fff;}
+    .pl-info{ position: relative; float: right; width: 2.1rem;}
+    .pl-rtop{ display: block; height: 1.04rem;}
+    .pl-title{ font-size: .16rem; line-height: .20rem; max-height: .4rem; display: -webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; text-overflow:ellipsis; overflow:hidden;}
+    .pl-rate{ width: .74rem; margin-top: .1rem; line-height: .16rem; font-size: .1rem; color: @base; border:1px solid @base; border-radius: .09rem; text-align: center;}
+    .pl-price{ font-size: .16rem; color: @base;}
+    .pl-pun{ font-size: .12rem;}
+    .pl-oldpri{ margin-left: .06rem; font-size: .12rem; color: #999; text-decoration: line-through;}
+    .pl-addcart{ position: absolute; right: .1rem; bottom: .1rem; color: @base; font-size: .16rem;}
+    // .pl-btn{ position: absolute; right: 0; bottom: .03rem; z-index: 1; width: .58rem; background: @base; text-align: center; line-height: .22rem; font-size: .11rem; color: #fff; border-radius: .12rem;}
+    // .pl-btna{ background: #ffb821;}
+    // .pl-btnb{ background: #c5c5c5;}
+    // .pl-cover{ position: absolute; z-index: 2; left: 0; top: 0; bottom: 0; right: 0; background: rgba(255,255,255,.7);}
+    // .pl-cover-tx{position: absolute; z-index: 2; left: .15rem; top: .15rem;  height: 1rem; width: 1rem; background: rgba(0,0,0,.4); border-radius: 50%; line-height: 1rem; font-size: .24rem; text-align: center; color: #fff; }
+    // .pl-sper{ position: relative; height: .16rem; width: .7rem; margin-top: .08rem;line-height: .14rem; border:1px solid @base;border-radius: .09rem;}
+    // .pl-sperin{ position: absolute; left: 0; top: 0; bottom: 0; background: @base; border-radius: .09rem;}
+    // .pl-sper-tx{ position: absolute; left: 100%; z-index: 2; display: block; padding: 0 .05rem; font-size: .1rem; white-space: nowrap;}
 }
 
 .cm-oico{
@@ -225,4 +254,19 @@ textarea::-webkit-input-placeholder { color: #ccc;}
     padding-top: 1rem; text-align: center;
     .eimg{ display: block; margin: 0 auto; width: 1.6rem;}
     .etx{ font-size: .12rem; color: #666; padding-top: .1rem;}
+}
+
+.cm-sliderbox{
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    overflow: hidden;
+    transform-origin: 0 0;
+    &.show{
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+    }
+    &.hide{
+        -webkit-transform: scaleY(0);
+        transform: scaleY(1);
+    }
 }

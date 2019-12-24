@@ -21,7 +21,7 @@
         </van-swipe>
         <!-- 分类 -->
         <div class="cate-list">
-            <router-link to="/singin" class="cate-item"><img src="~@/assets/images/cate_item01.png" class="cate-ico" /><p class="cate-tx">签到有礼</p></router-link>
+            <router-link to="/signin" class="cate-item"><img src="~@/assets/images/cate_item01.png" class="cate-ico" /><p class="cate-tx">签到有礼</p></router-link>
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item02.png" class="cate-ico" /><p class="cate-tx">居家生活</p></router-link>
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item03.png" class="cate-ico" /><p class="cate-tx">服饰美妆</p></router-link>
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item04.png" class="cate-ico" /><p class="cate-tx">数码电器</p></router-link>
@@ -60,7 +60,7 @@
 
         <!-- 推荐 -->
         <div class="jingx">
-            <div class="ptil">精选新品推荐<router-link class="pmore" to="/goodlist">更多</router-link></div>
+            <div class="ptil">精选新品推荐<router-link class="pmore" to="/category/list">更多</router-link></div>
             <div class="cm-prolist">
                 <router-link to="/category/detail" class="pl-item" v-for="item in goodlist" v-bind:key="item.id">
                     <div class="pl-imgo">
@@ -101,7 +101,7 @@
 
         <!-- 还喜欢 -->
         <div class="likem">
-            <div class="ptil">你可以能还喜欢<router-link class="pmore" to="/goodlist">更多</router-link></div>
+            <div class="ptil">你可以能还喜欢<router-link class="pmore" to="/category/list">更多</router-link></div>
             <div class="cm-prolist lthree">
                 <router-link to="/category/detail" class="pl-item" v-for="item in seckill" v-bind:key="item.id">
                     <div class="pl-imgo">

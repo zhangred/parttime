@@ -23,7 +23,7 @@
                     <div class="pl-info">
                         <div class="pl-rtop">
                             <p class="pl-title">{{item.title}}</p>
-                            <p class="pl-sper gb-bdc" v-if="tab_ac=='today'"><span class="pl-sperin gb-bgc" :style="'width:'+(item.sell*100/item.total)+'%'"></span><span :class="[item.sell/item.total>.5?'fl cff':'fr c gb-c','pl-sper-tx']">{{Math.round(item.sell*100/item.total)}}%</span></p>
+                            <p class="pl-sper gb-bdc" v-if="tab_ac=='today'"><span class="pl-sperin gb-bgc" :style="'width:'+(item.sell*100/item.total)+'%'"></span><span :class="[item.sell/item.total>.5?'fl c gb-c':'fr c gb-c','pl-sper-tx']">{{Math.round(item.sell*100/item.total)}}%</span></p>
                         </div>
                         <div class="pl-price gb-c"><span class="pl-pun">￥</span><span class="pl-pnum">{{item.price}}</span><span class="pl-oldpri">{{item.oldprice}}</span></div>
                         <p v-if="item.sell<item.total&&tab_ac=='today'" class="pl-btn gb-bgc">立即抢购</p>

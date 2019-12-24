@@ -18,6 +18,7 @@ Vue.filter('timeFormat',function(value,format){
 })
 
 Vue.filter('tofix',function(value,fixed){
+    value = value||0;
     var v = Math.round(value*Math.pow(10,fixed))/Math.pow(10,fixed)+'',
         nar = v.split('.');
     if(!nar[1]){
