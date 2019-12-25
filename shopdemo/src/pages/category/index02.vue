@@ -33,12 +33,31 @@
         <botnav active="cate"></botnav>
 
         <div class="botline">
-            <a href="javascript:;" class="bl-cart flex flex-center"><i class="bl-ico-cart iconfont iconfont-cart"></i><span class="bl-num">3</span></a>
+            <a href="javascript:;" class="bl-cart flex flex-center" @click="showcart"><i class="bl-ico-cart iconfont iconfont-cart"></i><span class="bl-num">{{count.num||0}}</span></a>
             <div class="bl-count">
-                <p class="bl-moeny">¥<span>{{count.total|tofix(2)}}</span></p>
-                <p class="bl-fare">另需快递费¥{{count.fare}}</p>
+                <p class="bl-moeny">¥<span>{{count.money|tofix(2)}}</span></p>
+                <p class="bl-fare">另需快递费¥{{count.fare|tofix(2)}}</p>
             </div>
-            <a href="javascript:;" class="bl-btn">结算</a>
+            <a href="javascript:;" :class="['bl-btn',{'disable':cartlist.list.length==0}]" @click="statement">结算</a>
+        </div>
+
+        <p class="cart-bg" @click="cartlist.show=false" v-show="cartlist.show"></p>
+        <div class="cartgood">
+            <p class="cg-cp">再买<span class="c gb-c">16.80</span>元,可减<span class="c gb-c">20</span>元</p>
+            <div class="cm-sliderbox" v-sliderbox="{show:cartlist.show}">
+                <div class="cg-top">已选商品<a href="javascript:;" class="cg-tbtn c gb-c" @click="clearcart">清空购物车</a></div>
+                <div class="cg-list">
+                    <div class="cg-item flex" v-for="item in cartlist.list" :key="item.id">
+                        <p class="cg-iname ellipsis">{{item.title}}</p>
+                        <p class="cg-price c gb-c">¥{{item.price|tofix(2)}}</p>
+                        <div class="step flex">
+                            <a href="javascript:;" :class="['step-do flex flex-center',{'gb-c':item.num>0},{'setp-dis':item.num<=0}]"  @click="numchange(item,-1,true)"><i class="iconfont iconfont-jian"></i></a>
+                            <span class="step-num">{{item.num||0}}</span>
+                            <a href="javascript:;" class="step-do flex flex-center gb-c"  @click="numchange(item,1,true)"><i class="iconfont iconfont-jia"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- sku 暂存 -->
@@ -110,23 +129,32 @@
         .step-do{ width: .2rem; color: @base;}
         .step-num{ width: .2rem; text-align: center;}
         .setp-dis{ color: #ccc;}
-        .botline{ position: fixed; left: 0; bottom: .5rem; right: 0; z-index: 9; height: .44rem; padding: 0 .5rem 0 .6rem; background: rgba(0,0,0,0.85); color: #fff;}
+        .botline{ position: fixed; left: 0; bottom: .5rem; right: 0; z-index: 9; height: .44rem; padding: 0 1.1rem 0 .8rem; background: rgba(0,0,0,0.85); color: #fff;}
         .bl-cart{ position: absolute; left: .14rem; top: -.16rem; height: .5rem; width: .5rem; border-radius: 50%; background: @base; color: #fff;}
         .bl-ico-cart{ font-size: .26rem;}
-        .bl-count{ line-height: .2rem;}
-        .bl-moeny{}
-        .bl-fare{}
-        .bl-btn{ position: absolute; right: 0; bottom: 0; top: 0; width: 1.1rem; text-align: center; font-size: .16rem; line-height: .44rem;}
+        .bl-count{ padding-top: .06rem; line-height: .18rem;}
+        .bl-fare{ font-size: .1rem; color: #ccc;}
+        .bl-btn{ position: absolute; right: 0; bottom: 0; top: 0; width: 1.1rem; background: @base; color: #fff; text-align: center; font-size: .16rem; line-height: .44rem;}
+        .bl-btn.disable{ opacity: .6; }
         .bl-num{ position: absolute; right: -.03rem; top: -.05rem; padding: 0 .05rem; border:1px solid @base; background: #fff; color: @base; line-height: .18rem; border-radius: .11rem;}
+        .cartgood{position: fixed; left: 0; bottom: .94rem; right: 0; z-index: 8;}
+        .cg-cp{ line-height: .24rem; font-size: .12rem; text-align: center; background: #fbf4e2;}
+        .cg-top{ padding: 0 .14rem; background: #ededed; line-height: .32rem; }
+        .cg-tbtn{ float: right; font-size: .13rem;}
+        .cg-list{ padding-bottom: .24rem; background: #f6f6f6;}
+        .cg-item{ position: relative; padding: .1rem 0 .1rem .14rem; border-bottom: 1px solid #eee; background: #fff;}
+        .cg-iname{ width: 2.02rem; font-size: .15rem;}
+        .cg-price{ width: .9rem; padding-right: .2rem; text-align: right;}
+        .cartgood .step{ position: relative; line-height: .24rem;}
+        .cart-bg{ position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 7; background: rgba(0,0,0,.5);}
         .xxxx{}
         .xxxx{}
     }
 </style>
 <script>
-import { Popup,Sku } from 'vant';
+import { Sku } from 'vant';
 export default {
     components:{
-        [Popup.name]:Popup,
         [Sku.name]:Sku
     },
     data(){
@@ -142,7 +170,8 @@ export default {
             },
             customStepperConfig:{},
             goodSkuShow:false,
-            count:{}
+            count:{},
+            cartlist:{show:false,list:[]}
         }
     },
     created(){
@@ -342,19 +371,105 @@ export default {
         numchange(item,num,incart){
             if(item.num==0&&num==-1) return;
             var v = item.num + num;
-            this.$toast.loading({duration:0,message:'更新中···',forbidClick:true})
+            if(incart&&v==0){
+                this.$dialog.confirm({
+                    title: '提示',
+                    message: '是否从购物车中删除？'
+                }).then(() => {
+                    this.updatacart(item,v);
+                });
+            }else{
+                this.updatacart(item,v);
+            }
+        },
+        updatacart(item,num){
+            this.$toast.loading({duration:2000,message:'更新中···',forbidClick:true})
             this.$http.get("./api/callback.json", {
                 params: 'params'
             }).then((res) => {
                 this.$tools.delay(200).then(()=>{
                     let rs = res.data;
                     if(rs.code==0){
-                        item.num = v;
+                        item.num = num;
                         this.$toast.clear();
+                        this.filtercart(item);
                     }
                 })
             });
-        }
+        },
+        //统计购物车
+        filtercart(item){
+            //判断是否在购物车
+            var inidx = -1,
+                list = this.cartlist.list;
+            for(var i=0;i<list.length;i++){
+                if(list[i].id==item.id){
+                    inidx = i;
+                }
+            }
+            if(inidx==-1&&item.num){
+                list.push(item);
+            }else if(inidx>-1&&!item.num){
+                list.splice(inidx,1)
+            }
+            this.getcount();
+        },
+        getcount(){
+            var list = this.cartlist.list,
+                total = {num:0,money:0};
+            for(var i=0;i<list.length;i++){
+                total.num += list[i].num;
+                total.money += Math.round(list[i].price*100*list[i].num);
+            }
+
+            this.count.num = total.num;
+            this.count.money = total.money/100
+        },
+        //展示购物车
+        showcart(){
+            if(this.cartlist.list.length==0){
+                this.$notify({ type: 'danger', message: '购物车暂无商品，请选择添加' });
+            }else{
+                this.cartlist.show = !this.cartlist.show;
+            }
+        },
+        //清空购物车
+        clearcart(){
+            this.$dialog.confirm({
+                title: '提示',
+                message: '是否清空购物车？'
+            }).then(() => {
+                this.$toast.loading({duration:2000,message:'更新中···',forbidClick:true})
+                this.$http.get("./api/callback.json", {
+                    params: 'params'
+                }).then((res) => {
+                    this.$tools.delay(200).then(()=>{
+                        let rs = res.data;
+                        if(rs.code==0){
+                            this.$toast.clear();
+                            this.cartlist.list = [];
+                            this.cartlist.show = false;
+                        }
+                    })
+                });
+            });
+        },
+        //清空购物车
+        statement(){
+            if(this.cartlist.list.length==0) return;
+            this.$toast.loading({duration:2000,message:'结算中···',forbidClick:true})
+            this.$http.get("./api/callback.json", {
+                params: 'params'
+            }).then((res) => {
+                this.$tools.delay(200).then(()=>{
+                    let rs = res.data;
+                    if(rs.code==0){
+                        this.$toast.clear();
+                        this.$router.push('/category/ordersave')
+                    }
+                })
+            });
+        },
     }
 }
 </script>

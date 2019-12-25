@@ -98,11 +98,14 @@ export default {
                 if(rs.code==0){
                     //虚拟数据
                    let list = [],
-                        month = this.time.getMonth()+1;
-                   for(let i=0;i<12;i++){
-                       list.push(month+'_'+(Math.ceil(Math.random()*25)+1))
-                   }
-                   this.signData = list;
+                        month = this.time.getMonth()+1,
+                        today = new Date().getDate();
+                    // today = 1;
+                    for(let i=0;i<12;i++){
+                        list.push(month+'_'+(Math.ceil(Math.random()*(today-1))))
+                    }
+                    console.log(5,list)
+                    this.signData = list;
                 }
             });
         },

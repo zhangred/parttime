@@ -16,8 +16,9 @@
             <i class="sico gb-c iconfont iconfont-search"></i>
             <input type="text" class="sctrol" placeholder="搜索您感兴趣的内容" />
         </div>
-        <van-swipe class="banner" :autoplay="3000" indicator-color="white">
-            <van-swipe-item v-for="item in banner" v-bind:key="item"><img :src="item" class="banner_img"></van-swipe-item>
+        <van-swipe class="banner" :autoplay="3000" indicator-color="white" @change="changebanner">
+            <van-swipe-item v-for="item in banner.list" v-bind:key="item"><img :src="item" class="banner_img"></van-swipe-item>
+            <indicator :length="banner.list.length" :current="banner.current" :colorhover="gobal.color" color="#ccc" bottom=".05rem" slot="indicator"></indicator>
         </van-swipe>
         <!-- 分类 -->
         <div class="cate-list">
@@ -101,7 +102,7 @@
 
         <!-- 还喜欢 -->
         <div class="likem">
-            <div class="ptil">你可以能还喜欢<router-link class="pmore" to="/category/list">更多</router-link></div>
+            <div class="ptil">你可能还喜欢<router-link class="pmore" to="/category/list">更多</router-link></div>
             <div class="cm-prolist lthree">
                 <router-link to="/category/detail" class="pl-item" v-for="item in seckill" v-bind:key="item.id">
                     <div class="pl-imgo">
@@ -191,7 +192,6 @@
             .t-total{text-align: center;font-size: .12rem; line-height: .18rem; color: #999;}
             .t-img{display: block; width: 1.08rem; height: 1.08rem; border-radius: .1rem; overflow: hidden;}
             .t-info{ padding: .02rem 0 0; font-size: .12rem; color: @base; text-align: center;}
-            .ci-tor{ width: 20px;}
         }
         .ptil{
             position: relative; padding: 0 .15rem; line-height: .42rem; font-size: .15rem; font-weight: bold;
@@ -227,7 +227,7 @@ export default {
         return {
             gobal:this.themes.setting,
             cate:{show:false,list:[],shortlist:[]},
-            banner:[],
+            banner:{list:[],current:0},
             catelist:[],
             couponlist:[],
             gbcolor:'#ff7921',
@@ -278,7 +278,7 @@ export default {
                         './tempimg/0banner02.jpg',
                         './tempimg/0banner03.jpg'
                     ]
-                    this.banner = banner;
+                    this.banner.list = banner;
                     
                     //获取优惠券
                     let couponlist = [
@@ -323,6 +323,9 @@ export default {
         },
         changetuan(index){
             this.tuan.current = index;
+        },
+        changebanner(index){
+            this.banner.current = index;
         },
         getNewred(){
             this.$http.get("./api/callback.json", {

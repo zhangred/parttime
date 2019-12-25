@@ -1,7 +1,7 @@
 <template>
     <div class="pages">
 
-        <div class="emp" v-show="goodall==0">
+        <div class="emp" v-show="state==2">
             <div class="emp-img">
                 <img src="~@/assets/images/empty_cart.png" class="emp-ico" />
                 <p class="emp-tx">您的购物车空空如也！</p>
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div v-show="goodall">
+        <div v-show="state==1">
             <div class="glist">
                 <div class="gitem" v-for="shop in list" v-bind:key="shop.id" v-show="shop.list.length">
                     <div class="gtil"><van-checkbox class="radio" v-model="shop.checked" :checked-color="gobal.color" @click="checkshop(shop)"></van-checkbox>{{shop.name}}</div>
@@ -44,7 +44,6 @@
                                 <p class="cellbtn" @click="deletegood(good.id)">删除</p>
                             </template>
                         </swipe-cell>
-                        
                     </div>
                 </div>
             </div>
@@ -55,7 +54,7 @@
                     <p class="fl bd-edit" @click="isedit=true">编辑</p>
                 </div>
                 <div class="bd-r">合计：<span class="bd-un gb-c">¥</span><span class="bd-total gb-c">{{total.money}}</span></div>
-                <div :class="{'bd-btn':true,'active gb-bgc':total.number}">结算<span v-show="total.number">({{total.number}})</span></div>
+                <div :class="{'bd-btn':true,'active gb-bgc':total.number}" @click="statement">结算<span v-show="total.number">({{total.number}})</span></div>
             </div>
             <div class="botdo" v-show="isedit">
                 <div class="bd-l">
@@ -66,6 +65,13 @@
             </div>
         </div>
         <botnav active="cart"></botnav>
+
+        <over-touch class="ot" :margin="10">
+            <div class="otls">
+                <p :class="['otitem',{'otitem-ac':state==1}]" @click="state=1">有商品</p>
+                <p :class="['otitem',{'otitem-ac':state==2}]" @click="state=2">无商品</p>
+            </div>
+        </over-touch>
     </div>
 </template>
 <style lang="less"  scoped>
@@ -123,11 +129,11 @@ export default {
     data(){
         return {
             gobal:this.themes.setting,
+            state:1,
             rem:{ha:window.rem*.28},
             list:[],
             goodlist:[],
             total:{money:0,number:0},
-            goodall:0,
             isedit:false,
             chooseall:false
         }
@@ -164,7 +170,6 @@ export default {
                     ];
                     this.fullkey(cart);
                     this.list = cart;
-                    this.checkgoodall()
                 }
             });
         },
@@ -236,14 +241,6 @@ export default {
             this.total.money = money/100;
             this.total.number = number;
         },
-        checkgoodall(){
-            let number = 0,
-                list = this.list;
-            for(let i=0,len=list.length;i<len;i++){
-                number += list[i].list.length
-            }
-            this.goodall = number;
-        },
         numberchange(){
             setTimeout(()=>{
                 this.getCountTotal();
@@ -309,7 +306,6 @@ export default {
                 }
             }
             setTimeout(()=>{
-                this.checkgoodall();
                 this.getCountTotal();
             },10)
         },
@@ -327,6 +323,21 @@ export default {
                     this.getCountTotal();
                 },10)
             },10)
+        },
+        statement(){
+            if(this.total.number==0) return;
+            this.$toast.loading({duration:2000,message:'结算中···',forbidClick:true})
+            this.$http.get("./api/callback.json", {
+                params: 'params'
+            }).then((res) => {
+                this.$tools.delay(200).then(()=>{
+                    let rs = res.data;
+                    if(rs.code==0){
+                        this.$toast.clear();
+                        this.$router.push('/category/ordersave')
+                    }
+                })
+            });
         }
     }
 }

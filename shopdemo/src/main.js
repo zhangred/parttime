@@ -4,7 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Qs from 'qs'
-import {Toast,Image,Dialog,Icon,Button } from 'vant'
+import {Toast,Image,Dialog,Icon,Button,Notify } from 'vant'
 
 import VueRouter from "vue-router";
 
@@ -43,6 +43,7 @@ Vue.use(Button);
 Vue.use(Toast);
 Vue.use(Dialog);
 Vue.use(Icon);
+Vue.use(Notify);
 
 
 router.beforeEach((to, from, next) => {

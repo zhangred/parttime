@@ -10,7 +10,7 @@
             <div class="item" v-for="item in list" :key="item.id">
                 <p class="itil" @click="choose(item)">{{item.name}}&ensp;&ensp;{{item.tel}}</p>
                 <p class="iadr" @click="choose(item)"><span v-show="item.isdef" class="idef gb-c gb-bdc gb-bgc4">默认</span>{{item.address}}</p>
-                <router-link to="/mine/address/edit" class="ieidt flex flex-center gb-c">编辑</router-link>
+                <router-link to="/mine/address/edit?aid=3" class="ieidt flex flex-center gb-c">编辑</router-link>
             </div>
         </div>
         <router-link to="/mine/address/edit" class="botline gb-bgc">新增地址</router-link>
@@ -74,8 +74,11 @@ export default {
             });
         },
         choose(item){
-            localStorage.setItem('addressItem',JSON.stringify(item));
-            this.$router.back();
+            if(this.from){
+                localStorage.setItem('addressItem',JSON.stringify(item));
+                this.$router.back();
+            }
+            
         }
     }
 }
