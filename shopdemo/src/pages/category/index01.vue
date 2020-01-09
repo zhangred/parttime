@@ -113,7 +113,8 @@
             .item.active{ background: #fff; color: @base;}
         }
         .cm-lprolist{ margin-top: .12rem;}
-        .vbtn{ background: none;}
+        .vbtn.gb-bgc3{ background: @second}
+        .vbtn.gb-bgc{ background: @base;}
     }
 </style>
 <script>

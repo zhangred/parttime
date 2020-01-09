@@ -158,7 +158,8 @@
             .cp-btn{ background: @base; color: #fff; line-height: .3rem; height: .3rem; padding: 0 .15rem; border-radius: .15rem; text-align: center;}
             .cp-btn.disable{ background: #c5c5c5;}
         }
-        .vbtn{ background: none;}
+        .vbtn.gb-bgc3{ background: @second}
+        .vbtn.gb-bgc{ background: @base;}
     }
     
 </style>
@@ -368,14 +369,14 @@ export default {
         onBuyClicked(rs){
             console.log(rs)
             this.rs = rs;
-            // this.$router.push('/category/ordersave')
+            this.$router.push('/category/ordersave')
         },
         //加入购物车
         onAddCartClicked(rs){
             console.log(rs)
             this.rs = rs;
             this.goodSku.show = false;
-            // this.$toast.success('成功加入购物车');
+            this.$toast.success('成功加入购物车');
         }
     }
 }
