@@ -61,7 +61,7 @@
                     <van-checkbox class="fl bd-rado" v-model="chooseall" :checked-color="gobal.color" @click="getall">全选</van-checkbox>
                     <p class="fl bd-edit" @click="isedit=false">完成</p>
                 </div>
-                <div :class="{'bd-btn':true,'active gb-bgc':total.number}" @click="deleteall">删除<span>(5)</span></div>
+                <div :class="{'bd-btn':true,'active gb-bgc':total.number}" @click="deleteall">删除<span v-show="total.number">({{total.number}})</span></div>
             </div>
         </div>
         <botnav active="cart"></botnav>
