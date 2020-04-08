@@ -23,7 +23,13 @@
             <p class="el-ado">单行数据</p>
             <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" id="J_a" /></div>
         </div>
-        <div class="J_choosetime editline editline-select editline-cover" data-title="开始日期-列表日期" data-timegroup="y-m-d" data-format="y/m/d">
+
+        <div class="editline editline-select editline-cover" id="J_line_dataselecta">
+            <p class="el-ado">单行数据-更新</p>
+            <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" id="J_b" /></div>
+        </div>
+
+        <div class="J_choosetime editline editline-select editline-cover" data-title="开始日期-列表日期" data-time="2020/5/20" data-timegroup="y-m-d" data-format="y/m/d">
             <p class="el-ado">开始日期-列表日期</p>
             <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
         </div>
@@ -51,6 +57,8 @@
             <p class="el-ado">多重数据选择</p>
             <div class="el-input"><input type="text" class="el-ctrol" placeholder="请选择" /></div>
         </div>
+
+        
     </div>
 
     <br />
@@ -103,7 +111,7 @@
             select_way = new dataSelect({
                 "target":document.getElementById('J_line_dataselect'), // 激活目标对象dom
                 // "outer":document.getElementById('J_selecta'),
-                "default_v":null, // 设置默认值
+                "default_v":9, // 设置默认值
                 "title":"单行数据",
                 "datalist":wayarr,
                 "selected":function(rs){
@@ -114,6 +122,20 @@
                     console.log('c',rs)
                 }
             });
+
+
+            var wayarra = [
+                {"id":124,"name":"124其他"},
+                {"id":120,"name":"120电话"},
+                {"id":121,"name":"121电话"},
+                {"id":122,"name":"122电话"},
+                {"id":123,"name":"123电话"},
+                {"id":124,"name":"124其他"}
+            ];
+
+            $('#J_line_dataselecta').click(function(){
+                select_way.reset({show:true})
+            })
 
             var dt = new datePicker({
                 "targets":document.getElementsByClassName('J_choosetime'),
@@ -153,180 +175,180 @@
                 }
             })
 
-            var provincelist = [
-                {id:1,name:'北京'},
-                {id:2,name:'上海市'},
-                {id:3,name:'广东省'},
-                {id:4,name:'河北省'},
-                {id:5,name:'黑龙江省'},
-                {id:6,name:'湖南省'},
-                {id:7,name:'安徽省'},
-                {id:8,name:'浙江省'},
-                {id:9,name:'西藏自治区'},
-                {id:10,name:'青海'},
-                {id:11,name:'江西省'},
-                {id:12,name:'山东省'}
-            ];
+            // var provincelist = [
+            //     {id:1,name:'北京'},
+            //     {id:2,name:'上海市'},
+            //     {id:3,name:'广东省'},
+            //     {id:4,name:'河北省'},
+            //     {id:5,name:'黑龙江省'},
+            //     {id:6,name:'湖南省'},
+            //     {id:7,name:'安徽省'},
+            //     {id:8,name:'浙江省'},
+            //     {id:9,name:'西藏自治区'},
+            //     {id:10,name:'青海'},
+            //     {id:11,name:'江西省'},
+            //     {id:12,name:'山东省'}
+            // ];
 
-            var citylist = [
-                {id:1,name:'邢台市'},
-                {id:2,name:'石家庄'},
-                {id:3,name:'邯郸市'},
-                {id:4,name:'张家口'},
-                {id:5,name:'保定市'},
-                {id:6,name:'唐山市'},
-                {id:7,name:'承德市'},
-                {id:8,name:'沧州市'},
-                {id:9,name:'廊坊市'}
-            ];
+            // var citylist = [
+            //     {id:1,name:'邢台市'},
+            //     {id:2,name:'石家庄'},
+            //     {id:3,name:'邯郸市'},
+            //     {id:4,name:'张家口'},
+            //     {id:5,name:'保定市'},
+            //     {id:6,name:'唐山市'},
+            //     {id:7,name:'承德市'},
+            //     {id:8,name:'沧州市'},
+            //     {id:9,name:'廊坊市'}
+            // ];
 
-            var arealist = [
-                {id:1,name:'南共市'},
-                {id:2,name:'桥东区'},
-                {id:3,name:'桥西区'},
-                {id:4,name:'清河县'},
-                {id:5,name:'任丘显'},
-                {id:6,name:'南和县'},
-                {id:7,name:'新和县'},
-                {id:8,name:'广宗县'},
-                {id:9,name:'巨鹿县'}
-            ];
+            // var arealist = [
+            //     {id:1,name:'南共市'},
+            //     {id:2,name:'桥东区'},
+            //     {id:3,name:'桥西区'},
+            //     {id:4,name:'清河县'},
+            //     {id:5,name:'任丘显'},
+            //     {id:6,name:'南和县'},
+            //     {id:7,name:'新和县'},
+            //     {id:8,name:'广宗县'},
+            //     {id:9,name:'巨鹿县'}
+            // ];
 
-            var adr = new addressPicker({
-                target:document.getElementById('J_address'),
-                title:"地址选择",
-                fieldvalue:'id',
-                fieldshow:'name',
-                province:{
-                    datalist:provincelist,
-                    default_v:3,
-                    change:function(rs){
-                        console.log('p',rs)
-                        adr.province.distouch(true);
-                        adr.city.empty();
-                        adr.area.empty();
-                        $.ajax({
-                            url:'/api/callback.json?t='+(new Date().getTime()),
-                            success:function(rs){
-                                if(rs.code==0){
-                                    adr.province.distouch(false);
+            // var adr = new addressPicker({
+            //     target:document.getElementById('J_address'),
+            //     title:"地址选择",
+            //     fieldvalue:'id',
+            //     fieldshow:'name',
+            //     province:{
+            //         datalist:provincelist,
+            //         default_v:3,
+            //         change:function(rs){
+            //             console.log('p',rs)
+            //             adr.province.distouch(true);
+            //             adr.city.empty();
+            //             adr.area.empty();
+            //             $.ajax({
+            //                 url:'/api/callback.json?t='+(new Date().getTime()),
+            //                 success:function(rs){
+            //                     if(rs.code==0){
+            //                         adr.province.distouch(false);
 
-                                    arealist = [
-                                        {id:1,name:'01邢台市'},
-                                        {id:2,name:'01石家庄'},
-                                        {id:3,name:'01邯郸市'},
-                                        {id:4,name:'01张家口'},
-                                        {id:5,name:'01保定市'},
-                                        {id:6,name:'01唐山市'},
-                                        {id:7,name:'01承德市'},
-                                        {id:8,name:'01沧州市'},
-                                        {id:9,name:'01廊坊市'}
-                                    ];
-                                    adr.city.reset({datalist:arealist,default_v:null})
-                                }
-                            }
-                        })
-                    }
-                },
-                city:{
-                    datalist:citylist,
-                    default_v:0,
-                    change:function(rs){
-                        console.log('c',rs)
-                        adr.city.distouch(true);
-                        adr.area.empty();
-                        $.ajax({
-                            url:'/api/callback.json?t='+(new Date().getTime()),
-                            success:function(rs){
-                                if(rs.code==0){
-                                    adr.city.distouch(false);
+            //                         arealist = [
+            //                             {id:1,name:'01邢台市'},
+            //                             {id:2,name:'01石家庄'},
+            //                             {id:3,name:'01邯郸市'},
+            //                             {id:4,name:'01张家口'},
+            //                             {id:5,name:'01保定市'},
+            //                             {id:6,name:'01唐山市'},
+            //                             {id:7,name:'01承德市'},
+            //                             {id:8,name:'01沧州市'},
+            //                             {id:9,name:'01廊坊市'}
+            //                         ];
+            //                         adr.city.reset({datalist:arealist,default_v:null})
+            //                     }
+            //                 }
+            //             })
+            //         }
+            //     },
+            //     city:{
+            //         datalist:citylist,
+            //         default_v:0,
+            //         change:function(rs){
+            //             console.log('c',rs)
+            //             adr.city.distouch(true);
+            //             adr.area.empty();
+            //             $.ajax({
+            //                 url:'/api/callback.json?t='+(new Date().getTime()),
+            //                 success:function(rs){
+            //                     if(rs.code==0){
+            //                         adr.city.distouch(false);
 
-                                    var list = [
-                                        {id:1,name:'01南共市'},
-                                        {id:2,name:'01桥东区'},
-                                        {id:3,name:'01桥西区'},
-                                        {id:4,name:'01清河县'},
-                                        {id:5,name:'01任丘显'},
-                                        {id:6,name:'01南和县'},
-                                        {id:7,name:'01新和县'},
-                                        {id:8,name:'01广宗县'},
-                                        {id:9,name:'01巨鹿县'}
-                                    ];
-                                    adr.area.reset({datalist:list,default_v:null})
-                                }
-                            }
-                        })
-                    }
-                },
-                area:{
-                    datalist:arealist,
-                    default_v:0
-                },
-                confirm:function(rs,cb){
-                    if(rs.province.id&&rs.city.id&&rs.area.id){
-                        $('#J_address').find('input').val(rs.province.name+'/'+rs.city.name+'/'+rs.area.name);
-                        cb();
-                    }else{
-                        CUES.tip({msg:'请选择完整'})
-                    }
-                    console.log(rs)
-                }
-            });
+            //                         var list = [
+            //                             {id:1,name:'01南共市'},
+            //                             {id:2,name:'01桥东区'},
+            //                             {id:3,name:'01桥西区'},
+            //                             {id:4,name:'01清河县'},
+            //                             {id:5,name:'01任丘显'},
+            //                             {id:6,name:'01南和县'},
+            //                             {id:7,name:'01新和县'},
+            //                             {id:8,name:'01广宗县'},
+            //                             {id:9,name:'01巨鹿县'}
+            //                         ];
+            //                         adr.area.reset({datalist:list,default_v:null})
+            //                     }
+            //                 }
+            //             })
+            //         }
+            //     },
+            //     area:{
+            //         datalist:arealist,
+            //         default_v:0
+            //     },
+            //     confirm:function(rs,cb){
+            //         if(rs.province.id&&rs.city.id&&rs.area.id){
+            //             $('#J_address').find('input').val(rs.province.name+'/'+rs.city.name+'/'+rs.area.name);
+            //             cb();
+            //         }else{
+            //             CUES.tip({msg:'请选择完整'})
+            //         }
+            //         console.log(rs)
+            //     }
+            // });
 
-            var adra = new addressPicker({
-                target:document.getElementById('J_addressa'),
-                title:"地址选择",
-                fieldvalue:'id',
-                fieldshow:'name',
-                fieldrange:['province','city'],
-                province:{
-                    datalist:provincelist,
-                    default_v:3,
-                    change:function(rs){
-                        console.log('p',rs)
-                        adra.province.distouch(true);
-                        adra.city.empty();
-                        $.ajax({
-                            url:'/api/callback.json?t='+(new Date().getTime()),
-                            success:function(rs){
-                                if(rs.code==0){
-                                    adra.province.distouch(false);
+            // var adra = new addressPicker({
+            //     target:document.getElementById('J_addressa'),
+            //     title:"地址选择",
+            //     fieldvalue:'id',
+            //     fieldshow:'name',
+            //     fieldrange:['province','city'],
+            //     province:{
+            //         datalist:provincelist,
+            //         default_v:3,
+            //         change:function(rs){
+            //             console.log('p',rs)
+            //             adra.province.distouch(true);
+            //             adra.city.empty();
+            //             $.ajax({
+            //                 url:'/api/callback.json?t='+(new Date().getTime()),
+            //                 success:function(rs){
+            //                     if(rs.code==0){
+            //                         adra.province.distouch(false);
 
-                                    arealist = [
-                                        {id:1,name:'01邢台市'},
-                                        {id:2,name:'01石家庄'},
-                                        {id:3,name:'01邯郸市'},
-                                        {id:4,name:'01张家口'},
-                                        {id:5,name:'01保定市'},
-                                        {id:6,name:'01唐山市'},
-                                        {id:7,name:'01承德市'},
-                                        {id:8,name:'01沧州市'},
-                                        {id:9,name:'01廊坊市'}
-                                    ];
-                                    adra.city.reset({datalist:arealist,default_v:null})
-                                }
-                            }
-                        })
-                    }
-                },
-                city:{
-                    datalist:citylist,
-                    default_v:0,
-                    change:function(rs){
-                        console.log('c',rs)
+            //                         arealist = [
+            //                             {id:1,name:'01邢台市'},
+            //                             {id:2,name:'01石家庄'},
+            //                             {id:3,name:'01邯郸市'},
+            //                             {id:4,name:'01张家口'},
+            //                             {id:5,name:'01保定市'},
+            //                             {id:6,name:'01唐山市'},
+            //                             {id:7,name:'01承德市'},
+            //                             {id:8,name:'01沧州市'},
+            //                             {id:9,name:'01廊坊市'}
+            //                         ];
+            //                         adra.city.reset({datalist:arealist,default_v:null})
+            //                     }
+            //                 }
+            //             })
+            //         }
+            //     },
+            //     city:{
+            //         datalist:citylist,
+            //         default_v:0,
+            //         change:function(rs){
+            //             console.log('c',rs)
                         
-                    }
-                },
-                confirm:function(rs,cb){
-                    if(rs.province.id&&rs.city.id){
-                        $('#J_addressa').find('input').val(rs.province.name+'/'+rs.city.name);
-                        cb();
-                    }else{
-                        CUES.tip({msg:'请选择完整'})
-                    }
-                    console.log(rs)
-                }
-            })
+            //         }
+            //     },
+            //     confirm:function(rs,cb){
+            //         if(rs.province.id&&rs.city.id){
+            //             $('#J_addressa').find('input').val(rs.province.name+'/'+rs.city.name);
+            //             cb();
+            //         }else{
+            //             CUES.tip({msg:'请选择完整'})
+            //         }
+            //         console.log(rs)
+            //     }
+            // })
 
             var mutla = [
                 {"id":1,"name":"a1面聊"},
@@ -373,6 +395,10 @@
                         "datalist":mutla,
                         "change":function(rs){
                             console.log(1,rs)
+                            select_mult.keyb.reset({datalist:wayarra,default_v:123})
+                            setTimeout(function(){
+                                console.log(select_mult)
+                            },200)
                         }
                     },
                     {

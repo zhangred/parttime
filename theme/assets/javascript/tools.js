@@ -1,4 +1,6 @@
-﻿var CUES = {
+﻿"use strict";
+
+var CUES = {
     loading:function(options){
         if(this.load_elm) return;
         this.load_elm = true;
@@ -228,14 +230,14 @@ window.cmtools = {
 
         scroller.roller.style.webkitTransition = "all 0s";
         scroller.roller.style.webkitTransform = 'translateZ(0) translateY('+(4*scroller.unit)+'px)';
-        
+
         scroller.maxY = -(len-4)*unit;
         for(var i=0;i<len;i++){
             var v = scroller.datalist[i];
             str += '<li class="cp-li">'+v[fieldshow]+'</li>';
             if(v[fieldvalue] == default_v){
                 scroller.y = (3-i)*unit;
-                this.v = v;
+                scroller.v = v;
                 scroller.roller.style.webkitTransform = 'translateZ(0) translateY('+((3-i)*unit)+'px)';
             };
         }
@@ -248,7 +250,8 @@ window.cmtools = {
             unit = scroller.unit,
             outer = scroller.caser;
 
-        var fy = ly = 0;
+        var fy = 0,
+            ly = 0;
 
         outer.addEventListener('touchstart',function(event){
             roller.style.webkitTransition = "all 0s";
@@ -320,7 +323,7 @@ window.cmtools = {
         this.roller.innerHTML = '';
     },
     reset:function(opts){
-        this.datalist = opts.datalist?opts.datalist:[];
+        this.datalist = opts.datalist==undefined?this.datalist:opts.datalist;
         this.default_v = opts.default_v!=null?opts.default_v:null;
         this.maxY = -(this.datalist.length-4)*this.unit;
         this.y = 4*this.unit;
@@ -342,9 +345,12 @@ window.cmtools = {
             dl = this.datalist,
             rid = this.rid;
 
+        this.v = {};
+
         for(var i=0,len=dl.length;i<len;i++){
             if(dl[i].id==rid){
                 idx = i;
+                this.v = dl[i];
                 break;
             }
         };
@@ -386,21 +392,20 @@ dataSelect.prototype = {
         this.target = opts.target;
         this.outer = opts.outer;
         this.fieldvalue = opts.fieldvalue||'id';
+        this.fieldshow = opts.fieldshow||'name';
         this.selected = this.opts.selected ? this.opts.selected:null;
         this.title = opts.title||'';
         this.v = {};
         this.value = {};
 
-        if(!this.outer&&!this.target){
-            console.warn('请设置触发对象或者容器')
-            return;
-        }
-
         this.render();
     },
     render:function(){
         var that = this;
-        if(this.target){
+
+        applytools.call(this,['createDom','createPop']);
+        
+        if(this.target||this.opts.showtype=='pop'){
             applytools.call(this,['createDom','createPop']);
             this.createPop();
             this.scroller = new touchscroll(this);
@@ -417,12 +422,22 @@ dataSelect.prototype = {
             that.selected&&that.selected(rs);
             that.v = rs;
         }
+        if(typeof(this.scroller.v[this.fieldvalue])!='undefined'){
+           this.v = this.scroller.v
+        }
     },
     settil:function(title){
         this.elm_til.innerHTML = title;
     },
     reset:function(opts){
+        this.v = {};
         this.scroller.reset(opts);
+        if(typeof(this.scroller.v[this.fieldvalue])!='undefined'){
+            this.v = this.scroller.v
+        }
+        if(opts.show){
+            this.pop.classList.add('cm-pop-active');
+        }
     },
     empty:function(){
         this.v = {};
@@ -430,9 +445,11 @@ dataSelect.prototype = {
     },
     bindTarget:function(){
         var that = this;
-        this.target.addEventListener('click',function(){
-            that.pop.classList.add('cm-pop-active');
-        })
+        if(this.target){
+            this.target.addEventListener('click',function(){
+                that.pop.classList.add('cm-pop-active');
+            })
+        }
         this.btn_cal.addEventListener('click',function(){
             that.pop.classList.remove('cm-pop-active');
         })
@@ -446,6 +463,79 @@ dataSelect.prototype = {
         })
     }
 };
+
+function multDataSelect(opts){
+    this.opts = opts;
+    this.setting();
+}
+multDataSelect.prototype = {
+    setting:function(){
+        var opts = this.opts;
+        this.target = opts.target;
+        this.unit = opts.unit||36;
+
+        this.province = {};
+        this.render();
+    },
+    render:function(){
+        var that = this,
+            opts = this.opts,
+            selectlist = opts.selectlist;
+
+        applytools.call(this,['createDom','createPop']);
+        this.createPop();
+        this.bindTarget();
+        this.boxer.setAttribute('class','J_slbox cm-slbox cm-slbox'+selectlist.length)
+        this.elm_til.innerHTML = this.opts.title||'';
+
+        for(var i=0;i<3;i++){
+            (function(){
+                var tp = selectlist[i];
+                that[tp.key] = {};
+                that[tp.key].boxer = that.createDom({"tag":"div","classname":"cm-slbox-time"});
+                that.boxer.appendChild(that[tp.key].boxer);
+                that[tp.key].opts = {outer:that[tp.key].boxer,datalist:tp.datalist||[],default_v:tp.default_v||null}
+                that[tp.key].change = tp.change||null;
+                that[tp.key].scroller = new touchscroll(that[tp.key])
+                that[tp.key].scroller.selected = function(rs){
+                    that[tp.key].change&&that[tp.key].change(rs);
+                }
+                that[tp.key].empty = function(){
+                    that[tp.key].scroller.empty();
+                }
+                that[tp.key].distouch = function(c){
+                    that[tp.key].scroller.distouch(c);
+                }
+                that[tp.key].reset = function(sopts){
+                    that[tp.key].scroller.reset(sopts);
+                }
+
+            })()
+        }
+    },
+    bindTarget:function(){
+        var that = this;
+        this.btn_cal.addEventListener('click',function(){
+            that.pop.classList.remove('cm-pop-active');
+        })
+        this.btn_sure.addEventListener('click',function(){
+            var res = {},
+                list = that.opts.selectlist,
+                len = list.length;
+            for(var i=0;i<len;i++){
+                var k = list[i].key;
+                res[k] = that[k].scroller.v;
+            }
+
+            that.opts.confirm&&that.opts.confirm(res,function(){
+                that.pop.classList.remove('cm-pop-active');
+            })
+        })
+        this.target.addEventListener('click',function(){
+            that.pop.classList.add('cm-pop-active')
+        })
+    }
+}
 
 function datePicker(opts){
     this.opts = opts;
@@ -480,7 +570,7 @@ datePicker.prototype = {
             s:{outer:this.group.s.boxer,datalist:this.getlistdata({start:0,end:60,range:5,unit:'秒'}), default_v:0}
         }
 
-        for(tp in this.group){
+        for(var tp in this.group){
             this.group[tp].boxer = this.createDom({"tag":"div","classname":"cm-slbox-time"});
             this.boxer.appendChild(this.group[tp].boxer);
             this.group[tp].opts = opt[tp];
@@ -551,6 +641,7 @@ datePicker.prototype = {
                     that.resetroller();
                     that.target = target;
                     that.pop.classList.add('cm-pop-active')
+                    console.log(8,that)
                 })
             })()
         }
@@ -572,7 +663,7 @@ datePicker.prototype = {
         group.h.scroller.rid = time.getHours();
         group.i.scroller.rid = time.getMinutes();
         group.s.scroller.rid = time.getSeconds();
-        for(i in this.timegroups){
+        for(var i in this.timegroups){
             group[this.timegroups[i]].scroller.boxer.style.display = (timegroup.indexOf(this.timegroups[i])>-1?'block':"none");
             group[this.timegroups[i]].scroller.resety();
         }
@@ -1830,75 +1921,4 @@ zshcanvas.prototype = {
 }
 
 
-function multDataSelect(opts){
-    this.opts = opts;
-    this.setting();
-}
-multDataSelect.prototype = {
-    setting:function(){
-        var opts = this.opts;
-        this.target = opts.target;
-        this.unit = opts.unit||36;
 
-        this.province = {};
-        this.render();
-    },
-    render:function(){
-        var that = this,
-            opts = this.opts,
-            selectlist = opts.selectlist;
-
-        applytools.call(this,['createDom','createPop']);
-        this.createPop();
-        this.bindTarget();
-        this.boxer.setAttribute('class','J_slbox cm-slbox cm-slbox'+selectlist.length)
-        this.elm_til.innerHTML = this.opts.title||'';
-
-        for(var i=0;i<3;i++){
-            (function(){
-                var tp = selectlist[i];
-                that[tp.key] = {};
-                that[tp.key].boxer = that.createDom({"tag":"div","classname":"cm-slbox-time"});
-                that.boxer.appendChild(that[tp.key].boxer);
-                that[tp.key].opts = {outer:that[tp.key].boxer,datalist:tp.datalist||[],default_v:tp.default_v||null}
-                that[tp.key].change = tp.change||null;
-                that[tp.key].scroller = new touchscroll(that[tp.key])
-                that[tp.key].scroller.selected = function(rs){
-                    that[tp.key].change&&that[tp.key].change(rs);
-                }
-                that[tp.key].empty = function(){
-                    that[tp.key].scroller.empty();
-                }
-                that[tp.key].distouch = function(c){
-                    that[tp.key].scroller.distouch(c);
-                }
-                that[tp.key].reset = function(sopts){
-                    that[tp.key].scroller.reset(sopts);
-                }
-
-            })()
-        }
-    },
-    bindTarget:function(){
-        var that = this;
-        this.btn_cal.addEventListener('click',function(){
-            that.pop.classList.remove('cm-pop-active');
-        })
-        this.btn_sure.addEventListener('click',function(){
-            var res = {},
-                list = that.opts.selectlist,
-                len = list.length;
-            for(var i=0;i<len;i++){
-                var k = list[i].key;
-                res[k] = that[k].scroller.v;
-            }
-
-            that.opts.confirm&&that.opts.confirm(res,function(){
-                that.pop.classList.remove('cm-pop-active');
-            })
-        })
-        this.target.addEventListener('click',function(){
-            that.pop.classList.add('cm-pop-active')
-        })
-    }
-}
