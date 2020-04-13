@@ -148,7 +148,7 @@ var CUES = {
         }
     },
     heartjump:function(opts){
-        let args,timeout,timestamp,lasttamp;
+        let args,timeout,timestamp,lastfunc;
         let _self = this;
         opts = opts||{};
         opts.space = opts.space||200;

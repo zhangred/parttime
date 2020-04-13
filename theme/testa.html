@@ -12,27 +12,52 @@
     <script language="javascript" type="text/javascript" src="./assets/javascript/size.js"></script>
     <script language="javascript" type="text/javascript" src="./assets/javascript/jquery-2.1.4.min.js"></script>
     <script  language="javascript" type="text/javascript" src="./assets/javascript/tools.js"></script>
+    <script language="javascript" type="text/javascript" src="./assets/javascript/exif.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./assets/javascript/megapix-image.min.js"></script>
+    <script  language="javascript" type="text/javascript" src="./assets/javascript/zshimage.js"></script>
     <title>demo样板</title>
     <style>
-        .ul{ padding-top: 10px;}
-        .li{ display: block; line-height: 40px; text-align: center; font-size: 14px; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 10px;}
+        .ctrol{display: block; width: 300px; height: 30px; background: #ddd; border:1px solid #aaa;}
+        .img{ max-width: 100%; margin:30px 0;}
+        .info{ word-break: break-all;}
     </style>
 </head>
 <body>
-        <iframe src="http://qyyxt.hrddqmp.cn/ding/materials/f01547736787" class="iframe" id="J_iframe" name="xx" frameborder="1" name="全员裂变通" scrolling="auto" style=" height:100%; width:100%;border: none;"></iframe>
+    <input class="ctrol" type="file" id="J_file" placeholder="选择图片" accept="image/*" />
+    <p class="info">图片信息：<span id="J_or"></span></p>
+    <p>图片压缩：<span id="J_ora"></span></p>
+    <img src="" class="img" id="J_img">
     <script>
         $(function(){
-            //     
-            // 
-            // 
+            var J_file = $('#J_file');
 
-            var rp_ua = navigator.userAgent,
-                rp_isIos = rp_ua.match(/iPhone|iPad|iPod/i);
+            J_file.on('change',function(e){
+                
+                var file = J_file[0].files[0];
+                var mopt = {}
+                EXIF.getData(file, function() {
+                    var all = EXIF.getAllTags(this);
+                    $('#J_or').html(JSON.stringify(all))
+                    $('#J_ora').html(all.Make)
+                    if(all.Make=='Apple'&&/^13.[0-9.]+/ig.test(all.Software)){
+                        all.Orientation = 1;
+                    }
 
-            if(rp_isIos){
-                $('#J_iframe').attr({'style':'width: 1px;min-width: 100%;*width: 100%; border: none;','scrolling':'no'})
-            }
+                    var mpImg = new MegaPixImage(file);
+                    var resImg = new Image;
+                    
+                    var mopt = {}
+                    mopt.maxWidth = 750;
+                    mopt.maxHeight = 750;
+                    mopt.orientation =  all.Orientation;
 
+                    mpImg.render(resImg, mopt,function(res){
+                        $('#J_img').attr('src',res)
+                    })
+                })
+
+
+            })
         })
     </script>
 </body>

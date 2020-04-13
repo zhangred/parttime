@@ -23,7 +23,18 @@
     </style>
 </head>
 <body>
-    
+    <!-- <div id="J_svgbox">
+        <svg width="100%" height="200" version="1.1" id="J_svg"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <image id="J_imgxx" xlink:href="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png" width="300" height="200" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+        </svg>
+    </div> -->
+    <div class="J_imgbox">
+        <canvas id="J_canvas"></canvas>
+        12
+        <img id="J_svgimg" />
+        <input class="ctrol" type="file" id="J_filea" placeholder="选择图片" accept="image/*" />
+    </div>
+    <br /><br /><br />
     <input class="ctrol" type="file" id="J_file" placeholder="选择图片" accept="image/*" />
     <img src="" class="img" id="J_img">
     <p>原图信息：<span id="J_or"></span></p>
@@ -35,6 +46,68 @@
     <p>压缩后信息：<span id="J_orc"></span></p>
     <script>
         $(function(){
+
+            var J_filea = $('#J_filea');
+
+            // 宽高设置优先最大宽高设置
+            J_filea.on('change',function(e){
+
+                EXIF.getData(J_filea[0].files[0], function() {
+                    // var Orientation = EXIF.getTag(this, 'Orientation');
+                    var Orientation = EXIF.getAllTags(this);
+                    J_filea.before(JSON.stringify(Orientation))
+                })
+                // var reader = new FileReader();
+                // reader.readAsDataURL(J_filea[0].files[0]); 
+                // reader.onload=function(e){ 
+                    // console.log(this.result)
+                    // var result = this.result;
+                    // var box = $('<div style="overflow:hidden;">\
+                    //     <p style="float:left"><img style="max-width:unset; display:block" src="'+this.result+'"></p>\
+                    //     <canvas></canvas>\
+                    // </div>')
+                    // $('body').append(box)
+                    // setTimeout(function(){
+                        // var p = box.find('p')
+                        // console.log(p,p.width(),p.height())
+                        // var w = p.width(),
+                        //     h = p.height();
+
+                        // var svgstr = '<svg width="'+w+'" height="'+h+'" version="1.1" id="J_svg"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image id="J_imgxx" xlink:href="'+result+'" width="'+w+'" height="'+h+'" xmlns:xlink="http://www.w3.org/1999/xlink"/></svg>';
+                        // box.append(svgstr)
+                        // var image = new Image();
+                        // image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svgstr))); //给图片对象写入base64编码的svg流
+                        // // // $('body').append(image)
+                        // var canvas = $('#J_canvas')[0];  //准备空画布
+                        // $('#J_svgimg').attr('src',image.src)
+                        // canvas.width = 200;
+                        // canvas.height = 200;
+                        
+
+                        // var context = canvas.getContext('2d');  //取得画布的2d绘图上下文
+                        
+                        //     console.log(5)
+                        //     image.onload = function(){
+                        //         console.log(6)
+                        //         setTimeout(function(){
+                        //         // //     image.src = canvas.toDataURL('image/jpeg', 0.8);
+                        //             context.drawImage(image, 0, 0,200,200);
+                        //         },1000)
+                        //     //     var nimg = new Image();
+                        //     //     nimg.src =  canvas.toDataURL('image/jpeg', 0.2);
+                        //     //     $('body').append(nimg)
+                        //     }
+                        
+                        
+
+                        
+
+                        
+                        // $('#J_svgimg').attr('src','data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svgstr))))
+                    // },100)
+                // } 
+            })
+
             var J_file = $('#J_file');
 
             // 宽高设置优先最大宽高设置
@@ -82,6 +155,63 @@
                 })
             })
 
+            
+
+
+           
+    function getBase64(imgUrl) {
+      window.URL = window.URL || window.webkitURL;
+      var xhr = new XMLHttpRequest();
+      xhr.open("get", imgUrl, true);
+      // 至关重要
+      xhr.responseType = "blob";
+      xhr.onload = function () {
+        if (this.status == 200) {
+          //得到一个blob对象
+          var blob = this.response;
+          console.log("blob", blob)
+          // 至关重要
+          let oFileReader = new FileReader();
+          oFileReader.onloadend = function (e) {
+            let base64 = e.target.result;
+            console.log("方式一》》》》》》》》》", base64)
+            $('#J_imgxx').attr('xlink:href',base64)
+
+
+            var svgXml = $('#J_svgbox').html();
+            var image = new Image();
+            image.src = 'data:image/svg+xml;base64,' + window.btoa(unescape(encodeURIComponent(svgXml))); //给图片对象写入base64编码的svg流
+
+            // var canvas = document.createElement('canvas');  //准备空画布
+            // canvas.width = $('#J_svg').width();
+            // canvas.height = $('#J_svg').height();
+
+            // var context = canvas.getContext('2d');  //取得画布的2d绘图上下文
+            // context.drawImage(image, 0, 0);
+
+            // console.log()
+            $('body').append(image)
+
+          };
+          oFileReader.readAsDataURL(blob);
+          //====为了在页面显示图片，可以删除====
+        //   var img = document.createElement("img");
+        //   img.onload = function (e) {
+        //     window.URL.revokeObjectURL(img.src); // 清除释放
+        //   };
+        //   let src = window.URL.createObjectURL(blob);
+        //   img.src = src
+        //   document.getElementById("container1").appendChild(img);
+        //   //====为了在页面显示图片，可以删除====
+ 
+        }
+      }
+      xhr.send();
+    }
+
+    // getBase64("./img/pro02.jpg")
+
+            
         })
     </script>
 </body>
