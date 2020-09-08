@@ -25,7 +25,7 @@
                     <van-image fit="cover" class="thead" :src="item.head" />
                     <p class="tname">{{item.name}}</p>
                     <div class="tinfo">
-                        <div class="ti-t">人拼，还差<span class="ti-tc">1</span>人成团</div>
+                        <div class="ti-t">{{item.total}}人拼，还差<span class="ti-tc">{{item.total-item.join}}</span>人成团</div>
                         <p class="ti-b"><backtime :lasttime="item.end_time" /></p>
                     </div>
                     <router-link class="tlink" to="/category/ordersave">去参团</router-link>
@@ -177,15 +177,16 @@
             .list{ padding-left: .14rem;}
             .item{ padding: .1rem .14rem .1rem 0; border-bottom: 1px solid #ffd9af; align-items: center; justify-content: space-between;}
             .thead{height: .3rem; width: .3rem; overflow: hidden; border-radius: 50%;}
-            .tname{ width: 1.1rem; padding: 0 .1rem;}
-            .tinfo{ text-align: right; width:1.3rem; padding:  0 .1rem 0 0; }
+            .tname{ width: .9rem; padding: 0 .1rem;}
+            .tinfo{ text-align: right; width:1.5rem; padding:  0 .1rem 0 0; }
             .ti-t{ padding-top: .04rem; line-height: .18rem;}
             .ti-tc{ color: @base;}
             .ti-b{ font-size: .1rem; color: #999; line-height: .14rem;}
             .tlink{ width: .6rem; text-align: center; line-height: .3rem; color: #fff; background: @base; border-radius: .16rem;}
             .trl{ padding-left: .14rem; line-height: .32rem; color: #ff911b; font-size: .1rem;}
         }
-        .vbtn{ background: none;}
+        .vbtn.gb-bgc3{ background: @second}
+        .vbtn.gb-bgc{ background: @base;}
     }
 </style>
 <script>

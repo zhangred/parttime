@@ -47,8 +47,6 @@ export default new Router({
     { path: '/seckill/detail', name: 'seckillDetail', component: resolve => require(['./pages/gooddetails/seckill'], resolve) },
     // *签到
     { path: '/signin', name: 'signin', component: resolve => require(['./pages/single/signin'], resolve) },
-    // *商品详情-拼团
-    { path: '/assemble/goodDetail', name: 'assembleGoodDetail', component: resolve => require(['./pages/gooddetails/assemble'], resolve) },
     // *领券中心
     { path: '/coupanCenter', name: 'coupanCenter', component: resolve => require(['./pages/single/couponcenter'], resolve) },
     // *我的地址
@@ -61,6 +59,8 @@ export default new Router({
     { path: '/assemble', name: 'assemble', component: resolve => require(['./pages/assemble/index'], resolve) },
     { path: '/assemble/detail', name: 'assembleDetail', component: resolve => require(['./pages/assemble/detail'], resolve) },
     { path: '/assemble/ordersave', name: 'assembleOrdersave', component: resolve => require(['./pages/ordersave/assemble'], resolve) },
+    // *商品详情-拼团
+    { path: '/assemble/goodDetail', name: 'assembleGoodDetail', component: resolve => require(['./pages/gooddetails/assemble'], resolve) },
     // *我的订单
     { path: '/order/list', name: 'orderlist', component: resolve => require(['./pages/order/list'], resolve), meta:{keepAlive:true} },
     { path: '/order/detail', name: 'orderdetail', component: resolve => require(['./pages/order/detail'], resolve) },

@@ -140,7 +140,7 @@
                     </van-radio-group>
                 </div>
                 <div class="pcc-btns">
-                    <a href="javascript:;" class="pcc-btn" @click="orderCancel.show=false">取消</a><a href="javascript:;" class="pcc-btn c" @click="sureCancel">确定</a>
+                    <a href="javascript:;" class="pcc-btn" @click="popCancel.show=false">取消</a><a href="javascript:;" class="pcc-btn c" @click="sureCancel">确定</a>
                 </div>
             </div>
         </van-popup>
