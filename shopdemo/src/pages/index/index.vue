@@ -12,7 +12,7 @@
         </van-swipe>
         <!-- 分类 -->
         <div class="cate-list">
-            <router-link to="/signin" class="cate-item"><img src="~@/assets/images/cate_item01.png" class="cate-ico" /><p class="cate-tx">签到有礼</p></router-link>
+            <router-link to="/signin" class="cate-item"><img src="~@/assets/images/cate_item01.png" class="cate-ico" /><p class="cate-tx">{{test.a}}签到有礼</p></router-link>
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item02.png" class="cate-ico" /><p class="cate-tx">居家生活</p></router-link>
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item03.png" class="cate-ico" /><p class="cate-tx">服饰美妆</p></router-link>
             <router-link to="/category/list?id=0" class="cate-item"><img src="~@/assets/images/cate_item04.png" class="cate-ico" /><p class="cate-tx">数码电器</p></router-link>
@@ -142,7 +142,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
     .pindex{
-        .text{ height: auto; line-height: 24px;}
+        .text{ height: .2rem; line-height: 24px;}
         .search{ position: relative; padding-left: .51rem; background: #fff; line-height: .44rem; }
         .sctrol{ display: block; height: .44rem; width: 100%; border: none; font-size: .14rem; }
         .sico{ position: absolute; left: .16rem; top: 0; font-size: .24rem; line-height: .44rem; color:@base;}
@@ -200,6 +200,7 @@
     
 </style>
 <script>
+var test = {a:4}
 import {NoticeBar,Swipe, SwipeItem } from 'vant';
 export default {
     components:{
@@ -217,7 +218,8 @@ export default {
             tuan:{loop:0,list:[],current:0},
             goodlist:[],
             seckill:[],
-            pop_new:{show:true,list:[4,5,6]}
+            pop_new:{show:true,list:[4,5,6]},
+            test:test
         }
     },
     created(){
@@ -225,6 +227,11 @@ export default {
 
         this.getNewred();
         this.getPageData();
+
+        setTimeout(function(){
+            test.a = 50
+            console.log(test.a)
+        },5000)
         
     },
     activated() {

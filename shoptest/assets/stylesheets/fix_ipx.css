@@ -1,0 +1,45 @@
+.bl_botline{ padding-bottom: 24px!important; height: 74px!important;}
+.botmore{ padding-bottom: 20px!important;}
+
+.pd-b20{ padding-bottom: 20px!important;}
+.pd-b30{ padding-bottom: 30px!important;}
+.pd-b60{ padding-bottom: 60px!important;}
+.pd-b70{ padding-bottom: 70px!important;}
+.pd-b80{ padding-bottom: 80px!important;}
+.lh-50{ line-height: 50px!important; height: auto!important;}
+.lh-40{ line-height: 40px!important; height: auto!important;}
+.hauto{ height: auto!important; }
+
+.bdbot{ height: 70px!important;}
+.billing_new,
+.customer_e,
+.gdetail,
+.square-my,
+.gzbyme{ padding-bottom: 80px!important;}
+
+.billing_new .botline,
+.pd_botbtns{ height: 70px!important;}
+
+.billing_new .bl_tp,
+.billing_new .bl_tp_add,
+.xufeibot{padding-bottom: 20px!important;}
+
+
+.buydbot,.cebottn{ height: 70px!important;}
+.buydbot .ibuy,
+.gedit .botbtn{ padding-bottom: 20px; height: auto!important;}
+
+.pop_r_screen,
+.customer{ padding-bottom: 70px!important;}
+
+.pplist{ padding-bottom: 60px!important;}
+
+.pop_btncont>.pbtn,
+.pop_r_screen .bbtn,
+.ctbottn,
+.gzbot .ls,
+.gzcbot,
+.pd_botbtns .pd_btna,
+.pd_btn,
+.sqbotbtn,
+.souptyp{ padding-bottom: 20px;}

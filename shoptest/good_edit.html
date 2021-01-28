@@ -1,0 +1,476 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link href="assets/stylesheets/main.css" rel="stylesheet" type="text/css" />
+	<script language="javascript" type="text/javascript" src="assets/javascript/size.js"></script>
+	<title>回收寄卖</title>
+</head>
+<body>
+	<div class="toptilline">
+		<a href="javascript:;" class="tl_back" id="J_back"></a>
+		<p class="tl_til">回收寄卖</p>
+	</div>
+	<div class="html gedit">
+		<div class="editlinebox editlinebox_nmt">
+			<div class="editline editline_full">
+				<p class="el_ado el_ado_line">商品图片<span style="lineheight:14px" class="el_ado_tp">(点击设置主图(默认第一张)，长按预览大图)</span></p>
+				<p class="el_imgs" id="J_el_imgs">
+					<!-- data-url:图片地址，添加图片编辑格式 ，防止图片旋转 -->
+					<!-- <span class="J_el_img el_img" style="background-image: url(http://image.dajiaxiao.cn/FjSWvefJrBhlC3pI_vpY_uEyUYhx?imageView2/1/w/140/h/140)"><a href="javascript:;" class="el_img_del"></a></span> -->
+					<span class="J_el_img el_img" style="background-image: url(http://image.dajiaxiao.cn/FjSWvefJrBhlC3pI_vpY_uEyUYhx?imageView2/1/w/140/h/140)">
+						<a href="javascript:;" class="el_img_del"></a>
+						<a href="javascript:;" class="el_img_see"></a>
+					</span>
+					<a href="javascript:;" id="J_el_img_add" class="el_img_add"><input type="file" accept="image/*" multiple class="el_file" id="J_addimg"></a>
+				</p>
+			</div>
+			<div class="editline editline_full">
+				<p class="el_textarea"><textarea data-target="beizhu" class="J_blurscroll J_el_ctrol el_ctrol_area" placeholder="请填写营销描述(选填)"></textarea></p>
+			</div>
+			<div class="editline editline_select">
+				<p class="el_ado">商品来源<span class="el_ado_red">*</span></p>
+				<!-- data-target:对应的弹框 -->
+				<p data-target="#J_pop_from" id="J_from" class="J_showpop el_text">回收</p>
+				<img src="assets/images/arw_right.png" class="el_arw_r">
+			</div>
+			<div class="editline editline_select">
+				<p class="el_ado">商品来源方<span class="el_ado_red">*</span></p>
+				<p data-target="#J_pop_from_p" id="J_from_p" class="J_showpop el_text el_text_dis">请选择</p>
+				<img src="assets/images/arw_right.png" class="el_arw_r">
+			</div>
+			<div class="editline editline_select">
+				<p class="el_ado">入库人<span class="el_ado_red">*</span></p>
+				<p data-target="#J_pop_rkr" id="J_rkr" class="J_showpop el_text">李芳</p>
+				<img src="assets/images/arw_right.png" class="el_arw_r">
+			</div>
+			<div class="editline">
+				<p class="el_ado">商品名称</p>
+				<p class="el_input"><input type="text" name="" placeholder="请输入" data-target="name" class="J_el_ctrol el_ctrol"></p>
+			</div>
+			<div class="editline editline_select">
+				<p class="el_ado">所属品牌</p>
+				<p class="el_text el_text_dis">请选择</p>
+				<img src="assets/images/arw_right.png" class="el_arw_r">
+			</div>
+			<div class="editline">
+				<p class="el_ado">规格型号</p>
+				<!-- input中的data-target的值是data的属性 -->
+				<p class="el_input"><input type="text" name="" placeholder="请输入" data-target="xinghao" class="J_el_ctrol el_ctrol J_blurscroll"></p>
+			</div>
+			<div class="editline">
+				<p class="el_ado">商品颜色</p>
+				<p class="el_input"><input type="text" name="" placeholder="如红色、金色" data-target="yanse" class="J_el_ctrol el_ctrol J_blurscroll"></p>
+			</div>
+			<div class="editline editline_select">
+				<p class="el_ado">入库时间</p>
+				<p class="J_ctroldate el_text el_text_dis">请选择</p>
+				<img src="assets/images/arw_right.png" class="el_arw_r">
+			</div>
+			
+			<div class="editline editline_full">
+				<p class="el_texthr"><img src="./assets/images/arw_down02.png" class="el_texthr_arr" />以下补充信息，飞必填</p>
+			</div>
+			<div class="editline">
+				<p class="el_ado">商品材质</p>
+				<p class="el_input"><input type="text" name="" placeholder="如牛皮、羊皮、羊绒" class="el_ctrol J_blurscroll"></p>
+			</div>
+			<div class="editline">
+				<p class="el_ado">商品尺寸</p>
+				<p class="el_input"><input type="text" name="" placeholder="如28*58*38或17寸" class="el_ctrol J_blurscroll"></p>
+			</div>
+			<div class="editline">
+				<p class="el_ado">附件情况</p>
+				<p class="el_checks el_checks_btn">
+					<span class="J_el_check el_check" data-value="1">全新</span>
+					<span class="J_el_check el_check" data-value="2">有小票</span>
+					<span class="J_el_check el_check" data-value="3">配件齐齐全</span>
+					<span class="J_el_check el_check" data-value="4">包装盒</span>
+					<span class="J_el_check el_check" data-value="5">防尘袋</span>
+					<span class="J_el_check el_check" data-value="6">身份证卡</span>
+				</p>
+			</div>
+			<div class="editline editline_select">
+				<p class="el_ado">商品成色<img data-target="#J_pop_cstip" src="assets/images/ico_cs.png" class="J_showpop el_icoa"><span class="el_ado_red">*</span></p>
+				<p data-target="#J_pop_chengse" id="J_chengse" class="J_showpop el_text el_text_dis">请选择</p>
+				<img src="assets/images/arw_right.png" class="el_arw_r">
+			</div>
+			<div class="editline editline_select">
+				<p class="el_ado">存放仓库</p>
+				<p class="el_text">西街门店</p>
+				<img src="assets/images/arw_right.png" class="el_arw_r">
+			</div>
+			<div class="editline">
+				<p class="el_ado">商品数量</p>
+				<p class="el_input"><input type="text" name="" placeholder="请输入" value="1" data-type="number" data-target="num" class="J_el_ctrol el_ctrol"></p>
+			</div>
+			<div class="editline">
+				<p class="el_ado">成本价(元)</p>
+				<p class="el_input"><input type="text" name="" placeholder="请输入" class="el_ctrol J_blurscroll"></p>
+			</div>
+			<div class="editline editline_full editline_2line">
+				<div class="editline">
+					<p class="el_ado">同行价(元)</p>
+					<p class="el_input"><input type="text" name="" placeholder="请输入" class="el_ctrol J_blurscroll"></p>
+				</div>
+				<div class="editline">
+					<p class="el_ado">销售价(元)</p>
+					<p class="el_input"><input type="text" name="" placeholder="请输入" class="el_ctrol J_blurscroll"></p>
+				</div>
+			</div>
+			<div class="editline">
+				<p class="el_ado">工价(元)</p>
+				<p class="el_input"><input type="text" name="" placeholder="请输入(选填)" class="el_ctrol J_blurscroll"></p>
+			</div>
+			<div class="editline editline_full">
+				<p class="el_textarea"><textarea data-target="beizhu" class="J_blurscroll J_el_ctrol el_ctrol_area" placeholder="请填写商品备注(选填)"></textarea></p>
+			</div>
+		</div>
+		<a href="javascript:;" class="botbtn btn" id="J_botbtn">确认入库</a>
+
+	</div>
+	<!-- 数据来源方弹框 -->
+	<div class="pop dsn" id="J_pop_from_p">
+		<a href="javascript:;" class="J_popclose close" data-target="#J_pop_from_p"></a>
+		<div class="pop_rightcont">
+			<a href="javascript:;" class="J_from_p rline" data-value="1" data-key="数据来源方01">数据来源方01</a>
+			<a href="javascript:;" class="J_from_p rline" data-value="2" data-key="数据来源方02">数据来源方02</a>
+			<a href="javascript:;" class="J_from_p rline" data-value="3" data-key="数据来源方03">数据来源方03</a>
+			<a href="javascript:;" class="J_from_p rline" data-value="4" data-key="数据来源方04">数据来源方04</a>
+			<a href="javascript:;" class="J_from_p rline" data-value="5" data-key="数据来源方05">数据来源方05</a>
+			<a href="javascript:;" class="J_from_p rline" data-value="6" data-key="数据来源方06">数据来源方06</a>
+		</div>
+	</div>
+
+	<!-- 数据来源弹框 -->
+	<div class="pop dsn" id="J_pop_from">
+		<a href="javascript:;" class="J_popclose close" data-target="#J_pop_from"></a>
+		<div class="pop_btncont">
+			<p class="btns">
+				<a href="javascript:;" class="J_pbtn pbtn" data-value="1" data-key="回收">回收</a>
+				<a href="javascript:;" class="J_pbtn pbtn" data-value="2" data-key="寄卖">寄卖</a>
+			</p>
+			<a href="javascript:;" class="J_popclose pbtn" data-target="#J_pop_from">取消</a>
+		</div>
+	</div>
+	<!-- 成色弹框 -->
+	<div class="pop dsn" id="J_pop_chengse">
+		<a href="javascript:;" class="J_popclose close" data-target="#J_pop_chengse"></a>
+		<div class="pop_rightcont">
+			<a href="javascript:;" class="J_from_sc rline rline_cs" data-value="1" data-key="全新">全新<p class="rline_tp">未曾使用(全新全套附件)</p></a>
+			<a href="javascript:;" class="J_from_sc rline rline_cs" data-value="2" data-key="99新">99新<p class="rline_tp">未曾使用(无附件)</p></a>
+			<a href="javascript:;" class="J_from_sc rline rline_cs" data-value="3" data-key="95新">95新<p class="rline_tp">轻微成列使用痕迹(轻微划痕/染色/金属磨损/氧化)</p></a>
+			<a href="javascript:;" class="J_from_sc rline rline_cs" data-value="4" data-key="9新">9新<p class="rline_tp">日常使用痕迹(包面划痕/褪色/金属磨损氧化褪色/边角磨损)</p></a>
+			<a href="javascript:;" class="J_from_sc rline rline_cs" data-value="5" data-key="8新">8新<p class="rline_tp">明显使用磨痕(正常使用磨损无破损)</p></a>
+		</div>
+	</div>
+
+	<!-- 入库人弹框 -->
+	<div class="pop dsn" id="J_pop_rkr">
+		<a href="javascript:;" class="J_popclose close" data-target="#J_pop_rkr"></a>
+		<div class="pop_rightcont">
+			<a href="javascript:;" class="J_rkr rline" data-value="1" data-key="入库人01">入库人01</a>
+			<a href="javascript:;" class="J_rkr rline" data-value="2" data-key="入库人02">入库人02</a>
+			<a href="javascript:;" class="J_rkr rline" data-value="3" data-key="入库人03">入库人03</a>
+			<a href="javascript:;" class="J_rkr rline" data-value="4" data-key="入库人04">入库人04</a>
+			<a href="javascript:;" class="J_rkr rline" data-value="5" data-key="入库人05">入库人05</a>
+			<a href="javascript:;" class="J_rkr rline" data-value="6" data-key="入库人06">入库人06</a>
+		</div>
+	</div>
+
+	<!-- 成色说明弹框 -->
+	<div class="pop dsn" id="J_pop_cstip">
+		<a href="javascript:;" class="J_popclose close" data-target="#J_pop_cstip"></a>
+		<div class="pop_midcont pop_mincs">
+			<p class="cstil">商品成色说明</p>
+			<div class="csline"><p class="csline_a">全新</p>未曾使用(全新全套附件)</div>
+			<div class="csline"><p class="csline_a">99新</p>未曾使用(无附件)</div>
+			<div class="csline"><p class="csline_a">95新</p>轻微成列使用痕迹(轻微划痕/染色/金属磨损/氧化)</div>
+			<div class="csline"><p class="csline_a">9新</p>日常使用痕迹(包面划痕/褪色/金属磨损氧化褪色/边角磨损)</div>
+			<div class="csline"><p class="csline_a">8新</p>明显使用磨痕(正常使用磨损无破损)</div>
+			<br>
+			<a href="javascript:;" data-target="#J_pop_cstip" class="J_popclose csbtn">我知道了</a>
+		</div>
+	</div>
+
+	<!-- 主图跟随浮层 -->
+	<style>
+		.pop_zhutu{ display: none; position: fixed; left: .1rem; top: 55px; z-index: 3; width: .69rem;height: .69rem; background-size: cover;}
+		.pop_zhutu:before{ content: "主图"; display: block; background: rgba(133,219,216,.8); color: #fff; position: absolute; font-size: 10px; line-height: 16px; right: 0; top: 0; padding: 0 5px;}
+	</style>
+	<span class="pop_zhutu" id="J_pop_zt" style="background-image: url(http://image.dajiaxiao.cn/FjSWvefJrBhlC3pI_vpY_uEyUYhx?imageView2/1/w/140/h/140)"></span>
+
+	<script type="text/javascript">
+		// app背景颜色设置
+		// callapp('bg')
+	</script>
+	<script language="javascript" type="text/javascript" src="assets/javascript/jquery-2.1.4.min.js"></script>
+	<script language="javascript" type="text/javascript" src="assets/javascript/func.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			// 展开弹层
+			$('.J_showpop').click(function(){
+				var tar = $($(this).attr('data-target'));
+				tar.show();
+				setTimeout(function(){
+					tar.addClass('pop_active');
+				},20);
+			});
+		    //关闭弹层
+			$('.J_popclose').click(function(){
+				$($(this).attr('data-target')).hide().removeClass('pop_active');
+			});
+			function closepop(tar){
+				$(tar).hide().removeClass('pop_active');
+			};
+
+			var data = {"from":1}; // 预定义提交对象，部分页面默认的数据也需对应设置好，此对象只是例子，根据具体需求变更***********************
+
+			// 商品来源数据
+			$('.J_pbtn').click(function(){
+				data.from = $(this).attr('data-value');
+				$('#J_from').html($(this).attr('data-key'));
+				closepop('#J_pop_from');
+			});
+
+			// 数据来源方
+			$('.J_from_p').click(function(){
+				data.fromp = $(this).attr('data-value');
+				$('#J_from_p').html($(this).attr('data-key')).removeClass('el_text_dis');
+				closepop('#J_pop_from_p');
+			});
+
+			// 入库人
+			$('.J_rkr').click(function(){
+				data.fromp = $(this).attr('data-value'); // 数据填充
+				$('#J_rkr').html($(this).attr('data-key'));
+				closepop('#J_pop_rkr');
+			});
+
+			//*********************
+			// 商品名称  所属品牌 商品橙色 存放仓库 可依次根据以上html对应结构以及js方法对应即可
+
+
+
+			// input输入自动绑定数据,
+			// 输入数字的如商品数量  input上有个data-type自定属性 可以判断输入值是否满足条件，默认text
+			// 后面对应的yinput输入框可依照以上例子依葫芦画瓢
+			// textarea和input一致
+			$('.J_el_ctrol').blur(function(){
+				var self = $(this),
+					val = self.val().trim(),
+					type = self.attr('data-type')||'',
+					tar = self.attr('data-target');
+				if(type=="number"){
+					val = parseFloat(val)||0;
+				};
+				self.val(val);
+				data[tar] = val; // 数据填充
+			}).focus(function(){
+				var self = $(this),
+					v = self.val();
+				self.val('');
+				setTimeout(function(){
+					self.val(v);
+				},10);
+			});
+
+			// 附件情况
+			data.fujian = []; // 预定义附件数组
+			$('.J_el_check').click(function(){
+				var self = $(this),
+					val = self.attr('data-value');
+				var isin = data.fujian.indexOf(val);
+				if(isin>-1){
+					data.fujian.splice(isin,1); // 从当前数组里移除
+					self.removeClass('el_checked');
+				}else{
+					data.fujian.push(val); // 当前数据填充到数组里
+					self.addClass('el_checked');
+				};
+			});
+
+
+			//商品图片
+			var upimg = $('#J_addimg'),
+				par = $('#J_el_img_add');
+
+			upimg.on('change',function(){ // 上传图片
+				var files = $(this).get(0).files,
+					count = 0;
+
+				if(!files||files.length==0) return;
+
+				//循环上传files
+				// 上传提示
+				//开始上传时调用
+				CUES.loading({"msg":"正在上传···"});
+				for(var i=0;i<files.length;i++){
+					upfiles(files[i],function(){
+						count++;
+						if(count==files.length){
+							CUES.loadclose();
+						}
+					})
+				}
+			});
+
+			//上传图片
+			function upfiles(file,cb){
+				// 此处上传图片代码，
+				// 上传成功后调用：url:成功后返回的图片地址，仿照七牛图片处理格式，以防止图片旋转
+				readfile(file,function(url){
+					par.before('<span class="J_el_img el_img" data-url="'+url+'" style="background-image: url('+url+')"><a href="javascript:;" class="el_img_del"></a></span>');
+					//上传成功后调用回调，统计上传个数
+					cb()
+				})
+				getzhutu();
+			}
+			//readfile 方法只是读取图片用，根据需求使用
+			function readfile(file,cb){
+				var reader = new FileReader(); 
+				reader.readAsDataURL(file); 
+				reader.onload=function(e){
+					cb(this.result)
+				} 
+			}
+
+			$('#J_el_imgs').on('click','.el_img_del',function(e){ // 删除图片
+				$(this).parent().remove();
+				e.preventDefault();
+				getzhutu();
+				return false;
+			}).on('click','.J_el_img',function(){
+				$('#J_el_imgs').prepend($(this));
+			}).on('touchstart','.J_el_img',function(){
+				var self = $(this);
+				isee_inter = setTimeout(function(){
+					iseeimg(self)
+				},400)
+			}).on('touchend','.J_el_img',function(){
+				clearTimeout(isee_inter);
+			});
+
+			//查看大图
+			var isee = null,
+				isee_inter = '';
+
+			isee = new imgsee({
+				imgs:[]
+			});
+
+			function iseeimg(elm){
+				var idx = $('.J_el_img').index(elm);
+				isee.show(idx,false,backimgs());
+			}
+			function backimgs(){
+				var pic = [];
+				var J_el_img = $('.J_el_img'),
+					len = J_el_img.length;
+				for(var i=0;i<len;i++){
+					pic.push(J_el_img.eq(i).attr('data-url'));
+				};
+				return pic;
+			}
+
+			var isajax = false; //设置开关  防止多次提交
+			// 校对数据
+			$('#J_botbtn').click(function(){
+				if(isajax){return false;};
+				if(!data.fromp){
+					CUES.tip({"msg":"请选择商品来源方","type":"danger"});
+					return false;
+				};
+				// 相似的数据可以依次判断并输入对应的提示文字
+
+				// 附件
+				if(data.fujian.length==0){
+					CUES.tip({"msg":"请设置附件信息","type":"danger"});
+					return false;
+				};
+
+				// 商品图片
+				data.pic = [];
+				var J_el_img = $('.J_el_img'),
+					len = J_el_img.length;
+
+				if(!len){
+					CUES.tip({"msg":"请上传商品图片","type":"danger"});
+					return false;
+				};
+				for(var i=0;i<len;i++){
+					data.pic.push(J_el_img.eq(i).attr('data-url')); // 添加图片地址
+				};
+
+				//ajax提交数据
+				alert('提交的数据：'+JSON.stringify(data));
+				isajax = true;
+				$.ajax({ 
+					type: "GET",
+					url: "api/callback.json?v="+(new Date().getTime()),
+					data: {},
+					dataType: "json",
+					success: function(res){
+						isajax = false;
+						if(res.code){
+							// 提交成功
+							window.location.href = 'good_status.html'; // 跳转
+						}
+					}
+				});
+
+			});
+
+			var haszt = false;
+			var J_pop_zt = $('#J_pop_zt');
+			//判断主图
+			function getzhutu(){
+				if($('.J_el_img').length>0){
+					haszt = true;
+					J_pop_zt.attr('style',$('.J_el_img').eq(0).attr('style'))
+				}else{
+					haszt = false;
+					J_pop_zt.attr('style','')
+				}
+			}
+			getzhutu();
+			//检测主图滚动
+			$(window).scroll(CUES.debounce(function(){
+				if(upimg.get(0).getBoundingClientRect().bottom<36&&haszt){
+					J_pop_zt.stop().clearQueue().fadeIn()
+				}else{
+					J_pop_zt.fadeOut()
+				}
+			},50))
+			J_pop_zt.click(function(){
+				$(window).scrollTop(0)
+			})
+
+			// 入库时间
+
+			var dt = new dateselect({
+				"targets":document.getElementsByClassName('J_ctroldate'),
+				"timegroups":["y","m","d"],
+				"format":"y-m-d",
+				"selected":function(tar,date,str){
+					var el = $(tar),
+						k = el.attr('data-key');
+					el.removeClass('el_text_dis');	
+				},
+				"empty":function(tar){
+					var el = $(tar),
+						k = el.attr('data-key');
+					el.addClass('el_text_dis').html('选择时间');		
+				}
+			});
+		});
+	</script>
+</body>
+</html>
