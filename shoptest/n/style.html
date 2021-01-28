@@ -16,7 +16,7 @@
 
 	<!-- 页面样式 -->
 	<style rel="stylesheet" type="text/css">
-	.box *{ box-sizing: initial;}
+	.box *{ box-sizing: initial;user-select:none}
 	.box{ overflow: hidden; margin-bottom: 30px; background-color: #eee;}
 	.box-ul{ width: 30%; float: left; display: flex; flex-direction: column;}
 	.box-li{ line-height: 40px; display: flex;}
@@ -48,7 +48,7 @@
 		</div>
 
 		<div class="box">
-			<div class="box-ul a" style="transform: translateY(40px); transition: transform 0.4s ease 0s;">
+			<div class="box-ul a" style="transform: translate3d(0px, -40px, 0px); transition-duration: 0ms; transition-property: none;">
 				<div class="box-li">行内文字1</div>
 				<div class="box-li">行内文字2</div>
 				<div class="box-li">行内文字3</div>
@@ -64,7 +64,7 @@
 		</div>
 
 		<div class="box">
-			<div class="box-ul b" style="transform: translateY(40px); transition: transform 0.4s ease 0s;">
+			<div class="box-ul b" style="transform: translate3d(0px, 40px, 0px); transition-duration: 0ms; transition-property: none;">
 				<div class="box-li">行内文字1</div>
 				<div class="box-li">行内文字2</div>
 				<div class="box-li">行内文字3</div>
