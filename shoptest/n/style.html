@@ -24,18 +24,19 @@
 	.box-txli{ line-height: 40px;}
 	.box-txli:nth-child(2n+1){ background-color: #ddd;}
 	.hei{ float: left; width: 20%; background-color: #ccc; height: 160px; padding-top: 20px;}
-	.box-ul.a{}
+	.box-ul.a .box-li{ height: 40px;}
+	.box-ul.b .box-li{ height: 40px;}
 	</style>
 
 	<!-- 页面html -->
 	<div class="html">
 		<div class="box">
-			<ul class="box-ul">
-				<li class="box-li">行内文字1</li>
-				<li class="box-li">行内文字2</li>
-				<li class="box-li">行内文字3</li>
-				<li class="box-li">行内文字4</li>
-			</ul>
+			<div class="box-ul">
+				<div class="box-li">行内文字1</div>
+				<div class="box-li">行内文字2</div>
+				<div class="box-li">行内文字3</div>
+				<div class="box-li">行内文字4</div>
+			</div>
 			<div class="box-tx">
 				<p class="box-txli">mid文案1</p>
 				<p class="box-txli">mid文案2</p>
@@ -46,12 +47,28 @@
 		</div>
 
 		<div class="box">
-			<ul class="box-ul a" style="transform: translate3d(0px, 40px, 0px); transition: transform 0.4s ease 0s;">
-				<li class="box-li">行内文字1</li>
-				<li class="box-li">行内文字2</li>
-				<li class="box-li">行内文字3</li>
-				<li class="box-li">行内文字4</li>
-			</ul>
+			<div class="box-ul a" style="transform: translate3d(0px, 40px, 0px); transition: transform 0.4s ease 0s;">
+				<div class="box-li">行内文字1</div>
+				<div class="box-li">行内文字2</div>
+				<div class="box-li">行内文字3</div>
+				<div class="box-li">行内文字4</div>
+			</div>
+			<div class="box-tx">
+				<p class="box-txli">mid文案1</p>
+				<p class="box-txli">mid文案2</p>
+				<p class="box-txli">mid文案3</p>
+				<p class="box-txli">mid文案4</p>
+			</div>
+			<div class="hei">xxxx</div>
+		</div>
+
+		<div class="box">
+			<div class="box-ul b" style="transform: translate3d(0px, -40px, 0px); transition: transform 0.4s ease 0s;">
+				<div class="box-li">行内文字1</div>
+				<div class="box-li">行内文字2</div>
+				<div class="box-li">行内文字3</div>
+				<div class="box-li">行内文字4</div>
+			</div>
 			<div class="box-tx">
 				<p class="box-txli">mid文案1</p>
 				<p class="box-txli">mid文案2</p>
