@@ -16,14 +16,15 @@
 
 	<!-- 页面样式 -->
 	<style rel="stylesheet" type="text/css">
+	.box *{ box-sizing: initial;}
 	.box{ overflow: hidden; margin-bottom: 30px; background-color: #eee;}
-	.box-ul{ width: 30%; float: left;}
-	.box-li{ line-height: 40px;}
+	.box-ul{ width: 30%; float: left; display: flex; flex-direction: column;}
+	.box-li{ line-height: 40px; display: flex;}
 	.box-li:nth-child(2n){ background-color: #ddd;}
-	.box-tx{ width: 30%; float: left;}
-	.box-txli{ line-height: 40px;}
+	.box-tx{ width: 30%; float: left; display: flex;flex-direction: column;}
+	.box-txli{ line-height: 40px; display: flex;}
 	.box-txli:nth-child(2n+1){ background-color: #ddd;}
-	.hei{ float: left; width: 20%; background-color: #ccc; height: 160px; padding-top: 20px;}
+	.hei{ float: left; width: 20%; background-color: #ccc; height: 140px; padding-top: 20px;}
 	.box-ul.a .box-li{ height: 40px;}
 	.box-ul.b .box-li{ height: 40px;}
 	</style>
