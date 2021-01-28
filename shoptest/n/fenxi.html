@@ -1,0 +1,351 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link href="./assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
+	<script language="javascript" type="text/javascript" src="./assets/javascript/size.js"></script>
+	<title>客户分析</title>
+</head>
+<body>
+
+	<!-- 页面样式 -->
+	<style rel="stylesheet" type="text/css">
+		.topfix{ position: fixed; left: 0; top: 0; width: 100%; background: #fff; z-index: 5;}
+		.html{ padding: 92px 0 0;}
+		.cm-tabbox{ background:#85dbd8;}
+		.cm-tabbox .cmtab-in{ color: #fff;}
+		.cm-tabbox .cmtab-active .cmtab-in{ color: #fff; border: none;}
+		.cont{ margin-bottom: 5px; background: #fff;}
+		.cont .cm-tabbox{ height: auto; overflow: hidden; background: none; border-bottom: none;}
+		.ct-til{ position: relative; padding-left: 18px; line-height: 48px; font-size: 16px; font-weight: bold;}
+		.ct-til:before{ content: ''; display: block; position: absolute; left: 4px; top: 50%; height: 10px; width: 4px; margin-top: -5px; background: #85dbd8;}
+		.ct-tnum{ color: #85dbd8; font-size: 28px; line-height: 36px;}
+		.ct-tnum.ud{ text-decoration: underline;}
+		.ct-btp{ padding-top: 10px; font-size: 12px; line-height: 28px;}
+		.cont .cmtab{ margin-bottom: 10px;}
+		.ct-pop{ position: relative; top: -2px; display: inline-block; height: 30px; width: 30px; vertical-align: middle; background: url(./assets/images/icon43_que.png) no-repeat center center; background-size: 16px 16px;}
+		.ct-ao{ font-size: 18px; line-height: 20px;}
+		.pop-sc-til{ text-align: center; line-height: 44px;}
+		.pop-time-ls{ display: block; padding-left: 14px; line-height: 44px; border-top: 1px solid #eee;}
+		.pop-time-ls.active,.pop-time-auto.active{ color: #85dbd8;}
+		.pop-time-auto{ position: relative; display: block; padding: 0 14px 10px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; line-height: 44px;}
+		.pop-time-auls,.pop-time-input{ position: relative; display: block; height: 40px; width: 42%; float: left; text-align: center; background: #f4f4f4; border: none;}
+		.pop-time-input{ width: 100%;}
+		.pop-time-sp{ position: relative; display: block; float: left; height: 44px; width: 16%;}
+		.pop-time-sp:after{ content: ""; display: block; position: absolute; left: 25%; right: 25%; top: 50%; border-top: 1px solid #ccc;}
+		.pop-time-auls:after{ content: ''; display: block; position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 2;}
+		.cm-pop-exp{ padding: 0 14px; border-radius: 4px;}
+		.pexp-title{ padding: 14px 0; border-bottom: 1px solid #eee; text-align: center; font-size: 16px;}
+		.pexp-cont{ padding: 14px 0;}
+	</style>
+
+	<!-- 页面html -->
+	<div class="topfix">
+		<div class="cm-topline cm-topline-pr c" style="top:0;">
+			<a href="javascript:;" class="tl-back" id="J_back"></a>
+			<p class="tl-title">客户分析</p>
+		</div>
+		<div class="cm-tabbox cm-tabbox3">
+			<a href="javascript:;" data-target="#J_pop_time" class="J_showpop cmtab"><p class="cmtab-in ar-d" id="J_tab_time">全部数据</p></a>
+			<a href="javascript:;" id="J_level" class="cmtab"><p class="cmtab-in ar-d" id="J_tab_level">全部客户等级</p></a>
+			<a href="javascript:;" id="J_worker"  class="cmtab"><p class="cmtab-in ar-d" id="J_tab_worker">全部员工</p></a>
+		</div>
+	</div>
+	<div class="html">
+		<div class="cont">
+			<p class="ct-til">待回访客户分析<a href="javascript:;" data-target="#J_explain_a" class="J_showpop ct-pop"></a></p>
+			<div class="cm-tabbox cm-tabbox3">
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum ud">40</p>
+					<p class="ct-btp">待回访消费客户数</p>
+				</a>
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum">24</p>
+					<p class="ct-btp">待回访寄卖客户数</p>
+				</a>
+			</div>
+		</div>
+		<div class="cont">
+			<p class="ct-til">流失客户分析<a href="javascript:;" data-target="#J_explain_b" class="J_showpop ct-pop"></a></p>
+			<div class="cm-tabbox cm-tabbox3">
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum ud">40</p>
+					<p class="ct-btp">新流失消费客户数</p>
+				</a>
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum ud">24</p>
+					<p class="ct-btp">新流式寄卖客户数</p>
+				</a>
+			</div>
+		</div>
+		<div class="cont">
+			<p class="ct-til">消费客户分析<a href="javascript:;" data-target="#J_explain_c" class="J_showpop ct-pop"></a></p>
+			<div class="cm-tabbox cm-tabbox3">
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum ud">40</p>
+					<p class="ct-btp">消费客户数</p>
+				</a>
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum ud">24</p>
+					<p class="ct-btp">复购客户数</p>
+				</a>
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum ud">24</p>
+					<p class="ct-btp">多次复购客户数</p>
+				</a>
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum">45.6<span class="ct-ao">%</span></p>
+					<p class="ct-btp">复购率</p>
+				</a>
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum"><span class="ct-ao">￥</span>23544</p>
+					<p class="ct-btp">消费客单价</p>
+				</a>
+			</div>
+		</div>
+		<div class="cont">
+			<p class="ct-til">流失客户分析<a href="javascript:;" data-target="#J_explain_b" class="J_showpop ct-pop"></a></p>
+			<div class="cm-tabbox cm-tabbox3">
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum ud">40</p>
+					<p class="ct-btp">新流失消费客户数</p>
+				</a>
+				<a href="javascript:;" class="cmtab">
+					<p class="ct-tnum ud">24</p>
+					<p class="ct-btp">新流式寄卖客户数</p>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- 弹层-时间范围选择 -->
+	<div class="cm-pop" id="J_pop_time">
+		<a href="javascript:;" class="J_popclose cm-pop-bg" data-target="#J_pop_time"></a>
+		<div class="cm-pop-cont cm-pop-right-cont cm-pop-screen">
+			<div class="pop-screenbox">
+				<p class="pop-sc-til">请选择时间范围</p>
+				<a href="javascript:;" class="J_pop_time pop-time-ls" data-type="today">今日数据</a>
+				<a href="javascript:;" class="J_pop_time pop-time-ls" data-type="yesterday">昨日数据</a>
+				<a href="javascript:;" class="J_pop_time pop-time-ls" data-type="week">本周数据</a>
+				<a href="javascript:;" class="J_pop_time pop-time-ls" data-type="month">本月数据</a>
+				<a href="javascript:;" class="J_pop_time pop-time-ls active" data-type="all">全部数据</a>
+				<div class="pop-time-auto" id="J_pop_time_auto">
+					<p>自定义时间</p>
+					<div class="ovh">
+						<a href="javascript:;" class="J_pop_auto pop-time-auls" data-type="timestart" data-title="最早时间" data-timegroup="y-m-d" data-format="y/m/d"><input type="text" class="J_pop_time_input pop-time-input" placeholder="最早时间" /></a>
+						<p class="pop-time-sp"></p>
+						<a href="javascript:;" class="J_pop_auto pop-time-auls" data-type="timeend" data-title="最晚时间" data-timegroup="y-m-d" data-format="y/m/d"><input type="text" class="J_pop_time_input pop-time-input" placeholder="最晚时间" /></a>
+					</div>
+				</div>
+				
+			</div>
+			<p class="botbtns"><a href="javascript:;" class="bbtn" id="J_sc_reset">重置</a><a href="javascript:;" class="bbtn" id="J_sc_sure">确定</a></p>
+		</div>
+	</div>
+
+	<!-- 解释描述弹层 -->
+	<div class="cm-pop" id="J_explain_a">
+		<a href="javascript:;" class="J_popclose cm-pop-bg" data-target="#J_explain_a"></a>
+		<div class="cm-pop-cont cm-pop-mid-cont cm-pop-exp">
+			<p class="pexp-title">待回访客户分析</p>
+			<div class="pexp-cont">
+				<p>这是待回访客户分析的描述啊，这是待回访客户分析的描述啊，这是待回访客户分析的描述啊，</p>
+				<p>这是待回访客户分析的描述啊，这是待回访客户分析的描述啊，这是待回访客户分析的描述啊，</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="cm-pop" id="J_explain_b">
+		<a href="javascript:;" class="J_popclose cm-pop-bg" data-target="#J_explain_b"></a>
+		<div class="cm-pop-cont cm-pop-mid-cont cm-pop-exp">
+			<p class="pexp-title">流失客户分析</p>
+			<div class="pexp-cont">
+				<p>这是待回访客户分析的描述啊，这是待回访客户分析的描述啊，这是待回访客户分析的描述啊，</p>
+				<p>这是待回访客户分析的描述啊，这是待回访客户分析的描述啊，这是待回访客户分析的描述啊，</p>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// app背景颜色设置
+		// callapp('bg')
+	</script>
+
+	<script language="javascript" type="text/javascript" src="./assets/javascript/jquery-2.1.4.min.js"></script>
+	<script language="javascript" type="text/javascript" src="./assets/javascript/tools.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var sort = {time:'all'}, //排序
+				sort_final = {time:'all'}; //最终结果
+
+			// 列表加载
+			var data = {"page":1,"pagesize":16},
+				locked = false;//设置开关 防止重复提交;
+			
+			// 展开弹层
+			$('.J_showpop').click(function(){
+				var tar = $($(this).attr('data-target'));
+				tar.addClass('cm-pop-active');
+			});
+		    //关闭弹层
+			$('.J_popclose').click(function(){
+				$($(this).attr('data-target')).removeClass('cm-pop-active');
+			});
+			function closepop(tar){
+				tar.removeClass('cm-pop-active');
+            };
+			function showpop(tar){
+				tar.addClass('cm-pop-active');
+			};
+
+			// dom预选
+			var J_pop_time = $('.J_pop_time'),
+				J_pop_time_auto = $('#J_pop_time_auto');
+
+			//时间范围选择
+			$('.J_pop_time').click(function(){
+				if($(this).hasClass('active')) return;
+				J_pop_time.removeClass('active');
+				$(this).addClass('active');
+				sort.time = $(this).attr('data-type');
+				J_pop_time_auto.removeClass('active');
+				console.log(sort)
+			})
+			// 时间自定义
+			var dt = new datePicker({
+                "targets":document.getElementsByClassName('J_pop_auto'),
+                "confirm":function(rs,cb){
+					var timetype = $(rs.target).attr('data-type');
+					//格式化时间，设置时分秒
+					if(timetype=='timestart'){
+						rs.time.setHours(0,0,0)
+					}
+					if(timetype=='timeend'){
+						rs.time.setHours(23,59,59)
+					}
+
+					//判断前后时间大小
+					if(timetype=='timeend'&&sort.timestart&&sort.timestart>rs.time.getTime()){
+						CUES.tip({msg:'时间不可小于最早时间'})
+						return;
+					}
+					if(timetype=='timestart'&&sort.timeend&&sort.timeend<rs.time.getTime()){
+						CUES.tip({msg:'时间不可大于最晚时间'})
+						return;
+					}
+					$(rs.target).find('input').val(rs.time_str)
+					sort[timetype] = rs.time.getTime()
+					cb();
+					if(sort.timestart&&sort.timeend){
+						J_pop_time.removeClass('active');
+						sort.time = '';
+						J_pop_time_auto.addClass('active');
+					}
+                }
+			})
+			
+			//重置
+			$('#J_sc_reset').click(function(){
+				J_pop_time.removeClass('active')
+				J_pop_time_auto.removeClass('active');
+				$('.J_pop_time_input').val('');
+				
+				//还原时间数据
+				sort = sort_final;
+
+				if(sort_final.time){
+					$('.J_pop_time[data-type="'+sort_final.time+'"]').addClass('active')
+					$('#J_tab_time').html($('.J_pop_time[data-type="'+sort_final.time+'"]').html())
+				}
+				if(!sort_final.time&&(sort_final.timeend&&sort_final.timestart)){
+					J_pop_time_auto.addClass('active');
+					$('.J_pop_time_input').eq(0).val(cmtools.timeFormat(new Date(sort_final.timestart),'y/m/d'));
+					$('.J_pop_time_input').eq(1).val(cmtools.timeFormat(new Date(sort_final.timeend),'y/m/d'));
+				}
+			})
+			//确定
+			$('#J_sc_sure').click(function(){
+				sort_final = $.extend({},sort);
+				closepop($('#J_pop_time'));
+				if(sort_final.time){
+					$('#J_tab_time').html($('.J_pop_time[data-type="'+sort_final.time+'"]').html())
+				}
+				if(!sort_final.time&&(sort_final.timeend&&sort_final.timestart)){
+					$('#J_tab_time').html('自定义时间')
+				}
+
+				getdata();
+			})
+
+			//等级
+			var level = [
+                {"id":1,"name":"全部用户等级"},
+                {"id":2,"name":"用户等级01"},
+                {"id":3,"name":"用户等级02"},
+                {"id":4,"name":"用户等级03"},
+                {"id":5,"name":"用户等级04"},
+                {"id":6,"name":"用户等级05"},
+                {"id":7,"name":"用户等级06"},
+                {"id":8,"name":"用户等级07"},
+            ],
+            select_level = new dataSelect({
+                "target":document.getElementById('J_level'), // 激活目标对象dom
+                "default_v":1, // 设置默认值
+                "title":"选择用户等级",
+                "datalist":level,
+                "confirm":function(rs,cb){
+                    cb()
+                    $('#J_tab_level').html(rs.name)
+                    console.log('c',rs)
+                }
+			});
+			
+			//员工
+			var worker = [
+                {"id":1,"name":"全部员工"},
+                {"id":2,"name":"员工分组01"},
+                {"id":3,"name":"员工分组02"},
+                {"id":4,"name":"员工分组03"},
+                {"id":5,"name":"员工分组04"},
+                {"id":6,"name":"员工分组05"},
+                {"id":7,"name":"员工分组06"},
+                {"id":8,"name":"员工分组07"},
+            ],
+            select_lworker = new dataSelect({
+                "target":document.getElementById('J_worker'), // 激活目标对象dom
+                "default_v":1, // 设置默认值
+                "title":"选择员工",
+                "datalist":worker,
+                "confirm":function(rs,cb){
+                    cb()
+                    $('#J_tab_worker').html(rs.name)
+                    console.log('c',rs)
+                }
+            });
+
+			//获取页面数据
+			function getdata(){
+				$.ajax({ 
+					type: "GET",
+					url: "/api/sres.json?v="+(new Date().getTime()),
+					data: {},
+					dataType: "json",
+					success: function(res){
+						if(res.code){
+							
+						}
+					}
+				});
+			}
+
+			
+		});
+	</script>
+</body>
+</html>
