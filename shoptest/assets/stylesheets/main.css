@@ -432,8 +432,8 @@ textarea::-webkit-input-placeholder { color: #ccc;}
 .dateselect_input .dpls4 .dp-select{ width: 25%;}
 .dateselect_input .dpls5 .dp-select{ width: 20%;}
 .dateselect_input .dpls6 .dp-select{ width: 16.6%;}
-.dateselect_input .dp-select-ul{ position: relative;}
-.dateselect_input .dp-option{ line-height: 40px;}
+.dateselect_input .dp-select-ul{ position: relative; overflow: hidden;}
+.dateselect_input .dp-option{ line-height: 40px; height: 40px; float: left; width: 100%;}
 .dateselect_input .dp-btns{ height: 40px; border-top: 1px solid #f1f1f1; z-index: 5;}
 .dateselect_input .dp-btn{ display: block; float: left; width: 33.3%; background: #fff; height: 55px; border-right: 1px solid #f1f1f1; text-align: center; line-height: 39px; color: #666;}
 .dateselect_input .dp-btn:nth-child(3){ border: none; width: 33.4%;}
